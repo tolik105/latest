@@ -23,24 +23,24 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://akrin.jp'),
   title: {
-    default: 'Akrin - IT Solutions that Transform Your Business | Japan & Global',
-    template: '%s | Akrin IT Solutions'
+    default: 'AKRIN株式会社 (AKRIN K.K.) - IT Solutions that Transform Your Business | Japan & Global',
+    template: '%s | AKRIN株式会社'
   },
   description: 'Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support. Transform your business with our expert IT consulting.',
-  keywords: ['IT solutions Japan', 'managed IT services', 'cybersecurity Japan', 'cloud migration', 'IT support Tokyo', 'IT consulting', 'digital transformation', 'Akrin'],
-  authors: [{ name: 'Akrin Co., Ltd.' }],
-  creator: 'Akrin Co., Ltd.',
-  publisher: 'Akrin Co., Ltd.',
+  keywords: ['AKRIN株式会社', 'AKRIN K.K.', 'アクリン', 'IT solutions Japan', 'managed IT services', 'cybersecurity Japan', 'cloud migration', 'IT support Tokyo', 'IT consulting', 'digital transformation', 'Akrin'],
+  authors: [{ name: 'AKRIN株式会社' }],
+  creator: 'AKRIN株式会社',
+  publisher: 'AKRIN株式会社',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: 'Akrin - IT Solutions that Transform Your Business',
+    title: 'AKRIN株式会社 - IT Solutions that Transform Your Business',
     description: 'Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support.',
     url: 'https://akrin.jp',
-    siteName: 'Akrin IT Solutions',
+    siteName: 'AKRIN株式会社',
     locale: 'en_US',
     alternateLocale: 'ja_JP',
     type: 'website',
@@ -49,13 +49,13 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Akrin IT Solutions - Transform Your Business',
+        alt: 'AKRIN株式会社 - Transform Your Business',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Akrin - IT Solutions that Transform Your Business',
+    title: 'AKRIN株式会社 - IT Solutions that Transform Your Business',
     description: 'Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support.',
     creator: '@akrin',
     images: ['/og-image.png'],
@@ -90,7 +90,15 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon-152x152.png', sizes: '152x152', type: 'image/png' }
     ],
   },
-  manifest: '/manifest.json'
+  manifest: '/manifest.json',
+  alternates: {
+    canonical: 'https://akrin.jp',
+    languages: {
+      'en': 'https://akrin.jp/en',
+      'ja': 'https://akrin.jp/ja',
+      'x-default': 'https://akrin.jp'
+    }
+  }
 }
 
 export default function RootLayout({
@@ -104,33 +112,91 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "AKRIN株式会社",
-              "alternateName": ["Akrin Co., Ltd.", "Akrin IT Solutions"],
-              "url": "https://akrin.jp",
-              "logo": "https://akrin.jp/akrin-logo.svg",
-              "sameAs": [
-                "https://www.linkedin.com/company/akrinkk"
-              ],
-              "contactPoint": {
-                "@type": "ContactPoint",
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "@id": "https://akrin.jp/#organization",
+                "name": "AKRIN株式会社",
+                "legalName": "AKRIN株式会社",
+                "alternateName": ["Akrin Co., Ltd.", "Akrin IT Solutions", "AKRIN K.K.", "アクリン"],
+                "url": "https://akrin.jp",
+                "logo": "https://akrin.jp/akrin-logo.svg",
+                "sameAs": [
+                  "https://www.linkedin.com/company/akrinkk"
+                ],
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "telephone": "+81-3-6821-1223",
+                  "contactType": "customer service",
+                  "availableLanguage": ["English", "Japanese", "日本語", "英語"],
+                  "areaServed": ["JP", "Worldwide"]
+                },
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "2-4-15 Minamiaoyama 4F",
+                  "streetAddress@ja": "南青山2-4-15 4F",
+                  "addressLocality": "Minato City",
+                  "addressLocality@ja": "港区",
+                  "addressRegion": "Tokyo",
+                  "addressRegion@ja": "東京都",
+                  "postalCode": "107-0062",
+                  "addressCountry": "JP"
+                },
+                "description": "Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support.",
+                "description@ja": "日本を代表するITソリューションプロバイダー。マネージドサービス、サイバーセキュリティ、クラウド移行、24時間365日サポートを提供。"
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://akrin.jp/#localbusiness",
+                "name": "AKRIN株式会社",
+                "image": "https://akrin.jp/og-image.png",
+                "priceRange": "$$$$",
                 "telephone": "+81-3-6821-1223",
-                "contactType": "customer service",
-                "availableLanguage": ["English", "Japanese"],
-                "areaServed": ["JP", "Worldwide"]
-              },
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "2-4-15 Minamiaoyama 4F",
-                "addressLocality": "Minato City",
-                "addressRegion": "Tokyo",
-                "postalCode": "107-0062",
-                "addressCountry": "JP"
-              },
-              "description": "Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support."
-            })
+                "email": "support@akrin.jp",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "南青山2-4-15 4F",
+                  "addressLocality": "港区",
+                  "addressRegion": "東京都",
+                  "postalCode": "107-0062",
+                  "addressCountry": "JP"
+                },
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": 35.6712,
+                  "longitude": 139.7195
+                },
+                "url": "https://akrin.jp",
+                "areaServed": {
+                  "@type": "Country",
+                  "name": "Japan"
+                },
+                "hasOfferCatalog": {
+                  "@type": "OfferCatalog",
+                  "name": "IT Services",
+                  "itemListElement": [
+                    {
+                      "@type": "Service",
+                      "name": "Managed IT Services"
+                    },
+                    {
+                      "@type": "Service",
+                      "name": "Cybersecurity Solutions"
+                    },
+                    {
+                      "@type": "Service",
+                      "name": "Cloud Migration"
+                    },
+                    {
+                      "@type": "Service",
+                      "name": "IT Support"
+                    }
+                  ]
+                }
+              }
+            ])
           }}
         />
       </head>
