@@ -39,7 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return allPages.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: route === '' ? 'daily' : route.includes('/services') ? 'weekly' : 'monthly',
     priority: route === '' ? 1 : route === '/services' ? 0.9 : route.includes('/services/') ? 0.8 : 0.7,
   }))
 }
