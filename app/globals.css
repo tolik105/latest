@@ -1,0 +1,424 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Akrin Brand Colors */
+    --akrin-purple: 265 100% 58%;
+    --akrin-black: 0 0% 10%;
+    --akrin-white: 0 0% 100%;
+    
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 265 100% 58%; /* Akrin Purple */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 265 100% 95%;
+    --accent-foreground: 265 100% 58%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 265 100% 58%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 265 100% 58%; /* Akrin Purple */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 265 100% 20%;
+    --accent-foreground: 265 100% 70%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 265 100% 58%;
+  }
+}
+
+body {
+  @apply bg-background text-foreground;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure main content is visible */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 64px; /* Height of fixed navbar */
+  min-height: 100vh;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Professional hover effects */
+@layer utilities {
+  .transition-base {
+    @apply transition-all duration-200 ease-in-out;
+  }
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-shadow duration-200 hover:shadow-lg;
+}
+
+/* Button hover states */
+.btn-primary {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors duration-200;
+}
+
+/* Newsletter form styles */
+.newsletter-input {
+  @apply w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent;
+}
+
+.newsletter-button {
+  @apply px-6 py-2 text-white bg-primary rounded-md hover:bg-primary/90 transition-colors;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Professional scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Remove default button focus */
+button:focus {
+  outline: none;
+}
+
+/* Professional link transitions */
+a {
+  @apply transition-colors duration-200;
+}
+
+/* Section spacing */
+section {
+  @apply relative;
+}
+
+/* Typography refinements */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight;
+}
+
+p {
+  @apply leading-relaxed;
+}
+
+/* Professional card shadows */
+.shadow-professional {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-professional-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Loading states */
+.loading {
+  @apply opacity-50 pointer-events-none;
+}
+
+/* Disable animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Particle Background Styles */
+.space-bg {
+  background: linear-gradient(180deg, hsl(240, 100%, 10%) 0%, hsl(240, 100%, 5%) 100%);
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: var(--opacity, 0.5);
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(147, 51, 234, 0.8);
+  border-radius: 50%;
+  animation: particle-fall var(--duration) linear var(--delay) infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: var(--opacity, 0.5); }
+  50% { opacity: calc(var(--opacity, 0.5) * 0.3); }
+}
+
+@keyframes particle-fall {
+  0% {
+    transform: translateY(-10vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Data Stream Styles */
+.data-stream {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.data-line {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(147, 51, 234, 0.4),
+    rgba(147, 51, 234, 0.8),
+    rgba(147, 51, 234, 0.4),
+    transparent
+  );
+  opacity: 0;
+  animation: data-flow linear infinite;
+}
+
+@keyframes data-flow {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* High DPI/Retina Display Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Crisp borders for retina displays */
+  * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Ensure sharp text rendering */
+  body {
+    font-weight: 400;
+  }
+  
+  /* Thin borders for high DPI */
+  .border {
+    border-width: 0.5px;
+  }
+}
+
+/* Responsive breakpoints for all devices */
+/* Mobile First Approach */
+
+/* Extra small devices (phones, less than 640px) */
+@media (max-width: 639px) {
+  .container {
+    @apply px-4;
+  }
+  
+  h1 {
+    @apply text-3xl;
+  }
+  
+  h2 {
+    @apply text-2xl;
+  }
+  
+  .hero-section {
+    min-height: 60vh;
+  }
+}
+
+/* Small devices (tablets, 640px and up) */
+@media (min-width: 640px) {
+  .container {
+    @apply px-6;
+  }
+}
+
+/* Medium devices (small laptops, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    @apply px-8;
+  }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  .container {
+    @apply px-8;
+  }
+}
+
+/* Extra large devices (large desktops, 1280px and up) */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* 2XL devices (larger desktops, 1536px and up) */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+/* Ultra-wide screens (1920px and up) */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1800px;
+  }
+}
+
+/* Safe area insets for modern phones */
+@supports (padding: max(0px)) {
+  .safe-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .safe-left {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+  
+  .safe-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Touch-friendly improvements */
+@media (pointer: coarse) {
+  /* Larger tap targets for touch devices */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  @media (hover: none) {
+    button:hover, a:hover {
+      background-color: inherit;
+    }
+  }
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Prevent text selection on tap */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+  
+  /* Smooth scrolling on iOS */
+  .scroll-smooth {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix for iOS input zoom */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+/* Android-specific optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* Optimize font rendering on Android */
+  body {
+    text-rendering: optimizeSpeed;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .border {
+    border-width: 2px;
+  }
+  
+  .text-muted-foreground {
+    opacity: 1;
+  }
+}
+
