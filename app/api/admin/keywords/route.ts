@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
-import { Language } from '@/lib/generated/prisma'
+import { Language } from '@/lib/db'
 import { serankingAPI } from '@/lib/seranking-api'
 
 // GET /api/admin/keywords - List keywords with filtering

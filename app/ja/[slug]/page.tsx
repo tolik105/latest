@@ -6,7 +6,7 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { db } from '@/lib/db';
-import { ContentStatus, Language } from '@/lib/generated/prisma';
+import { ContentStatus, Language } from '@/lib/db';
 import { SEOHead, generateDefaultSEO } from '@/components/seo/seo-head';
 import { generateArticleSchema } from '@/lib/seo';
 import { ContentRenderer } from '@/components/content/content-renderer';

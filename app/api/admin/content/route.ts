@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
-import { ContentStatus, Language } from '@/lib/generated/prisma'
+import { ContentStatus, Language } from '@/lib/db'
 import { serankingAPI } from '@/lib/seranking-api'
 
 // GET /api/admin/content - List content with filtering and pagination

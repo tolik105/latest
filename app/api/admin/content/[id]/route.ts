@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
-import { ContentStatus } from '@/lib/generated/prisma'
+import { ContentStatus } from '@/lib/db'
 
 // GET /api/admin/content/[id] - Get specific content
 export async function GET(
