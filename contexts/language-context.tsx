@@ -12,22 +12,29 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const { i18n } = useTranslation()
-  const [language, setLanguage] = useState(() => {
-    // Initialize from localStorage or i18n current language
+  const [language, setLanguage] = useState('en') // Always start with 'en' to prevent hydration mismatch
+  const [mounted, setMounted] = useState(false)
+
+  // Set mounted state and initialize language from localStorage
+  useEffect(() => {
+    setMounted(true)
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('language') || i18n.language || 'en'
+      const savedLanguage = localStorage.getItem('language')
+      if (savedLanguage && savedLanguage !== language) {
+        setLanguage(savedLanguage)
+        i18n.changeLanguage(savedLanguage)
+      }
     }
-    return i18n.language || 'en'
-  })
+  }, [i18n, language])
 
   // Sync with i18n language changes
   useEffect(() => {
     const handleLanguageChange = (lng: string) => {
       setLanguage(lng)
     }
-    
+
     i18n.on('languageChanged', handleLanguageChange)
-    
+
     return () => {
       i18n.off('languageChanged', handleLanguageChange)
     }

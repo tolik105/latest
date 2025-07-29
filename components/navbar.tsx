@@ -1,270 +1,360 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-} from "@/components/ui/navigation-menu"
-import { Icons } from "@/components/icons"
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
-import { LanguageSelector } from "@/components/language-selector"
-import { useTranslation } from "react-i18next"
 import { useState, useEffect } from "react"
-import { cn } from "@/lib/utils"
-import { ChevronDown } from "lucide-react"
-
-const services = [
-  { key: "allServices", href: "/services" },
-  { key: "managedServices", href: "/services/managed-services" },
-  { key: "itSecurity", href: "/services/it-security" },
-  { key: "itSupport", href: "/services/it-support" },
-  { key: "itConsulting", href: "/services/it-consulting" },
-  { key: "cloud", href: "/services/cloud" },
-  { key: "cyberSecurity", href: "/services/cyber-security" },
-  { key: "onsiteSupport", href: "/services/onsite-support" },
-  { key: "wirelessSurvey", href: "/services/wireless-survey" },
-  { key: "eWaste", href: "/services/e-waste" },
-  { key: "itEquipment", href: "/services/it-equipment" },
-  { key: "relocation", href: "/services/relocation" },
-  { key: "recruitment", href: "/services/recruitment" },
-  { key: "workforceSolutions", href: "/services/workforce-solutions" },
-  { key: "customSolutions", href: "/services/custom-solutions" },
-]
+import { Mail, Phone, Calendar } from "lucide-react"
+import { useTranslation } from "react-i18next"
+import { usePathname } from "next/navigation"
+import { LanguageSelector } from "@/components/language-selector"
 
 export function Navbar() {
-  const { t } = useTranslation('common')
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isServicesExpanded, setIsServicesExpanded] = useState(false)
+  const { t, i18n } = useTranslation('common')
+  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [scrolled, setScrolled] = useState(false)
+
+  // Detect language from URL path and sync with i18n
+  const isJaPath = pathname.startsWith('/ja/')
+  const langPrefix = isJaPath ? '/ja' : ''
+
+  useEffect(() => {
+    const targetLang = isJaPath ? 'ja' : 'en'
+    if (i18n.language !== targetLang) {
+      i18n.changeLanguage(targetLang)
+    }
+  }, [pathname, i18n, isJaPath])
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
 
-  // Close mobile menu when route changes
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrolled]);
+
+  // Simple services list for basic dropdown
+  const services = [
+    { key: "managedItSupport", href: `${langPrefix}/services/it-managed-services` },
+    { key: "itConsultingProjectManagement", href: `${langPrefix}/services/it-consulting-project-management` },
+    { key: "cloudInfrastructure", href: `${langPrefix}/services/cloud-infrastructure` },
+    { key: "cybersecurity", href: `${langPrefix}/services/cybersecurity` },
+    { key: "networkPenetrationTesting", href: `${langPrefix}/services/network-penetration-testing` },
+    { key: "itSecurity", href: `${langPrefix}/services/it-security` },
+    { key: "wifiAssessment", href: `${langPrefix}/services/wifi-assessment` },
+    { key: "wifiDesign", href: `${langPrefix}/services/wifi-design` },
+  ]
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleDropdown = (id: string) => {
+    setActiveDropdown(activeDropdown === id ? null : id);
+  };
+
+  // Handle escape key and outside clicks
   useEffect(() => {
-    setIsMobileMenuOpen(false)
-  }, [])
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveDropdown(null);
+      }
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Element;
+      if (!target.closest('[data-services-menu]')) {
+        setActiveDropdown(null);
+      }
+    };
+
+    if (activeDropdown) {
+      document.addEventListener('keydown', handleEscape);
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [activeDropdown]);
 
   return (
-    <header className={cn(
-      "fixed top-0 w-full z-50 transition-all duration-300",
-      "bg-white dark:bg-gray-900",
-      isScrolled ? "shadow-md" : "shadow-sm"
-    )}>
-      <div className="container h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/akrin-logo.svg"
-            alt="Akrin IT Solutions - Leading IT Services Provider in Japan"
-            width={120}
-            height={50}
-            className="transition-all object-contain"
-            priority
-          />
-        </Link>
+    <header className={`sticky top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white'}`}>
+      {/* Top contact bar - responsive */}
+      <div className="hidden lg:flex justify-end py-2 px-responsive-md container">
+        <a href="mailto:support@akrin.jp" className="flex items-center text-sm ml-responsive-md text-gray-600 hover:text-gray-900 transition-colors">
+          <Mail className="w-4 h-4 mr-2 text-teal-600" />
+          <span className="hidden xl:inline">support@akrin.jp</span>
+          <span className="xl:hidden">Email</span>
+        </a>
+        <a href="tel:+81-3-6821-1223" className="flex items-center text-sm ml-responsive-md text-gray-600 hover:text-gray-900 transition-colors">
+          <Phone className="w-4 h-4 mr-2 text-teal-600" />
+          <span className="hidden xl:inline">+81 (0) 3-6821-1223</span>
+          <span className="xl:hidden">Call</span>
+        </a>
+      </div>
+
+      {/* Main navbar - responsive */}
+      <div className="flex items-center justify-between py-responsive-sm container relative">
+        <div className="flex items-center">
+          <Link href={langPrefix || "/"} className="block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
+            <Image
+              src="/akrin-logo.svg"
+              alt="Akrin IT Solutions"
+              width={160}
+              height={50}
+              className="h-8 sm:h-10 lg:h-12 w-auto transition-all duration-200"
+              priority
+            />
+          </Link>
+        </div>
         
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link 
-                    href="/" 
-                    className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400"
-                  >
-                    {t('nav.home')}
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium text-gray-700 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400">
-                  {t('nav.services')}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white dark:bg-gray-900 shadow-lg">
-                    {services.map((service) => (
-                      <li key={service.href}>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href={service.href}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-                          >
-                            <div className="text-sm font-medium leading-none text-gray-900 dark:text-gray-100">
-                              {t(`nav.${service.key}`)}
-                            </div>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link 
-                    href="/about" 
-                    className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400"
-                  >
-                    {t('nav.aboutUs')}
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link 
-                    href="/blog" 
-                    className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400"
-                  >
-                    {t('nav.blog')}
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link 
-                    href="/contact" 
-                    className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400"
-                  >
-                    {t('nav.contact')}
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </nav>
-        
-        <div className="flex items-center space-x-2">
-          <LanguageSelector />
-          <Button 
-            className="hidden md:inline-flex bg-purple-600 hover:bg-purple-700 text-white" 
-            asChild
-          >
-            <Link href="/book-reservation">{t('nav.bookConsultation')}</Link>
-          </Button>
-          
-          {/* Mobile Menu */}
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="md:hidden h-10 w-10 p-0"
-                aria-label="Toggle menu"
+        {/* Desktop Navigation - responsive */}
+        <div className="hidden lg:flex items-center">
+          <nav>
+            <ul className="flex items-center gap-responsive-sm">
+              <li>
+                <Link
+                  href={langPrefix || "/"}
+                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
+                >
+                  {t('nav.home')}
+                </Link>
+              </li>
+              <li
+                className="relative"
+                data-services-menu
+                onMouseEnter={() => setActiveDropdown('services')}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                <Icons.Menu className="h-6 w-6" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent 
-              side="right" 
-              className="w-[85vw] sm:w-[400px] overflow-y-auto safe-right"
-            >
-              <div className="flex flex-col gap-1 mt-8">
-                <SheetClose asChild>
-                  <Link 
-                    href="/" 
-                    className="flex items-center px-4 py-3 text-lg font-medium hover:text-purple-600 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {t("nav.home")}
-                  </Link>
-                </SheetClose>
+                <button
+                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 flex items-center focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
+                  aria-haspopup="menu"
+                  aria-expanded={activeDropdown === 'services'}
+                >
+                  {t('nav.services')}
+                  <svg className="ml-1 h-3 w-3 xl:h-4 xl:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
                 
-                {/* Services Accordion */}
-                <div className="mt-2">
-                  <button
-                    onClick={() => setIsServicesExpanded(!isServicesExpanded)}
-                    className="flex items-center justify-between w-full px-4 py-3 text-lg font-medium hover:text-purple-600 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                {/* Responsive services dropdown */}
+                {activeDropdown === 'services' && (
+                  <div
+                    className="absolute top-full left-1/2 transform -translate-x-1/2 w-[95vw] max-w-[600px] min-w-[320px] bg-white shadow-xl border border-gray-100 rounded-lg z-50 overflow-hidden animate-fade-in"
+                    role="menu"
+                    aria-label="Services menu"
                   >
-                    <span>{t("nav.services")}</span>
-                    <ChevronDown 
-                      className={cn(
-                        "h-5 w-5 transition-transform duration-200",
-                        isServicesExpanded && "rotate-180"
-                      )}
-                    />
-                  </button>
-                  
-                  <div className={cn(
-                    "overflow-hidden transition-all duration-300",
-                    isServicesExpanded ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-                  )}>
-                    <div className="pl-4 pr-2 py-2 space-y-1">
-                      {services.map((service) => (
-                        <SheetClose asChild key={service.href}>
+                    <div className="p-responsive-md">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-responsive-sm">
+                        {/* Left Column */}
+                        <div className="space-y-1 lg:space-y-2">
                           <Link
-                            href={service.href}
-                            className="block px-4 py-2.5 text-base text-gray-600 hover:text-purple-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:text-purple-400 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
+                            href={`${langPrefix}/services/it-managed-services`}
+                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2 px-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600"
+                            role="menuitem"
                           >
-                            {t(`nav.${service.key}`)}
+                            Managed IT Support
                           </Link>
-                        </SheetClose>
-                      ))}
+                          <Link
+                            href={`${langPrefix}/services/cloud-infrastructure`}
+                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            role="menuitem"
+                          >
+                            Cloud Infrastructure Solutions
+                          </Link>
+                          <Link
+                            href={`${langPrefix}/services/network-penetration-testing`}
+                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            role="menuitem"
+                          >
+                            Network Penetration Testing
+                          </Link>
+                          <Link
+                            href={`${langPrefix}/services/wifi-design`}
+                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            role="menuitem"
+                          >
+                            Enterprise Wi-Fi Design & Deployment
+                          </Link>
+                        </div>
+                        
+                        {/* Right Column */}
+                        <div className="space-y-1 lg:space-y-2">
+                          <Link
+                            href={`${langPrefix}/services/it-consulting-project-management`}
+                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2 px-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600"
+                            role="menuitem"
+                          >
+                            IT Consulting & Project Management
+                          </Link>
+                          <Link
+                            href={`${langPrefix}/services/cybersecurity`}
+                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            role="menuitem"
+                          >
+                            Cybersecurity & IT Security
+                          </Link>
+                          <Link
+                            href={`${langPrefix}/services/wifi-assessment`}
+                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            role="menuitem"
+                          >
+                            Wi-Fi Assessment & Optimization
+                          </Link>
+                          <Link
+                            href={`${langPrefix}/services/it-security`}
+                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            role="menuitem"
+                          >
+                            IT Security Services
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                <SheetClose asChild>
-                  <Link 
-                    href="/about" 
-                    className="flex items-center px-4 py-3 text-lg font-medium hover:text-purple-600 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {t("nav.aboutUs")}
-                  </Link>
-                </SheetClose>
-                
-                <SheetClose asChild>
-                  <Link 
-                    href="/blog" 
-                    className="flex items-center px-4 py-3 text-lg font-medium hover:text-purple-600 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {t("nav.blog")}
-                  </Link>
-                </SheetClose>
-                
-                <SheetClose asChild>
-                  <Link 
-                    href="/contact" 
-                    className="flex items-center px-4 py-3 text-lg font-medium hover:text-purple-600 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {t("nav.contact")}
-                  </Link>
-                </SheetClose>
-                
-                <Button 
-                  className="w-full mt-6 h-12 text-base bg-purple-600 hover:bg-purple-700" 
-                  asChild
+                )}
+              </li>
+              <li>
+                <Link
+                  href={`${langPrefix}/about`}
+                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
                 >
-                  <Link 
-                    href="/book-reservation"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {t('nav.bookConsultation')}
-                  </Link>
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
+                  {t('nav.aboutUs')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
+                >
+                  {t('nav.blog')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
+                >
+                  {t('nav.contact')}
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          
+          {/* Language Switcher and Book a Call button - responsive */}
+          <div className="flex items-center gap-responsive-sm">
+            <LanguageSelector />
+            <Link href="/book-consultation" className="flex items-center text-white text-xs xl:text-sm font-bold bg-violet-600 rounded-full border-2 border-violet-600 py-2 xl:py-3 px-6 xl:px-8 pl-10 xl:pl-14 relative hover:bg-violet-700 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2">
+              <span className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white w-8 h-8 xl:w-10 xl:h-10 rounded-full flex items-center justify-center">
+                <Calendar className="w-4 h-4 xl:w-5 xl:h-5 text-violet-600" />
+              </span>
+              <span className="hidden xl:inline">Book a Call</span>
+              <span className="xl:hidden">Book</span>
+            </Link>
+          </div>
+        </div>
+        
+        {/* Mobile menu button - responsive */}
+        <div className="lg:hidden">
+          <button 
+            name="menu" 
+            type="button" 
+            className="flex items-center justify-center bg-purple-600 h-10 w-10 sm:h-11 sm:w-11 rounded-full border border-purple-600 transition-all duration-200 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+            onClick={toggleMenu}
+            aria-label="Toggle mobile menu"
+          >
+            <span className={`relative bg-white block h-0.5 w-4 rounded-full transition-all duration-300 ${isMenuOpen ? 'transform rotate-45 translate-y-[2px]' : 'before:absolute before:bg-white before:h-0.5 before:w-4 before:rounded-full before:top-[-6px] before:left-0 after:absolute after:bg-white after:h-0.5 after:w-4 after:rounded-full after:top-[6px] after:left-0'}`}></span>
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu - responsive */}
+      {isMenuOpen && (
+        <div className="lg:hidden fixed inset-0 bg-purple-600 pt-[100px] sm:pt-[115px] z-40 overflow-auto animate-fade-in">
+          <div className="flex flex-col h-full justify-between w-full mx-auto pb-responsive-md px-responsive-md">
+            <ul className="list-none mb-responsive-md pl-0">
+              <li className="text-xl sm:text-2xl font-bold flex justify-between items-center pb-responsive-sm">
+                <Link href={langPrefix || "/"} className="text-white text-xl sm:text-2xl block focus:outline-none focus:ring-2 focus:ring-white rounded px-2 py-1" onClick={() => setIsMenuOpen(false)}>{t('nav.home')}</Link>
+              </li>
+              <li className="text-xl sm:text-2xl font-bold flex justify-between items-center pb-responsive-sm">
+                <span className="text-white text-xl sm:text-2xl block">{t('nav.services')}</span>
+                <button
+                  className="font-normal bg-transparent block text-center align-middle border p-0 rounded-md border-solid border-transparent focus:outline-none focus:ring-2 focus:ring-white"
+                  onClick={() => toggleDropdown('services')}
+                  aria-label="Toggle services menu"
+                >
+                  <span className="inline-block h-8 w-8 sm:h-9 sm:w-9 p-2 rounded-full border-2 border-solid border-white text-white hover:bg-white hover:text-purple-600 transition-colors">
+                    {activeDropdown === 'services' ? '−' : '+'}
+                  </span>
+                </button>
+              </li>
+              {activeDropdown === 'services' && (
+                <li className="pb-responsive-sm animate-slide-up">
+                  <div className="pl-responsive-md space-y-1">
+                    {services.map((service) => (
+                      <Link
+                        key={service.key}
+                        href={service.href}
+                        className="block text-white/80 text-sm sm:text-base hover:text-white transition-colors py-2 px-2 rounded hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {t(`nav.${service.key}`)}
+                      </Link>
+                    ))}
+                  </div>
+                </li>
+              )}
+              <li className="text-xl sm:text-2xl font-bold flex justify-between items-center pb-responsive-sm">
+                <Link href={`${langPrefix}/about`} className="text-white text-xl sm:text-2xl block focus:outline-none focus:ring-2 focus:ring-white rounded px-2 py-1" onClick={() => setIsMenuOpen(false)}>{t('nav.aboutUs')}</Link>
+              </li>
+              <li className="text-xl sm:text-2xl font-bold flex justify-between items-center pb-responsive-sm">
+                <Link href="/blog" className="text-white text-xl sm:text-2xl block focus:outline-none focus:ring-2 focus:ring-white rounded px-2 py-1" onClick={() => setIsMenuOpen(false)}>{t('nav.blog')}</Link>
+              </li>
+              <li className="text-xl sm:text-2xl font-bold flex justify-between items-center pb-responsive-sm">
+                <Link href="/contact" className="text-white text-xl sm:text-2xl block focus:outline-none focus:ring-2 focus:ring-white rounded px-2 py-1" onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</Link>
+              </li>
+            </ul>
+            <div>
+              <ul className="list-none mb-6 pl-0">
+                <li className="mb-3">
+                  <a href="mailto:support@akrin.jp" className="text-white flex items-center">
+                    <Mail className="w-5 h-5 mr-2" />
+                    support@akrin.jp
+                  </a>
+                </li>
+                <li className="mb-3">
+                  <a href="tel:+81-3-6821-1223" className="text-white flex items-center">
+                    <Phone className="w-5 h-5 mr-2" />
+                    +81 (0) 3-6821-1223
+                  </a>
+                </li>
+              </ul>
+              <div className="flex flex-col sm:flex-row justify-between space-y-2 sm:space-y-0 sm:space-x-2">
+                <Link href="/contact" className="relative text-black text-sm font-bold items-center bg-white flex justify-center leading-[18.2px] text-center w-full pl-[60px] pr-[30px] py-[15px] rounded-[4472.99px] border-2 border-solid border-white">
+                  <span className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-black w-10 h-10 rounded-full flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-white" />
+                  </span>
+                  Contact Us
+                </Link>
+                <Link href="/book-consultation" className="relative text-black text-sm font-bold items-center bg-white flex justify-center leading-[18.2px] text-center w-full pl-[60px] pr-[30px] py-[15px] rounded-[4472.99px] border-2 border-solid border-white">
+                  <span className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-black w-10 h-10 rounded-full flex items-center justify-center">
+                    <Calendar className="w-5 h-5 text-white" />
+                  </span>
+                  Book a Call
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
-  )
+  );
 }

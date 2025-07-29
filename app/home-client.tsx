@@ -1,434 +1,161 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { useTranslation } from "react-i18next"
 import Link from "next/link"
-import { Icons } from "@/components/icons"
 import { motion } from "framer-motion"
-import { TestimonialCard } from "@/components/testimonial-card"
+import { VideoHeroMobile } from "@/components/video-hero-mobile"
+import { CalendlyPopupButton } from "@/components/calendly-widget"
+import { LogosWithBlurFlip } from "@/components/ui/logos-with-blur-flip"
+import { IndustryStats } from "@/components/ui/circular-progress"
+import { ClientOnly } from "@/hooks/use-mounted"
+import { DisplayText, HeadlineText, BodyText, CaptionText, PremiumButton } from "@/components/ui/premium-typography"
+import { HomeFAQSection } from "@/components/ui/home-faq-section"
+import { CapabilitiesCarousel } from "@/components/capabilities-carousel"
 
 export default function HomeClient() {
-  const { t } = useTranslation('common')
-  
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  }
-
-  const staggerChildren = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
 
   return (
-    <div className="flex flex-col">
-      {/* Hero Section - Simplified and stable */}
-      <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-purple-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-4 py-16">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-              {t('hero.title')}
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 px-4 sm:px-0">
-              {t('hero.subtitle')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button size="lg" className="px-8 bg-purple-600 hover:bg-purple-700" asChild>
-                <Link href="/services">
-                  {t('hero.exploreServices')}
-                  <Icons.ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="px-8" asChild>
-                <Link href="/book-reservation">{t('hero.requestConsultation')}</Link>
-              </Button>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-12 sm:mt-16">
-              <div className="text-center">
-                <Icons.Security className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-purple-600" />
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{t('hero.enterpriseSecurity')}</p>
-              </div>
-              <div className="text-center">
-                <Icons.Support247 className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-purple-600" />
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{t('hero.support247')}</p>
-              </div>
-              <div className="text-center">
-                <Icons.Certification className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-purple-600" />
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{t('hero.certifiedProfessionals')}</p>
-              </div>
-              <div className="text-center">
-                <Icons.Scalable className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-purple-600" />
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{t('hero.tailoredSolutions')}</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+    <div className="w-full overflow-x-hidden">
+      {/* Video Hero Section - Mobile Optimized */}
+      <VideoHeroMobile />
 
-      {/* Company Overview Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('sections.companyOverview')}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              {t('sections.companyOverviewDesc')}
-            </p>
-          </motion.div>
-          <motion.div 
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            <motion.div variants={fadeInUp} className="text-center">
-              <Icons.Global className="h-12 w-12 mx-auto mb-4 text-purple-600" />
-              <h3 className="text-xl font-semibold mb-2">{t('overview.global')}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{t('overview.globalDesc')}</p>
-            </motion.div>
-            <motion.div variants={fadeInUp} className="text-center">
-              <Icons.Team className="h-12 w-12 mx-auto mb-4 text-purple-600" />
-              <h3 className="text-xl font-semibold mb-2">{t('overview.expertise')}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{t('overview.expertiseDesc')}</p>
-            </motion.div>
-            <motion.div variants={fadeInUp} className="text-center">
-              <Icons.Security className="h-12 w-12 mx-auto mb-4 text-purple-600" />
-              <h3 className="text-xl font-semibold mb-2">{t('overview.trusted')}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{t('overview.trustedDesc')}</p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Content wrapper */}
+      <div className="w-full bg-white dark:bg-gray-900">
 
-      {/* Core Services Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <motion.div {...fadeInUp} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('sections.coreServices')}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              {t('sections.coreServicesDesc')}
-            </p>
-          </motion.div>
-          <motion.div 
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <motion.div variants={fadeInUp}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Icons.Security className="h-10 w-10 mb-2 text-purple-600" />
-                  <CardTitle>{t('services.itSecurity.title')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="mb-4">
-                    {t('services.itSecurity.description')}
-                  </CardDescription>
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href="/services/it-security">
-                      {t('common.learnMore')} <Icons.ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Icons.Cloud className="h-10 w-10 mb-2 text-purple-600" />
-                  <CardTitle>{t('nav.cloud')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="mb-4">
-                    {t('services.cloud.description')}
-                  </CardDescription>
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href="/services/cloud">
-                      {t('common.learnMore')} <Icons.ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Icons.Support className="h-10 w-10 mb-2 text-purple-600" />
-                  <CardTitle>{t('services.serviceDesk.title')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="mb-4">
-                    {t('services.serviceDesk.description')}
-                  </CardDescription>
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href="/services/it-support">
-                      {t('common.learnMore')} <Icons.ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Icons.ManagedServices className="h-10 w-10 mb-2 text-purple-600" />
-                  <CardTitle>{t('services.managedIT.title')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="mb-4">
-                    {t('services.managedIT.description')}
-                  </CardDescription>
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href="/services/managed-services">
-                      {t('common.learnMore')} <Icons.ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Icons.Consulting className="h-10 w-10 mb-2 text-purple-600" />
-                  <CardTitle>{t('nav.itConsulting')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="mb-4">
-                    {t('services.consulting.description')}
-                  </CardDescription>
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href="/services/it-consulting">
-                      {t('common.learnMore')} <Icons.ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Icons.CyberSecurity className="h-10 w-10 mb-2 text-purple-600" />
-                  <CardTitle>{t('nav.cyberSecurity')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="mb-4">
-                    {t('services.cyberSecurity.description')}
-                  </CardDescription>
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href="/services/cyber-security">
-                      {t('common.learnMore')} <Icons.ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+        {/* Capabilities Section - Responsive carousel */}
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <CapabilitiesCarousel />
+          </div>
+        </section>
 
-      {/* Additional Services Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <motion.div {...fadeInUp} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('sections.additionalServices')}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              {t('sections.additionalServicesDesc')}
-            </p>
-          </motion.div>
-          <motion.div 
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {[
-              { name: t('nav.onsiteSupport'), href: '/services/onsite-support' },
-              { name: t('nav.wirelessSurvey'), href: '/services/wireless-survey' },
-              { name: t('nav.eWaste'), href: '/services/e-waste' },
-              { name: t('nav.itEquipment'), href: '/services/it-equipment' },
-              { name: t('nav.relocation'), href: '/services/relocation' },
-              { name: t('nav.recruitment'), href: '/services/recruitment' },
-              { name: t('nav.workforceSolutions'), href: '/services/workforce-solutions' },
-              { name: t('nav.assetManagement'), href: '/services/asset-management' },
-            ].map((service, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Link href={service.href}>
-                  <Card className="h-full hover:shadow-md transition-all hover:scale-105 cursor-pointer">
-                    <CardContent className="p-6 text-center">
-                      <h3 className="font-semibold">{service.name}</h3>
-                    </CardContent>
-                  </Card>
-                </Link>
+        {/* Industry Excellence Section - Professional Layout */}
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 leading-tight text-gray-900 dark:text-white max-w-4xl mx-auto">
+                Industry expertise that
+                <span className="block font-semibold text-purple-600 mt-2">drives measurable results</span>
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto px-4">
+                With over 15 years of experience across diverse sectors, we understand the unique
+                challenges and opportunities in your industry. Our solutions are tailored to meet
+                regulatory requirements while driving innovation and growth.
+              </p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex justify-center"
+              >
+                <ClientOnly>
+                  <IndustryStats
+                    stats={[
+                      { industry: "Financial Services", percentage: "40%" },
+                      { industry: "Healthcare & Life Sciences", percentage: "25%" },
+                      { industry: "Manufacturing & Retail", percentage: "20%" },
+                      { industry: "Technology & Telecom", percentage: "15%" }
+                    ]}
+                    className="w-full"
+                  />
+                </ClientOnly>
               </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* Why Choose Akrin Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <motion.div {...fadeInUp} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('sections.whyChooseUs')}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              {t('sections.whyChooseUsDesc')}
-            </p>
-          </motion.div>
-          <motion.div 
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto"
-          >
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icons.Support247 className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{t('whyChoose.support247.title')}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{t('whyChoose.support247.description')}</p>
+        {/* Technology Partners Section - Organized Layout */}
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-gray-900">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-8 sm:mb-12 md:mb-16"
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 text-gray-900 dark:text-white">
+                Trusted by industry leaders
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
+                We partner with the world's leading technology companies to deliver best-in-class solutions.
+              </p>
             </motion.div>
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icons.Certification className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{t('whyChoose.certified.title')}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{t('whyChoose.certified.description')}</p>
-            </motion.div>
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icons.Global className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{t('whyChoose.global.title')}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{t('whyChoose.global.description')}</p>
-            </motion.div>
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icons.Security className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{t('whyChoose.security.title')}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{t('whyChoose.security.description')}</p>
-            </motion.div>
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icons.Scalable className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{t('whyChoose.scalable.title')}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{t('whyChoose.scalable.description')}</p>
-            </motion.div>
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icons.Success className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{t('whyChoose.proven.title')}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{t('whyChoose.proven.description')}</p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+            <ClientOnly>
+              <LogosWithBlurFlip />
+            </ClientOnly>
+          </div>
+        </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <motion.div {...fadeInUp} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('sections.faq')}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              {t('sections.faqDesc')}
-            </p>
-          </motion.div>
-          <motion.div {...fadeInUp} className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="w-full">
-              {[1, 2, 3, 4, 5, 6, 7].map((num) => (
-                <AccordionItem key={`q${num}`} value={`q${num}`}>
-                  <AccordionTrigger className="text-left">
-                    {t(`faq.q${num}.question`)}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-600 dark:text-gray-300">
-                    {t(`faq.q${num}.answer`)}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </motion.div>
-        </div>
-      </section>
+        {/* FAQ Section - Clean Organization */}
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-8 sm:mb-12 md:mb-16"
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 text-gray-900 dark:text-white">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
+                Get answers to common questions about our IT services and solutions.
+              </p>
+            </motion.div>
+            <ClientOnly>
+              <HomeFAQSection />
+            </ClientOnly>
+          </div>
+        </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <motion.div {...fadeInUp} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('sections.testimonials')}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              {t('sections.testimonialsDesc')}
-            </p>
-          </motion.div>
-          <motion.div 
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-          >
-            {[1, 2, 3].map((num) => (
-              <motion.div key={`t${num}`} variants={fadeInUp}>
-                <TestimonialCard
-                  name={t(`testimonials.t${num}.name`)}
-                  role={t(`testimonials.t${num}.role`)}
-                  content={t(`testimonials.t${num}.content`)}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+        {/* Contact CTA Section - Professional Responsive */}
+        <section className="w-full py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-700">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 text-white leading-tight">
+                Ready to transform your IT infrastructure?
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl text-purple-100 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed px-4">
+                Get expert consultation and discover how our solutions can drive your business forward.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-lg mx-auto">
+                <Button 
+                  className="bg-white text-purple-700 hover:bg-gray-100 font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+                  asChild
+                >
+                  <Link href="/contact">
+                    Get Free Consultation
+                  </Link>
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="border-2 border-white text-white hover:bg-white/10 font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl backdrop-blur-sm transition-all duration-300 w-full sm:w-auto"
+                  asChild
+                >
+                  <Link href="/services">
+                    View Our Services
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-purple-600 text-white">
-        <div className="container mx-auto px-4">
-          <motion.div {...fadeInUp} className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('cta.ready')}
-            </h2>
-            <p className="text-xl mb-8 opacity-90">
-              {t('cta.transform')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="/contact">{t('cta.contactToday')}</Link>
-              </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20" asChild>
-                <Link href="/book-reservation">{t('cta.scheduleConsultation')}</Link>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      </div>
     </div>
   )
 }

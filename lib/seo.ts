@@ -169,3 +169,95 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url: strin
     }))
   }
 }
+
+export function generateOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Akrin Co., Ltd.',
+    alternateName: 'AKRIN',
+    url: 'https://akrin.jp',
+    logo: 'https://akrin.jp/logo.png',
+    description: 'Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support for businesses.',
+    foundingDate: '2010',
+    founders: [{
+      '@type': 'Person',
+      name: 'Akrin Founders'
+    }],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Tokyo',
+      addressRegion: 'Tokyo',
+      addressCountry: 'JP'
+    },
+    contactPoint: [{
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      availableLanguage: ['English', 'Japanese'],
+      areaServed: ['JP', 'Worldwide']
+    }],
+    sameAs: [
+      'https://twitter.com/akrin',
+      'https://www.linkedin.com/company/akrin-kk',
+      'https://facebook.com/akrin'
+    ],
+    knowsAbout: [
+      'IT Solutions',
+      'Managed IT Services',
+      'Cybersecurity',
+      'Cloud Migration',
+      'IT Support',
+      'Digital Transformation',
+      'AI Solutions',
+      'Web Development'
+    ],
+    areaServed: {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: '35.6762',
+        longitude: '139.6503'
+      },
+      geoRadius: '1000000'
+    }
+  }
+}
+
+export function generateLocalBusinessSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': 'https://akrin.jp',
+    name: 'Akrin IT Solutions',
+    image: 'https://akrin.jp/og-image.png',
+    url: 'https://akrin.jp',
+    telephone: '+81-3-1234-5678',
+    priceRange: '$$',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Business District',
+      addressLocality: 'Tokyo',
+      addressRegion: 'Tokyo',
+      postalCode: '100-0001',
+      addressCountry: 'JP'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 35.6762,
+      longitude: 139.6503
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00'
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: '124'
+    }
+  }
+}

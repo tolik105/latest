@@ -13,7 +13,7 @@ Professional website for Akrin IT Solutions - Leading IT services provider in Ja
 1. Clone the repository
 ```bash
 git clone [repository-url]
-cd techmove
+cd AKRIN-team
 ```
 
 2. Install dependencies

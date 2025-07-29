@@ -1,0 +1,3 @@
+{"asctime": "2025-07-08 23:17:47", "name": "akrin.knowledge", "levelname": "INFO", "message": "Vector store disabled for MVP - using simple search"}
+{"asctime": "2025-07-08 23:17:47", "name": "src.api.main", "levelname": "INFO", "message": "Static files mounted successfully at /static"}
+{"asctime": "2025-07-08 23:17:47", "name": "src.api.main", "levelname": "INFO", "message": "Starting AKRIN AI Chatbot API..."}

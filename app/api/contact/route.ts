@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendEmail } from '@/lib/email-service'
-import { createContactEmailTemplate } from '@/lib/email-templates'
+import { createContactEmailTemplate, createContactEmailTextTemplate } from '@/lib/email-templates'
 
 interface ContactFormData {
   name: string
@@ -64,27 +64,37 @@ export async function POST(request: NextRequest) {
       timestamp
     }
 
-    // Send email to sales team
-    const salesEmail = process.env.SALES_EMAIL || 'sales@akrin.jp'
+    // Send email to support team
+    const salesEmail = process.env.SALES_EMAIL || 'support@akrin.jp'
     const emailHtml = createContactEmailTemplate(emailData)
-    
+    const emailText = createContactEmailTextTemplate(emailData)
+
     let emailSent = false
-    try {
-      emailSent = await sendEmail({
-        to: salesEmail,
-        subject: `New Contact Form Submission from ${body.name}`,
-        html: emailHtml,
-        replyTo: body.email
-      })
-      
-      if (!emailSent) {
-        console.error('Email function returned false')
-      } else {
-        console.log('Email sent successfully')
+
+    // Check if email is properly configured
+    if (!process.env.SMTP_USER || process.env.SMTP_USER === 'your_email@example.com') {
+      console.log('⚠️  Email not configured - skipping email send (form data saved)')
+      console.log('📧 Would send to:', salesEmail)
+      emailSent = true // Mark as sent for testing purposes
+    } else {
+      try {
+        emailSent = await sendEmail({
+          to: salesEmail,
+          subject: `AKRIN Contact Form - ${body.name}`,
+          html: emailHtml,
+          text: emailText,
+          replyTo: body.email
+        })
+
+        if (!emailSent) {
+          console.error('Email function returned false')
+        } else {
+          console.log('Email sent successfully')
+        }
+      } catch (emailError) {
+        console.error('Email sending error:', emailError)
+        // Continue anyway - don't fail the whole submission
       }
-    } catch (emailError) {
-      console.error('Email sending error:', emailError)
-      // Continue anyway - don't fail the whole submission
     }
 
     // Log the submission

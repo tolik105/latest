@@ -12,14 +12,13 @@ const resources = {
   }
 }
 
-// Get saved language from localStorage or default to 'en'
-const savedLanguage = typeof window !== 'undefined' ? localStorage.getItem('language') || 'en' : 'en'
-
+// Initialize with default language to prevent hydration mismatch
+// Language will be updated on client side after mount
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: savedLanguage,
+    lng: 'en', // Always start with 'en' to prevent hydration mismatch
     fallbackLng: 'en',
     defaultNS: 'common',
     ns: ['common'],
@@ -30,6 +29,14 @@ i18n
       useSuspense: false
     }
   })
+
+// Update language from localStorage after initialization (client-side only)
+if (typeof window !== 'undefined') {
+  const savedLanguage = localStorage.getItem('language')
+  if (savedLanguage && savedLanguage !== i18n.language) {
+    i18n.changeLanguage(savedLanguage)
+  }
+}
 
 // Save language changes to localStorage
 i18n.on('languageChanged', (lng) => {

@@ -39,7 +39,7 @@ export function FlexibleRecaptcha({ onChange, version = 'auto' }: FlexibleRecapt
 
   return (
     <RecaptchaV2
-      onChange={onChange}
+      onVerify={onChange}
       onExpired={() => onChange(null)}
       onError={() => {
         setError('reCAPTCHA error. Please verify your keys are for v2 checkbox.')

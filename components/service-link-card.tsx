@@ -2,12 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { LucideIcon, ArrowRight } from 'lucide-react'
+import { LucideIcon } from 'lucide-react'
+import { ComponentType } from 'react'
 
 interface ServiceLinkCardProps {
-  icon: LucideIcon
+  icon?: LucideIcon | ComponentType<{ className?: string }>
   title: string
   description: string
   href: string
@@ -30,41 +30,27 @@ export function ServiceLinkCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
-      whileHover={{ y: -5 }}
       className="h-full"
     >
-      <Card className={`h-full flex flex-col transition-all duration-300 hover:shadow-2xl group ${
-        featured ? 'border-primary shadow-lg' : ''
-      }`}>
+      <Card className="h-full flex flex-col transition-all duration-200 hover:shadow-lg bg-white border-gray-200">
         <CardHeader className="flex-1">
-          <div className="mb-4 inline-flex">
-            <motion.div 
-              className={`p-4 rounded-xl transition-all duration-300 ${
-                featured 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'bg-primary/10 group-hover:bg-primary group-hover:text-primary-foreground'
-              }`}
-              whileHover={{ rotate: 5, scale: 1.1 }}
-            >
-              <Icon className="h-8 w-8" />
-            </motion.div>
-          </div>
-          <CardTitle className="text-2xl mb-2">{title}</CardTitle>
-          <CardDescription className="text-base leading-relaxed">
+          {Icon && (
+            <div className="mb-4">
+              <Icon className="h-16 w-16" />
+            </div>
+          )}
+          <CardTitle className="text-xl font-semibold mb-2 text-gray-900">{title}</CardTitle>
+          <CardDescription className="text-gray-600 leading-relaxed">
             {description}
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <Button 
-            variant={featured ? 'default' : 'outline'} 
-            className="w-full group/btn"
-            asChild
+        <CardContent className="pt-0">
+          <Link 
+            href={href}
+            className="text-primary hover:text-primary/80 font-medium transition-colors"
           >
-            <Link href={href}>
-              {ctaText}
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-            </Link>
-          </Button>
+            {ctaText}
+          </Link>
         </CardContent>
       </Card>
     </motion.div>

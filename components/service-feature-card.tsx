@@ -3,9 +3,10 @@
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { LucideIcon } from 'lucide-react'
+import { ComponentType } from 'react'
 
 interface ServiceFeatureCardProps {
-  icon: LucideIcon
+  icon: LucideIcon | ComponentType<{ className?: string }>
   title: string
   description: string
   index?: number

@@ -12,22 +12,21 @@
     "contact": "Contact",
     "bookConsultation": "Book Consultation",
     "allServices": "All Services",
-    "managedServices": "Managed IT Services",
-    "itSecurity": "IT Security",
-    "itSupport": "Service Desk Services",
-    "itConsulting": "IT Consulting",
-    "cloud": "Cloud Solutions",
-    "cyberSecurity": "Cyber Security",
-    "onsiteSupport": "Onsite Support",
-    "wirelessSurvey": "Wireless Survey",
-    "eWaste": "E-Waste Management",
-    "itEquipment": "IT Equipment",
-    "relocation": "IT Relocation",
-    "recruitment": "IT Recruitment",
-    "workforceSolutions": "Workforce Solutions",
-    "customSolutions": "Custom Solutions",
-    "assetManagement": "Asset Management",
-    "hardwareMaintenance": "Hardware Maintenance"
+    "itsmDashboard": "ITSM Dashboard",
+    "managedItSupport": "Managed IT Support",
+    "itConsultingProjectManagement": "IT Consulting & Project Management",
+    "cloudInfrastructure": "Cloud Infrastructure Solutions",
+    "cybersecurity": "Cybersecurity & IT Security",
+    "networkPenetrationTesting": "Network Penetration Testing",
+    "wifiAssessment": "Wi-Fi Assessment & Optimization",
+    "wifiDesign": "Enterprise Wi-Fi Design & Deployment",
+    "itSecurity": "IT Security Services",
+    "cloudSolutionsMigration": "Cloud Solutions & Migration",
+    "cybersecurityCompliance": "Cybersecurity & Compliance",
+    "networkInfrastructure": "Network & Infrastructure",
+    "aiPoweredAutomation": "AI-Powered Automation",
+    "itConsultingStrategy": "IT Consulting & Strategy",
+    "projectManagement": "Project Management"
   },
   "hero": {
     "title": "Comprehensive IT Solutions Driving Business Innovation Across Japan and Beyond",
@@ -121,81 +120,7 @@
       "submitButton": "Book Reservation"
     }
   },
-  "servicesPage": {
-    "title": "Our Services",
-    "subtitle": "Leave your IT requirements to Akrin. Let's work together to deliver the best IT experience.",
-    "allServices": {
-      "managed": {
-        "title": "Managed IT Services",
-        "description": "Comprehensive IT management to keep your business running smoothly 24/7."
-      },
-      "security": {
-        "title": "IT Security",
-        "description": "Advanced protection for your digital assets and sensitive data."
-      },
-      "support": {
-        "title": "Service Desk Support",
-        "description": "Expert technical assistance whenever you need it."
-      },
-      "consulting": {
-        "title": "IT Consulting",
-        "description": "Strategic guidance to align your IT with business objectives."
-      },
-      "cloud": {
-        "title": "Cloud Solutions",
-        "description": "Scalable cloud infrastructure and migration services."
-      },
-      "cyber": {
-        "title": "Cyber Security",
-        "description": "Comprehensive protection against digital threats."
-      },
-      "onsite": {
-        "title": "Onsite Support",
-        "description": "Professional IT support at your location."
-      },
-      "wireless": {
-        "title": "Wireless Survey",
-        "description": "Optimize your network performance with professional surveys."
-      },
-      "waste": {
-        "title": "E-Waste Management",
-        "description": "Responsible disposal and recycling of electronic equipment."
-      },
-      "equipment": {
-        "title": "IT Equipment",
-        "description": "Quality hardware solutions for your business needs."
-      },
-      "relocation": {
-        "title": "IT Relocation",
-        "description": "Seamless IT infrastructure relocation services."
-      },
-      "recruitment": {
-        "title": "IT Recruitment",
-        "description": "Find the right IT talent for your team."
-      },
-      "workforce": {
-        "title": "Workforce Solutions",
-        "description": "Comprehensive staffing and resource management."
-      },
-      "custom": {
-        "title": "Custom Solutions",
-        "description": "Tailored IT solutions for your unique business challenges."
-      },
-      "asset": {
-        "title": "Asset Management",
-        "description": "Track and optimize your IT assets efficiently."
-      },
-      "hardware": {
-        "title": "Hardware Maintenance",
-        "description": "Keep your equipment running at peak performance."
-      }
-    },
-    "cta": {
-      "title": "Ready to transform your IT experience?",
-      "description": "Let Akrin handle your IT needs while you focus on your business.",
-      "contactButton": "Contact Us"
-    }
-  },
+
   "servicesPage": {
     "title": "Our IT Services",
     "subtitle": "Comprehensive technology solutions for modern businesses",
@@ -206,65 +131,9 @@
         "title": "Managed IT Services",
         "description": "Complete IT management and support for your business"
       },
-      "security": {
-        "title": "IT Security",
-        "description": "Protect your business with enterprise-grade security"
-      },
-      "support": {
-        "title": "IT Support",
-        "description": "24/7 helpdesk and technical support services"
-      },
       "consulting": {
-        "title": "IT Consulting",
-        "description": "Strategic technology guidance for your business"
-      },
-      "cloud": {
-        "title": "Cloud Solutions",
-        "description": "Scalable cloud infrastructure and migration services"
-      },
-      "cyber": {
-        "title": "Cyber Security",
-        "description": "Advanced threat protection and security monitoring"
-      },
-      "onsite": {
-        "title": "Onsite Support",
-        "description": "Professional IT support at your location"
-      },
-      "wireless": {
-        "title": "Wireless Survey",
-        "description": "Network assessment and optimization services"
-      },
-      "waste": {
-        "title": "E-Waste Management",
-        "description": "Responsible disposal and recycling of IT equipment"
-      },
-      "equipment": {
-        "title": "IT Equipment",
-        "description": "Quality hardware solutions for your business"
-      },
-      "relocation": {
-        "title": "IT Relocation",
-        "description": "Seamless IT infrastructure relocation services"
-      },
-      "recruitment": {
-        "title": "IT Recruitment",
-        "description": "Find the right IT talent for your team"
-      },
-      "workforce": {
-        "title": "Workforce Solutions",
-        "description": "Comprehensive staffing and resource management"
-      },
-      "custom": {
-        "title": "Custom Solutions",
-        "description": "Tailored IT solutions for unique challenges"
-      },
-      "asset": {
-        "title": "Asset Management",
-        "description": "Track and optimize your IT assets efficiently"
-      },
-      "hardware": {
-        "title": "Hardware Maintenance",
-        "description": "Keep your equipment running at peak performance"
+        "title": "IT Consulting & Project Management",
+        "description": "Strategy, PMO, and delivery for complex IT initiatives"
       }
     },
     "cta": {
@@ -1690,7 +1559,7 @@
   "cookies": {
     "title": "We use cookies",
     "description": "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking \"Accept\", you consent to our use of cookies.",
-    "learnMore": "Learn more",
+    "learnMore": "Learn more about our cookie policy",
     "accept": "Accept All Cookies",
     "decline": "Decline Optional Cookies",
     "customize": "Cookie Settings"

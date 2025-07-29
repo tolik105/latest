@@ -1,8 +1,23 @@
+// Helper function to extract plain text from HTML
+function extractTextFromHtml(html: string): string {
+  return html
+    .replace(/<[^>]*>/g, '') // Remove HTML tags
+    .replace(/&nbsp;/g, ' ') // Replace &nbsp; with space
+    .replace(/&amp;/g, '&') // Replace &amp; with &
+    .replace(/&lt;/g, '<') // Replace &lt; with <
+    .replace(/&gt;/g, '>') // Replace &gt; with >
+    .replace(/&quot;/g, '"') // Replace &quot; with "
+    .replace(/&#39;/g, "'") // Replace &#39; with '
+    .replace(/\s+/g, ' ') // Replace multiple spaces with single space
+    .trim()
+}
+
 // Simple email service for Next.js
 export async function sendEmail(options: {
   to: string
   subject: string
   html: string
+  text?: string
   replyTo?: string
 }): Promise<boolean> {
   try {
@@ -48,18 +63,51 @@ export async function sendEmail(options: {
       return false
     }
     
-    // Send email
-    const info = await transporter.sendMail({
-      from: `"Akrin Website" <${process.env.SMTP_USER}>`,
+    // Send email with improved headers for better deliverability
+    const mailOptions = {
+      from: `"AKRIN Contact Form" <${process.env.SMTP_USER}>`,
       to: options.to,
       subject: options.subject,
       html: options.html,
+      text: options.text || extractTextFromHtml(options.html), // Add plain text version
       replyTo: options.replyTo,
+      // Add headers to improve deliverability
+      headers: {
+        'X-Mailer': 'AKRIN Website Contact Form',
+        'X-Priority': '3',
+        'X-MSMail-Priority': 'Normal',
+        'Importance': 'Normal',
+        'List-Unsubscribe': '<mailto:unsubscribe@akrin.jp>',
+        'Return-Path': process.env.SMTP_USER,
+        'Message-ID': `<${Date.now()}.${Math.random().toString(36).substr(2, 9)}@akrin.jp>`,
+        'Auto-Submitted': 'auto-generated',
+      },
+      // Add envelope settings
+      envelope: {
+        from: process.env.SMTP_USER,
+        to: options.to
+      }
+    }
+
+    console.log('📧 Sending email with options:', {
+      from: mailOptions.from,
+      to: mailOptions.to,
+      subject: mailOptions.subject,
+      replyTo: mailOptions.replyTo
     })
-    
-    console.log('Email sent successfully!')
-    console.log('Message ID:', info.messageId)
-    console.log('Response:', info.response)
+
+    // Check if the recipient domain exists
+    const recipientDomain = options.to.split('@')[1]
+    console.log('🌐 Recipient domain:', recipientDomain)
+
+    const info = await transporter.sendMail(mailOptions)
+
+    console.log('✅ Email sent successfully!')
+    console.log('📨 Message ID:', info.messageId)
+    console.log('📤 Response:', info.response)
+    console.log('📬 Accepted recipients:', info.accepted)
+    console.log('❌ Rejected recipients:', info.rejected)
+    console.log('📋 Full info:', JSON.stringify(info, null, 2))
     return true
   } catch (error) {
     console.error('Email sending failed:', error)

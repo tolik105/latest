@@ -14,24 +14,29 @@ export function CookieConsent() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Check if user has already made a choice
-    const consent = localStorage.getItem('cookie-consent')
-    if (!consent) {
-      // Small delay to prevent flash on page load
-      const timer = setTimeout(() => {
-        setShowBanner(true)
-        setIsLoading(false)
-      }, 1000)
-      return () => clearTimeout(timer)
+    // Only run on client side to prevent hydration mismatch
+    if (typeof window !== 'undefined') {
+      // Check if user has already made a choice
+      const consent = localStorage.getItem('cookie-consent')
+      if (!consent) {
+        // Small delay to prevent flash on page load
+        const timer = setTimeout(() => {
+          setShowBanner(true)
+          setIsLoading(false)
+        }, 1000)
+        return () => clearTimeout(timer)
+      }
     }
     setIsLoading(false)
   }, [])
 
   const acceptCookies = () => {
-    localStorage.setItem('cookie-consent', 'accepted')
-    localStorage.setItem('cookie-consent-date', new Date().toISOString())
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cookie-consent', 'accepted')
+      localStorage.setItem('cookie-consent-date', new Date().toISOString())
+    }
     setShowBanner(false)
-    
+
     // Initialize analytics or other cookie-dependent services here
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('consent', 'update', {
@@ -41,10 +46,12 @@ export function CookieConsent() {
   }
 
   const declineCookies = () => {
-    localStorage.setItem('cookie-consent', 'declined')
-    localStorage.setItem('cookie-consent-date', new Date().toISOString())
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cookie-consent', 'declined')
+      localStorage.setItem('cookie-consent-date', new Date().toISOString())
+    }
     setShowBanner(false)
-    
+
     // Disable analytics or other cookie-dependent services here
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('consent', 'update', {
@@ -75,8 +82,9 @@ export function CookieConsent() {
                   <Link 
                     href="/cookies" 
                     className="text-purple-600 hover:text-purple-700 underline underline-offset-2"
+                    aria-label="Learn more about our cookie policy"
                   >
-                    {t('cookies.learnMore', 'Learn more')}
+                    {t('cookies.learnMore', 'Learn more about our cookie policy')}
                   </Link>
                 </p>
               </div>

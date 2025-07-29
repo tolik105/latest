@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+// Using local variable fonts instead of Google Fonts imports
 import "./globals.css"
-import { Navbar } from "@/components/navbar"
+import "./botpress-widget-styles.css"
+import { NavbarProfessional } from "@/components/navbar-professional"
 import { Footer } from "@/components/footer"
 import type React from "react"
 import { LanguageProvider } from "@/contexts/language-context"
@@ -10,14 +11,26 @@ import { Toaster } from "@/components/ui/toaster"
 import { CookieConsent } from "@/components/cookie-consent"
 import { GoogleAnalytics } from "@/components/google-analytics"
 import { RecaptchaScript } from "@/components/recaptcha-script"
+import { HreflangLinks } from "@/components/hreflang-links"
+import { BrowserExtensionSafeWrapper } from "@/components/hydration-boundary"
+import { HydrationErrorBoundary } from "@/components/hydration-error-boundary"
+import { MobilePerformanceOptimizer } from "@/components/mobile-performance"
 
-const inter = Inter({ subsets: ["latin"] })
+// Variable fonts are loaded via CSS @font-face declarations in globals.css
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  minimumScale: 1,
   maximumScale: 5,
   userScalable: true,
+  viewportFit: 'cover',
+  interactiveWidget: 'resizes-content',
+  colorScheme: 'light',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' }
+  ]
 }
 
 export const metadata: Metadata = {
@@ -72,8 +85,8 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'YOUR_ACTUAL_GOOGLE_VERIFICATION_CODE', // TODO: Replace with your actual Google Search Console verification code
-    // yandex: 'your-yandex-verification-code', // Uncomment and add if using Yandex
+    ...(process.env.GOOGLE_VERIFICATION_CODE && { google: process.env.GOOGLE_VERIFICATION_CODE }),
+    // yandex: process.env.YANDEX_VERIFICATION_CODE, // Uncomment and add if using Yandex
   },
   icons: {
     icon: [
@@ -92,12 +105,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   alternates: {
-    canonical: 'https://akrin.jp',
-    languages: {
-      'en': 'https://akrin.jp/en',
-      'ja': 'https://akrin.jp/ja',
-      'x-default': 'https://akrin.jp'
-    }
+    canonical: 'https://akrin.jp'
   }
 }
 
@@ -109,6 +117,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <HreflangLinks />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -123,7 +132,7 @@ export default function RootLayout({
                 "url": "https://akrin.jp",
                 "logo": "https://akrin.jp/akrin-logo.svg",
                 "sameAs": [
-                  "https://www.linkedin.com/company/akrinkk"
+                  "https://www.linkedin.com/company/akrin-kk"
                 ],
                 "contactPoint": {
                   "@type": "ContactPoint",
@@ -199,19 +208,117 @@ export default function RootLayout({
             ])
           }}
         />
+
+        {/* Premium Font Preloading for Performance */}
+        <link
+          rel="preload"
+          href="/fonts/Inter.var.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Lora.var.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </head>
-      <body className={`${inter.className} min-h-screen flex flex-col bg-background text-foreground`}>
+      <body className="min-h-screen flex flex-col bg-background text-foreground font-sans">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-md focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <GoogleAnalytics />
         <RecaptchaScript />
-        <I18nProvider>
-          <LanguageProvider>
-            <Navbar />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-            <Toaster />
-            <CookieConsent />
-          </LanguageProvider>
-        </I18nProvider>
+
+        {/* Browser Extension Cleanup Script - Runs before React hydration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Clean up browser extension attributes immediately
+                function cleanupExtensionAttributes() {
+                  var body = document.body;
+                  if (body) {
+                    var extensionAttributes = [
+                      'cz-shortcut-listen',
+                      'data-new-gr-c-s-check-loaded',
+                      'data-gr-ext-installed',
+                      'spellcheck',
+                      'data-gramm',
+                      'data-gramm_editor',
+                      'data-enable-grammarly',
+                      'data-lt-installed'
+                    ];
+
+                    extensionAttributes.forEach(function(attr) {
+                      if (body.hasAttribute(attr)) {
+                        body.removeAttribute(attr);
+                      }
+                    });
+                  }
+                }
+
+                // Run cleanup immediately
+                cleanupExtensionAttributes();
+
+                // Run cleanup when DOM is ready
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', cleanupExtensionAttributes);
+                } else {
+                  cleanupExtensionAttributes();
+                }
+
+                // Set up a mutation observer to prevent future extension modifications
+                if (typeof MutationObserver !== 'undefined') {
+                  var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                      if (mutation.type === 'attributes' && mutation.target === document.body) {
+                        cleanupExtensionAttributes();
+                      }
+                    });
+                  });
+
+                  observer.observe(document.body, {
+                    attributes: true,
+                    attributeFilter: [
+                      'cz-shortcut-listen',
+                      'data-new-gr-c-s-check-loaded',
+                      'data-gr-ext-installed',
+                      'spellcheck',
+                      'data-gramm',
+                      'data-gramm_editor',
+                      'data-enable-grammarly'
+                    ]
+                  });
+                }
+              })();
+            `
+          }}
+        />
+
+        {/* Botpress Webchat Widget */}
+        <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js" defer></script>
+        <script src="https://files.bpcontent.cloud/2025/06/26/00/20250626002502-QU8AKK4L.js" defer></script>
+
+        <HydrationErrorBoundary>
+          <BrowserExtensionSafeWrapper>
+            <I18nProvider>
+              <LanguageProvider>
+                <MobilePerformanceOptimizer />
+                <NavbarProfessional />
+                <main id="main-content" className="flex-grow no-padding-top">{children}</main>
+                <Footer />
+                <Toaster />
+                <CookieConsent />
+              </LanguageProvider>
+            </I18nProvider>
+          </BrowserExtensionSafeWrapper>
+        </HydrationErrorBoundary>
       </body>
     </html>
   )

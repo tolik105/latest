@@ -8,101 +8,53 @@ interface ServiceMetadata {
 }
 
 export const serviceMetadata: Record<string, ServiceMetadata> = {
-  'managed-services': {
-    slug: 'managed-services',
-    title: 'Managed IT Services in Japan - 24/7 Support & Monitoring',
-    description: 'Professional managed IT services for businesses in Japan. Proactive monitoring, maintenance, and support to keep your systems running smoothly.',
-    keywords: ['managed IT services', 'IT management Japan', 'proactive monitoring', 'system maintenance', 'IT outsourcing']
+  'it-managed-services': {
+    slug: 'it-managed-services',
+    title: 'Managed IT Services & 24/7 Support | AKRIN Japan MSP',
+    description: 'Proactive monitoring, unlimited helpdesk, and on-site support. Cut IT costs 30–50% and hit 99.9% uptime with AKRIN—Japan\'s trusted MSP.',
+    keywords: ['managed IT services Japan', '24/7 IT support', 'MSP Japan', 'IT monitoring', 'helpdesk support', 'proactive IT management', 'IT cost reduction', 'bilingual IT support']
+  },
+  'it-consulting-project-management': {
+    slug: 'it-consulting-project-management',
+    title: 'IT Consulting & Project Management | AKRIN Japan',
+    description: 'Strategy, PMO, and delivery for complex IT initiatives. AKRIN plans, budgets, and executes technology projects in Japan with zero day downtime.',
+    keywords: ['IT consulting Japan', 'project management', 'PMO services', 'IT strategy', 'technology consulting', 'project delivery', 'IT governance', 'digital transformation']
+  },
+  'cloud-infrastructure': {
+    slug: 'cloud-infrastructure',
+    title: 'Cloud Migration & Managed Cloud Services | AKRIN Japan',
+    description: 'Move to Azure, AWS, or GCP with zero‑downtime migration, 24/7 management, and cost optimization. AKRIN delivers secure, compliant cloud operations in Japan.',
+    keywords: ['cloud migration Japan', 'Azure services', 'AWS migration', 'GCP services', 'cloud management', 'cloud optimization', 'FinOps', 'cloud security Japan']
+  },
+  'cybersecurity': {
+    slug: 'cybersecurity',
+    title: 'Cybersecurity Services & Managed Security Operations | AKRIN',
+    description: 'Security audits, continuous monitoring, SOC, and incident response. AKRIN protects your business with proactive cybersecurity in Japan.',
+    keywords: ['cybersecurity Japan', 'security operations center', 'SOC services', 'incident response', 'security monitoring', 'SIEM XDR', 'ISO 27001', 'security audit Japan']
+  },
+  'network-penetration-testing': {
+    slug: 'network-penetration-testing',
+    title: 'Network Penetration Testing & Ethical Hacking | AKRIN Japan',
+    description: 'Identify vulnerabilities before attackers do. AKRIN\'s certified testers deliver actionable pen test reports and remediation guidance.',
+    keywords: ['penetration testing Japan', 'pen test', 'ethical hacking', 'vulnerability assessment', 'OSCP certified', 'security testing', 'network security', 'OWASP testing']
+  },
+  'wifi-assessment': {
+    slug: 'wifi-assessment',
+    title: 'Wi‑Fi Site Survey & Performance Optimization | AKRIN Japan',
+    description: 'Ekahau-certified Wi‑Fi assessments, spectrum analysis, and remediation plans. Eliminate dead zones and slow speeds across your offices.',
+    keywords: ['Wi-Fi site survey Japan', 'wireless assessment', 'Ekahau certified', 'spectrum analysis', 'Wi-Fi optimization', 'wireless network design', 'heatmap analysis', 'Wi-Fi troubleshooting']
+  },
+  'wifi-design': {
+    slug: 'wifi-design',
+    title: 'Enterprise Wi‑Fi Design & Deployment Services | AKRIN',
+    description: 'Scalable wireless network design for offices, warehouses, and campuses. Predictive modeling, AP placement, and turnkey deployment.',
+    keywords: ['enterprise Wi-Fi design', 'wireless deployment Japan', 'Wi-Fi installation', 'predictive design', 'AP placement', 'high-density Wi-Fi', 'Meraki Cisco Aruba', 'wireless infrastructure']
   },
   'it-security': {
     slug: 'it-security',
-    title: 'IT Security Services - Protect Your Business Data',
-    description: 'Enterprise-grade IT security solutions including threat detection, vulnerability assessments, and security compliance for Japanese businesses.',
-    keywords: ['IT security Japan', 'cybersecurity services', 'data protection', 'security compliance', 'threat detection']
-  },
-  'it-support': {
-    slug: 'it-support',
-    title: '24/7 IT Support Services in Japan - Help Desk & Technical Support',
-    description: 'Round-the-clock IT support services with bilingual help desk, remote assistance, and on-site support throughout Japan.',
-    keywords: ['IT support Japan', '24/7 help desk', 'technical support', 'remote IT support', 'bilingual support']
-  },
-  'it-consulting': {
-    slug: 'it-consulting',
-    title: 'IT Consulting Services - Strategic Technology Solutions',
-    description: 'Expert IT consulting to help your business leverage technology for growth. Strategy, planning, and implementation services in Japan.',
-    keywords: ['IT consulting Japan', 'technology strategy', 'digital transformation', 'IT advisory', 'business consulting']
-  },
-  'cloud': {
-    slug: 'cloud',
-    title: 'Cloud Services & Migration - AWS, Azure, Google Cloud',
-    description: 'Professional cloud migration and management services. We help businesses move to AWS, Azure, or Google Cloud with minimal disruption.',
-    keywords: ['cloud services Japan', 'cloud migration', 'AWS Japan', 'Azure services', 'Google Cloud']
-  },
-  'cyber-security': {
-    slug: 'cyber-security',
-    title: 'Cybersecurity Services - Advanced Threat Protection',
-    description: 'Comprehensive cybersecurity solutions including SOC services, incident response, and security awareness training for Japanese enterprises.',
-    keywords: ['cybersecurity Japan', 'SOC services', 'incident response', 'security training', 'threat protection']
-  },
-  'onsite-support': {
-    slug: 'onsite-support',
-    title: 'On-Site IT Support Services - Technical Assistance at Your Location',
-    description: 'Professional on-site IT support services throughout Japan. Hardware repairs, network setup, and technical assistance at your office.',
-    keywords: ['onsite IT support', 'field service', 'hardware support', 'network setup', 'technical assistance']
-  },
-  'wireless-survey': {
-    slug: 'wireless-survey',
-    title: 'Wireless Network Survey & Design - WiFi Optimization',
-    description: 'Professional wireless site surveys and network design. Optimize your WiFi coverage and performance with our expert analysis.',
-    keywords: ['wireless survey', 'WiFi optimization', 'network design', 'site survey Japan', 'wireless assessment']
-  },
-  'e-waste': {
-    slug: 'e-waste',
-    title: 'E-Waste Recycling & IT Asset Disposal Services',
-    description: 'Secure and environmentally responsible e-waste recycling and IT asset disposal services in Japan. Data destruction certified.',
-    keywords: ['e-waste recycling', 'IT asset disposal', 'data destruction', 'electronic recycling', 'ITAD services']
-  },
-  'it-equipment': {
-    slug: 'it-equipment',
-    title: 'IT Equipment Supply & Procurement Services',
-    description: 'Source quality IT equipment and hardware for your business. Competitive pricing on servers, networking gear, and workstations.',
-    keywords: ['IT equipment Japan', 'hardware procurement', 'server supply', 'networking equipment', 'IT purchasing']
-  },
-  'relocation': {
-    slug: 'relocation',
-    title: 'IT Relocation Services - Office Moving & Setup',
-    description: 'Professional IT relocation services for office moves. We handle server migration, network setup, and equipment transportation.',
-    keywords: ['IT relocation', 'office moving', 'server migration', 'network relocation', 'IT moving services']
-  },
-  'recruitment': {
-    slug: 'recruitment',
-    title: 'IT Recruitment & Staffing Services in Japan',
-    description: 'Find skilled IT professionals for your team. Specialized recruitment services for developers, engineers, and IT managers in Japan.',
-    keywords: ['IT recruitment Japan', 'tech staffing', 'IT hiring', 'developer recruitment', 'engineer staffing']
-  },
-  'workforce-solutions': {
-    slug: 'workforce-solutions',
-    title: 'IT Workforce Solutions - Staff Augmentation & Training',
-    description: 'Comprehensive workforce solutions including staff augmentation, IT training, and skill development programs for your team.',
-    keywords: ['workforce solutions', 'staff augmentation', 'IT training', 'skill development', 'team expansion']
-  },
-  'custom-solutions': {
-    slug: 'custom-solutions',
-    title: 'Custom IT Solutions - Tailored Technology Services',
-    description: 'Bespoke IT solutions designed for your unique business needs. Custom software development and specialized technology services.',
-    keywords: ['custom IT solutions', 'bespoke services', 'tailored technology', 'custom development', 'specialized IT']
-  },
-  'asset-management': {
-    slug: 'asset-management',
-    title: 'IT Asset Management Services - Inventory & Lifecycle Management',
-    description: 'Complete IT asset management including inventory tracking, lifecycle management, and cost optimization for your technology investments.',
-    keywords: ['IT asset management', 'inventory tracking', 'lifecycle management', 'asset optimization', 'ITAM services']
-  },
-  'hardware-maintenance': {
-    slug: 'hardware-maintenance',
-    title: 'Hardware Maintenance & Repair Services',
-    description: 'Professional hardware maintenance and repair services. Keep your servers, workstations, and network equipment running optimally.',
-    keywords: ['hardware maintenance', 'IT repair services', 'server maintenance', 'equipment repair', 'preventive maintenance']
+    title: 'IT Security Services: Endpoint, Email & Data Protection | AKRIN',
+    description: 'Shield endpoints, email, and data with AKRIN\'s layered IT security—EDR, M365 security, backup, and policy enforcement.',
+    keywords: ['IT security Japan', 'endpoint protection', 'EDR services', 'email security', 'M365 security', 'backup disaster recovery', 'security policies', 'data protection Japan']
   }
 }
 

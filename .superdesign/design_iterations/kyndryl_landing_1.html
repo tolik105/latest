@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyndryl - Continuous Innovation + Operational Excellence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif !important;
+            background: #f5f5f5 !important;
+            color: #333333 !important;
+            min-height: 100vh !important;
+            overflow-x: hidden !important;
+        }
+        
+        .hero-section {
+            background: #f5f5f5;
+            position: relative;
+            padding: 80px 0 120px 0;
+        }
+        
+        .hero-bg-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            font-size: 12rem;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.03);
+            line-height: 1;
+            text-transform: lowercase;
+            pointer-events: none;
+            z-index: 1;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero-title {
+            font-size: 3rem !important;
+            font-weight: 300 !important;
+            line-height: 1.2 !important;
+            color: #ff6b35 !important;
+            margin-bottom: 0 !important;
+            letter-spacing: -0.02em !important;
+            max-width: 600px !important;
+        }
+        
+        .services-section {
+            background: #f5f5f5;
+            padding: 80px 0;
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+            margin-top: 60px;
+        }
+        
+        .service-item {
+            position: relative;
+        }
+        
+        .service-number {
+            font-size: 6rem !important;
+            font-weight: 100 !important;
+            color: rgba(255, 107, 53, 0.3) !important;
+            line-height: 1 !important;
+            margin-bottom: 20px !important;
+            font-family: 'Inter', sans-serif !important;
+        }
+        
+        .service-title {
+            font-size: 1.5rem !important;
+            font-weight: 400 !important;
+            color: #333333 !important;
+            margin-bottom: 20px !important;
+            line-height: 1.3 !important;
+        }
+        
+        .service-description {
+            font-size: 0.95rem !important;
+            font-weight: 400 !important;
+            color: #666666 !important;
+            line-height: 1.6 !important;
+            margin-bottom: 30px !important;
+        }
+        
+        .service-link {
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            color: #333333 !important;
+            text-decoration: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .service-link:hover {
+            color: #ff6b35 !important;
+            transform: translateX(5px) !important;
+        }
+        
+        .service-link .arrow {
+            width: 16px !important;
+            height: 16px !important;
+            transition: transform 0.3s ease !important;
+        }
+        
+        .service-link:hover .arrow {
+            transform: translateX(3px) !important;
+        }
+        
+        @media (max-width: 1024px) {
+            .hero-bg-text {
+                font-size: 8rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-bg-text {
+                font-size: 6rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem !important;
+            }
+            
+            .service-number {
+                font-size: 4rem !important;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-text">
+            how kyndryl can help
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Continuous innovation<br>
+                + operational excellence
+            </h1>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="services-container">
+            <div class="services-grid">
+                <!-- Service 01 -->
+                <div class="service-item">
+                    <div class="service-number">01</div>
+                    <h3 class="service-title">
+                        Simplify digital<br>
+                        transformation
+                    </h3>
+                    <p class="service-description">
+                        Kyndryl Consult helps you drive innovation and simplify digital transformation with strategic visioning, architecture design, and organizational change management.
+                    </p>
+                    <a href="#" class="service-link">
+                        Discover Kyndryl Consult
+                        <i data-lucide="arrow-right" class="arrow"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 02 -->
+                <div class="service-item">
+                    <div class="service-number">02</div>
+                    <h3 class="service-title">
+                        Overcome business<br>
+                        challenges
+                    </h3>
+                    <p class="service-description">
+                        Our services combine deep industry expertise with modern skills and advanced technology to help you overcome business challenges and uncover new opportunities for growth.
+                    </p>
+                    <a href="#" class="service-link">
+                        Explore our services
+                        <i data-lucide="arrow-right" class="arrow"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 03 -->
+                <div class="service-item">
+                    <div class="service-number">03</div>
+                    <h3 class="service-title">
+                        Orchestrate and<br>
+                        innovate
+                    </h3>
+                    <p class="service-description">
+                        Kyndryl Bridge is an open integration platform designed to help orchestrate and innovate across your IT environment, enabling continuous learning and quicker time to value.
+                    </p>
+                    <a href="#" class="service-link">
+                        Learn about Kyndryl Bridge
+                        <i data-lucide="arrow-right" class="arrow"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 04 -->
+                <div class="service-item">
+                    <div class="service-number">04</div>
+                    <h3 class="service-title">
+                        Enable hybrid IT with<br>
+                        strategic partners
+                    </h3>
+                    <p class="service-description">
+                        Be confident that you're making the right technology investments with global alliance partnerships that enable today's complex hybrid ecosystems.
+                    </p>
+                    <a href="#" class="service-link">
+                        Explore our partners
+                        <i data-lucide="arrow-right" class="arrow"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Add smooth animations on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate hero title
+            const heroTitle = document.querySelector('.hero-title');
+            heroTitle.style.opacity = '0';
+            heroTitle.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                heroTitle.style.transition = 'all 0.8s ease-out';
+                heroTitle.style.opacity = '1';
+                heroTitle.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Animate service items on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    }
+                });
+            }, observerOptions);
+            
+            // Set initial state and observe service items
+            document.querySelectorAll('.service-item').forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(40px)';
+                item.style.transition = 'all 0.6s ease-out';
+                observer.observe(item);
+            });
+        });
+        
+        // Add parallax effect to background text
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const bgText = document.querySelector('.hero-bg-text');
+            const rate = scrolled * -0.5;
+            bgText.style.transform = `translateY(${rate}px)`;
+        });
+    </script>
+</body>
+</html>

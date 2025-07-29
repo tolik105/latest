@@ -12,22 +12,21 @@
     "contact": "連絡先",
     "bookConsultation": "予約相談",
     "allServices": "すべてのサービス",
-    "managedServices": "マネージドITサービス",
-    "itSecurity": "ITセキュリティ",
-    "itSupport": "サービスデスクサービス",
-    "itConsulting": "ITコンサルティング",
-    "cloud": "クラウドソリューション",
-    "cyberSecurity": "サイバーセキュリティ",
-    "onsiteSupport": "オンサイトサポート",
-    "wirelessSurvey": "ワイヤレスサーベイ",
-    "eWaste": "電子廃棄物管理",
-    "itEquipment": "IT機器",
-    "relocation": "IT移転",
-    "recruitment": "ITリクルートメント",
-    "workforceSolutions": "ワークフォースソリューション",
-    "customSolutions": "カスタムソリューション",
-    "assetManagement": "資産管理",
-    "hardwareMaintenance": "ハードウェアメンテナンス"
+    "itsmDashboard": "ITSMダッシュボード",
+    "managedItSupport": "マネージドITサポート",
+    "itConsultingProjectManagement": "ITコンサルティング・プロジェクト管理",
+    "cloudInfrastructure": "クラウドインフラソリューション",
+    "cybersecurity": "サイバーセキュリティ・ITセキュリティ",
+    "networkPenetrationTesting": "ネットワーク侵入テスト",
+    "wifiAssessment": "Wi-Fiサイトサーベイ・最適化",
+    "wifiDesign": "エンタープライズWi-Fi設計・導入",
+    "itSecurity": "ITセキュリティサービス",
+    "cloudSolutionsMigration": "クラウドソリューション＆マイグレーション",
+    "cybersecurityCompliance": "サイバーセキュリティ＆コンプライアンス",
+    "networkInfrastructure": "ネットワーク＆インフラストラクチャ",
+    "aiPoweredAutomation": "AI駆動オートメーション",
+    "itConsultingStrategy": "ITコンサルティング＆戦略",
+    "projectManagement": "プロジェクト管理"
   },
   "hero": {
     "title": "包括的なITソリューションでビジネスの革新を実現",
@@ -121,81 +120,7 @@
       "submitButton": "予約"
     }
   },
-  "servicesPage": {
-    "title": "ITサービス",
-    "subtitle": "IT要件をAkrinにお任せください。優れたIT体験を提供するために協力します。",
-    "allServices": {
-      "managed": {
-        "title": "マネージドITサービス",
-        "description": "24時間365日ビジネスをスムーズに運営するための包括的なIT管理。"
-      },
-      "security": {
-        "title": "ITセキュリティ",
-        "description": "デジタル資産と機密データの高度な保護。"
-      },
-      "support": {
-        "title": "サービスデスクサポート",
-        "description": "必要なときにいつでも専門的な技術サポート。"
-      },
-      "consulting": {
-        "title": "ITコンサルティング",
-        "description": "ビジネス目標とテクノロジーを連携させる戦略的ガイダンス。"
-      },
-      "cloud": {
-        "title": "クラウドソリューション",
-        "description": "スケーラブルなクラウドインフラストラクチャと移行サービス。"
-      },
-      "cyber": {
-        "title": "サイバーセキュリティ",
-        "description": "デジタル脅威に対する包括的な保護。"
-      },
-      "onsite": {
-        "title": "オンサイトサポート",
-        "description": "お客様の場所でのプロフェッショナルなITサポート。"
-      },
-      "wireless": {
-        "title": "ワイヤレスサーベイ",
-        "description": "プロフェッショナルな調査でネットワークパフォーマンスを最適化。"
-      },
-      "waste": {
-        "title": "電子廃棄物管理",
-        "description": "電子機器の責任ある廃棄とリサイクル。"
-      },
-      "equipment": {
-        "title": "IT機器",
-        "description": "ビジネスニーズに対応する高品質なハードウェアソリューション。"
-      },
-      "relocation": {
-        "title": "IT移転",
-        "description": "シームレスなITインフラストラクチャ移転サービス。"
-      },
-      "recruitment": {
-        "title": "IT人材採用",
-        "description": "チームに最適なIT人材を見つける。"
-      },
-      "workforce": {
-        "title": "ワークフォースソリューション",
-        "description": "包括的な人材配置とリソース管理。"
-      },
-      "custom": {
-        "title": "カスタムソリューション",
-        "description": "独自のビジネス課題に対応するカスタマイズされたITソリューション。"
-      },
-      "asset": {
-        "title": "資産管理",
-        "description": "IT資産を効率的に追跡および最適化。"
-      },
-      "hardware": {
-        "title": "ハードウェアメンテナンス",
-        "description": "機器を最高のパフォーマンスで稼働させ続ける。"
-      }
-    },
-    "cta": {
-      "title": "IT体験を変革する準備はできていますか？",
-      "description": "ITニーズをAkrinに任せて、ビジネスに集中してください。",
-      "contactButton": "お問い合わせ"
-    }
-  },
+
   "servicesPage": {
     "title": "ITサービス",
     "subtitle": "現代のビジネスに向けた包括的なテクノロジーソリューション",
@@ -206,65 +131,9 @@
         "title": "マネージドITサービス",
         "description": "お客様のビジネスのための完全なIT管理とサポート"
       },
-      "security": {
-        "title": "ITセキュリティ",
-        "description": "エンタープライズグレードのセキュリティでビジネスを保護"
-      },
-      "support": {
-        "title": "ITサポート",
-        "description": "24時間365日のヘルプデスクとテクニカルサポートサービス"
-      },
       "consulting": {
-        "title": "ITコンサルティング",
-        "description": "ビジネス成長を加速する戦略的テクノロジーガイダンス"
-      },
-      "cloud": {
-        "title": "クラウドソリューション",
-        "description": "柔軟性と拡張性に優れたクラウドインフラ移行サービス"
-      },
-      "cyber": {
-        "title": "サイバーセキュリティ",
-        "description": "高度な脅威保護とセキュリティ監視"
-      },
-      "onsite": {
-        "title": "オンサイトサポート",
-        "description": "お客様の拠点でのプロフェッショナルITサポート"
-      },
-      "wireless": {
-        "title": "ワイヤレスサーベイ",
-        "description": "ネットワーク評価と最適化サービス"
-      },
-      "waste": {
-        "title": "電子廃棄物管理",
-        "description": "IT機器の責任ある廃棄とリサイクル"
-      },
-      "equipment": {
-        "title": "IT機器",
-        "description": "お客様のビジネスのための高品質なハードウェアソリューション"
-      },
-      "relocation": {
-        "title": "IT移転",
-        "description": "シームレスなITインフラストラクチャ移転サービス"
-      },
-      "recruitment": {
-        "title": "ITリクルートメント",
-        "description": "お客様のチームに適したIT人材を見つける"
-      },
-      "workforce": {
-        "title": "ワークフォースソリューション",
-        "description": "包括的な人材配置とリソース管理"
-      },
-      "custom": {
-        "title": "カスタムソリューション",
-        "description": "独自の課題に対するカスタマイズされたITソリューション"
-      },
-      "asset": {
-        "title": "資産管理",
-        "description": "IT資産を効率的に追跡し最適化"
-      },
-      "hardware": {
-        "title": "ハードウェアメンテナンス",
-        "description": "機器を最高のパフォーマンスで維持"
+        "title": "ITコンサルティング＆プロジェクトマネジメント",
+        "description": "戦略策定、PMO、実行支援まで複雑なITプロジェクトを推進"
       }
     },
     "cta": {
