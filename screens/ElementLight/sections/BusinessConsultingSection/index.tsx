@@ -1,1 +1,0 @@
-export { BusinessConsultingSection } from './BusinessConsultingSection';
