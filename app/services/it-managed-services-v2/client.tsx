@@ -3,33 +3,33 @@
 import React from "react"
 import Script from "next/script"
 import Link from "next/link"
-import { FAQ } from "@/components/ui/faq-section"
+import { MobileFirstAccordion } from "@/components/ui/mobile-first-accordion"
 
 export default function ITManagedServicesClient() {
   const faqItems = [
     {
-      q: "What's included in your managed IT services?",
-      a: "Our comprehensive managed IT services include 24/7 network monitoring, unlimited help desk support, proactive maintenance, security management, backup and disaster recovery, strategic IT planning, and on-site support when needed."
+      title: "What's included in your managed IT services?",
+      body: "Our comprehensive managed IT services include 24/7 network monitoring, unlimited help desk support, proactive maintenance, security management, backup and disaster recovery, strategic IT planning, and on-site support when needed."
     },
     {
-      q: "How quickly do you respond to IT issues?",
-      a: "Critical issues are resolved within 30 minutes, standard requests within 4 hours. Our 24/7 help desk provides immediate assistance through phone, email, and chat support."
+      title: "How quickly do you respond to IT issues?",
+      body: "Critical issues are resolved within 30 minutes, standard requests within 4 hours. Our 24/7 help desk provides immediate assistance through phone, email, and chat support."
     },
     {
-      q: "Do you provide bilingual support?",
-      a: "Yes, our team provides full bilingual support in English and Japanese, ensuring clear communication with all stakeholders in your organization."
+      title: "Do you provide bilingual support?",
+      body: "Yes, our team provides full bilingual support in English and Japanese, ensuring clear communication with all stakeholders in your organization."
     },
     {
-      q: "Can you work with our existing IT infrastructure?",
-      a: "Absolutely. We assess your current infrastructure and integrate our services seamlessly, whether you need full management or supplementary support alongside your existing IT team."
+      title: "Can you work with our existing IT infrastructure?",
+      body: "Absolutely. We assess your current infrastructure and integrate our services seamlessly, whether you need full management or supplementary support alongside your existing IT team."
     },
     {
-      q: "What's the typical cost savings with managed IT services?",
-      a: "Most clients see 30-50% reduction in IT costs through proactive maintenance, reduced downtime, predictable monthly pricing, and elimination of emergency repair costs."
+      title: "What's the typical cost savings with managed IT services?",
+      body: "Most clients see 30-50% reduction in IT costs through proactive maintenance, reduced downtime, predictable monthly pricing, and elimination of emergency repair costs."
     },
     {
-      q: "How do you ensure data security and compliance?",
-      a: "We implement multi-layered security including endpoint protection, network monitoring, regular security assessments, and compliance management for standards like ISO 27001 and GDPR."
+      title: "How do you ensure data security and compliance?",
+      body: "We implement multi-layered security including endpoint protection, network monitoring, regular security assessments, and compliance management for standards like ISO 27001 and GDPR."
     }
   ]
 
@@ -75,7 +75,6 @@ export default function ITManagedServicesClient() {
                     Solutions
                   </h1>
                   <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
-                    24/7 monitoring, helpdesk support, and proactive maintenance. Enterprise-grade reliability with SMB-friendly pricing.
                   </p>
                   <Link
                     href="/contact"
@@ -496,7 +495,11 @@ export default function ITManagedServicesClient() {
         </div>
 
         {/* FAQ Section */}
-        <FAQ items={faqItems} />
+        <MobileFirstAccordion
+          items={faqItems}
+          title="Frequently Asked Questions"
+          subtitle="Get answers to common questions about our managed IT services"
+        />
 
         {/* CTA Section - EireSystems Style */}
         <div className="bg-[#20B2AA] py-20">
