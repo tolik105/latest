@@ -9,15 +9,39 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 
 function SpotlightLogoCloud() {
-  const partners = [
-    "Microsoft",
-    "Amazon AWS",
-    "Google Cloud",
-    "VMware",
-    "Cisco",
-    "Dell Technologies",
-    "HP Enterprise",
-    "IBM"
+  const logos = [
+    {
+      name: "Microsoft",
+      src: "https://logo.clearbit.com/microsoft.com",
+    },
+    {
+      name: "Amazon AWS",
+      src: "https://logo.clearbit.com/aws.amazon.com",
+    },
+    {
+      name: "Google Cloud",
+      src: "https://logo.clearbit.com/cloud.google.com",
+    },
+    {
+      name: "VMware",
+      src: "https://logo.clearbit.com/vmware.com",
+    },
+    {
+      name: "Cisco",
+      src: "https://logo.clearbit.com/cisco.com",
+    },
+    {
+      name: "Dell",
+      src: "https://logo.clearbit.com/dell.com",
+    },
+    {
+      name: "HP",
+      src: "https://logo.clearbit.com/hp.com",
+    },
+    {
+      name: "IBM",
+      src: "https://logo.clearbit.com/ibm.com",
+    },
   ];
 
   return (
@@ -30,15 +54,20 @@ function SpotlightLogoCloud() {
         We work with industry-leading technology partners to deliver best-in-class solutions
       </p>
       <div className="relative mx-auto grid w-full max-w-4xl grid-cols-2 md:grid-cols-4 gap-8">
-        {partners.map((partner, idx) => (
+        {logos.map((logo, idx) => (
           <div
-            key={partner + idx + "partner-spotlight"}
+            key={logo.name + idx + "logo-spotlight"}
             className="flex items-center justify-center"
           >
-            <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-lg px-4 py-3 shadow-sm hover:shadow-md transition-all duration-300 hover:border-violet-300">
-              <span className="text-[#2C2C2C] font-medium text-sm md:text-base text-center block">
-                {partner}
-              </span>
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 hover:border-violet-300 min-h-[80px] flex items-center justify-center">
+              <Image
+                src={logo.src}
+                alt={logo.name}
+                width={120}
+                height={60}
+                className="w-full max-w-[100px] h-auto select-none object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                draggable={false}
+              />
             </div>
           </div>
         ))}
