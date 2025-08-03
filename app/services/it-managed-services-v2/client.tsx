@@ -3,33 +3,41 @@
 import React from "react"
 import Script from "next/script"
 import Link from "next/link"
-import { MobileFirstAccordion } from "@/components/ui/mobile-first-accordion"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronDownIcon } from "@heroicons/react/24/outline"
 
 export default function ITManagedServicesClient() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
   const faqItems = [
     {
-      title: "What's included in your managed IT services?",
-      body: "Our comprehensive managed IT services include 24/7 network monitoring, unlimited help desk support, proactive maintenance, security management, backup and disaster recovery, strategic IT planning, and on-site support when needed."
+      question: "What's included in your managed IT services?",
+      answer: "Our comprehensive managed IT services include 24/7 network monitoring, unlimited help desk support, proactive maintenance, security management, backup and disaster recovery, strategic IT planning, and on-site support when needed."
     },
     {
-      title: "How quickly do you respond to IT issues?",
-      body: "Critical issues are resolved within 30 minutes, standard requests within 4 hours. Our 24/7 help desk provides immediate assistance through phone, email, and chat support."
+      question: "How quickly do you respond to IT issues?",
+      answer: "Critical issues are resolved within 30 minutes, standard requests within 4 hours. Our 24/7 help desk provides immediate assistance through phone, email, and chat support."
     },
     {
-      title: "Do you provide bilingual support?",
-      body: "Yes, our team provides full bilingual support in English and Japanese, ensuring clear communication with all stakeholders in your organization."
+      question: "Do you provide bilingual support?",
+      answer: "Yes, our team provides full bilingual support in English and Japanese, ensuring clear communication with all stakeholders in your organization."
     },
     {
-      title: "Can you work with our existing IT infrastructure?",
-      body: "Absolutely. We assess your current infrastructure and integrate our services seamlessly, whether you need full management or supplementary support alongside your existing IT team."
+      question: "Can you work with our existing IT infrastructure?",
+      answer: "Absolutely. We assess your current infrastructure and integrate our services seamlessly, whether you need full management or supplementary support alongside your existing IT team."
     },
     {
-      title: "What's the typical cost savings with managed IT services?",
-      body: "Most clients see 30-50% reduction in IT costs through proactive maintenance, reduced downtime, predictable monthly pricing, and elimination of emergency repair costs."
+      question: "What's the typical cost savings with managed IT services?",
+      answer: "Most clients see 30-50% reduction in IT costs through proactive maintenance, reduced downtime, predictable monthly pricing, and elimination of emergency repair costs."
     },
     {
-      title: "How do you ensure data security and compliance?",
-      body: "We implement multi-layered security including endpoint protection, network monitoring, regular security assessments, and compliance management for standards like ISO 27001 and GDPR."
+      question: "How do you ensure data security and compliance?",
+      answer: "We implement multi-layered security including endpoint protection, network monitoring, regular security assessments, and compliance management for standards like ISO 27001 and GDPR."
     }
   ]
 
@@ -495,11 +503,81 @@ export default function ITManagedServicesClient() {
         </div>
 
         {/* FAQ Section */}
-        <MobileFirstAccordion
-          items={faqItems}
-          title="Frequently Asked Questions"
-          subtitle="Get answers to common questions about our managed IT services"
-        />
+        <section className="py-16 sm:py-20 lg:py-24 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-12 sm:mb-16"
+            >
+              {/* Violet accent line */}
+              <div className="w-12 h-1 bg-violet-600 mx-auto mb-6"></div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4 tracking-tight leading-tight">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Get answers to common questions about our managed IT services
+              </p>
+            </motion.div>
+
+            <div className="space-y-3">
+              {faqItems.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group"
+                >
+                  <div className="bg-white border border-gray-200 hover:border-violet-600 transition-all duration-300 hover:shadow-md rounded-lg">
+                    <button
+                      onClick={() => toggleFAQ(index)}
+                      className="w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2"
+                      aria-expanded={openIndex === index}
+                      aria-controls={`faq-answer-${index}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-medium text-gray-900 pr-4 leading-tight">
+                          {faq.question}
+                        </h3>
+                        <motion.div
+                          animate={{ rotate: openIndex === index ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="flex-shrink-0"
+                        >
+                          <ChevronDownIcon className="w-5 h-5 text-violet-600" />
+                        </motion.div>
+                      </div>
+                    </button>
+
+                    <AnimatePresence>
+                      {openIndex === index && (
+                        <motion.div
+                          id={`faq-answer-${index}`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-5">
+                            <div className="w-12 h-1 bg-violet-600 mb-3"></div>
+                            <p className="text-base text-gray-600 leading-relaxed">
+                              {faq.answer}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section - EireSystems Style */}
         <div className="bg-[#20B2AA] py-20">
