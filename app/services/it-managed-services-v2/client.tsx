@@ -6,6 +6,96 @@ import Link from "next/link"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDownIcon } from "@heroicons/react/24/outline"
+import Image from "next/image"
+
+function SpotlightLogoCloud() {
+  const partners = [
+    "Microsoft",
+    "Amazon AWS",
+    "Google Cloud",
+    "VMware",
+    "Cisco",
+    "Dell Technologies",
+    "HP Enterprise",
+    "IBM"
+  ];
+
+  return (
+    <div className="relative w-full overflow-hidden py-20">
+      <AmbientColor />
+      <h3 className="bg-gradient-to-b from-[#2C2C2C] to-[#666666] bg-clip-text pb-4 text-center font-sans text-2xl font-bold text-transparent md:text-3xl">
+        Technology Partners
+      </h3>
+      <p className="text-[#666666] mb-10 mt-4 text-center font-sans text-base">
+        We work with industry-leading technology partners to deliver best-in-class solutions
+      </p>
+      <div className="relative mx-auto grid w-full max-w-4xl grid-cols-2 md:grid-cols-4 gap-8">
+        {partners.map((partner, idx) => (
+          <div
+            key={partner + idx + "partner-spotlight"}
+            className="flex items-center justify-center"
+          >
+            <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-lg px-4 py-3 shadow-sm hover:shadow-md transition-all duration-300 hover:border-violet-300">
+              <span className="text-[#2C2C2C] font-medium text-sm md:text-base text-center block">
+                {partner}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const AmbientColor = () => {
+  return (
+    <div className="pointer-events-none absolute left-40 top-0 z-40 h-screen w-screen">
+      <div
+        style={{
+          transform: "translateY(-350px) rotate(-45deg)",
+          width: "560px",
+          height: "1380px",
+          background:
+            "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(240, 100%, 85%, .2) 0, hsla(240, 100%, 55%, .1) 50%, hsla(240, 100%, 45%, .05) 80%)",
+          filter: "blur(20px)",
+          borderRadius: "50%",
+        }}
+        className="absolute left-0 top-0"
+      />
+
+      <div
+        style={{
+          transform: "rotate(-45deg) translate(5%, -50%)",
+          transformOrigin: "top left",
+          width: "240px",
+          height: "1380px",
+          background:
+            "radial-gradient(50% 50% at 50% 50%, hsla(240, 100%, 85%, .15) 0, hsla(240, 100%, 45%, .1) 80%, transparent 100%)",
+          filter: "blur(20px)",
+          borderRadius: "50%",
+        }}
+        className="absolute left-0 top-0"
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          borderRadius: "50%",
+          transform: "rotate(-45deg) translate(-180%, -70%)",
+          transformOrigin: "top left",
+          top: 0,
+          left: 0,
+          width: "240px",
+          height: "1380px",
+          background:
+            "radial-gradient(50% 50% at 50% 50%, hsla(240, 100%, 85%, .1) 0, hsla(240, 100%, 45%, .05) 80%, transparent 100%)",
+          filter: "blur(20px)",
+        }}
+        className="absolute left-0 top-0"
+      />
+    </div>
+  );
+};
 
 export default function ITManagedServicesClient() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
@@ -444,11 +534,14 @@ export default function ITManagedServicesClient() {
             </div>
 
             {/* Bottom Content */}
-            <div className="text-center">
+            <div className="text-center mb-8">
               <p className="text-lg text-[#666666] leading-relaxed max-w-4xl mx-auto">
                 Our strategic approach ensures your technology investments align with business objectives and deliver measurable value for long-term success.
               </p>
             </div>
+
+            {/* Technology Partners Spotlight */}
+            <SpotlightLogoCloud />
           </div>
         </div>
 
