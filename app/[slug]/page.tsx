@@ -68,8 +68,8 @@ async function getContent(slug: string) {
     const content = await db.content.findFirst({
       where: {
         slug,
-        language: Language.EN,
-        status: ContentStatus.PUBLISHED
+        language: 'EN',
+        status: 'PUBLISHED'
       },
       include: {
         category: true,
@@ -138,8 +138,8 @@ export async function generateStaticParams() {
   try {
     const publishedContent = await db.content.findMany({
       where: {
-        status: ContentStatus.PUBLISHED,
-        language: Language.EN
+        status: 'PUBLISHED',
+        language: 'EN'
       },
       select: { slug: true },
       take: 100 // Limit for build performance

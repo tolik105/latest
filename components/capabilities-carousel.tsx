@@ -192,18 +192,41 @@ export function CapabilitiesCarousel() {
         </div>
 
         {/* Slide Indicators - Responsive */}
-        <div className="flex justify-center mt-4 sm:mt-6 space-x-2">
+        <div className="flex justify-center mt-4 sm:mt-6 space-x-4">
           {capabilities.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`transition-all duration-300 ${
+              className={`relative transition-all duration-300 group ${
                 index === currentSlide
-                  ? 'w-4 h-1.5 sm:w-6 sm:h-2 bg-purple-600 rounded-full'
-                  : 'w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-300 hover:bg-purple-300 rounded-full'
+                  ? 'text-purple-600'
+                  : 'text-gray-400 hover:text-purple-400'
               }`}
               aria-label={`Go to slide ${index + 1}`}
-            />
+            >
+              {/* Arrow Icon */}
+              <svg
+                className={`w-5 h-5 sm:w-6 sm:h-6 transition-all duration-300 ${
+                  index === currentSlide ? 'scale-110' : 'scale-100 group-hover:scale-105'
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+              {/* Underline */}
+              <div className={`absolute -bottom-1 left-0 right-0 h-0.5 transition-all duration-300 ${
+                index === currentSlide
+                  ? 'bg-purple-600 scale-x-100'
+                  : 'bg-gray-400 scale-x-0 group-hover:scale-x-75'
+              }`} />
+            </button>
           ))}
         </div>
       </div>

@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next"
 // Using local variable fonts instead of Google Fonts imports
 import "./globals.css"
-import "./botpress-widget-styles.css"
-import { NavbarProfessional } from "@/components/navbar-professional"
+
+import { NavbarSimple } from "@/components/navbar-simple"
 import { Footer } from "@/components/footer"
 import type React from "react"
 import { LanguageProvider } from "@/contexts/language-context"
@@ -15,6 +15,7 @@ import { HreflangLinks } from "@/components/hreflang-links"
 import { BrowserExtensionSafeWrapper } from "@/components/hydration-boundary"
 import { HydrationErrorBoundary } from "@/components/hydration-error-boundary"
 import { MobilePerformanceOptimizer } from "@/components/mobile-performance"
+import PrelineInit from "@/components/preline-init"
 
 // Variable fonts are loaded via CSS @font-face declarations in globals.css
 
@@ -118,96 +119,81 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <HreflangLinks />
-        <script
+                <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([
-              {
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "@id": "https://akrin.jp/#organization",
-                "name": "AKRIN株式会社",
-                "legalName": "AKRIN株式会社",
-                "alternateName": ["Akrin Co., Ltd.", "Akrin IT Solutions", "AKRIN K.K.", "アクリン"],
-                "url": "https://akrin.jp",
-                "logo": "https://akrin.jp/akrin-logo.svg",
-                "sameAs": [
-                  "https://www.linkedin.com/company/akrin-kk"
-                ],
-                "contactPoint": {
-                  "@type": "ContactPoint",
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://akrin.jp/#organization",
+                  "name": "AKRIN株式会社",
+                  "legalName": "AKRIN株式会社",
+                  "alternateName": ["Akrin Co., Ltd.", "Akrin IT Solutions", "AKRIN K.K.", "アクリン"],
+                  "url": "https://akrin.jp",
+                  "logo": "https://akrin.jp/akrin-logo.svg",
+                  "sameAs": ["https://www.linkedin.com/company/akrin-kk"],
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+81-3-6821-1223",
+                    "contactType": "customer service",
+                    "availableLanguage": ["English", "Japanese", "日本語", "英語"],
+                    "areaServed": ["JP", "Worldwide"]
+                  },
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "2-4-15 Minamiaoyama 4F",
+                    "streetAddress@ja": "南青山2-4-15 4F",
+                    "addressLocality": "Minato City",
+                    "addressLocality@ja": "港区",
+                    "addressRegion": "Tokyo",
+                    "addressRegion@ja": "東京都",
+                    "postalCode": "107-0062",
+                    "addressCountry": "JP"
+                  },
+                  "description": "Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support.",
+                  "description@ja": "日本を代表するITソリューションプロバイダー。マネージドサービス、サイバーセキュリティ、クラウド移行、24時間365日サポートを提供。"
+                },
+                {
+                  "@type": "LocalBusiness",
+                  "@id": "https://akrin.jp/#localbusiness",
+                  "name": "AKRIN株式会社",
+                  "image": "https://akrin.jp/og-image.png",
+                  "priceRange": "$$$$",
                   "telephone": "+81-3-6821-1223",
-                  "contactType": "customer service",
-                  "availableLanguage": ["English", "Japanese", "日本語", "英語"],
-                  "areaServed": ["JP", "Worldwide"]
-                },
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "2-4-15 Minamiaoyama 4F",
-                  "streetAddress@ja": "南青山2-4-15 4F",
-                  "addressLocality": "Minato City",
-                  "addressLocality@ja": "港区",
-                  "addressRegion": "Tokyo",
-                  "addressRegion@ja": "東京都",
-                  "postalCode": "107-0062",
-                  "addressCountry": "JP"
-                },
-                "description": "Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support.",
-                "description@ja": "日本を代表するITソリューションプロバイダー。マネージドサービス、サイバーセキュリティ、クラウド移行、24時間365日サポートを提供。"
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "@id": "https://akrin.jp/#localbusiness",
-                "name": "AKRIN株式会社",
-                "image": "https://akrin.jp/og-image.png",
-                "priceRange": "$$$$",
-                "telephone": "+81-3-6821-1223",
-                "email": "support@akrin.jp",
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "南青山2-4-15 4F",
-                  "addressLocality": "港区",
-                  "addressRegion": "東京都",
-                  "postalCode": "107-0062",
-                  "addressCountry": "JP"
-                },
-                "geo": {
-                  "@type": "GeoCoordinates",
-                  "latitude": 35.6712,
-                  "longitude": 139.7195
-                },
-                "url": "https://akrin.jp",
-                "areaServed": {
-                  "@type": "Country",
-                  "name": "Japan"
-                },
-                "hasOfferCatalog": {
-                  "@type": "OfferCatalog",
-                  "name": "IT Services",
-                  "itemListElement": [
-                    {
-                      "@type": "Service",
-                      "name": "Managed IT Services"
-                    },
-                    {
-                      "@type": "Service",
-                      "name": "Cybersecurity Solutions"
-                    },
-                    {
-                      "@type": "Service",
-                      "name": "Cloud Migration"
-                    },
-                    {
-                      "@type": "Service",
-                      "name": "IT Support"
-                    }
-                  ]
+                  "email": "support@akrin.jp",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "南青山2-4-15 4F",
+                    "addressLocality": "港区",
+                    "addressRegion": "東京都",
+                    "postalCode": "107-0062",
+                    "addressCountry": "JP"
+                  },
+                  "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 35.6712,
+                    "longitude": 139.7195
+                  },
+                  "url": "https://akrin.jp",
+                  "areaServed": {"@type": "Country", "name": "Japan"},
+                  "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "IT Services",
+                    "itemListElement": [
+                      { "@type": "Service", "name": "Managed IT Services" },
+                      { "@type": "Service", "name": "Cybersecurity Solutions" },
+                      { "@type": "Service", "name": "Cloud Migration" },
+                      { "@type": "Service", "name": "IT Support" }
+                    ]
+                  }
                 }
-              }
-            ])
+              ]
+            }),
           }}
         />
+
 
         {/* Premium Font Preloading for Performance */}
         <link
@@ -301,22 +287,24 @@ export default function RootLayout({
           }}
         />
 
-        {/* Botpress Webchat Widget */}
-        <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js" defer></script>
-        <script src="https://files.bpcontent.cloud/2025/06/26/00/20250626002502-QU8AKK4L.js" defer></script>
+
+
 
         <HydrationErrorBoundary>
           <BrowserExtensionSafeWrapper>
-            <I18nProvider>
-              <LanguageProvider>
-                <MobilePerformanceOptimizer />
-                <NavbarProfessional />
-                <main id="main-content" className="flex-grow no-padding-top">{children}</main>
-                <Footer />
-                <Toaster />
-                <CookieConsent />
-              </LanguageProvider>
-            </I18nProvider>
+            <div suppressHydrationWarning={true}>
+              <I18nProvider>
+                <LanguageProvider>
+                  <PrelineInit />
+                  <MobilePerformanceOptimizer />
+                  <NavbarSimple />
+                  <main id="main-content" className="flex-grow">{children}</main>
+                  <Footer />
+                  <Toaster />
+                  <CookieConsent />
+                </LanguageProvider>
+              </I18nProvider>
+            </div>
           </BrowserExtensionSafeWrapper>
         </HydrationErrorBoundary>
       </body>

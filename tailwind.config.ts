@@ -9,6 +9,7 @@ const config = {
     "./src/**/*.{ts,tsx}",
     "./screens/**/*.{js,ts,jsx,tsx}",
     "*.{js,ts,jsx,tsx,mdx}",
+
   ],
   prefix: "",
   theme: {
@@ -247,6 +248,8 @@ const config = {
   plugins: [
     require("tailwindcss-animate"),
     require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+
   ],
 } satisfies Config
 

@@ -2,164 +2,298 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, AnimationProps } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import { useEffect, useState } from 'react'
+import { cn } from "@/lib/utils"
 
 export function VideoHeroMobile() {
   const { t } = useTranslation('common')
   const [isMobile, setIsMobile] = useState(false)
+  const [isTablet, setIsTablet] = useState(false)
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024)
+    const checkScreenSize = () => {
+      const width = window.innerWidth
+      setIsMobile(width < 768)
+      setIsTablet(width >= 768 && width < 1024)
     }
     
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
     
-    return () => window.removeEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkScreenSize)
   }, [])
 
-  // Text animation variants
+  // Enhanced animation variants with better mobile performance
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: isMobile ? 0.1 : 0.2,
         delayChildren: 0.1
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: isMobile ? 30 : 60 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1,
+        duration: isMobile ? 0.6 : 1,
         ease: [0.22, 1, 0.36, 1]
       }
     }
   }
 
-  return (
-    <section className="relative min-h-[85vh] sm:min-h-[90vh] lg:min-h-screen w-full overflow-hidden bg-white">
-      {/* Mobile Background - Simplified for performance */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        {isMobile ? (
-          // Mobile: Simple gradient background
-          <div className="w-full h-full bg-gradient-to-br from-purple-50 via-white to-pink-50" />
-        ) : (
-          // Desktop: Original SVG background
-          <img 
-            src="/Mask group.svg" 
-            alt="" 
-            className="w-full h-full object-cover opacity-100"
-            aria-hidden="true"
-          />
-        )}
-      </div>
-      
-      {/* Responsive Layout */}
-      <div className="relative z-10 flex flex-col lg:flex-row min-h-[85vh] sm:min-h-[90vh] lg:min-h-screen w-full">
-        {/* Content Panel - Full width on mobile, left side on desktop */}
-        <div className="relative z-20 flex w-full lg:w-[55%] items-center justify-center lg:justify-start min-h-[85vh] sm:min-h-[90vh] lg:min-h-screen">
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-28 max-w-3xl w-full"
+  // Animated Text Component with blur fade-in effect
+  const AnimatedText = ({
+    children,
+    className,
+    delay = 0,
+    ...animationProps
+  }: {
+    children: string;
+    className?: string;
+    delay?: number;
+  } & AnimationProps) => {
+    return (
+      <motion.h1
+        {...animationProps}
+        className={cn("font-black text-white leading-[0.9] sm:leading-[0.95] tracking-tight text-center", className)}
+        style={{
+          fontFamily: "'Inter Var', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+          fontSize: 'clamp(2.5rem, 10vw, 6rem)',
+          lineHeight: 'clamp(0.9, 0.95, 1.0)',
+          textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+          fontFeatureSettings: '"kern" 1, "liga" 1, "clig" 1, "calt" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv11" 1',
+          letterSpacing: '-0.025em'
+        }}
+      >
+        {children.split(" ").map((word, index) => (
+          <motion.span
+            key={`word-${index}-${word}`}
+            initial={{
+              opacity: 0,
+              filter: "blur(10px)",
+              y: 10,
+            }}
+            whileInView={{
+              opacity: 1,
+              filter: "blur(0px)",
+              y: 0,
+            }}
+            transition={{
+              duration: 0.3,
+              delay: delay + index * 0.08,
+            }}
+            className="inline-block"
           >
-            <motion.div variants={itemVariants} className="mb-6 sm:mb-8 md:mb-10">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
-                <span className="text-pink-600">Rewiring</span><br />
-                enterprise <span className="text-pink-600">IT</span><br />
-                with <span className="text-pink-600">AI</span>
-              </h1>
-            </motion.div>
-            
-            <motion.p
-              variants={itemVariants}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 sm:mb-10 md:mb-12 leading-relaxed max-w-2xl"
-            >
-              Expert managed services, cybersecurity, and 24/7 support.
-            </motion.p>
+            {word}&nbsp;
+          </motion.span>
+        ))}
+      </motion.h1>
+    );
+  };
 
-            <motion.div 
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md"
-            >
-              <Button
-                className="bg-pink-600 text-white hover:bg-pink-700 font-medium px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base rounded-lg shadow-md transition-all duration-300 hover:shadow-lg w-full sm:w-auto"
-                asChild
-              >
-                <Link href="/services">
-                  {t('hero.exploreServices')}
-                </Link>
-              </Button>
+  // Animated Subtitle Component
+  const AnimatedSubtitle = ({
+    children,
+    className,
+    delay = 0,
+    ...animationProps
+  }: {
+    children: string;
+    className?: string;
+    delay?: number;
+  } & AnimationProps) => {
+    return (
+      <motion.p
+        {...animationProps}
+        className={cn("text-gray-200 leading-relaxed max-w-2xl text-center font-medium mb-6 sm:mb-8 md:mb-10 lg:mb-12", className)}
+        style={{
+          fontFamily: "'Inter Var', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+          fontSize: 'clamp(1.125rem, 3.5vw, 1.75rem)',
+          lineHeight: 'clamp(1.5, 1.6, 1.7)',
+          textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+          fontFeatureSettings: '"kern" 1, "liga" 1, "clig" 1, "calt" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv11" 1',
+          letterSpacing: '-0.011em'
+        }}
+      >
+        {children.split(" ").map((word, index) => (
+          <motion.span
+            key={`subtitle-word-${index}-${word}`}
+            initial={{
+              opacity: 0,
+              filter: "blur(8px)",
+              y: 8,
+            }}
+            whileInView={{
+              opacity: 1,
+              filter: "blur(0px)",
+              y: 0,
+            }}
+            transition={{
+              duration: 0.25,
+              delay: delay + index * 0.04,
+            }}
+            className="inline-block"
+          >
+            {word}&nbsp;
+          </motion.span>
+        ))}
+      </motion.p>
+    );
+  };
 
-              <Button
-                variant="outline"
-                className="border-2 border-teal-600 bg-white text-teal-600 hover:bg-teal-50 font-medium px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base rounded-lg transition-all duration-300 w-full sm:w-auto"
-                asChild
-              >
-                <Link href="/contact">
-                  {t('hero.requestConsultation')}
-                </Link>
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
+  return (
+    <section className="relative w-full overflow-hidden bg-white min-h-[100dvh] sm:min-h-[95vh] md:min-h-[90vh] lg:min-h-screen flex items-center justify-center pt-[70px] sm:pt-[75px] md:pt-[80px]">
 
-        {/* Right Panel - Hidden on mobile, visible on desktop */}
-        <div className="hidden lg:block lg:relative lg:w-[45%] lg:min-h-screen">
-          {/* Empty space for the A-shape in background */}
-        </div>
-      </div>
-      
-      {/* Video positioned to fill only the white A letter space - Desktop only */}
-      {!isMobile && (
-        <div className="absolute inset-0 w-full h-full z-5 pointer-events-none hidden lg:block">
-          <svg className="w-full h-full" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <clipPath id="aLetterClip">
-                {/* Triangle part of A */}
-                <path d="M1534.5 298L1811 861H1618.01L1438 497.084L1534.5 298Z"/>
-                {/* Base part of A */}
-                <path d="M1346.01 704H1525L1433.09 861H1257L1346.01 704Z"/>
-              </clipPath>
-            </defs>
-            <foreignObject x="0" y="0" width="1920" height="1080" clipPath="url(#aLetterClip)">
+        {/* Enhanced Background with better mobile performance */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          {isMobile ? (
+            // Mobile: Video background with overlay for readability
+            <div className="w-full h-full relative">
               <video
                 autoPlay
                 muted
                 loop
                 playsInline
-                style={{ 
-                  width: '1920px', 
-                  height: '1080px', 
-                  objectFit: 'cover'
-                }}
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ filter: 'brightness(0.6)' }}
               >
-                <source src="/video/last.mp4" type="video/mp4" />
+                <source src="/video/AKRINKK.mp4" type="video/mp4" />
               </video>
-            </foreignObject>
-          </svg>
+              <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/20" />
+            </div>
+          ) : isTablet ? (
+            // Tablet: Video background with overlay
+            <div className="w-full h-full relative">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ filter: 'brightness(0.7)' }}
+              >
+                <source src="/video/AKRINKK.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/15" />
+            </div>
+          ) : (
+            // Desktop: Full video background with subtle overlay
+            <div className="w-full h-full relative">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ filter: 'brightness(0.8) contrast(1.1)' }}
+              >
+                <source src="/video/AKRINKK.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-br from-black/15 via-transparent to-black/10" />
+            </div>
+          )}
         </div>
-      )}
 
-      {/* Mobile: Decorative element instead of video */}
-      {isMobile && (
-        <div className="absolute bottom-0 right-0 w-full h-1/3 z-5 pointer-events-none">
-          <div className="relative w-full h-full">
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-pink-400/20 to-purple-400/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-10 right-10 w-48 h-48 bg-gradient-to-tl from-teal-400/20 to-blue-400/20 rounded-full blur-2xl" />
+        {/* DIRECT CENTERED CONTENT - NO NESTED CONTAINERS */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="relative z-10 w-full max-w-4xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 text-center"
+        >
+              {/* Animated Typography with blur fade-in effect */}
+              <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-10">
+                <AnimatedText delay={0.2}>
+                  What's the next bold step for your IT?
+                </AnimatedText>
+              </div>
+
+              {/* Animated subtitle with blur fade-in effect */}
+              <AnimatedSubtitle delay={1.5}>
+                Strategic consulting, end-to-end project management, and always-on managed services—secured 24/7.
+              </AnimatedSubtitle>
+
+              {/* Animated button */}
+              <motion.div
+                className="flex justify-center w-full"
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.4, delay: 2.5 }}
+              >
+                <Button
+                  className="bg-white text-gray-900 hover:bg-gray-100 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-manipulation border-0"
+                  style={{
+                    minHeight: '56px',
+                    fontSize: 'clamp(1rem, 2.5vw, 1.125rem)',
+                    padding: 'clamp(16px, 3vw, 20px) clamp(32px, 5vw, 48px)'
+                  }}
+                  asChild
+                >
+                  <Link href="/services">
+                    Get started →
+                  </Link>
+                </Button>
+              </motion.div>
+        </motion.div>
+        
+
+
+        {/* Enhanced Mobile/Tablet Decorative Elements */}
+        {(isMobile || isTablet) && (
+          <div className="absolute inset-0 w-full h-full z-5 pointer-events-none overflow-hidden">
+            {/* Mobile decorative elements */}
+            {isMobile && (
+              <div className="absolute bottom-0 right-0 w-full h-2/5 z-5">
+                <div className="relative w-full h-full">
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.5, delay: 0.5 }}
+                    className="absolute bottom-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-tl from-pink-400/15 to-purple-400/15 rounded-full blur-3xl"
+                  />
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.5, delay: 0.8 }}
+                    className="absolute bottom-8 sm:bottom-12 right-8 sm:right-12 w-32 sm:w-48 h-32 sm:h-48 bg-gradient-to-tl from-teal-400/15 to-blue-400/15 rounded-full blur-2xl"
+                  />
+                </div>
+              </div>
+            )}
+            
+            {/* Tablet decorative elements */}
+            {isTablet && (
+              <div className="absolute top-1/4 right-0 w-1/2 h-3/4 z-5">
+                <div className="relative w-full h-full">
+                  <motion.div 
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.2, delay: 0.6 }}
+                    className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-tl from-pink-400/10 to-purple-400/10 rounded-full blur-3xl"
+                  />
+                  <motion.div 
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.2, delay: 0.9 }}
+                    className="absolute top-1/2 right-16 w-64 h-64 bg-gradient-to-tl from-teal-400/10 to-blue-400/10 rounded-full blur-2xl"
+                  />
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      )}
+        )}
+
     </section>
   )
 }

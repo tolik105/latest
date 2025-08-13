@@ -1,0 +1,571 @@
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
+import { blogPostsJA } from '@/lib/blog-data'
+import { SocialShareButtons } from '@/components/blog/social-share-buttons'
+import { NewsletterForm } from '@/components/blog/newsletter-form'
+import { TableOfContents } from '@/components/blog/table-of-contents'
+import { ReadingProgress } from '@/components/blog/reading-progress'
+import { AkrinIcon } from '@/components/akrin-logo'
+
+interface BlogPostPageProps {
+  params: Promise<{
+    slug: string
+  }>
+}
+
+// Generate dynamic keywords based on post content and category
+const generateKeywords = (post: any) => {
+  const baseKeywords = [
+    ...(post.tags || []),
+    'AKRIN',
+    'ITコンサルティング 日本',
+    'エンタープライズテクノロジー',
+    'ビジネステクノロジーソリューション'
+  ]
+
+  // Add category-specific keywords
+  if (post.category === 'セキュリティ' || post.slug.includes('cybersecurity')) {
+    return [
+      ...baseKeywords,
+      'サイバーセキュリティ 日本',
+      'サイバーセキュリティベストプラクティス',
+      'ランサムウェア対策',
+      '脅威検出',
+      'ゼロトラストアーキテクチャ',
+      '多要素認証',
+      'AI脅威検出',
+      'セキュリティコンプライアンス 日本',
+      'サイバー防御戦略',
+      'エンタープライズセキュリティソリューション',
+      'データ保護 日本',
+      'サイバーリスク管理',
+      'セキュリティ意識向上トレーニング',
+      'インシデント対応計画'
+    ]
+  }
+
+  if (post.category === 'テクノロジートレンド' || post.slug.includes('infrastructure')) {
+    return [
+      ...baseKeywords,
+      'ITインフラストラクチャー 日本',
+      'テクノロジートレンド',
+      'デジタルトランスフォーメーション',
+      'クラウドソリューション',
+      'AIテクノロジー',
+      'エッジコンピューティング',
+      '5Gテクノロジー 日本',
+      'モダナイゼーション戦略'
+    ]
+  }
+
+  // AI and Innovation specific keywords
+  if (post.category === 'イノベーション' || post.slug.includes('ai')) {
+    return [
+      ...baseKeywords,
+      '人工知能 日本',
+      'AI ITサポート',
+      '機械学習',
+      '予測分析',
+      'インテリジェント自動化',
+      'AIOps',
+      '自然言語処理',
+      'ロボティックプロセス自動化',
+      'AIチャットボット',
+      '自動修復',
+      'AIパワードITSM',
+      'インテリジェントチケットルーティング',
+      'AIトランスフォーメーション',
+      'エンタープライズAIソリューション',
+      'AI実装 日本',
+      'AIサービス管理',
+      'コグニティブコンピューティング',
+      'AI駆動の洞察'
+    ]
+  }
+
+  // Default keywords for other categories
+  return [
+    ...baseKeywords,
+    'テクノロジーの洞察',
+    'デジタルイノベーション',
+    'ITソリューション',
+    'ビジネストランスフォーメーション'
+  ]
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const resolvedParams = await params
+  const post = blogPostsJA[resolvedParams.slug as keyof typeof blogPostsJA]
+
+  if (!post) {
+    return {
+      title: '記事が見つかりません | AKRINブログ',
+      description: 'リクエストされたブログ記事が見つかりませんでした。'
+    }
+  }
+
+  // Extract clean description from content
+  const cleanDescription = post.content
+    .replace(/<[^>]*>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .substring(0, 160)
+
+  return {
+    title: `${post.title} - 専門家の洞察 | AKRIN ITブログ`,
+    description: post.metaDescription || cleanDescription,
+    keywords: generateKeywords(post),
+    authors: [{ name: 'AKRIN技術専門家' }],
+    creator: 'AKRIN',
+    publisher: 'AKRIN',
+    category: 'テクノロジー',
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    metadataBase: new URL('https://akrin.jp'),
+    alternates: {
+      canonical: `/ja/blog/${post.slug}`,
+      languages: {
+        'en-US': `/blog/${post.slug}`,
+        'ja-JP': `/ja/blog/${post.slug}`,
+      },
+    },
+    openGraph: {
+      title: post.title,
+      description: post.metaDescription || cleanDescription,
+      url: `https://akrin.jp/ja/blog/${post.slug}`,
+      siteName: 'AKRIN',
+      locale: 'ja_JP',
+      type: 'article',
+      publishedTime: post.date,
+      modifiedTime: post.date,
+      authors: ['AKRIN技術専門家'],
+      section: post.category || 'テクノロジー',
+      tags: post.tags || [],
+      images: post.image ? [
+        {
+          url: post.image,
+          width: 1200,
+          height: 630,
+          alt: `${post.title} - AKRIN ITブログ`,
+        }
+      ] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.metaDescription || cleanDescription,
+      site: '@AKRIN_JP',
+      creator: '@AKRIN_JP',
+      images: post.image ? [post.image] : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    verification: {
+      google: 'your-google-verification-code',
+    },
+  }
+}
+
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  return Object.keys(blogPostsJA).map((slug) => ({
+    slug,
+  }))
+}
+
+// Function to add IDs to headings for anchor links
+function addHeadingIds(content: string): string {
+  return content.replace(/<h([2-4])([^>]*)>(.*?)<\/h[2-4]>/gi, (match, level, attributes, text) => {
+    const cleanText = text.replace(/<[^>]*>/g, '').trim();
+    const id = cleanText
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim();
+
+    // Check if ID already exists in attributes
+    if (attributes.includes('id=')) {
+      return match;
+    }
+
+    return `<h${level}${attributes} id="${id}">${text}</h${level}>`;
+  });
+}
+
+export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
+  const resolvedParams = await params
+  const post = blogPostsJA[resolvedParams.slug as keyof typeof blogPostsJA]
+
+  if (!post) {
+    notFound()
+  }
+
+  // Add IDs to headings for better navigation
+  const processedContent = addHeadingIds(post.content);
+
+  // Generate enhanced structured data with category-specific schema
+  const generateStructuredData = (post: any) => {
+    const baseSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.metaDescription || post.content.replace(/<[^>]*>/g, '').substring(0, 160),
+      image: post.image ? {
+        '@type': 'ImageObject',
+        url: post.image,
+        width: 1200,
+        height: 630,
+        caption: `${post.title} - AKRIN ITブログ`
+      } : undefined,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: {
+        '@type': 'Person',
+        name: post.author || 'AKRIN技術専門家',
+        jobTitle: post.authorRole || 'テクノロジーコンサルタント',
+        worksFor: {
+          '@type': 'Organization',
+          name: 'AKRIN',
+          url: 'https://akrin.jp'
+        },
+        url: 'https://akrin.jp/ja/about'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'AKRIN',
+        url: 'https://akrin.jp',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://akrin.jp/images/akrin-logo.png',
+          width: 200,
+          height: 60
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: '+81-3-6821-1223',
+          contactType: 'カスタマーサービス',
+          areaServed: 'JP',
+          availableLanguage: ['English', 'Japanese']
+        }
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `https://akrin.jp/ja/blog/${post.slug}`,
+        breadcrumb: {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'ホーム',
+              item: 'https://akrin.jp/ja'
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'ブログ',
+              item: 'https://akrin.jp/ja/blog'
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: post.title,
+              item: `https://akrin.jp/ja/blog/${post.slug}`
+            }
+          ]
+        }
+      },
+      articleSection: post.category || 'テクノロジー',
+      keywords: generateKeywords(post).join(', '),
+      wordCount: post.content.replace(/<[^>]*>/g, '').split(/\s+/).length,
+      url: `https://akrin.jp/ja/blog/${post.slug}`,
+      isPartOf: {
+        '@type': 'Blog',
+        name: 'AKRIN ITブログ',
+        url: 'https://akrin.jp/ja/blog',
+        description: '日本におけるITインフラ、サイバーセキュリティ、デジタルトランスフォーメーションに関する専門的な洞察'
+      },
+      inLanguage: 'ja-JP',
+      copyrightYear: new Date(post.date).getFullYear(),
+      copyrightHolder: {
+        '@type': 'Organization',
+        name: 'AKRIN'
+      }
+    }
+
+    return baseSchema
+  }
+
+  const structuredData = generateStructuredData(post)
+
+  return (
+    <>
+      {/* Reading Progress Indicator */}
+      <ReadingProgress />
+
+      {/* Article Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData)
+        }}
+      />
+
+      <main className="min-h-screen bg-white" role="main">
+        {/* Preline Style Breadcrumb */}
+        <nav className="bg-gray-50 py-4" aria-label="Breadcrumb">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <ol className="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
+              <li className="inline-flex items-center">
+                <Link className="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" href="/ja">
+                  <svg className="shrink-0 me-2 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                  ホーム
+                </Link>
+                <svg className="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </li>
+              <li className="inline-flex items-center">
+                <Link className="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" href="/ja/blog">
+                  ブログ
+                </Link>
+                <svg className="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </li>
+              <li className="inline-flex items-center text-sm font-semibold text-gray-800 truncate" aria-current="page">
+                {post.title.length > 50 ? post.title.substring(0, 50) + '...' : post.title}
+              </li>
+            </ol>
+          </div>
+        </nav>
+
+        {/* Preline Style Article Header */}
+        <header className="bg-white" itemScope itemType="https://schema.org/BlogPosting">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16">
+            {/* Category Badge */}
+            <div className="max-w-3xl">
+              {post.category && (
+                <p className="mb-5 inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  {post.category}
+                </p>
+              )}
+
+              {/* Title */}
+              <h1 className="text-3xl font-bold text-gray-800 sm:text-5xl lg:text-6xl lg:leading-tight" itemProp="headline">
+                {post.title}
+              </h1>
+
+              {/* Article Meta */}
+              <div className="mt-5 flex items-center gap-x-4">
+                <div>
+                  <div className="flex items-center gap-x-3">
+                    <div className="shrink-0">
+                      <div className="size-10 bg-gray-100 rounded-full flex items-center justify-center">
+                        <svg className="size-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"/>
+                          <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-x-2">
+                        <p className="text-sm font-medium text-gray-800">AKRINチーム</p>
+                        <ul className="text-xs text-gray-500">
+                          <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
+                            {post.date && new Date(post.date).toLocaleDateString('ja-JP', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
+                          </li>
+                          {post.readTime && (
+                            <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
+                              {post.readTime}
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Share Buttons */}
+              <div className="mt-6">
+                <SocialShareButtons title={post.title} />
+              </div>
+            </div>
+
+            {/* Hidden Schema Data */}
+            <div className="sr-only">
+              <span itemProp="author" itemScope itemType="https://schema.org/Person">
+                <span itemProp="name">AKRIN技術専門家</span>
+              </span>
+              <span itemProp="publisher" itemScope itemType="https://schema.org/Organization">
+                <span itemProp="name">AKRIN</span>
+                <span itemProp="logo" itemScope itemType="https://schema.org/ImageObject">
+                  <span itemProp="url">https://akrin.jp/images/akrin-logo.png</span>
+                </span>
+              </span>
+              <meta itemProp="url" content={`https://akrin.jp/ja/blog/${post.slug}`} />
+              {post.metaDescription && <meta itemProp="description" content={post.metaDescription} />}
+            </div>
+          </div>
+        </header>
+
+        {/* Preline Style Hero Image */}
+        <div className="mt-10 sm:mt-16">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] bg-gray-100 rounded-xl overflow-hidden">
+              {post.image ? (
+                <Image
+                  src={post.image}
+                  alt={`${post.title} - 日本におけるITインフラとテクノロジートレンドに関するAKRINの専門的な洞察`}
+                  fill
+                  className="object-cover object-center"
+                  priority
+                  itemProp="image"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1320px"
+                  unoptimized={false}
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                  <AkrinIcon className="w-32 h-32 text-gray-300" />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content Container - Preline Style */}
+        <div className="bg-white">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+            <div className="grid lg:grid-cols-3 gap-y-8 lg:gap-y-0 lg:gap-x-12">
+              {/* Main Article Content */}
+              <div className="lg:col-span-2">
+                <article
+                  className="prose prose-lg max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-blockquote:text-gray-600 prose-blockquote:border-gray-300"
+                  itemProp="articleBody"
+                >
+                  <div dangerouslySetInnerHTML={{ __html: processedContent }} />
+                </article>
+
+                {/* Article Tags - Preline Style */}
+                {post.tags && post.tags.length > 0 && (
+                  <div className="mt-12 pt-8 border-t border-gray-200">
+                    <div className="flex flex-wrap gap-2">
+                      {post.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center gap-x-1.5 py-2 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 transition"
+                          itemProp="keywords"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Sidebar - Table of Contents and Related */}
+              <div className="lg:col-span-1">
+                <div className="sticky top-6 space-y-6">
+                  <TableOfContents content={processedContent} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Preline Style Related Posts Section */}
+        {post.relatedPosts && post.relatedPosts.length > 0 && (
+          <section className="bg-gray-50 py-10 sm:py-16" aria-labelledby="related-posts">
+            <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-2xl text-center mx-auto mb-10 lg:mb-14">
+                <h2 className="text-2xl font-bold md:text-4xl md:leading-tight text-gray-800">
+                  関連記事
+                </h2>
+                <p className="mt-1 text-gray-600">
+                  専門家によるさらなる洞察をお読みください
+                </p>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {post.relatedPosts.map((relatedPost, index) => {
+                  const fullRelatedPost = blogPostsJA[relatedPost.slug as keyof typeof blogPostsJA]
+
+                  return (
+                    <Link key={index} href={`/ja/blog/${relatedPost.slug}`} className="group flex flex-col h-full bg-white border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl">
+                      <div className="relative h-52 overflow-hidden rounded-t-xl">
+                        {fullRelatedPost?.image ? (
+                          <Image
+                            src={fullRelatedPost.image}
+                            alt={`${relatedPost.title} - AKRIN ITブログ`}
+                            fill
+                            className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                            unoptimized={false}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                            <AkrinIcon className="w-16 h-16 text-gray-300" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-4 md:p-6 flex-1 flex flex-col">
+                        {fullRelatedPost?.category && (
+                          <div className="mb-1">
+                            <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                              {fullRelatedPost.category}
+                            </span>
+                          </div>
+                        )}
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-blue-600">
+                          {relatedPost.title}
+                        </h3>
+                        <div className="mt-auto flex items-center gap-x-3 text-sm text-gray-500">
+                          <span className="font-medium text-gray-800">AKRINチーム</span>
+                          {fullRelatedPost?.readTime && (
+                            <div className="flex items-center gap-x-2 ml-auto">
+                              <span>{fullRelatedPost.readTime}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Preline Style Newsletter Section */}
+        <section className="bg-white py-10 sm:py-16 border-t border-gray-200" aria-labelledby="newsletter">
+          <NewsletterForm />
+        </section>
+
+      </main>
+    </>
+  )
+}

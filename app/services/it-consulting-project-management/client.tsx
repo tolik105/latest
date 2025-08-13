@@ -1,138 +1,122 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Script from "next/script"
-import { SectionHero } from "@/components/ui/section-hero"
-import { TabbedCards } from "@/components/ui/tabbed-cards"
-import { TechPartnersSkeleton } from "@/components/ui/tech-partners-animated"
-import { EmbeddedContactForm } from "@/components/ui/embedded-contact-form"
-import { motion } from "framer-motion"
-import {
-  ClipboardDocumentListIcon,
-  CogIcon,
-  UserGroupIcon,
-  ShieldCheckIcon,
-  ChartBarIcon,
-  WrenchScrewdriverIcon
-} from "@heroicons/react/24/outline"
+import Link from "next/link"
+import { AnimatePresence, motion } from "motion/react"
+import { cn } from "@/lib/utils"
+
+const FAQItem = ({
+  question,
+  answer,
+  setOpen,
+  open,
+}: {
+  question: string;
+  answer: string;
+  open: string | null;
+  setOpen: (open: string | null) => void;
+}) => {
+  const isOpen = open === question;
+
+  return (
+    <div
+      className="cursor-pointer py-4"
+      onClick={() => {
+        if (isOpen) {
+          setOpen(null);
+        } else {
+          setOpen(question);
+        }
+      }}
+    >
+      <div className="flex items-start">
+        <div className="relative mr-4 mt-1 h-6 w-6 flex-shrink-0">
+          <svg
+            className={cn(
+              "absolute inset-0 h-6 w-6 transform text-[#20B2AA] transition-all duration-200",
+              isOpen && "rotate-90 scale-0",
+            )}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          <svg
+            className={cn(
+              "absolute inset-0 h-6 w-6 rotate-90 scale-0 transform text-[#20B2AA] transition-all duration-200",
+              isOpen && "rotate-0 scale-100",
+            )}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 12H6" />
+          </svg>
+        </div>
+        <div>
+          <h3 className="text-lg font-medium text-neutral-700 dark:text-neutral-200">
+            {question}
+          </h3>
+          <AnimatePresence mode="wait">
+            {isOpen && (
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: "auto" }}
+                exit={{ height: 0 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="overflow-hidden text-neutral-500 dark:text-neutral-400"
+              >
+                <p>{answer}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function ITConsultingProjectManagementClient() {
-  const serviceCards = [
+  const [openFaq, setOpenFaq] = useState<string | null>(null)
+  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+
+  const testimonials = [
     {
-      icon: ClipboardDocumentListIcon,
-      label: "IT Strategy & Digital Transformation",
-      content: {
-        title: "Strategic IT Planning & Digital Transformation",
-        subline: "Comprehensive IT strategy development, digital transformation roadmaps, and technology architecture planning to align IT initiatives with business objectives.",
-        bullets: [
-          "Digital transformation strategy and roadmap development",
-          "Technology architecture planning and design",
-          "IT governance framework implementation",
-          "Business-IT alignment and strategic planning"
-        ]
-      }
+      quote: "Akrin managed our small-office cloud migration end-to-end—all with a single weekend of downtime.",
+      author: "IT Manager, Tokyo design agency"
     },
     {
-      icon: CogIcon,
-      label: "Project Management Office (PMO)",
-      content: {
-        title: "Dedicated PMO Services",
-        subline: "Professional project management office services including project planning, resource management, risk assessment, and delivery oversight for complex IT initiatives.",
-        bullets: [
-          "Project planning and resource allocation",
-          "Risk assessment and mitigation strategies",
-          "Delivery oversight and quality assurance",
-          "Stakeholder communication and reporting"
-        ]
-      }
+      title: "Regional cloud migration completed in 48 hours",
+      quote: "Akrin moved a 240-user, five-site retail chain from on-prem Exchange to Microsoft 365. All mailboxes cut over overnight; legacy servers decommissioned within 48 hours—no data loss, zero business-hour downtime.",
+      author: "IT Director, Japan retail group"
     },
     {
-      icon: UserGroupIcon,
-      label: "Change Management & Training",
-      content: {
-        title: "Organizational Change Management",
-        subline: "Organizational change management, user adoption strategies, training program development, and stakeholder communication for successful IT implementations.",
-        bullets: [
-          "Change management strategy development",
-          "User adoption and training programs",
-          "Stakeholder engagement and communication",
-          "Post-implementation support and optimization"
-        ]
-      }
+      quote: "Akrin shut down our Nagoya and Osaka on-prem rooms and shifted everything to colocation in 27 calendar days—every drive wiped and documented. Our auditors had zero follow-ups.",
+      author: "IT Infrastructure Manager, mid-size manufacturing group"
     },
     {
-      icon: ShieldCheckIcon,
-      label: "Vendor Management & Procurement",
-      content: {
-        title: "Technology Vendor Management",
-        subline: "Technology vendor evaluation, contract negotiation, procurement support, and ongoing vendor relationship management to optimize IT investments.",
-        bullets: [
-          "Vendor evaluation and selection processes",
-          "Contract negotiation and procurement support",
-          "Vendor relationship management",
-          "Performance monitoring and optimization"
-        ]
-      }
+      quote: "Their team arrived Friday night, unplugged 18 racks, and by Monday morning our workloads were live in Azure. Not a single user ticket Monday.",
+      author: "Head of Systems, regional healthcare network"
     },
     {
-      icon: ChartBarIcon,
-      label: "Risk Assessment & Compliance",
-      content: {
-        title: "IT Risk & Compliance Management",
-        subline: "IT risk assessment, compliance auditing, governance framework development, and regulatory compliance support for Japanese and international standards.",
-        bullets: [
-          "IT risk assessment and analysis",
-          "Compliance auditing and reporting",
-          "Governance framework development",
-          "Regulatory compliance support"
-        ]
-      }
-    },
-    {
-      icon: WrenchScrewdriverIcon,
-      label: "Business Process Optimization",
-      content: {
-        title: "Process Analysis & Optimization",
-        subline: "Process analysis, workflow optimization, automation opportunities identification, and implementation of efficiency improvements across IT operations.",
-        bullets: [
-          "Business process analysis and mapping",
-          "Workflow optimization and automation",
-          "Efficiency improvement implementation",
-          "Performance monitoring and continuous improvement"
-        ]
-      }
+      quote: "We had six branch offices running closet servers; Akrin mapped, packed, and disposed of the hardware across three prefectures in two weekends. The process was so smooth finance asked if we'd postponed it.",
+      author: "Director of Operations, e-commerce retailer"
     }
   ]
 
-  const benefitCards = [
-    {
-      title: "Strategic Alignment",
-      description: "Ensure IT initiatives align with business objectives and deliver measurable value through strategic planning and governance.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Risk Mitigation",
-      description: "Minimize project risks through proven methodologies, continuous monitoring, and proactive issue resolution.",
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Expert Delivery",
-      description: "Leverage experienced project managers and consultants to ensure successful delivery of complex IT initiatives.",
-      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Bilingual Support",
-      description: "Navigate Japanese business culture with bilingual project management and stakeholder communication.",
-      image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    }
-  ]
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+    }, 5000) // Change every 5 seconds
+
+    return () => clearInterval(interval)
+  }, [testimonials.length])
 
   return (
     <div>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE"
-        strategy="afterInteractive"
-      />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE" strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -142,272 +126,602 @@ export default function ITConsultingProjectManagementClient() {
         `}
       </Script>
 
-      <div className="min-h-screen bg-white">
-        {/* Mobile-specific styles */}
-        <style jsx>{`
-          @media (max-width: 640px) {
-            .touch-manipulation {
-              touch-action: manipulation;
-            }
-
-            /* Improve tap targets */
-            button, a, [role="button"] {
-              min-height: 44px;
-              min-width: 44px;
-            }
-
-            /* Prevent zoom on input focus */
-            input, select, textarea {
-              font-size: 16px;
-            }
-
-            /* Smooth scrolling */
-            html {
-              scroll-behavior: smooth;
-            }
-
-            /* Optimize images for mobile */
-            img {
-              max-width: 100%;
-              height: auto;
-            }
-          }
-        `}</style>
-        {/* Hero Section - FMC Style */}
-        <SectionHero
-          title="IT Consulting & Project Management Services"
-          subtitle="Strategic IT consulting, project management office (PMO) services, and digital transformation guidance. Drive successful IT initiatives with expert planning and execution."
-          ctaLabel="Get Started"
-          ctaHref="/contact"
-          imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-        />
-
-        {/* Internal Services Section - Mobile Optimized FMC Style */}
-        <section className="py-12 sm:py-16 lg:py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-              <div className="order-2 lg:order-1">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
-                  Internal IT Consulting & Project Management Services
-                </h2>
-                <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-                  Successful IT initiatives require strategic planning, expert guidance, and disciplined execution. Our IT consulting and project management services help organizations navigate complex technology implementations while minimizing risk and maximizing value.
-                </p>
-                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                  From digital transformation strategy to hands-on project delivery, we provide the expertise and methodologies needed to ensure your IT investments deliver measurable business results.
-                </p>
-              </div>
-              <div className="relative order-1 lg:order-2">
+      <div className="bg-white font-sans">
+        {/* Hero Section - Flexible & Optimized */}
+        <div className="relative bg-white overflow-hidden">
+          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
+            
+            {/* Background Image with Diagonal Cut */}
+            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
+              <div className="relative h-full overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="IT Consulting Services"
-                  className="w-full h-64 sm:h-72 lg:h-80 object-cover rounded-lg shadow-lg"
+                  src="/images/banners/it-consulting-project-management/hero-banner.webp"
+                  alt="IT Consulting Team Meeting"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
+                {/* Clean diagonal overlay */}
+                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                  <polygon points="0,0 25,0 0,100" fill="white" />
+                </svg>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Supported Vendors Section - Mobile Optimized FMC Style */}
-        <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
-                Supported Vendors
-              </h2>
-              <p className="text-base sm:text-lg text-gray-600 px-4 sm:px-0">
-                We work with leading technology partners to deliver comprehensive solutions
-              </p>
-            </div>
-            <div className="overflow-hidden">
-              <TechPartnersSkeleton />
-            </div>
-          </div>
-        </section>
-
-        {/* Comprehensive Services Section - FMC Style */}
-        <TabbedCards tabs={serviceCards} />
-
-        {/* Service Images Grid - Mobile Optimized FMC Style */}
-        <section className="py-12 sm:py-16 lg:py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {/* Row 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="relative group"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Strategic Planning"
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div>
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
-                  <h3 className="text-base sm:text-lg font-semibold">Strategic Planning</h3>
-                  <p className="text-xs sm:text-sm opacity-90">Digital transformation roadmaps</p>
+            {/* Content */}
+            <div className="relative z-10 w-full">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="lg:w-1/2">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                    IT Consulting &<br />
+                    Management<br />
+                    Services
+                  </h1>
+                  <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
+                    Strategic IT consulting, project management, and digital transformation services. Expert guidance for technology initiatives, vendor management, and IT strategy alignment.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
+                  >
+                    Start Your IT Strategy
+                  </Link>
                 </div>
-              </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="relative group"
-              >
+        {/* IT Infrastructure Project Management Section - EireSystems Style */}
+        <div className="bg-[#F8F9FA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  IT Infrastructure Project<br />
+                  Management
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  From initial project scoping and planning through implementation and ongoing support, we provide comprehensive IT project management services that ensure successful delivery of complex technology initiatives.
+                </p>
+                
+                {/* Bullet Points with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Comprehensive project planning and resource management</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Risk assessment and mitigation strategies</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Vendor coordination and stakeholder management</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Quality assurance and delivery oversight</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Post-implementation support and optimization</span>
+                  </div>
+                </div>
+                
+                <p className="text-[#666666] leading-relaxed">
+                  Our experienced project managers work closely with your team to ensure projects are delivered on time, within budget, and to your exact specifications.
+                </p>
+              </div>
+              
+              {/* Right Image */}
+              <div>
+                <img
+                  src="/images/banners/it-consulting-project-management/ITInfrastructureProjectManagement.webp"
+                  alt="IT Infrastructure Project Management"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Office Relocation Section - EireSystems Style */}
+        <div className="bg-white py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Image */}
+              <div className="order-2 lg:order-1">
                 <img
                   src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Project Management"
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300"
+                  alt="Office Relocation Services"
+                  className="w-full h-auto rounded-lg shadow-lg"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div>
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
-                  <h3 className="text-base sm:text-lg font-semibold">Project Management</h3>
-                  <p className="text-xs sm:text-sm opacity-90">PMO services and delivery</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative group"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Risk Management"
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div>
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
-                  <h3 className="text-base sm:text-lg font-semibold">Risk Management</h3>
-                  <p className="text-xs sm:text-sm opacity-90">Compliance and governance</p>
-                </div>
-              </motion.div>
-
-              {/* Row 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="relative group"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Change Management"
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div>
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
-                  <h3 className="text-base sm:text-lg font-semibold">Change Management</h3>
-                  <p className="text-xs sm:text-sm opacity-90">Training and adoption</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="relative group"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Vendor Management"
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div>
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
-                  <h3 className="text-base sm:text-lg font-semibold">Vendor Management</h3>
-                  <p className="text-xs sm:text-sm opacity-90">Procurement and relationships</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="relative group"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Process Optimization"
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div>
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
-                  <h3 className="text-base sm:text-lg font-semibold">Process Optimization</h3>
-                  <p className="text-xs sm:text-sm opacity-90">Workflow automation</p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Key Benefits Section - Mobile Optimized FMC Style */}
-        <section className="py-12 sm:py-16 lg:py-24 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight px-4 sm:px-0">
-                Key Benefits of Our IT Consulting & Project Management Services
-              </h2>
-              <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
-                Partner with AKRIN for strategic IT consulting and expert project management. Transform your technology investments into business success.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-              {benefitCards.map((benefit, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-                >
-                  <img
-                    src={benefit.image}
-                    alt={benefit.title}
-                    className="w-full h-40 sm:h-44 lg:h-48 object-cover"
-                  />
-                  <div className="p-4 sm:p-5 lg:p-6">
-                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                      {benefit.description}
-                    </p>
+              </div>
+              
+              {/* Right Content */}
+              <div className="order-1 lg:order-2">
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Office Relocation
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Moving your office requires careful coordination of IT infrastructure, equipment, and personnel. Our comprehensive relocation services ensure minimal business disruption while maintaining full operational capability throughout the transition.
+                </p>
+                
+                {/* Bullet Points with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Pre-move IT infrastructure assessment and planning</span>
                   </div>
-                </motion.div>
-              ))}
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Network and telecommunications setup at new location</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Equipment relocation and secure data migration</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Testing and validation of all systems</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Employee training and support during transition</span>
+                  </div>
+                </div>
+                
+                <p className="text-[#666666] leading-relaxed">
+                  Whether relocating within the same building or across the country, we handle every aspect of your IT move with precision and care.
+                </p>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Contact Form Section - Mobile Optimized FMC Style */}
-        <section className="py-12 sm:py-16 lg:py-24 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight px-4 sm:px-0">
-                Partner with Multi-Platform Experts
+        {/* Data Center Build / Relocations - EireSystems Style 4-Column Layout */}
+        <div className="bg-[#F8F9FA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                Data Center Builds / Relocations
               </h2>
-              <p className="text-base sm:text-lg text-gray-600 px-4 sm:px-0">
-                Ready to accelerate your IT initiatives? Get in touch with our consulting experts.
+              <p className="text-lg text-[#666666] max-w-4xl mx-auto leading-relaxed">
+                From initial site assessment through final commissioning, we provide end-to-end data center build and relocation services that minimize downtime and maximize operational efficiency.
               </p>
             </div>
-            <div className="max-w-2xl mx-auto">
-              <EmbeddedContactForm />
+            
+            {/* 4-Column Service Grid - Exact EireSystems Style */}
+            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
+              {/* Column 1: Planning */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2zm8 0h-2a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Planning & Design</h3>
+                <ul className="text-[#666666] space-y-2 text-left">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Site assessment and analysis</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Infrastructure design and layout</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Capacity planning and scalability</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Risk assessment and mitigation</span>
+                  </li>
+                </ul>
+              </div>
+              
+              {/* Column 2: Build */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Build & Installation</h3>
+                <ul className="text-[#666666] space-y-2 text-left">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Power and cooling systems</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Network infrastructure deployment</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Server rack and cabinet installation</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Security and access control systems</span>
+                  </li>
+                </ul>
+              </div>
+              
+              {/* Column 3: Migration */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Migration & Testing</h3>
+                <ul className="text-[#666666] space-y-2 text-left">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Data migration and transfer</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Application relocation and testing</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Performance validation and optimization</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Disaster recovery verification</span>
+                  </li>
+                </ul>
+              </div>
+              
+              {/* Column 4: Support */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.236a2 2 0 100 4 2 2 0 000-4zM12 17.764a2 2 0 100 4 2 2 0 000-4zM4.343 4.343a2 2 0 100 4 2 2 0 000-4zM19.657 4.343a2 2 0 100 4 2 2 0 000-4z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Ongoing Support</h3>
+                <ul className="text-[#666666] space-y-2 text-left">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>24/7 monitoring and alerting</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Preventive maintenance programs</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Capacity management and scaling</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Documentation and training</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Data Center Image */}
+            <div className="text-center">
+              <img
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                alt="Data Center Infrastructure"
+                className="w-full max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
+              />
             </div>
           </div>
-        </section>
+        </div>
+
+        {/* Testimonial Section */}
+        <div className="bg-[#F8FAFC] py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto py-12 px-6 md:px-12 lg:px-20 bg-white rounded-lg shadow-md border-l-4 border-[#20B2AA] relative overflow-hidden">
+
+              {/* Testimonial Content */}
+              <div className="relative">
+                {testimonials[currentTestimonial].title && (
+                  <h3 className="text-slate-800 font-semibold text-lg mb-4 transition-opacity duration-500">
+                    {testimonials[currentTestimonial].title}
+                  </h3>
+                )}
+                <blockquote className="text-slate-700 leading-relaxed italic text-lg mb-6 transition-opacity duration-500">
+                  "{testimonials[currentTestimonial].quote}"
+                </blockquote>
+                <hr className="border-t border-slate-200 mb-4" />
+                <cite className="text-slate-500 text-sm font-normal tracking-wide transition-opacity duration-500" style={{fontVariant: 'small-caps'}}>
+                  {testimonials[currentTestimonial].author}
+                </cite>
+              </div>
+
+              {/* Navigation Dots */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                      index === currentTestimonial ? 'bg-[#20B2AA]' : 'bg-slate-300'
+                    }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Business Continuity Planning Section - EireSystems Mint Green Background */}
+        <div className="bg-[#F0F8F5] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                Business Continuity Planning
+              </h2>
+              <p className="text-lg text-[#666666] max-w-4xl mx-auto leading-relaxed">
+                Ensure business resilience with comprehensive continuity planning that protects your operations from disruption while maintaining critical business functions during unexpected events.
+              </p>
+            </div>
+            
+            {/* Phase-based Structure - EireSystems Style */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {/* Phase 1: Assessment */}
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-center mb-6">
+                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
+                    1
+                  </div>
+                  <h3 className="text-xl font-bold text-[#2C2C2C]">Assessment Phase</h3>
+                </div>
+                <ul className="space-y-3 text-[#666666]">
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Business impact analysis</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Risk assessment and vulnerability identification</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Critical process mapping</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Recovery time objectives (RTO) definition</span>
+                  </li>
+                </ul>
+              </div>
+              
+              {/* Phase 2: Planning */}
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-center mb-6">
+                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
+                    2
+                  </div>
+                  <h3 className="text-xl font-bold text-[#2C2C2C]">Planning Phase</h3>
+                </div>
+                <ul className="space-y-3 text-[#666666]">
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Disaster recovery strategy development</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Emergency response procedures</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Communication protocols and chains</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Resource allocation and backup systems</span>
+                  </li>
+                </ul>
+              </div>
+              
+              {/* Phase 3: Implementation */}
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-center mb-6">
+                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
+                    3
+                  </div>
+                  <h3 className="text-xl font-bold text-[#2C2C2C]">Implementation</h3>
+                </div>
+                <ul className="space-y-3 text-[#666666]">
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Plan testing and validation</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Staff training and awareness programs</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Documentation and procedure updates</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Ongoing monitoring and maintenance</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Bottom Content */}
+            <div className="text-center">
+              <p className="text-lg text-[#666666] leading-relaxed max-w-4xl mx-auto">
+                Our systematic approach to business continuity planning ensures your organization can respond effectively to any disruption, maintaining essential operations and protecting your business reputation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Business Analysis for IT Section - EireSystems Style */}
+        <div className="bg-white py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Business Analysis for IT
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Bridge the gap between business requirements and technical solutions. Our business analysis services ensure that IT initiatives align with strategic objectives and deliver measurable business value.
+                </p>
+                
+                {/* Strategic positioning with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Requirements gathering and stakeholder analysis</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Process mapping and workflow optimization</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Solution design and technical specifications</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Change impact assessment and management</span>
+                  </div>
+                </div>
+                
+                <p className="text-[#666666] leading-relaxed">
+                  Our experienced business analysts work closely with your stakeholders to translate business needs into actionable IT strategies that drive organizational success.
+                </p>
+              </div>
+              
+              {/* Right Image - World Map/Global Strategy */}
+              <div>
+                <img
+                  src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Global Business Strategy"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Migration and Technology Renewal Section - EireSystems Style */}
+        <div className="bg-[#F8F9FA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Image */}
+              <div>
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Technology Migration"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+              
+              {/* Right Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Migrations and<br />
+                  Technology Renewal
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Modernize your IT infrastructure with expert migration services and technology renewal strategies. We ensure seamless transitions that minimize disruption while maximizing performance and efficiency.
+                </p>
+                
+                {/* Service breakdown */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Legacy system migration and modernization</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Cloud migration and hybrid infrastructure</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Technology stack optimization and renewal</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Data migration and integrity validation</span>
+                  </div>
+                </div>
+                
+                <p className="text-[#666666] leading-relaxed">
+                  Our proven methodologies ensure successful technology transitions that enhance operational efficiency and position your organization for future growth.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="bg-white py-16 sm:py-24">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-4 py-20 md:grid-cols-2 md:px-8 md:py-40">
+            <h2 className="text-center text-4xl font-bold tracking-tight text-neutral-600 md:text-left md:text-6xl dark:text-neutral-50">
+              Frequently asked questions
+            </h2>
+            <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
+              <FAQItem
+                question="What size projects do you accept?"
+                answer="We typically handle projects between 20 – 500 seats or 1 – 20 racks, but feel free to ask about other scopes."
+                open={openFaq}
+                setOpen={setOpenFaq}
+              />
+              <FAQItem
+                question="Do you work outside Tokyo?"
+                answer="Yes — our consultants travel anywhere in Japan, and remote planning workshops are available."
+                open={openFaq}
+                setOpen={setOpenFaq}
+              />
+              <FAQItem
+                question="Which project-tracking tools do you use?"
+                answer="MS Project for high-level timelines and Jira for issue tracking, but we'll adapt if you have a preferred platform."
+                open={openFaq}
+                setOpen={setOpenFaq}
+              />
+              <FAQItem
+                question="How much lead time do you need?"
+                answer="For most office moves and mid-size migrations, 4 – 6 weeks notice is ideal."
+                open={openFaq}
+                setOpen={setOpenFaq}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section - EireSystems Style */}
+        <div className="bg-[#20B2AA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              An Entire IT Infrastructure Solution for Small, Medium<br />
+              and Large Scale Enterprises
+            </h2>
+            <p className="text-xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed">
+              Ready to accelerate your IT initiatives? Get in touch with our consulting experts to discuss your project requirements and discover how we can help drive your digital transformation forward.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              Contact Us Now
+              <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+
+
 
         {/* JSON-LD Schema */}
         <script

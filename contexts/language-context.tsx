@@ -15,14 +15,23 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState('en') // Always start with 'en' to prevent hydration mismatch
   const [mounted, setMounted] = useState(false)
 
-  // Set mounted state and initialize language from localStorage
+  // Set mounted state and initialize language from URL path or localStorage
   useEffect(() => {
     setMounted(true)
     if (typeof window !== 'undefined') {
+      // Check if we're on a Japanese route
+      const isJapanesePage = window.location.pathname.startsWith('/ja')
+      const detectedLanguage = isJapanesePage ? 'ja' : 'en'
+
+      // Use URL-based language detection first, then localStorage
       const savedLanguage = localStorage.getItem('language')
-      if (savedLanguage && savedLanguage !== language) {
-        setLanguage(savedLanguage)
-        i18n.changeLanguage(savedLanguage)
+      const targetLanguage = isJapanesePage ? 'ja' : (savedLanguage || 'en')
+
+      if (targetLanguage !== language) {
+        setLanguage(targetLanguage)
+        i18n.changeLanguage(targetLanguage)
+        // Save the detected language to localStorage
+        localStorage.setItem('language', targetLanguage)
       }
     }
   }, [i18n, language])

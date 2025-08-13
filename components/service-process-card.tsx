@@ -19,13 +19,13 @@ export function ServiceProcessCard({ step, title, description, index = 0 }: Serv
       whileHover={{ scale: 1.02 }}
       className="h-full"
     >
-      <Card className="h-full relative overflow-hidden hover:shadow-xl transition-all duration-300 border-l-4 border-l-primary">
-        <div className="absolute -top-8 -right-8 text-8xl font-bold text-primary/5">
+      <Card className="h-full relative overflow-hidden hover:shadow-xl transition-all duration-300 border-l-4 border-l-[#20B2AA]">
+        <div className="absolute -top-8 -right-8 text-8xl font-bold text-[#20B2AA]/5">
           {step}
         </div>
         <CardHeader>
           <CardTitle className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#20B2AA] text-white font-bold">
               {step}
             </span>
             {title}

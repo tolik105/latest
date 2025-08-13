@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDownIcon } from "@heroicons/react/24/outline"
+import { motion, AnimatePresence } from "motion/react"
 import { HeadlineText, BodyText } from "@/components/ui/premium-typography"
 import { EmbeddedContactForm } from "@/components/ui/embedded-contact-form"
+import { cn } from "@/lib/utils"
 
 interface FAQItem {
   question: string
@@ -42,121 +42,142 @@ const faqData: FAQItem[] = [
   }
 ]
 
-export function HomeFAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
+const FAQItem = ({
+  question,
+  answer,
+  setOpen,
+  open,
+}: {
+  question: string;
+  answer: string;
+  open: string | null;
+  setOpen: (open: string | null) => void;
+}) => {
+  const isOpen = open === question;
 
   return (
-    <section className="px-3 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-10 md:py-12 lg:py-16 bg-white dark:bg-gray-900">
-      <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-6 sm:mb-8 md:mb-10"
-        >
-          {/* Violet accent line */}
-          <div className="w-8 sm:w-10 md:w-12 h-0.5 sm:h-1 bg-violet-600 mx-auto mb-4 sm:mb-6 md:mb-8"></div>
-          <HeadlineText
-            element="h2"
-            className="mb-2 sm:mb-3 md:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl"
+    <div
+      className="shadow-input mb-8 w-full cursor-pointer rounded-lg bg-white p-4 dark:bg-neutral-900"
+      onClick={() => {
+        if (isOpen) {
+          setOpen(null);
+        } else {
+          setOpen(question);
+        }
+      }}
+    >
+      <div className="flex items-start">
+        <div className="relative mr-4 mt-1 h-6 w-6 flex-shrink-0">
+          <svg
+            className={cn(
+              "absolute inset-0 h-6 w-6 transform text-black transition-all duration-200 dark:text-white",
+              isOpen && "rotate-90 scale-0",
+            )}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            Frequently Asked Questions
-          </HeadlineText>
-          <BodyText className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto px-2 sm:px-4">
-            Get answers to common questions about our IT services, support, and solutions.
-          </BodyText>
-        </motion.div>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+          </svg>
+          <svg
+            className={cn(
+              "absolute inset-0 h-6 w-6 rotate-90 scale-0 transform text-black transition-all duration-200 dark:text-white",
+              isOpen && "rotate-0 scale-100",
+            )}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div>
+          <h3 className="text-lg font-medium text-neutral-700 dark:text-neutral-200">
+            {question}
+          </h3>
+          <AnimatePresence mode="wait">
+            {isOpen && (
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: "auto" }}
+                exit={{ height: 0 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="overflow-hidden text-neutral-500 dark:text-neutral-400"
+              >
+                {answer.split("").map((char, index) => (
+                  <motion.span
+                    initial={{ opacity: 0, filter: "blur(5px)" }}
+                    animate={{ opacity: 1, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, filter: "blur(0px)" }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeOut",
+                      delay: index * 0.005,
+                    }}
+                    key={index}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-        <div className="space-y-2 sm:space-y-3">
+export function HomeFAQSection() {
+  const [openFaq, setOpenFaq] = useState<string | null>(null)
+
+  return (
+    <>
+      {/* FAQ Section */}
+      <div className="mx-auto grid w-full max-w-7xl gap-4 px-4 py-20 md:px-8 md:py-40">
+        <h2 className="text-center text-4xl font-medium tracking-tight text-neutral-600 md:text-5xl dark:text-neutral-50">
+          Frequently asked questions
+        </h2>
+        <p className="mx-auto max-w-lg text-center text-base text-neutral-600 dark:text-neutral-50">
+          We are here to help you with any questions you may have. If you
+          don&apos;t find what you need, please contact us at{" "}
+          <a
+            href="mailto:support@akrin.jp"
+            className="text-blue-500 underline"
+          >
+            support@akrin.jp
+          </a>
+        </p>
+        <div className="mx-auto mt-10 w-full max-w-3xl">
           {faqData.map((faq, index) => (
-            <motion.div
+            <FAQItem
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:border-purple-600 transition-all duration-300 hover:shadow-md">
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full px-3 sm:px-4 md:px-5 py-3 sm:py-4 text-left focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-                  aria-expanded={openIndex === index}
-                  aria-controls={`faq-answer-${index}`}
-                >
-                  <div className="flex items-center justify-between">
-                    <h3
-                      className="text-sm sm:text-base md:text-lg font-medium text-gray-900 dark:text-white pr-2 sm:pr-3 leading-tight"
-                      style={{
-                        fontFamily: 'Plus Jakarta Sans, Inter, sans-serif',
-                        fontWeight: '500',
-                        letterSpacing: '-0.01em'
-                      }}
-                    >
-                      {faq.question}
-                    </h3>
-                    <motion.div
-                      animate={{ rotate: openIndex === index ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex-shrink-0"
-                    >
-                      <ChevronDownIcon className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
-                    </motion.div>
-                  </div>
-                </button>
-                
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      id={`faq-answer-${index}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-3 sm:px-4 md:px-5 pb-3 sm:pb-4">
-                        <div className="w-8 sm:w-12 h-0.5 sm:h-1 bg-purple-600 mb-2 sm:mb-3"></div>
-                        <p
-                          className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed"
-                          style={{
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: '400',
-                            lineHeight: '1.6'
-                          }}
-                        >
-                          {faq.answer}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
+              question={faq.question}
+              answer={faq.answer}
+              open={openFaq}
+              setOpen={setOpenFaq}
+            />
           ))}
         </div>
+      </div>
 
-        {/* Contact Form Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-6 sm:mt-8 md:mt-10"
-        >
-          <div className="text-center mb-4 sm:mb-6">
-            <BodyText className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400">
+      {/* Contact Form Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="bg-gray-50 py-16 sm:py-24"
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <BodyText className="text-lg text-gray-600 dark:text-gray-400">
               Still have questions? We're here to help.
             </BodyText>
           </div>
           <EmbeddedContactForm />
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </motion.div>
+    </>
   )
 }

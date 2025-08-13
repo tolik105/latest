@@ -1,311 +1,284 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { DisplayText, HeadlineText, BodyText, CaptionText, PremiumButton } from "@/components/ui/premium-typography"
+import Link from "next/link";
+import { PremiumCTA } from "@/components/ui/premium-cta";
+import { useEffect, useRef } from "react";
 
 export default function AboutClient() {
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    const attemptPlay = () => {
+      try {
+        v.muted = true
+        const p: any = v.play()
+        if (p && typeof p.catch === "function") p.catch(() => {})
+      } catch {}
+    }
+    attemptPlay()
+    const onClick = () => attemptPlay()
+    window.addEventListener("click", onClick, { once: true })
+    return () => window.removeEventListener("click", onClick)
+  }, [])
   return (
-    <main className="flex min-h-screen flex-col">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 text-white">
-        {/* Premium 3D Wave Pattern */}
-        <div className="absolute inset-0 overflow-hidden">
-          <svg className="w-full h-full" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="tile-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.2"/>
-                <stop offset="100%" stopColor="#9333ea" stopOpacity="0.1"/>
-              </linearGradient>
-
-              <linearGradient id="tile-gradient-2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.15"/>
-                <stop offset="100%" stopColor="#9333ea" stopOpacity="0.08"/>
-              </linearGradient>
-
-              <filter id="tile-shadow">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
-                <feOffset dx="0" dy="2" result="offsetblur"/>
-                <feFlood floodColor="#000000" floodOpacity="0.2"/>
-                <feComposite in2="offsetblur" operator="in"/>
-                <feMerge>
-                  <feMergeNode/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-
-            <g opacity="0.3">
-              {[...Array(15)].map((_, row) => (
-                <g key={`row-${row}`}>
-                  {[...Array(20)].map((_, col) => {
-                    const x = col * 42;
-                    const waveOffset = ((col + row) % 4) * 2.5;
-                    const y = row * 40 + waveOffset;
-                    const gradient = (row + col) % 2 === 0 ? 'tile-gradient-1' : 'tile-gradient-2';
-
-                    return (
-                      <rect
-                        key={`tile-${row}-${col}`}
-                        x={x}
-                        y={y}
-                        width="38"
-                        height="38"
-                        rx="8"
-                        fill={`url(#${gradient})`}
-                        filter="url(#tile-shadow)"
-                        opacity="0.6"
-                      />
-                    );
-                  })}
-                </g>
-              ))}
-            </g>
-          </svg>
+    <div className="bg-white">
+      {/* Hero Section with Background Video */}
+      <section className="relative py-16 lg:py-20 overflow-hidden min-h-[60vh]">
+        {/* Background video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover pointer-events-none"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/og-image.png"
+            aria-hidden="true"
+          >
+            <source src="/video/about-us.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-white/70" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <DisplayText className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 text-white leading-tight">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
               About AKRIN
-            </DisplayText>
-            <HeadlineText className="text-xl md:text-2xl lg:text-3xl text-purple-100 max-w-4xl mx-auto leading-relaxed">
+            </h1>
+            <p className="mt-4 text-xl text-gray-700">
               Enterprise Reliability, Startup Agility
-            </HeadlineText>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Introduction Section */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <BodyText className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
-              Founded in Tokyo in 2025 by veteran infrastructure engineers, AKRIN blends 15 years of large‑scale IT experience with a lean, automation‑first mindset. Our mission is simple: give high‑growth companies in Japan the uptime, security, and innovation the Fortune 500 enjoy—without the enterprise price tag.
-            </BodyText>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* What We Do Section */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <HeadlineText element="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              What We Do
-            </HeadlineText>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Managed IT & Cloud",
-                description: "End‑to‑end design, migration, and 24/7 operations for Microsoft 365, Azure, AWS, and hybrid environments."
-              },
-              {
-                title: "Network Engineering",
-                description: "Planning, installation, and optimisation of wired / wireless networks—from multi‑site WANs to in‑office Wi‑Fi surveys."
-              },
-              {
-                title: "Project Management & Delivery",
-                description: "PMP‑driven frameworks that keep complex roll‑outs on time, on budget, and fully documented."
-              },
-              {
-                title: "Custom AI Solutions",
-                description: "We build domain‑specific chatbots, workflow automations, and data copilots tailored to your stack. Our own internal platform is in private beta, and lessons learned flow directly into client projects."
-              },
-              {
-                title: "Cybersecurity & Compliance",
-                description: "Hardening, real‑time monitoring, incident response, and hands‑on guidance toward frameworks such as ISO 27001."
-              }
-            ].map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.8 }}
-                className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            </p>
+            <div className="mt-6">
+              <Link
+                href="/contact"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#20B2AA] hover:bg-[#1a9a94] transition-colors"
               >
-                <HeadlineText element="h3" className="text-xl font-semibold mb-4 text-purple-600">
-                  {service.title}
-                </HeadlineText>
-                <BodyText className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {service.description}
-                </BodyText>
-              </motion.div>
-            ))}
+                Get Started
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Why AKRIN Section */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <HeadlineText element="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Why AKRIN
-            </HeadlineText>
-          </motion.div>
+      {/* Who We Are Section */}
+      <div className="py-16 lg:py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Who We Are</h2>
+              <div className="space-y-4 text-gray-600">
+                <p>
+                  Founded in Tokyo in 2025 by veteran infrastructure engineers, AKRIN blends 15 years of large‑scale IT experience with a lean, automation‑first mindset.
+                </p>
+                <p>
+                  Our mission is simple: give high‑growth companies in Japan the uptime, security, and innovation the Fortune 500 enjoy—without the enterprise price tag.
+                </p>
+                <p>
+                  We achieve this through:
+                </p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Engineer‑Led Service</li>
+                  <li>Automation First</li>
+                  <li>Japan‑Global Bridge</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="AKRIN Team"
+                className="rounded-lg shadow-sm"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-300 dark:border-gray-600">
-              <thead>
-                <tr className="bg-purple-600 text-white">
-                  <th className="border border-gray-300 dark:border-gray-600 px-6 py-4 text-left font-semibold">
+      {/* The AKRIN Story Section */}
+      <div className="bg-gray-50 py-16 lg:py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">The AKRIN Story</h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Business Partnership */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Business partnership</h3>
+              <p className="text-gray-600 text-sm">
+                Direct access to senior engineers; no account‑manager relay. We understand your business needs and technical challenges equally.
+              </p>
+            </div>
+
+            {/* Continuous Reliability */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Continuous reliability</h3>
+              <p className="text-gray-600 text-sm">
+                24/7 monitoring, &lt; 2h response SLA, and 99.9% uptime guarantee. Your infrastructure stays running so your business never stops.
+              </p>
+            </div>
+
+            {/* Systematic Growth */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Systematic growth</h3>
+              <p className="text-gray-600 text-sm">
+                Scalable solutions that grow with your business. From startup to enterprise, we provide the infrastructure foundation for success.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* What We Do Section */}
+      <div className="py-16 lg:py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">What We Do</h2>
+          
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Managed IT & Cloud</h3>
+              <p className="text-gray-600">
+                End‑to‑end design, migration, and 24/7 operations for Microsoft 365, Azure, AWS, and hybrid environments.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Network Engineering</h3>
+              <p className="text-gray-600">
+                Planning, installation, and optimisation of wired / wireless networks—from multi‑site WANs to in‑office Wi‑Fi surveys.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Project Management & Delivery</h3>
+              <p className="text-gray-600">
+                PMP‑driven frameworks that keep complex roll‑outs on time, on budget, and fully documented.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Custom AI Solutions</h3>
+              <p className="text-gray-600">
+                We build domain‑specific chatbots, workflow automations, and data copilots tailored to your stack. Our own internal platform is in private beta, and lessons learned flow directly into client projects.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Cybersecurity & Compliance</h3>
+              <p className="text-gray-600">
+                Hardening, real‑time monitoring, incident response, and hands‑on guidance toward frameworks such as ISO 27001.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Why AKRIN Section */}
+      <div className="bg-gray-50 py-16 lg:py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Why AKRIN</h2>
+          
+          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Pillar
                   </th>
-                  <th className="border border-gray-300 dark:border-gray-600 px-6 py-4 text-left font-semibold">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Benefit to You
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                {[
-                  {
-                    pillar: "Engineer‑Led Service",
-                    benefit: "Direct access to senior engineers; no account‑manager relay."
-                  },
-                  {
-                    pillar: "Automation First",
-                    benefit: "Scripted remediation cuts mean‑time‑to‑restore by up to 40%."
-                  },
-                  {
-                    pillar: "Japan‑Global Bridge",
-                    benefit: "Bilingual (EN/JP) team aligning HQ standards with local regulations."
-                  }
-                ].map((row, index) => (
-                  <motion.tr
-                    key={index}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.8 }}
-                    className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  >
-                    <td className="border border-gray-300 dark:border-gray-600 px-6 py-4 font-semibold text-purple-600">
-                      {row.pillar}
-                    </td>
-                    <td className="border border-gray-300 dark:border-gray-600 px-6 py-4 text-gray-700 dark:text-gray-300">
-                      {row.benefit}
-                    </td>
-                  </motion.tr>
-                ))}
+              <tbody className="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    Engineer‑Led Service
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-600">
+                    Direct access to senior engineers; no account‑manager relay.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    Automation First
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-600">
+                    Scripted remediation cuts mean‑time‑to‑restore by up to 40%.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    Japan‑Global Bridge
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-600">
+                    Bilingual (EN/JP) team aligning HQ standards with local regulations.
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Core Values Section */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <HeadlineText element="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Core Values
-            </HeadlineText>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: "Clarity",
-                description: "Plain‑language proposals and transparent costs."
-              },
-              {
-                title: "Velocity",
-                description: "Weeks, not quarters, from kickoff to production."
-              },
-              {
-                title: "Accountability",
-                description: "< 2 h response SLA during business hours."
-              },
-              {
-                title: "Partnership",
-                description: "Your KPIs shape our roadmap."
-              }
-            ].map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.8 }}
-                className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
-              >
-                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-white font-bold text-xl">{value.title.charAt(0)}</span>
-                </div>
-                <HeadlineText element="h3" className="text-xl font-semibold mb-4 text-purple-600">
-                  {value.title}
-                </HeadlineText>
-                <BodyText className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {value.description}
-                </BodyText>
-              </motion.div>
-            ))}
+      <div className="py-16 lg:py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Core Values</h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Clarity</h3>
+              <p className="text-gray-600 text-sm">
+                Plain‑language proposals and transparent costs.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Velocity</h3>
+              <p className="text-gray-600 text-sm">
+                Weeks, not quarters, from kickoff to production.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Accountability</h3>
+              <p className="text-gray-600 text-sm">
+                &lt; 2 h response SLA during business hours.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Partnership</h3>
+              <p className="text-gray-600 text-sm">
+                Your KPIs shape our roadmap.
+              </p>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Ready to modernise CTA Section */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <HeadlineText element="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Ready to modernise?
-            </HeadlineText>
-            <BodyText className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8 max-w-4xl mx-auto">
-              Book a free 30‑minute strategy call and leave with an actionable roadmap—no obligation, no jargon.
-            </BodyText>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                size="lg"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-12 py-6 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                asChild
-              >
-                <Link href="/contact">Book Your Strategy Call</Link>
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-    </main>
-  )
+      {/* CTA Section */}
+      <PremiumCTA
+        variant="dark"
+        title="Ready to transform your IT infrastructure?"
+        description="Get expert consultation and discover how our solutions can drive your business forward."
+        buttonText="Schedule Consultation"
+        buttonHref="/contact"
+      />
+    </div>
+  );
 }

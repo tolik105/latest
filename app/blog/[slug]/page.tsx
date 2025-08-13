@@ -7,6 +7,7 @@ import { SocialShareButtons } from '@/components/blog/social-share-buttons'
 import { NewsletterForm } from '@/components/blog/newsletter-form'
 import { TableOfContents } from '@/components/blog/table-of-contents'
 import { ReadingProgress } from '@/components/blog/reading-progress'
+import { AkrinIcon } from '@/components/akrin-logo'
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -496,97 +497,92 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       )}
 
       <main className="min-h-screen bg-white" role="main">
-        {/* Enhanced Navigation Breadcrumb with Schema */}
-        <nav className="bg-white py-6 border-b border-gray-100" aria-label="Breadcrumb">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="flex items-center justify-between">
-              <ol className="flex items-center space-x-2 text-sm text-gray-600" itemScope itemType="https://schema.org/BreadcrumbList">
-                <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                  <Link href="/" className="hover:text-gray-900 transition-colors" itemProp="item">
-                    <span itemProp="name">Home</span>
-                  </Link>
-                  <meta itemProp="position" content="1" />
-                </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 mx-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+        {/* Preline Style Breadcrumb */}
+        <nav className="bg-gray-50 py-4" aria-label="Breadcrumb">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <ol className="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
+              <li className="inline-flex items-center">
+                <Link className="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" href="/">
+                  <svg className="shrink-0 me-2 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
                   </svg>
-                </li>
-                <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                  <Link href="/blog" className="hover:text-gray-900 transition-colors" itemProp="item">
-                    <span itemProp="name">Blog</span>
-                  </Link>
-                  <meta itemProp="position" content="2" />
-                </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 mx-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                  </svg>
-                </li>
-                <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                  <span className="text-gray-900 font-medium" itemProp="name">{post.title}</span>
-                  <meta itemProp="position" content="3" />
-                </li>
-              </ol>
-              <Link
-                href="/blog"
-                className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                aria-label="Return to blog listing"
-              >
-                <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  Home
+                </Link>
+                <svg className="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m9 18 6-6-6-6"/>
                 </svg>
-                Back to Blog
-              </Link>
-            </div>
+              </li>
+              <li className="inline-flex items-center">
+                <Link className="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" href="/blog">
+                  Blog
+                </Link>
+                <svg className="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </li>
+              <li className="inline-flex items-center text-sm font-semibold text-gray-800 truncate" aria-current="page">
+                {post.title.length > 50 ? post.title.substring(0, 50) + '...' : post.title}
+              </li>
+            </ol>
           </div>
         </nav>
 
-        {/* Enhanced Article Header */}
-        <header className="bg-white pt-12 pb-8" itemScope itemType="https://schema.org/BlogPosting">
-          <div className="max-w-4xl mx-auto px-6">
-            {/* Title with Schema */}
-            <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-normal text-gray-900 leading-tight mb-6 max-w-4xl tracking-tight"
-              itemProp="headline"
-            >
-              {post.title}
-            </h1>
-
-            {/* Article Metadata */}
-            <div className="flex flex-wrap items-center gap-4 mb-8 text-sm text-gray-600">
-              {post.date && (
-                <time
-                  className="flex items-center"
-                  dateTime={post.date}
-                  itemProp="datePublished"
-                >
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  {new Date(post.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </time>
-              )}
-              {post.readTime && (
-                <span className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {post.readTime}
-                </span>
-              )}
+        {/* Preline Style Article Header */}
+        <header className="bg-white" itemScope itemType="https://schema.org/BlogPosting">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16">
+            {/* Category Badge */}
+            <div className="max-w-3xl">
               {post.category && (
-                <span className="flex items-center" itemProp="articleSection">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                  </svg>
+                <p className="mb-5 inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                   {post.category}
-                </span>
+                </p>
               )}
+
+              {/* Title */}
+              <h1 className="text-3xl font-bold text-gray-800 sm:text-5xl lg:text-6xl lg:leading-tight" itemProp="headline">
+                {post.title}
+              </h1>
+
+              {/* Article Meta */}
+              <div className="mt-5 flex items-center gap-x-4">
+                <div>
+                  <div className="flex items-center gap-x-3">
+                    <div className="shrink-0">
+                      <div className="size-10 bg-gray-100 rounded-full flex items-center justify-center">
+                        <svg className="size-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"/>
+                          <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-x-2">
+                        <p className="text-sm font-medium text-gray-800">AKRIN Team</p>
+                        <ul className="text-xs text-gray-500">
+                          <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
+                            {post.date && new Date(post.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            })}
+                          </li>
+                          {post.readTime && (
+                            <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
+                              {post.readTime}
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Share Buttons */}
+              <div className="mt-6">
+                <SocialShareButtons title={post.title} />
+              </div>
             </div>
 
             {/* Hidden Schema Data */}
@@ -603,16 +599,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <meta itemProp="url" content={`https://akrin.jp/blog/${post.slug}`} />
               {post.metaDescription && <meta itemProp="description" content={post.metaDescription} />}
             </div>
-
-            {/* Social Share Icons */}
-            <SocialShareButtons title={post.title} />
           </div>
         </header>
 
-        {/* Enhanced Hero Image */}
-        <div className="mb-8 md:mb-16">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <div className="relative h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] bg-gray-100 overflow-hidden rounded-lg">
+        {/* Preline Style Hero Image */}
+        <div className="mt-10 sm:mt-16">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] bg-gray-100 rounded-xl overflow-hidden">
               {post.image ? (
                 <Image
                   src={post.image}
@@ -621,56 +614,39 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   className="object-cover object-center"
                   priority
                   itemProp="image"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1320px"
+                  unoptimized={false}
                 />
               ) : (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-24 h-24 bg-blue-200/60 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
-                    </div>
-                    <p className="text-blue-600 text-lg font-medium">Professional image placeholder</p>
-                  </div>
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                  <AkrinIcon className="w-32 h-32 text-gray-300" />
                 </div>
               )}
             </div>
           </div>
         </div>
 
-        {/* Main Content Container with Table of Contents */}
+        {/* Main Content Container - Preline Style */}
         <div className="bg-white">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
-            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-              {/* Table of Contents - Desktop Sidebar */}
-              <aside className="hidden lg:block lg:w-80 flex-shrink-0">
-                <TableOfContents content={processedContent} />
-              </aside>
-
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+            <div className="grid lg:grid-cols-3 gap-y-8 lg:gap-y-0 lg:gap-x-12">
               {/* Main Article Content */}
-              <article
-                className="flex-1 prose prose-lg blog-content"
-                itemProp="articleBody"
-                role="main"
-                aria-labelledby="article-title"
-              >
-                {/* Mobile Table of Contents */}
-                <div className="lg:hidden mb-6 md:mb-8">
-                  <TableOfContents content={processedContent} />
-                </div>
+              <div className="lg:col-span-2">
+                <article
+                  className="prose prose-lg max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-blockquote:text-gray-600 prose-blockquote:border-gray-300"
+                  itemProp="articleBody"
+                >
+                  <div dangerouslySetInnerHTML={{ __html: processedContent }} />
+                </article>
 
-                <div dangerouslySetInnerHTML={{ __html: processedContent }} />
-
-                {/* Article Tags */}
+                {/* Article Tags - Preline Style */}
                 {post.tags && post.tags.length > 0 && (
-                  <div className="mt-12 pt-8 border-t border-gray-100">
-                    <h3 className="text-sm font-medium text-gray-900 mb-4">Tags:</h3>
+                  <div className="mt-12 pt-8 border-t border-gray-200">
                     <div className="flex flex-wrap gap-2">
                       {post.tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="inline-block px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full"
+                          className="inline-flex items-center gap-x-1.5 py-2 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 transition"
                           itemProp="keywords"
                         >
                           {tag}
@@ -679,7 +655,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </div>
                   </div>
                 )}
-              </article>
+              </div>
+
+              {/* Sidebar - Table of Contents and Related */}
+              <div className="lg:col-span-1">
+                <div className="sticky top-6 space-y-6">
+                  <TableOfContents content={processedContent} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -742,58 +725,61 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </section>
         )}
 
-        {/* Enhanced Related Posts Section */}
+        {/* Preline Style Related Posts Section */}
         {post.relatedPosts && post.relatedPosts.length > 0 && (
-          <section className="bg-white py-12 md:py-16 border-t border-gray-100" aria-labelledby="related-posts">
-            <div className="max-w-4xl mx-auto px-4 md:px-6">
-              <h2 id="related-posts" className="text-xl md:text-2xl lg:text-3xl font-normal text-gray-900 mb-6 md:mb-8 tracking-tight">
-                Related Articles
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <section className="bg-gray-50 py-10 sm:py-16" aria-labelledby="related-posts">
+            <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-2xl text-center mx-auto mb-10 lg:mb-14">
+                <h2 className="text-2xl font-bold md:text-4xl md:leading-tight text-gray-800">
+                  Related Articles
+                </h2>
+                <p className="mt-1 text-gray-600">
+                  Continue reading more insights from our experts
+                </p>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {post.relatedPosts.map((relatedPost, index) => {
-                  // Get the full blog post data to access the image
                   const fullRelatedPost = blogPostsEN[relatedPost.slug as keyof typeof blogPostsEN]
 
                   return (
-                    <article key={index} className="group">
-                      <Link href={`/blog/${relatedPost.slug}`} className="block">
-                        <div className="relative h-40 sm:h-44 md:h-48 bg-gray-100 rounded-lg mb-3 md:mb-4 overflow-hidden">
-                          {fullRelatedPost?.image ? (
-                            <Image
-                              src={fullRelatedPost.image}
-                              alt={`${relatedPost.title} - AKRIN IT Blog`}
-                              fill
-                              className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 group-hover:from-gray-100 group-hover:to-gray-200 transition-colors">
-                              <div className="text-center">
-                                <svg className="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                                </svg>
-                                <span className="text-gray-500 text-xs">Article</span>
-                              </div>
+                    <Link key={index} href={`/blog/${relatedPost.slug}`} className="group flex flex-col h-full bg-white border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl">
+                      <div className="relative h-52 overflow-hidden rounded-t-xl">
+                        {fullRelatedPost?.image ? (
+                          <Image
+                            src={fullRelatedPost.image}
+                            alt={`${relatedPost.title} - AKRIN IT Blog`}
+                            fill
+                            className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                            unoptimized={false}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                            <AkrinIcon className="w-16 h-16 text-gray-300" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-4 md:p-6 flex-1 flex flex-col">
+                        {fullRelatedPost?.category && (
+                          <div className="mb-1">
+                            <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                              {fullRelatedPost.category}
+                            </span>
+                          </div>
+                        )}
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-blue-600">
+                          {relatedPost.title}
+                        </h3>
+                        <div className="mt-auto flex items-center gap-x-3 text-sm text-gray-500">
+                          <span className="font-medium text-gray-800">AKRIN Team</span>
+                          {fullRelatedPost?.readTime && (
+                            <div className="flex items-center gap-x-2 ml-auto">
+                              <span>{fullRelatedPost.readTime}</span>
                             </div>
                           )}
                         </div>
-                        <div className="space-y-2">
-                          <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700 transition-colors line-clamp-2 leading-tight">
-                            {relatedPost.title}
-                          </h3>
-                          {fullRelatedPost?.category && (
-                            <span className="inline-block text-xs font-medium text-purple-600 uppercase tracking-wide">
-                              {fullRelatedPost.category}
-                            </span>
-                          )}
-                          {fullRelatedPost?.readTime && (
-                            <p className="text-sm text-gray-500">
-                              {fullRelatedPost.readTime}
-                            </p>
-                          )}
-                        </div>
-                      </Link>
-                    </article>
+                      </div>
+                    </Link>
                   )
                 })}
               </div>
@@ -838,8 +824,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </section>
         )}
 
-        {/* Enhanced Newsletter Section */}
-        <section className="bg-gray-50 py-16 border-t border-gray-100" aria-labelledby="newsletter">
+        {/* Preline Style Newsletter Section */}
+        <section className="bg-white py-10 sm:py-16 border-t border-gray-200" aria-labelledby="newsletter">
           <NewsletterForm />
         </section>
 

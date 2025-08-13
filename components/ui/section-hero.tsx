@@ -15,7 +15,8 @@ interface SectionHeroProps {
 
 export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: SectionHeroProps) {
   return (
-    <section className="relative w-full min-h-[70vh] overflow-hidden">
+    <section className="relative w-full overflow-hidden">
+      <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
       {/* Diagonal gradient band background motif */}
       <div className="absolute inset-0">
         <div 
@@ -58,7 +59,7 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
         </div>
 
         {/* Content Container - Proper FNG Layout */}
-        <div className="relative z-20 flex items-center min-h-[75vh] max-w-[1400px] mx-auto px-8 lg:px-12 xl:px-16">
+        <div className="relative z-20 flex items-center h-full max-w-[1400px] mx-auto px-8 lg:px-12 xl:px-16">
           <div className="w-full">
             <div className="max-w-[45%] pr-8">
               {/* Clean H1 Typography - FNG Style */}
@@ -78,16 +79,18 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
                 {subtitle}
               </p>
 
-              {/* Clean CTA Button - Professional */}
+              {/* Clean CTA Button - Same as Services Hero */}
               <Button
+                size="lg"
+                variant="secondary"
+                className="shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
                 asChild
-                className="bg-purple-600 hover:bg-purple-700 text-white px-8 lg:px-10 py-4 lg:py-5 text-lg font-semibold rounded-lg transition-all duration-300 min-h-[60px] touch-manipulation shadow-lg hover:shadow-xl"
-                style={{
-                  touchAction: 'manipulation'
-                }}
               >
-                <Link href={ctaHref}>
+                <Link href={ctaHref} className="flex items-center">
                   {ctaLabel}
+                  <svg className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Link>
               </Button>
             </div>
@@ -96,8 +99,8 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
       </div>
 
       {/* Tablet Layout - FNG-Inspired Clean Design */}
-      <div className="hidden md:block lg:hidden min-h-[70vh] bg-white">
-        <div className="px-6 md:px-8 py-16 md:py-20 max-w-[1200px] mx-auto">
+      <div className="hidden md:block lg:hidden h-[550px] lg:h-[600px] bg-white flex items-center">
+        <div className="px-6 md:px-8 max-w-[1200px] mx-auto w-full">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Content First - FNG Style */}
             <div className="order-1">
@@ -114,23 +117,23 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
                 {subtitle}
               </p>
               <Button
+                size="lg"
+                variant="secondary"
+                className="shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full md:w-auto group"
                 asChild
-                className="bg-purple-600 hover:bg-purple-700 text-white w-full md:w-auto px-8 md:px-10 py-4 md:py-5 text-lg font-semibold rounded-lg transition-all duration-300 min-h-[60px] touch-manipulation shadow-lg"
-                style={{
-                  touchAction: 'manipulation'
-                }}
               >
-                <Link href={ctaHref}>
+                <Link href={ctaHref} className="flex items-center justify-center">
                   {ctaLabel}
+                  <svg className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Link>
               </Button>
             </div>
             
             {/* Image with Geometric Shape - Simplified for tablet */}
             <div className="order-2">
-              <div className="relative h-64 md:h-80 overflow-hidden" style={{
-                clipPath: 'polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%)'
-              }}>
+              <div className="relative h-64 md:h-80 overflow-hidden">
                 <Image
                   src={imageSrc}
                   alt={title}
@@ -138,17 +141,22 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
+                {/* Clean diagonal overlay for consistency */}
+                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                  <polygon points="0,0 15,0 0,100" fill="white" />
+                </svg>
               </div>
             </div>
           </div>
         </div>
       </div>
+      </div>
 
       {/* Mobile Layout - Clean FNG-Inspired Design */}
-      <div className="block md:hidden min-h-[75vh] sm:min-h-[70vh] bg-white">
-        <div className="px-4 sm:px-6 py-12 sm:py-16 max-w-[1200px] mx-auto safe-area-p">
+      <div className="block md:hidden h-[500px] sm:h-[550px] bg-white flex items-center">
+        <div className="px-4 sm:px-6 max-w-[1200px] mx-auto w-full">
           {/* Text First - Clean FNG Style */}
-          <div className="mb-8 sm:mb-12 text-center sm:text-left">
+          <div className="mb-6 text-center sm:text-left">
             {/* Bold H1 Typography - FNG Style */}
             <h1 className="font-bold mb-6 sm:mb-8 leading-tight text-gray-900" style={{ 
               fontSize: 'clamp(1.75rem, 6vw, 2.5rem)',
@@ -158,7 +166,7 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
             </h1>
 
             {/* Brand-colored subtitle - Like FNG's approach */}
-            <p className="text-purple-600 font-medium mb-8 sm:mb-10 max-w-2xl mx-auto sm:mx-0 leading-relaxed" style={{ 
+            <p className="text-purple-600 font-medium mb-6 sm:mb-8 max-w-2xl mx-auto sm:mx-0 leading-relaxed" style={{ 
               fontSize: 'clamp(1rem, 3vw, 1.25rem)',
               lineHeight: '1.5'
             }}>
@@ -167,33 +175,21 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
 
             {/* Professional CTA button */}
             <Button
+              size="lg"
+              variant="secondary"
+              className="shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto group"
               asChild
-              className="bg-purple-600 hover:bg-purple-700 text-white w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 font-semibold rounded-lg transition-all duration-300 min-h-[60px] sm:min-h-[64px] touch-manipulation shadow-lg"
-              style={{
-                touchAction: 'manipulation',
-                fontSize: 'clamp(1rem, 2.5vw, 1.25rem)'
-              }}
             >
-              <Link href={ctaHref}>
+              <Link href={ctaHref} className="flex items-center justify-center">
                 {ctaLabel}
+                <svg className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Link>
             </Button>
           </div>
 
-          {/* Image with subtle geometric touch */}
-          <div className="relative overflow-hidden" style={{
-            height: 'clamp(12rem, 40vw, 18rem)',
-            borderRadius: '0.75rem'
-          }}>
-            <Image
-              src={imageSrc}
-              alt={title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 100vw"
-              priority
-            />
-          </div>
+          {/* Mobile - No image for consistency with other service pages */}
         </div>
       </div>
     </section>

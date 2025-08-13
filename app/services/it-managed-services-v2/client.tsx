@@ -7,6 +7,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDownIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
+import { ServiceProcessCard } from "@/components/service-process-card"
 
 function SpotlightLogoCloud() {
   const logos = [
@@ -59,7 +60,7 @@ function SpotlightLogoCloud() {
             key={logo.name + idx + "logo-spotlight"}
             className="flex items-center justify-center"
           >
-            <div className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 hover:border-violet-300 min-h-[80px] flex items-center justify-center">
+            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-full p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-[#20B2AA] hover:scale-105 w-[120px] h-[120px] flex items-center justify-center">
               <Image
                 src={logo.src}
                 alt={logo.name}
@@ -85,7 +86,7 @@ const AmbientColor = () => {
           width: "560px",
           height: "1380px",
           background:
-            "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(240, 100%, 85%, .2) 0, hsla(240, 100%, 55%, .1) 50%, hsla(240, 100%, 45%, .05) 80%)",
+            "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(174, 62%, 47%, .15) 0, hsla(174, 62%, 47%, .08) 50%, hsla(174, 62%, 47%, .03) 80%)",
           filter: "blur(20px)",
           borderRadius: "50%",
         }}
@@ -99,7 +100,7 @@ const AmbientColor = () => {
           width: "240px",
           height: "1380px",
           background:
-            "radial-gradient(50% 50% at 50% 50%, hsla(240, 100%, 85%, .15) 0, hsla(240, 100%, 45%, .1) 80%, transparent 100%)",
+            "radial-gradient(50% 50% at 50% 50%, hsla(174, 62%, 47%, .1) 0, hsla(174, 62%, 47%, .05) 80%, transparent 100%)",
           filter: "blur(20px)",
           borderRadius: "50%",
         }}
@@ -117,7 +118,7 @@ const AmbientColor = () => {
           width: "240px",
           height: "1380px",
           background:
-            "radial-gradient(50% 50% at 50% 50%, hsla(240, 100%, 85%, .1) 0, hsla(240, 100%, 45%, .05) 80%, transparent 100%)",
+            "radial-gradient(50% 50% at 50% 50%, hsla(174, 62%, 47%, .08) 0, hsla(174, 62%, 47%, .03) 80%, transparent 100%)",
           filter: "blur(20px)",
         }}
         className="absolute left-0 top-0"
@@ -475,91 +476,26 @@ export default function ITManagedServicesClient() {
               </p>
             </div>
 
-            {/* Phase-based Structure - EireSystems Style */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {/* Phase 1: Assessment */}
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
-                    1
-                  </div>
-                  <h3 className="text-xl font-bold text-[#2C2C2C]">Technology Assessment</h3>
-                </div>
-                <ul className="space-y-3 text-[#666666]">
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Current infrastructure evaluation</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Business requirements analysis</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Technology gap identification</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>ROI and cost-benefit analysis</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Phase 2: Planning */}
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
-                    2
-                  </div>
-                  <h3 className="text-xl font-bold text-[#2C2C2C]">Strategic Planning</h3>
-                </div>
-                <ul className="space-y-3 text-[#666666]">
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Technology roadmap development</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Budget planning and forecasting</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Vendor evaluation and selection</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Implementation timeline creation</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Phase 3: Implementation */}
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
-                    3
-                  </div>
-                  <h3 className="text-xl font-bold text-[#2C2C2C]">Ongoing Governance</h3>
-                </div>
-                <ul className="space-y-3 text-[#666666]">
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Quarterly business reviews</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Performance monitoring</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Continuous optimization</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Strategic adjustments</span>
-                  </li>
-                </ul>
-              </div>
+            {/* Phase-based Structure - Modern Process Cards */}
+            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+              <ServiceProcessCard
+                step={1}
+                title="Technology Assessment"
+                description="Current infrastructure evaluation, business requirements analysis, technology gap identification, and ROI cost-benefit analysis to understand your current state."
+                index={0}
+              />
+              <ServiceProcessCard
+                step={2}
+                title="Strategic Planning"
+                description="Technology roadmap development, budget planning and forecasting, vendor evaluation and selection, and implementation timeline creation for your future."
+                index={1}
+              />
+              <ServiceProcessCard
+                step={3}
+                title="Ongoing Governance"
+                description="Quarterly business reviews, performance monitoring, continuous optimization, and strategic adjustments to ensure long-term success."
+                index={2}
+              />
             </div>
 
             {/* Bottom Content */}
@@ -707,9 +643,7 @@ export default function ITManagedServicesClient() {
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               Ready to Transform Your IT Operations?
             </h2>
-            <p className="text-xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed">
-              Join 200+ companies that trust AKRIN as their managed service provider. Get enterprise-level IT support with SMB-friendly pricing and personalized service.
-            </p>
+
             <Link
               href="/contact"
               className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"

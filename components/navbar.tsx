@@ -161,28 +161,28 @@ export function Navbar() {
                             className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2 px-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600"
                             role="menuitem"
                           >
-                            Managed IT Support
+                            {t('nav.managedItSupport')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/cloud-infrastructure`}
                             className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
                             role="menuitem"
                           >
-                            Cloud Infrastructure Solutions
+                            {t('nav.cloudInfrastructure')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/network-penetration-testing`}
                             className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
                             role="menuitem"
                           >
-                            Network Penetration Testing
+                            {t('nav.networkPenetrationTesting')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/wifi-design`}
                             className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
                             role="menuitem"
                           >
-                            Enterprise Wi-Fi Design & Deployment
+                            {t('nav.wifiDesign')}
                           </Link>
                         </div>
                         
@@ -193,28 +193,28 @@ export function Navbar() {
                             className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2 px-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600"
                             role="menuitem"
                           >
-                            IT Consulting & Project Management
+                            {t('nav.itConsultingProjectManagement')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/cybersecurity`}
                             className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
                             role="menuitem"
                           >
-                            Cybersecurity & IT Security
+                            {t('nav.cybersecurity')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/wifi-assessment`}
                             className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
                             role="menuitem"
                           >
-                            Wi-Fi Assessment & Optimization
+                            {t('nav.wifiAssessment')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/it-security`}
                             className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
                             role="menuitem"
                           >
-                            IT Security Services
+                            {t('nav.itSecurity')}
                           </Link>
                         </div>
                       </div>

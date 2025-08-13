@@ -122,42 +122,42 @@ export function Footer() {
             <ul className="space-y-1 text-sm font-medium">
               <li>
                 <Link href="/services/it-managed-services" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  Managed IT Services
+                  {t('nav.managedItSupport')}
                 </Link>
               </li>
               <li>
                 <Link href="/services/it-consulting-project-management" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  IT Consulting & Project Management
+                  {t('nav.itConsultingProjectManagement')}
                 </Link>
               </li>
               <li>
                 <Link href="/services/cloud-infrastructure" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  Cloud Infrastructure Solutions
+                  {t('nav.cloudInfrastructure')}
                 </Link>
               </li>
               <li>
                 <Link href="/services/cybersecurity" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  Cybersecurity & IT Security
+                  {t('nav.cybersecurity')}
                 </Link>
               </li>
               <li>
                 <Link href="/services/network-penetration-testing" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  Network Penetration Testing
+                  {t('nav.networkPenetrationTesting')}
                 </Link>
               </li>
               <li>
                 <Link href="/services/wifi-assessment" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  Wi-Fi Assessment & Optimization
+                  {t('nav.wifiAssessment')}
                 </Link>
               </li>
               <li>
                 <Link href="/services/wifi-design" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  Enterprise Wi-Fi Design & Deployment
+                  {t('nav.wifiDesign')}
                 </Link>
               </li>
               <li>
                 <Link href="/services/it-security" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  IT Security Services
+                  {t('nav.itSecurity')}
                 </Link>
               </li>
             </ul>

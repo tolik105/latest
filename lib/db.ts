@@ -4,8 +4,20 @@
  */
 
 // Basic TypeScript types to replace Prisma types
-export type Language = 'EN' | 'JA'
-export type ContentStatus = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED'
+export type LanguageType = 'EN' | 'JA'
+export type ContentStatusType = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED'
+
+// Export as enums for backward compatibility
+export const Language = {
+  EN: 'EN' as const,
+  JA: 'JA' as const
+} as const
+
+export const ContentStatus = {
+  DRAFT: 'DRAFT' as const,
+  PUBLISHED: 'PUBLISHED' as const,
+  ARCHIVED: 'ARCHIVED' as const
+} as const
 
 export interface Content {
   id: string
@@ -13,8 +25,8 @@ export interface Content {
   slug: string
   content: string
   excerpt?: string
-  status: ContentStatus
-  language: Language
+  status: ContentStatusType
+  language: LanguageType
   viewCount: number
   seoScore?: number
   createdAt: Date
@@ -33,7 +45,7 @@ export interface Category {
 export interface Keyword {
   id: string
   keyword: string
-  language: Language
+  language: LanguageType
   searchVolume?: number
   difficulty?: number
   createdAt: Date

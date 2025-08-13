@@ -2,83 +2,13 @@
 
 import React from "react"
 import Script from "next/script"
-import { SectionHero } from "@/components/ui/section-hero"
-import { SectionTextImage } from "@/components/ui/section-text-image"
-import { AccordionList } from "@/components/ui/accordion-list"
-import { FAQ } from "@/components/ui/faq-section"
-import { SectionCTA } from "@/components/ui/section-cta"
+import Link from "next/link"
 
 export default function CloudInfrastructureClient() {
-  const accordionItems = [
-    {
-      title: "Cloud Readiness & TCO Assessment",
-      body: "Comprehensive analysis of your current infrastructure and applications to determine cloud readiness and create detailed ROI/TCO models for informed migration decisions."
-    },
-    {
-      title: "Secure Migration & Modernization",
-      body: "Execute lift-and-shift or refactor strategies with CI/CD pipelines and Infrastructure as Code (Terraform/Bicep) for efficient cloud transformation."
-    },
-    {
-      title: "Cost & Performance Optimization",
-      body: "Implement auto-scaling, reserved instances, and FinOps reporting to maximize cloud efficiency and achieve significant cost savings."
-    },
-    {
-      title: "Managed Cloud Operations (24/7)",
-      body: "Complete cloud operations management including patching, monitoring, backup, and incident response around the clock."
-    },
-    {
-      title: "Security & Compliance Management",
-      body: "Enterprise-grade security implementation with encryption, IAM, continuous monitoring, and compliance management for regulated industries."
-    },
-    {
-      title: "Multi-Cloud & Hybrid Solutions",
-      body: "Design and manage multi-cloud architectures across Azure, AWS, and GCP with seamless hybrid connectivity to on-premises systems."
-    }
-  ]
-
-
-
-  const faqItems = [
-    {
-      q: "How long does a typical migration take?",
-      a: "4–6 weeks for small setups; 3–6 months for complex estates. Timeline depends on application complexity and data volume."
-    },
-    {
-      q: "Can you work with our existing MSP or internal IT?",
-      a: "Yes—we can augment your current team or take full ownership as needed. We specialize in collaborative approaches."
-    },
-    {
-      q: "Do you only support Azure?",
-      a: "We support Azure, AWS, and GCP platforms. We help you choose the best platform for your specific needs."
-    },
-    {
-      q: "How do you ensure security during migration?",
-      a: "Encryption, least-privilege IAM, penetration testing, and continuous monitoring throughout the migration process."
-    },
-    {
-      q: "Do you manage cloud and on-prem?",
-      a: "Yes—hybrid environments are our norm. We manage M365, AWS/Azure/GCP alongside on-premises servers."
-    },
-    {
-      q: "What about cost optimization?",
-      a: "We implement FinOps practices, right-sizing, reserved instances, and continuous cost monitoring to optimize your cloud spend."
-    },
-    {
-      q: "Can you help with compliance requirements?",
-      a: "Yes, we ensure compliance with SOC2, ISO27001, GDPR, and other regulatory requirements specific to your industry."
-    },
-    {
-      q: "What happens if something goes wrong during migration?",
-      a: "We have comprehensive rollback procedures and maintain parallel environments during migration to ensure business continuity."
-    }
-  ]
 
   return (
     <div>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE"
-        strategy="afterInteractive"
-      />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE" strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -87,40 +17,370 @@ export default function CloudInfrastructureClient() {
           gtag('config', 'G-6YTE9HVKEE');
         `}
       </Script>
-      
-      <div className="min-h-screen bg-white">
-        <SectionHero
-          title="Cloud Infrastructure Solutions"
-          subtitle="Zero-downtime cloud migration, optimization, and 24/7 operations on Azure, AWS, and GCP. Transform your infrastructure with enterprise-grade security and cost efficiency."
-          ctaLabel="Get Started"
-          ctaHref="/contact"
-          imageSrc="https://res.cloudinary.com/dtmdovevn/image/upload/v1753316226/engineer-rack_stsysi.png"
-        />
 
-        <SectionTextImage
-          heading="Why Move to the Cloud?"
-          body="<p>Cloud infrastructure offers unparalleled scalability, cost efficiency, and innovation capabilities. Our comprehensive cloud solutions help you modernize your IT infrastructure while maintaining security, compliance, and operational excellence.</p><p>From initial assessment to ongoing management, we provide end-to-end cloud services that transform your business operations and enable digital innovation at scale.</p>"
-          imageSrc="https://res.cloudinary.com/dtmdovevn/image/upload/v1753274549/cloud.infra_vkpff7.png"
-          imageSide="left"
-        />
+      <div className="bg-white font-sans">
+        {/* Hero Section - Flexible & Optimized */}
+        <div className="relative bg-white overflow-hidden">
+          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
+            
+            {/* Background Image with Diagonal Cut */}
+            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
+              <div className="relative h-full overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                  alt="Cloud Infrastructure Services"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {/* Clean diagonal overlay */}
+                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                  <polygon points="0,0 25,0 0,100" fill="white" />
+                </svg>
+              </div>
+            </div>
 
-        <AccordionList items={accordionItems} />
+            {/* Content */}
+            <div className="relative z-10 w-full">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="lg:w-1/2">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                    Cloud<br />
+                    Infrastructure<br />
+                    Services
+                  </h1>
+                  <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
+                    Zero-downtime cloud migration, optimization, and 24/7 operations on Azure, AWS, and GCP with enterprise-grade security and cost optimization.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
+                  >
+                    Start Your Cloud Journey
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <SectionTextImage
-          heading="Your Cloud Transformation Partner"
-          body="<p>Building a successful cloud strategy requires expertise, planning, and ongoing optimization. Our cloud infrastructure solutions are designed to evolve with your business needs, providing scalable, secure, and cost-effective cloud operations.</p><p>From startups to enterprise organizations, we have helped hundreds of companies in Japan successfully migrate to and optimize their cloud infrastructure. Our proven methodologies ensure successful outcomes and long-term value.</p>"
-          imageSrc="https://res.cloudinary.com/dtmdovevn/image/upload/v1753316524/roadmap_avxbss.png"
-          imageSide="right"
-        />
+        {/* Cloud Readiness Assessment Section - EireSystems Style */}
+        <div className="bg-[#F8F9FA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Cloud Readiness &<br />
+                  TCO Assessment
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Comprehensive analysis of your current infrastructure and applications to determine cloud readiness and create detailed ROI/TCO models for informed migration decisions.
+                </p>
 
-        <FAQ items={faqItems} />
+                {/* Bullet Points with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Current infrastructure evaluation and mapping</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Application dependency analysis</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Cost-benefit analysis and ROI modeling</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Migration strategy recommendations</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Risk assessment and mitigation planning</span>
+                  </div>
+                </div>
 
-        <SectionCTA
-          headline="Ready to modernize your infrastructure?"
-          sub="Join 200+ companies that trust AKRIN for their cloud transformation. Get enterprise-grade cloud solutions with SMB-friendly pricing."
-          buttonLabel="Start your cloud journey"
-          buttonHref="/contact"
-        />
+                <p className="text-[#666666] leading-relaxed">
+                  Our thorough assessment process ensures you make informed decisions about your cloud journey with clear understanding of costs, benefits, and timelines.
+                </p>
+              </div>
+
+              {/* Right Image */}
+              <div>
+                <img
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Cloud Assessment and Planning"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Secure Migration Section - EireSystems Style */}
+        <div className="bg-white py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Image */}
+              <div className="order-2 lg:order-1">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Cloud Migration and Modernization"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+
+              {/* Right Content */}
+              <div className="order-1 lg:order-2">
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Secure Migration &<br />
+                  Modernization
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Execute lift-and-shift or refactor strategies with CI/CD pipelines and Infrastructure as Code for efficient cloud transformation with zero downtime.
+                </p>
+
+                {/* Bullet Points with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Lift-and-shift migration strategies</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Application refactoring and modernization</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">CI/CD pipeline implementation</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Infrastructure as Code (Terraform/Bicep)</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Data migration and validation</span>
+                  </div>
+                </div>
+
+                <p className="text-[#666666] leading-relaxed">
+                  Our proven migration methodologies ensure smooth transitions with minimal business disruption and maximum operational efficiency.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Cloud Operations Management Section - EireSystems Style 4-Column Layout */}
+        <div className="bg-[#F8F9FA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                Managed Cloud Operations (24/7)
+              </h2>
+              <p className="text-lg text-[#666666] max-w-4xl mx-auto leading-relaxed">
+                Complete cloud operations management including monitoring, optimization, security, and support across all major cloud platforms.
+              </p>
+            </div>
+
+            {/* 4-Column Service Grid - Exact EireSystems Style */}
+            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
+              {/* Column 1: Monitoring */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">24/7 Monitoring</h3>
+                <ul className="text-[#666666] space-y-2 text-left">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Performance monitoring</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Automated alerting</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Capacity planning</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Incident response</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 2: Optimization */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Cost Optimization</h3>
+                <ul className="text-[#666666] space-y-2 text-left">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Auto-scaling implementation</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Reserved instance management</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>FinOps reporting</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Resource right-sizing</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 3: Security */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Security & Compliance</h3>
+                <ul className="text-[#666666] space-y-2 text-left">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Encryption management</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>IAM configuration</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Compliance monitoring</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Vulnerability scanning</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 4: Multi-Cloud */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Multi-Cloud Support</h3>
+                <ul className="text-[#666666] space-y-2 text-left">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Azure, AWS, GCP management</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Hybrid connectivity</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Workload orchestration</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Unified management</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Cloud Infrastructure Image */}
+            <div className="text-center">
+              <img
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                alt="Cloud Infrastructure Operations"
+                className="w-full max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Cloud Transformation Partner Section - EireSystems Style */}
+        <div className="bg-white py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Your Cloud Transformation<br />
+                  Partner
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Building successful cloud strategies requires expertise, planning, and ongoing optimization. Our cloud infrastructure solutions evolve with your business needs, providing scalable, secure, and cost-effective operations.
+                </p>
+
+                {/* Strategic positioning with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Proven migration methodologies</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Multi-cloud expertise and certifications</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">24/7 operations and support</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Continuous optimization and innovation</span>
+                  </div>
+                </div>
+
+                <p className="text-[#666666] leading-relaxed">
+                  From startups to enterprise organizations, we have helped hundreds of companies in Japan successfully migrate to and optimize their cloud infrastructure.
+                </p>
+              </div>
+
+              {/* Right Image */}
+              <div>
+                <img
+                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Cloud Partnership and Strategy"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section - EireSystems Style */}
+        <div className="bg-[#20B2AA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              Ready to Modernize Your Infrastructure?
+            </h2>
+            <p className="text-xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed">
+              Join 200+ companies that trust AKRIN for their cloud transformation. Get enterprise-grade cloud solutions with SMB-friendly pricing and expert support.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              Start Your Cloud Journey
+              <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
+        </div>
 
         {/* JSON-LD Schema */}
         <script
@@ -143,72 +403,7 @@ export default function CloudInfrastructureClient() {
               },
               "availableLanguage": ["en", "ja"],
               "url": "https://akrin.jp/services/cloud-infrastructure",
-              "description": "Zero-downtime cloud migration, optimization, and 24/7 operations on Azure, AWS, and GCP.",
-              "offers": [
-                {
-                  "@type": "Offer",
-                  "name": "Cloud Assessment",
-                  "price": "500000",
-                  "priceCurrency": "JPY",
-                  "description": "Cloud readiness and migration planning"
-                },
-                {
-                  "@type": "Offer",
-                  "name": "Cloud Migration",
-                  "price": "2000000",
-                  "priceCurrency": "JPY",
-                  "description": "Complete cloud migration services"
-                },
-                {
-                  "@type": "Offer",
-                  "name": "Managed Operations",
-                  "price": "300000",
-                  "priceCurrency": "JPY",
-                  "description": "Monthly cloud management and support"
-                }
-              ],
-              "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "How long does a typical migration take?",
-                  "acceptedAnswer": {"@type": "Answer", "text": "4–6 weeks for small setups; 3–6 months for complex estates. Timeline depends on application complexity and data volume."}
-                },
-                {
-                  "@type": "Question",
-                  "name": "Can you work with our existing MSP or internal IT?",
-                  "acceptedAnswer": {"@type": "Answer", "text": "Yes—we can augment your current team or take full ownership as needed. We specialize in collaborative approaches."}
-                },
-                {
-                  "@type": "Question",
-                  "name": "Do you only support Azure?",
-                  "acceptedAnswer": {"@type": "Answer", "text": "We support Azure, AWS, and GCP platforms. We help you choose the best platform for your specific needs."}
-                },
-                {
-                  "@type": "Question",
-                  "name": "How do you ensure security during migration?",
-                  "acceptedAnswer": {"@type": "Answer", "text": "Encryption, least-privilege IAM, penetration testing, and continuous monitoring throughout the migration process."}
-                },
-                {
-                  "@type": "Question",
-                  "name": "Do you manage cloud and on-prem?",
-                  "acceptedAnswer": {"@type": "Answer", "text": "Yes—hybrid environments are our norm. We manage M365, AWS/Azure/GCP alongside on-premises servers."}
-                },
-                {
-                  "@type": "Question",
-                  "name": "What about cost optimization?",
-                  "acceptedAnswer": {"@type": "Answer", "text": "We implement FinOps practices, right-sizing, reserved instances, and continuous cost monitoring to optimize your cloud spend."}
-                },
-                {
-                  "@type": "Question",
-                  "name": "Can you help with compliance requirements?",
-                  "acceptedAnswer": {"@type": "Answer", "text": "Yes, we ensure compliance with SOC2, ISO27001, GDPR, and other regulatory requirements specific to your industry."}
-                },
-                {
-                  "@type": "Question",
-                  "name": "What happens if something goes wrong during migration?",
-                  "acceptedAnswer": {"@type": "Answer", "text": "We have comprehensive rollback procedures and maintain parallel environments during migration to ensure business continuity."}
-                }
-              ]
+              "description": "Zero-downtime cloud migration, optimization, and 24/7 operations on Azure, AWS, and GCP."
             })
           }}
         />

@@ -2,198 +2,211 @@
 
 import React from "react"
 import Script from "next/script"
-import { SectionHero } from "@/components/ui/section-hero"
-import { SectionTextImage } from "@/components/ui/section-text-image"
-import { AccordionList } from "@/components/ui/accordion-list"
-import { TabbedCards } from "@/components/ui/tabbed-cards"
-import { PricingCards } from "@/components/ui/pricing-cards"
-import { FAQ } from "@/components/ui/faq-section"
-import { SectionCTA } from "@/components/ui/section-cta"
-import { 
-  MonitoringIcon, 
-  SupportTeamIcon, 
-  InfrastructureIcon, 
-  SecurityIcon, 
-  PlanningIcon 
-} from "@/components/ui/service-icons"
+import Link from "next/link"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronDownIcon } from "@heroicons/react/24/outline"
+import Image from "next/image"
+import { ServiceProcessCard } from "@/components/service-process-card"
+import { cn } from "@/lib/utils"
 
-export default function ITManagedServicesClient() {
-  const accordionItems = [
+function SpotlightLogoCloud() {
+  const logos = [
     {
-      title: "24/7 Network Monitoring",
-      body: "Continuous monitoring of your entire IT infrastructure with proactive issue detection and resolution before problems impact your business."
+      name: "Microsoft",
+      src: "https://logo.clearbit.com/microsoft.com",
     },
     {
-      title: "Unlimited Help Desk Support", 
-      body: "Round-the-clock technical support with guaranteed response times. Critical issues resolved within 30 minutes, standard requests within 4 hours."
+      name: "Amazon AWS",
+      src: "https://logo.clearbit.com/aws.amazon.com",
     },
     {
-      title: "Server & Infrastructure Management",
-      body: "Complete management of your servers, networks, and cloud infrastructure with regular maintenance, updates, and optimization."
+      name: "Google Cloud",
+      src: "https://logo.clearbit.com/cloud.google.com",
     },
     {
-      title: "Cybersecurity & Compliance",
-      body: "Advanced threat protection, security monitoring, and compliance management to keep your data safe and meet regulatory requirements."
+      name: "VMware",
+      src: "https://logo.clearbit.com/vmware.com",
     },
     {
-      title: "Strategic IT Planning",
-      body: "Long-term technology roadmap development aligned with your business goals, including budget planning and technology recommendations."
+      name: "Cisco",
+      src: "https://logo.clearbit.com/cisco.com",
     },
     {
-      title: "On-site Support",
-      body: "Local technicians available for on-site visits when remote support is not sufficient. 4-hour response time in major Japanese cities."
-    }
-  ]
-
-  const tabbedCardsData = [
-    {
-      icon: MonitoringIcon,
-      label: "Proactive Monitoring & Maintenance",
-      content: {
-        title: "Proactive Monitoring & Maintenance",
-        subline: "24/7 system, network, and endpoint monitoring (SIEM/XDR capable)",
-        bullets: [
-          "Automated alerts, patching, and remediation",
-          "Performance tuning & capacity planning"
-        ]
-      }
+      name: "Dell",
+      src: "https://logo.clearbit.com/dell.com",
     },
     {
-      icon: SupportTeamIcon,
-      label: "Helpdesk & User Support",
-      content: {
-        title: "Helpdesk & User Support",
-        subline: "Multichannel support (phone / email / chat / portal)",
-        bullets: [
-          "Remote support for instant fixes; on-site for hardware & complex issues",
-          "VIP concierge options for executives",
-          "Self-service knowledge base"
-        ]
-      }
+      name: "HP",
+      src: "https://logo.clearbit.com/hp.com",
     },
     {
-      icon: InfrastructureIcon,
-      label: "Infrastructure Management",
-      content: {
-        title: "Infrastructure Management",
-        subline: "Server administration (Windows/Linux/virtualization)",
-        bullets: [
-          "Network management (WAN/LAN/Wi Fi) & optimization",
-          "Backup monitoring, DR drills, and failover testing",
-          "Cloud operations (Microsoft 365, Azure, AWS, GCP)",
-          "Database administration & optimization"
-        ]
-      }
+      name: "IBM",
+      src: "https://logo.clearbit.com/ibm.com",
     },
-    {
-      icon: SecurityIcon,
-      label: "Security & Compliance",
-      content: {
-        title: "Security & Compliance",
-        subline: "Endpoint Detection & Response (EDR) and email security",
-        bullets: [
-          "Vulnerability scanning & remediation cycles",
-          "Security awareness training",
-          "Compliance reporting (ISO 27001, J-SOX, etc.)"
-        ]
-      }
-    },
-    {
-      icon: PlanningIcon,
-      label: "Strategic IT Planning & Governance",
-      content: {
-        title: "Strategic IT Planning & Governance",
-        subline: "Annual technology roadmap & budget planning",
-        bullets: [
-          "Quarterly Business Reviews (QBRs) with actionable insights",
-          "Vendor/license management and cost optimization",
-          "Digital transformation consulting & automation roadmap"
-        ]
-      }
-    }
-  ]
-
-  const pricingPlans = [
-    {
-      name: "Per-User",
-      price: "¥8,000–15,000",
-      period: "user / month",
-      description: "Standard knowledge workers",
-      bullets: [
-        "Remote support included",
-        "24/7 monitoring",
-        "Monthly reporting",
-        "Patch management"
-      ]
-    },
-    {
-      name: "Per-Device",
-      price: "¥3,000–8,000",
-      period: "device / month",
-      description: "Shared/industrial devices",
-      bullets: [
-        "Device monitoring",
-        "Maintenance scheduling",
-        "Performance optimization",
-        "Security updates"
-      ],
-      highlighted: true
-    },
-    {
-      name: "Flat-Rate / Custom",
-      price: "Custom Quote",
-      period: "enterprise",
-      description: "For 25+ users or multi-site environments",
-      bullets: [
-        "Dedicated account manager",
-        "Custom SLAs",
-        "Strategic planning",
-        "Volume discounts"
-      ]
-    }
-  ]
-
-  const faqItems = [
-    {
-      q: "What size companies do you support?",
-      a: "Typically 20–500+ employees, but we scale up or down as needed."
-    },
-    {
-      q: "Can you co-manage with our internal IT?",
-      a: "Yes. We fill skill gaps, provide 24/7 coverage, or handle specific functions."
-    },
-    {
-      q: "What is included in the monthly fee?",
-      a: "Remote support, monitoring, maintenance, security tooling, and defined on-site hours. Extra on-site is billed at preferred rates."
-    },
-    {
-      q: "How fast is your response?",
-      a: "Critical: 30 mins. High: 2 hrs. Standard: 4–8 hrs. 24/7/365 adherence."
-    },
-    {
-      q: "Do you manage cloud and on-prem?",
-      a: "Yes—hybrid environments are our norm (M365, AWS/Azure/GCP + on-prem servers)."
-    },
-    {
-      q: "How do we transition from our current provider?",
-      a: "A 30-day overlap/onboarding plan ensures zero downtime and clean handover."
-    },
-    {
-      q: "Can you really cut our IT costs?",
-      a: "Most clients see 30–50% savings vs equivalent in-house staffing—validated in our ROI report."
-    },
-    {
-      q: "What about data residency & compliance?",
-      a: "We follow Japanese data laws; data stays in Japan when required. ISO 27001-aligned processes."
-    }
-  ]
+  ];
 
   return (
-    <div>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE"
-        strategy="afterInteractive"
+    <div className="relative w-full overflow-hidden py-12 sm:py-16 lg:py-20">
+      <AmbientColor />
+      <h3 className="bg-gradient-to-b from-[#2C2C2C] to-[#666666] bg-clip-text pb-3 sm:pb-4 text-center font-sans text-xl sm:text-2xl md:text-3xl font-bold text-transparent">
+        Technology Partners
+      </h3>
+      <p className="text-[#666666] mb-8 sm:mb-10 mt-3 sm:mt-4 text-center font-sans text-sm sm:text-base px-4">
+        We work with industry-leading technology partners to deliver best-in-class solutions
+      </p>
+      <div className="relative mx-auto grid w-full max-w-4xl grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 px-4">
+        {logos.map((logo, idx) => (
+          <div
+            key={logo.name + idx + "logo-spotlight"}
+            className="flex items-center justify-center"
+          >
+            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-full p-4 sm:p-5 lg:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-[#20B2AA] hover:scale-105 w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] lg:w-[120px] lg:h-[120px] flex items-center justify-center">
+              <Image
+                src={logo.src}
+                alt={logo.name}
+                width={120}
+                height={60}
+                className="w-full max-w-[60px] sm:max-w-[80px] lg:max-w-[100px] h-auto select-none object-contain opacity-80 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                draggable={false}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const AmbientColor = () => {
+  return (
+    <div className="pointer-events-none absolute left-40 top-0 z-40 h-screen w-screen">
+      <div
+        style={{
+          transform: "translateY(-350px) rotate(-45deg)",
+          width: "560px",
+          height: "1380px",
+          background:
+            "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(174, 62%, 47%, .15) 0, hsla(174, 62%, 47%, .08) 50%, hsla(174, 62%, 47%, .03) 80%)",
+          filter: "blur(20px)",
+          borderRadius: "50%",
+        }}
+        className="absolute left-0 top-0"
       />
+
+      <div
+        style={{
+          transform: "rotate(-45deg) translate(5%, -50%)",
+          transformOrigin: "top left",
+          width: "240px",
+          height: "1380px",
+          background:
+            "radial-gradient(50% 50% at 50% 50%, hsla(174, 62%, 47%, .1) 0, hsla(174, 62%, 47%, .05) 80%, transparent 100%)",
+          filter: "blur(20px)",
+          borderRadius: "50%",
+        }}
+        className="absolute left-0 top-0"
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          borderRadius: "50%",
+          transform: "rotate(-45deg) translate(-180%, -70%)",
+          transformOrigin: "top left",
+          top: 0,
+          left: 0,
+          width: "240px",
+          height: "1380px",
+          background:
+            "radial-gradient(50% 50% at 50% 50%, hsla(174, 62%, 47%, .08) 0, hsla(174, 62%, 47%, .03) 80%, transparent 100%)",
+          filter: "blur(20px)",
+        }}
+        className="absolute left-0 top-0"
+      />
+    </div>
+  );
+};
+
+const MobileFriendlyFAQItem = ({
+  question,
+  answer,
+  setOpen,
+  open,
+}: {
+  question: string;
+  answer: string;
+  open: string | null;
+  setOpen: (open: string | null) => void;
+}) => {
+  const isOpen = open === question;
+
+  return (
+    <div
+      className="cursor-pointer py-3 sm:py-4"
+      onClick={() => {
+        if (isOpen) {
+          setOpen(null);
+        } else {
+          setOpen(question);
+        }
+      }}
+    >
+      <div className="flex items-start">
+        <div className="relative mr-3 sm:mr-4 mt-1 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0">
+          <svg
+            className={cn(
+              "absolute inset-0 h-full w-full transform text-[#20B2AA] transition-all duration-200",
+              isOpen && "rotate-90 scale-0",
+            )}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          <svg
+            className={cn(
+              "absolute inset-0 h-full w-full rotate-90 scale-0 transform text-[#20B2AA] transition-all duration-200",
+              isOpen && "rotate-0 scale-100",
+            )}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 12H6" />
+          </svg>
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-base sm:text-lg font-medium text-neutral-700 dark:text-neutral-200 leading-tight">
+            {question}
+          </h3>
+          <AnimatePresence mode="wait">
+            {isOpen && (
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: "auto" }}
+                exit={{ height: 0 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="overflow-hidden text-neutral-500 dark:text-neutral-400 mt-2 sm:mt-3"
+              >
+                <p className="text-sm sm:text-base leading-relaxed">{answer}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function ITManagedServicesClient() {
+  const [openFaq, setOpenFaq] = useState<string | null>(null)
+
+  return (
+    <>
+    <div>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE" strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -202,69 +215,629 @@ export default function ITManagedServicesClient() {
           gtag('config', 'G-6YTE9HVKEE');
         `}
       </Script>
-      
-      <div className="min-h-screen">
-        {/* Hero Section - White background */}
-        <div className="bg-white">
-          <SectionHero
-            title="Managed IT Services & 24/7 Support"
-            subtitle="Proactive monitoring, unlimited helpdesk, and on-site support. Cut IT costs 30–50% and achieve 99.9% uptime with AKRIN—Japan's trusted MSP."
-            ctaLabel="Get Started"
-            ctaHref="/contact"
-            imageSrc="https://res.cloudinary.com/dtmdovevn/image/upload/v1753274092/managed_services_j9lrhb.png"
-          />
+
+      <div className="bg-white font-sans">
+        {/* Breadcrumb Navigation */}
+        <nav aria-label="Breadcrumb" className="bg-gray-50 py-3">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ol className="flex items-center space-x-2 text-sm">
+              <li>
+                <Link href="/" className="text-gray-500 hover:text-gray-700">Home</Link>
+              </li>
+              <li className="text-gray-400">/</li>
+              <li>
+                <Link href="/services" className="text-gray-500 hover:text-gray-700">Services</Link>
+              </li>
+              <li className="text-gray-400">/</li>
+              <li className="text-gray-900 font-medium">IT Managed Services</li>
+            </ol>
+          </div>
+        </nav>
+
+        {/* Hero Section - Flexible & Optimized */}
+        <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
+          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
+            
+            {/* Background Image with Diagonal Cut */}
+            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
+              <div className="relative h-full overflow-hidden">
+                <img
+                  src="/images/banners/it-managed-services/banner.webp"
+                  alt="IT Managed Services Team"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {/* Clean diagonal overlay */}
+                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                  <polygon points="0,0 25,0 0,100" fill="white" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 w-full">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="lg:w-1/2">
+                  <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                    IT Managed<br />
+                    Services<br />
+                    Solutions
+                  </h1>
+                  <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
+                  >
+                    Get Managed IT Support
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 24/7 Network Monitoring Section - EireSystems Style */}
+        <div className="bg-[#F8F9FA] py-12 sm:py-16 lg:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+              {/* Left Content */}
+              <div className="text-center lg:text-left">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">
+                  24/7 Network<br />
+                  Monitoring
+                </h2>
+                <p className="text-base sm:text-lg text-[#666666] mb-6 sm:mb-8 leading-relaxed">
+                  Continuous monitoring of your entire IT infrastructure with proactive issue detection and resolution before problems impact your business operations.
+                </p>
+
+                {/* Bullet Points with EireSystems styling */}
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Real-time system performance monitoring</span>
+                  </div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Automated alert systems and notifications</span>
+                  </div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Proactive issue resolution and prevention</span>
+                  </div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Network security and threat detection</span>
+                  </div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Performance optimization and capacity planning</span>
+                  </div>
+                </div>
+
+                <p className="text-sm sm:text-base text-[#666666] leading-relaxed">
+                  Our advanced monitoring systems ensure your IT infrastructure operates at peak performance with minimal downtime and maximum reliability.
+                </p>
+              </div>
+
+              {/* Right Image */}
+              <div className="mt-8 lg:mt-0">
+                <img
+                  src="/images/banners/it-managed-services/monitoring.webp"
+                  alt="Network Monitoring Dashboard"
+                  className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* What Are Services Section - Gray background */}
-        <div className="bg-gray-50">
-          <SectionTextImage
-            heading="What Are Managed IT Services?"
-            body="<p>Managed IT Services replace reactive break–fix support with a proactive, fixed-fee partnership. We monitor, maintain, and continuously improve your environment—aligning technology with business goals while eliminating surprise costs.</p><p>Instead of waiting for problems to occur, our MSP approach prevents issues before they impact your business. This means better uptime, predictable costs, and your team can focus on growth instead of IT fires.</p>"
-            imageSrc="https://res.cloudinary.com/dtmdovevn/image/upload/v1753316226/engineer-rack_stsysi.png"
-            imageSide="left"
-          />
+        {/* Help Desk Support Section - EireSystems Style */}
+        <div className="bg-white py-12 sm:py-16 lg:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+              {/* Left Image */}
+              <div className="order-2 lg:order-1 mt-8 lg:mt-0">
+                <img
+                  src="/images/banners/it-managed-services/Help-Desk-Support.webp"
+                  alt="Help Desk Support Team"
+                  className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none brightness-105 saturate-90"
+                  style={{ filter: 'brightness(1.05) saturate(0.9) hue-rotate(10deg)' }}
+                />
+              </div>
+
+              {/* Right Content */}
+              <div className="order-1 lg:order-2 text-center lg:text-left">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">
+                  Unlimited Help Desk<br />
+                  Support
+                </h2>
+                <p className="text-base sm:text-lg text-[#666666] mb-6 sm:mb-8 leading-relaxed">
+                  Round-the-clock technical support with guaranteed response times. Our expert technicians provide immediate assistance for all your IT needs.
+                </p>
+
+                {/* Bullet Points with EireSystems styling */}
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Critical issues resolved within 30 minutes</span>
+                  </div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Standard requests within 4 hours</span>
+                  </div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Multi-channel support (phone, email, chat)</span>
+                  </div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Remote and on-site technical assistance</span>
+                  </div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Bilingual support in English and Japanese</span>
+                  </div>
+                </div>
+
+                <p className="text-sm sm:text-base text-[#666666] leading-relaxed">
+                  Our dedicated support team ensures your employees stay productive with fast, reliable technical assistance whenever they need it.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Service Features Section - White background */}
-        <div className="bg-white">
-          <AccordionList items={accordionItems} />
+        {/* Infrastructure Management Section - Mobile-Optimized */}
+        <div className="bg-[#F8F9FA] py-12 sm:py-16 lg:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">
+                Complete Infrastructure Management
+              </h2>
+              <p className="text-base sm:text-lg text-[#666666] max-w-4xl mx-auto leading-relaxed">
+                From servers to cloud platforms, we manage your entire IT infrastructure with expertise and precision, ensuring optimal performance and security.
+              </p>
+            </div>
+
+            {/* Mobile-First Service Grid - 1 col mobile, 2 col tablet, 4 col desktop */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
+              {/* Column 1: Server Management */}
+              <div className="text-center p-4 sm:p-6">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                  </svg>
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-[#2C2C2C] mb-3 sm:mb-4">Server Management</h3>
+                <ul className="text-[#666666] space-y-2 text-left text-sm sm:text-base">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Windows & Linux administration</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Virtualization management</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Performance optimization</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Security patching</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 2: Network Management */}
+              <div className="text-center p-4 sm:p-6">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                  </svg>
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-[#2C2C2C] mb-3 sm:mb-4">Network Management</h3>
+                <ul className="text-[#666666] space-y-2 text-left text-sm sm:text-base">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>WAN/LAN optimization</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>WiFi design and management</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Firewall configuration</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>VPN setup and maintenance</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 3: Cloud Operations */}
+              <div className="text-center p-4 sm:p-6">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-[#2C2C2C] mb-3 sm:mb-4">Cloud Operations</h3>
+                <ul className="text-[#666666] space-y-2 text-left text-sm sm:text-base">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Microsoft 365 management</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Azure, AWS, GCP operations</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Backup and disaster recovery</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Cost optimization</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 4: Security & Compliance */}
+              <div className="text-center p-4 sm:p-6">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-[#2C2C2C] mb-3 sm:mb-4">Security & Compliance</h3>
+                <ul className="text-[#666666] space-y-2 text-left text-sm sm:text-base">
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Endpoint protection</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Security monitoring</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Compliance management</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Vulnerability assessments</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Infrastructure Image */}
+            <div className="text-center">
+              <img
+                src="/images/banners/it-managed-services/Infrastructure-Management.webp"
+                alt="IT Infrastructure Management"
+                className="w-full max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Service Components Section - Gray background */}
-        <div className="bg-gray-50">
-          <TabbedCards tabs={tabbedCardsData} />
+        {/* Strategic IT Planning Section - EireSystems Mint Green Background */}
+        <div className="bg-[#F0F8F5] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                Strategic IT Planning & Governance
+              </h2>
+              <p className="text-lg text-[#666666] max-w-4xl mx-auto leading-relaxed">
+                Long-term technology roadmap development aligned with your business goals, including budget planning and strategic technology recommendations.
+              </p>
+            </div>
+
+            {/* Phase-based Structure - Modern Process Cards */}
+            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+              <ServiceProcessCard
+                step={1}
+                title="Technology Assessment"
+                description="Current infrastructure evaluation, business requirements analysis, technology gap identification, and ROI cost-benefit analysis to understand your current state."
+                index={0}
+              />
+              <ServiceProcessCard
+                step={2}
+                title="Strategic Planning"
+                description="Technology roadmap development, budget planning and forecasting, vendor evaluation and selection, and implementation timeline creation for your future."
+                index={1}
+              />
+              <ServiceProcessCard
+                step={3}
+                title="Ongoing Governance"
+                description="Quarterly business reviews, performance monitoring, continuous optimization, and strategic adjustments to ensure long-term success."
+                index={2}
+              />
+            </div>
+
+            {/* Strategic Planning Visual */}
+            <div className="text-center mb-12">
+              <img
+                src="/images/banners/it-managed-services/board-room.webp"
+                alt="Strategic IT Planning Board Room"
+                className="w-full max-w-4xl mx-auto h-auto rounded-lg shadow-lg"
+              />
+            </div>
+
+            {/* Bottom Content */}
+            <div className="text-center mb-8">
+              <p className="text-lg text-[#666666] leading-relaxed max-w-4xl mx-auto">
+                Our strategic approach ensures your technology investments align with business objectives and deliver measurable value for long-term success.
+              </p>
+            </div>
+
+            {/* Technology Partners Spotlight */}
+            <SpotlightLogoCloud />
+          </div>
         </div>
 
-        {/* Pricing Section - White background */}
-        <div className="bg-white">
-          <PricingCards plans={pricingPlans} />
+        {/* Your IT Partner Section - EireSystems Style */}
+        <div className="bg-white py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Your Trusted IT Partner
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Building lasting technology partnerships that grow with your business. Our managed IT services are designed to evolve with your needs, providing consistent support and strategic guidance for years to come.
+                </p>
+
+                {/* Strategic positioning with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Proactive approach to IT management</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Predictable monthly costs and budgeting</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Access to enterprise-level expertise</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Scalable solutions that grow with you</span>
+                  </div>
+                </div>
+
+                <p className="text-[#666666] leading-relaxed">
+                  From startups to established enterprises, we provide the technology foundation that enables your business to thrive in today's digital landscape.
+                </p>
+              </div>
+
+              {/* Right Image */}
+              <div>
+                <img
+                  src="/images/banners/it-managed-services/trusted-partner.webp"
+                  alt="IT Partnership and Strategy"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Long Term Partnership Section - Gray background */}
-        <div className="bg-gray-50">
-          <SectionTextImage
-            heading="IT Managed Services for Your Long Term"
-            body="<p>Building a lasting technology partnership that grows with your business. Our managed IT services are designed to evolve with your needs, providing consistent support and strategic guidance for years to come.</p><p>From startups to established enterprises, we have helped hundreds of companies in Japan transform their IT operations. Our long-term approach means better relationships, deeper understanding of your business, and more effective technology solutions.</p>"
-            imageSrc="https://res.cloudinary.com/dtmdovevn/image/upload/v1753316524/roadmap_avxbss.png"
-            imageSide="right"
-          />
+
+
+        {/* FAQ Section - Original Style with Mobile Improvements */}
+        <div className="bg-white py-16 sm:py-24">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-4 py-12 sm:py-20 md:grid-cols-2 md:px-8 lg:py-40">
+            <h2 className="text-center text-3xl sm:text-4xl font-bold tracking-tight text-neutral-600 md:text-left md:text-5xl lg:text-6xl dark:text-neutral-50">
+              Frequently asked questions
+            </h2>
+            <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
+              <MobileFriendlyFAQItem
+                question="What's included in your managed IT services?"
+                answer="Our comprehensive managed IT services include 24/7 network monitoring, unlimited help desk support, proactive maintenance, security management, backup and disaster recovery, strategic IT planning, and on-site support when needed."
+                open={openFaq}
+                setOpen={setOpenFaq}
+              />
+              <MobileFriendlyFAQItem
+                question="How quickly do you respond to IT issues?"
+                answer="Critical issues are resolved within 30 minutes, standard requests within 4 hours. Our 24/7 help desk provides immediate assistance through phone, email, and chat support."
+                open={openFaq}
+                setOpen={setOpenFaq}
+              />
+              <MobileFriendlyFAQItem
+                question="Do you provide bilingual support?"
+                answer="Yes, our team provides full bilingual support in English and Japanese, ensuring clear communication with all stakeholders in your organization."
+                open={openFaq}
+                setOpen={setOpenFaq}
+              />
+              <MobileFriendlyFAQItem
+                question="Can you work with our existing IT infrastructure?"
+                answer="Absolutely. We assess your current infrastructure and integrate our services seamlessly, whether you need full management or supplementary support alongside your existing IT team."
+                open={openFaq}
+                setOpen={setOpenFaq}
+              />
+              <MobileFriendlyFAQItem
+                question="What's the typical cost savings with managed IT services?"
+                answer="Most clients see 30-50% reduction in IT costs through proactive maintenance, reduced downtime, predictable monthly pricing, and elimination of emergency repair costs."
+                open={openFaq}
+                setOpen={setOpenFaq}
+              />
+            </div>
+          </div>
         </div>
 
-        {/* FAQ Section - White background */}
-        <div className="bg-white">
-          <FAQ items={faqItems} />
+        {/* CTA Section - EireSystems Style */}
+        <div className="bg-[#20B2AA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              Ready to Transform Your IT Operations?
+            </h2>
+
+            <Link
+              href="/contact"
+              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              Schedule Consultation
+              <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
         </div>
 
-        {/* CTA Section - Purple background */}
-        <div className="bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-700">
-          <SectionCTA
-            headline="Ready to transform your IT?"
-            sub="See why 200+ companies trust AKRIN as their MSP. Get enterprise-level IT at SMB-friendly prices."
-            buttonLabel="Schedule consultation"
-            buttonHref="/contact"
-          />
-        </div>
+        {/* Enhanced JSON-LD Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "name": "IT Managed Services",
+                "alternateName": "ITマネージドサービス",
+                "serviceType": "Managed IT Services and Support",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "AKRIN株式会社",
+                  "url": "https://akrin.jp",
+                  "logo": "https://akrin.jp/images/logo.png",
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+81-3-6821-1223",
+                    "contactType": "customer service",
+                    "availableLanguage": ["English", "Japanese"]
+                  }
+                },
+                "areaServed": {
+                  "@type": "Country",
+                  "name": "Japan"
+                },
+                "availableLanguage": ["en", "ja"],
+                "url": "https://akrin.jp/services/it-managed-services",
+                "description": "Comprehensive IT support and management services with 24/7 monitoring, help desk support, and strategic IT planning for businesses in Japan.",
+                "offers": {
+                  "@type": "Offer",
+                  "description": "24/7 IT monitoring, unlimited help desk support, proactive maintenance",
+                  "availability": "https://schema.org/InStock"
+                },
+                "hasOfferCatalog": {
+                  "@type": "OfferCatalog",
+                  "name": "IT Managed Services",
+                  "itemListElement": [
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "24/7 Network Monitoring"
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Unlimited Help Desk Support"
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Infrastructure Management"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://akrin.jp"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Services",
+                    "item": "https://akrin.jp/services"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "IT Managed Services",
+                    "item": "https://akrin.jp/services/it-managed-services"
+                  }
+                ]
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What's included in your managed IT services?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Our comprehensive managed IT services include 24/7 network monitoring, unlimited help desk support, proactive maintenance, security management, backup and disaster recovery, strategic IT planning, and on-site support when needed."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How quickly do you respond to IT issues?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Critical issues are resolved within 30 minutes, standard requests within 4 hours. Our 24/7 help desk provides immediate assistance through phone, email, and chat support."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Do you provide bilingual support?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes, our team provides full bilingual support in English and Japanese, ensuring clear communication with all stakeholders in your organization."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Can you work with our existing IT infrastructure?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Absolutely. We assess your current infrastructure and integrate our services seamlessly, whether you need full management or supplementary support alongside your existing IT team."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What's the typical cost savings with managed IT services?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Most clients see 30-50% reduction in IT costs through proactive maintenance, reduced downtime, predictable monthly pricing, and elimination of emergency repair costs."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How do you ensure data security and compliance?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "We implement multi-layered security including endpoint protection, network monitoring, regular security assessments, and compliance management for standards like ISO 27001 and GDPR."
+                    }
+                  }
+                ]
+              }
+            ])
+          }}
+        />
       </div>
     </div>
+    </>
   )
 }

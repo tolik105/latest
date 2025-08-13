@@ -2,81 +2,13 @@
 
 import React from "react"
 import Script from "next/script"
-import { SectionHero } from "@/components/ui/section-hero"
-import { SectionTextImage } from "@/components/ui/section-text-image"
-import { AccordionList } from "@/components/ui/accordion-list"
-import { FAQ } from "@/components/ui/faq-section"
-import { SectionCTA } from "@/components/ui/section-cta"
+import Link from "next/link"
 
 export default function ITSecurityClient() {
-  const accordionItems = [
-    {
-      title: "Endpoint Security & Device Management",
-      body: "Comprehensive endpoint protection including antivirus, anti-malware, device encryption, and mobile device management (MDM) to secure all connected devices."
-    },
-    {
-      title: "Email Security & Phishing Protection",
-      body: "Advanced email security solutions including spam filtering, phishing protection, email encryption, and security awareness training to protect against email-based threats."
-    },
-    {
-      title: "Network Security & Firewall Management",
-      body: "Network security implementation including next-generation firewalls, intrusion detection systems, VPN setup, and network segmentation for comprehensive protection."
-    },
-    {
-      title: "Identity & Access Management (IAM)",
-      body: "User identity management, multi-factor authentication (MFA), single sign-on (SSO), and privileged access management to control and monitor user access."
-    },
-    {
-      title: "Data Protection & Backup Security",
-      body: "Data encryption, secure backup solutions, data loss prevention (DLP), and compliance with data protection regulations including GDPR and Japanese privacy laws."
-    },
-    {
-      title: "Security Monitoring & Incident Response",
-      body: "24/7 security monitoring, threat detection, incident response planning, and security event management to quickly identify and respond to security threats."
-    }
-  ]
-
-  const faqItems = [
-    {
-      q: "What types of security threats do you protect against?",
-      a: "We protect against malware, ransomware, phishing attacks, data breaches, insider threats, and advanced persistent threats (APTs) using a multi-layered security approach."
-    },
-    {
-      q: "Do you provide 24/7 security monitoring?",
-      a: "Yes, we offer 24/7 security monitoring and incident response services to detect and respond to threats in real-time."
-    },
-    {
-      q: "How do you handle compliance requirements?",
-      a: "We help ensure compliance with various regulations including ISO 27001, GDPR, Japanese Personal Information Protection Law, and industry-specific standards."
-    },
-    {
-      q: "Can you secure remote work environments?",
-      a: "Yes, we provide comprehensive remote work security including VPN setup, endpoint protection, secure cloud access, and remote device management."
-    },
-    {
-      q: "What is your incident response process?",
-      a: "Our incident response includes immediate threat containment, forensic analysis, system recovery, and post-incident review to prevent future occurrences."
-    },
-    {
-      q: "Do you provide security training for employees?",
-      a: "Yes, we offer security awareness training, phishing simulations, and ongoing education to help employees recognize and avoid security threats."
-    },
-    {
-      q: "How do you ensure business continuity during security incidents?",
-      a: "We implement business continuity plans, secure backup systems, and rapid recovery procedures to minimize downtime during security incidents."
-    },
-    {
-      q: "Can you integrate with existing security tools?",
-      a: "Yes, we can integrate with and enhance existing security infrastructure to provide centralized management and monitoring."
-    }
-  ]
 
   return (
     <div>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE"
-        strategy="afterInteractive"
-      />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE" strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -85,40 +17,231 @@ export default function ITSecurityClient() {
           gtag('config', 'G-6YTE9HVKEE');
         `}
       </Script>
-      
-      <div className="min-h-screen bg-white">
-        <SectionHero
-          title="IT Security Services"
-          subtitle="Comprehensive IT security solutions including endpoint protection, network security, and threat monitoring. Protect your business with enterprise-grade security against evolving cyber threats."
-          ctaLabel="Get Started"
-          ctaHref="/contact"
-          imageSrc="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-        />
 
-        <SectionTextImage
-          heading="Why IT Security Matters"
-          body="<p>Cyber threats are becoming more sophisticated and frequent, targeting businesses of all sizes. Comprehensive IT security is essential to protect your data, systems, and reputation from malicious attacks, data breaches, and operational disruptions.</p><p>Our multi-layered security approach combines advanced technology, proactive monitoring, and expert management to build robust defenses against modern cyber threats while ensuring business continuity and regulatory compliance.</p>"
-          imageSrc="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-          imageSide="left"
-        />
+      <div className="bg-white font-sans">
+        {/* Hero Section - Flexible & Optimized */}
+        <div className="relative bg-white overflow-hidden">
+          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
+            
+            {/* Background Image with Diagonal Cut */}
+            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
+              <div className="relative h-full overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                  alt="IT Security Solutions"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {/* Clean diagonal overlay */}
+                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                  <polygon points="0,0 25,0 0,100" fill="white" />
+                </svg>
+              </div>
+            </div>
 
-        <AccordionList items={accordionItems} />
+            {/* Content */}
+            <div className="relative z-10 w-full">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="lg:w-1/2">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                    IT Security<br />
+                    Solutions &<br />
+                    Protection
+                  </h1>
+                  <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
+                    Endpoint protection, network security, threat monitoring, and vulnerability management. Comprehensive IT security solutions to protect against evolving cyber threats.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
+                  >
+                    Strengthen IT Security
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <SectionTextImage
-          heading="Your Security Partner"
-          body="<p>Effective IT security requires continuous vigilance, specialized expertise, and the right technology stack. Our security professionals stay current with the latest threats and security technologies to provide comprehensive protection tailored to your business needs.</p><p>From endpoint protection to network security and incident response, we provide the expertise and tools needed to maintain a strong security posture that enables your business to operate efficiently and securely.</p>"
-          imageSrc="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=2126&q=80"
-          imageSide="right"
-        />
+        {/* Endpoint Security Section - EireSystems Style */}
+        <div className="bg-[#F8F9FA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Endpoint Security &<br />
+                  Device Management
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Comprehensive endpoint protection including antivirus, anti-malware, device encryption, and mobile device management (MDM) to secure all connected devices.
+                </p>
 
-        <FAQ items={faqItems} />
+                {/* Bullet Points with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Advanced antivirus and anti-malware protection</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Device encryption and data protection</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Mobile device management (MDM)</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Remote device monitoring and control</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Compliance and policy enforcement</span>
+                  </div>
+                </div>
 
-        <SectionCTA
-          headline="Ready to strengthen your IT security?"
-          sub="Protect your business with comprehensive IT security solutions. Get expert security management and 24/7 monitoring to defend against cyber threats."
-          buttonLabel="Start security consultation"
-          buttonHref="/contact"
-        />
+                <p className="text-[#666666] leading-relaxed">
+                  Our endpoint security solutions protect all devices in your network, from laptops and desktops to mobile devices and IoT endpoints.
+                </p>
+              </div>
+
+              {/* Right Image */}
+              <div>
+                <img
+                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Endpoint Security and Device Management"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Network Security Section - EireSystems Style */}
+        <div className="bg-white py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Image */}
+              <div className="order-2 lg:order-1">
+                <img
+                  src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Network Security and Firewall Management"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+
+              {/* Right Content */}
+              <div className="order-1 lg:order-2">
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Network Security &<br />
+                  Firewall Management
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Network security implementation including next-generation firewalls, intrusion detection systems, VPN setup, and network segmentation for comprehensive protection.
+                </p>
+
+                {/* Bullet Points with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Next-generation firewall deployment</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Intrusion detection and prevention systems</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">VPN setup and secure remote access</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Network segmentation and access control</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Continuous network monitoring</span>
+                  </div>
+                </div>
+
+                <p className="text-[#666666] leading-relaxed">
+                  Our network security solutions create multiple layers of defense to protect your infrastructure from external and internal threats.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Your IT Security Partner Section - EireSystems Style */}
+        <div className="bg-[#F8F9FA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                  Your IT Security<br />
+                  Partner
+                </h2>
+                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
+                  Building effective IT security requires specialized expertise, advanced tools, and continuous vigilance. Our security professionals work as an extension of your team, providing the knowledge and resources needed to defend against modern cyber threats.
+                </p>
+
+                {/* Strategic positioning with EireSystems styling */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Multi-layered security approach</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">24/7 monitoring and incident response</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Compliance and regulatory support</span>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <span className="text-[#2C2C2C] text-lg leading-relaxed">Proactive threat management</span>
+                  </div>
+                </div>
+
+                <p className="text-[#666666] leading-relaxed">
+                  From endpoint protection to network security and incident response, we deliver comprehensive security solutions that evolve with the threat landscape.
+                </p>
+              </div>
+
+              {/* Right Image */}
+              <div>
+                <img
+                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="IT Security Partnership"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section - EireSystems Style */}
+        <div className="bg-[#20B2AA] py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              Ready to Secure Your Business?
+            </h2>
+            <p className="text-xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed">
+              Protect your organization with comprehensive IT security solutions. Get enterprise-grade protection with expert support and 24/7 monitoring.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              Start Security Consultation
+              <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
+        </div>
 
         {/* JSON-LD Schema */}
         <script
