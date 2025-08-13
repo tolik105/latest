@@ -2,3 +2,5 @@
 public/video/*.mp4
 assets/videos/*.mp4
 
+public/video
+assets/videos
