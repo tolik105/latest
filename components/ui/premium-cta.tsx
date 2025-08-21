@@ -59,7 +59,7 @@ export function PremiumCTA({
       )}
 
       {/* Premium Gradient Lines - Top */}
-      <div className="absolute -top-px right-10 md:right-60 bg-gradient-to-r from-transparent via-purple-500 h-px to-transparent w-1/2 z-30"></div>
+      <div className="absolute -top-px right-10 md:right-60 bg-gradient-to-r from-transparent via-[hsl(var(--primary))] h-px to-transparent w-1/2 z-30"></div>
       <div className="absolute -top-px right-10 md:right-40 bg-gradient-to-r from-transparent via-indigo-500 h-px to-transparent w-1/2 z-30"></div>
       <div className="absolute -top-px right-10 md:right-80 bg-gradient-to-r from-transparent via-sky-500 h-px to-transparent w-1/2 z-30"></div>
 
@@ -106,7 +106,7 @@ export function PremiumCTA({
       </div>
       
       {/* Premium Gradient Lines - Bottom */}
-      <div className="absolute -bottom-px right-10 md:right-60 bg-gradient-to-r from-transparent via-purple-500 h-px to-transparent w-1/2 z-30"></div>
+      <div className="absolute -bottom-px right-10 md:right-60 bg-gradient-to-r from-transparent via-[hsl(var(--primary))] h-px to-transparent w-1/2 z-30"></div>
       <div className="absolute -bottom-px right-10 md:right-40 bg-gradient-to-r from-transparent via-indigo-500 h-px to-transparent w-1/2 z-30"></div>
       <div className="absolute -bottom-px right-10 md:right-80 bg-gradient-to-r from-transparent via-sky-500 h-px to-transparent w-1/2 z-30"></div>
     </section>

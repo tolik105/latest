@@ -7,11 +7,15 @@ import { ChevronDownIcon } from "@heroicons/react/16/solid"
 
 export function EmbeddedContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [step, setStep] = useState<1 | 2>(1)
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     company: "",
     email: "",
+    need: "",
     phone: "",
     country: "JP",
     serviceType: "",
@@ -21,17 +25,26 @@ export function EmbeddedContactForm() {
   })
   const { toast } = useToast()
 
+  const validateStep = (currentStep: 1 | 2) => {
+    const newErrors: Record<string, string> = {}
+    if (currentStep === 1) {
+      if (!formData.firstName.trim()) newErrors.firstName = "First name is required"
+      if (!formData.email.trim()) newErrors.email = "Email is required"
+      if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Enter a valid email"
+      if (!formData.company.trim()) newErrors.company = "Company is required"
+      if (!formData.need) newErrors.need = "Please choose a need"
+    }
+    if (currentStep === 2) {
+      if (!formData.message.trim()) newErrors.message = "Please add a few details"
+      if (!formData.agreeToPrivacy) newErrors.agreeToPrivacy = "Please agree to the privacy policy"
+    }
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    if (!formData.agreeToPrivacy) {
-      toast({
-        title: "Privacy Policy Agreement Required",
-        description: "Please agree to our privacy policy to continue.",
-        variant: "destructive",
-      })
-      return
-    }
+    if (!validateStep(2)) return
 
     setIsSubmitting(true)
 
@@ -52,17 +65,14 @@ export function EmbeddedContactForm() {
       const result = await response.json()
 
       if (response.ok) {
-        toast({
-          title: "Message sent successfully!",
-          description: "We'll get back to you within 2 hours during business hours.",
-        })
-        
-        // Reset form
+        setSubmitted(true)
+        setStep(1)
         setFormData({
           firstName: "",
           lastName: "",
           company: "",
           email: "",
+          need: "",
           phone: "",
           country: "JP",
           serviceType: "",
@@ -87,236 +97,186 @@ export function EmbeddedContactForm() {
 
   return (
     <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 sm:p-4 md:p-5 lg:p-6 mt-4 sm:mt-6 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
-      <motion.form
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        onSubmit={handleSubmit}
-        className="space-y-3 sm:space-y-4 md:space-y-5"
-      >
-        <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2">
-          {/* First Name */}
-          <div>
-            <label htmlFor="first-name" className="block text-xs font-medium text-gray-900 dark:text-white mb-1">
-              First name
-            </label>
-            <input
-              id="first-name"
-              name="first-name"
-              type="text"
-              autoComplete="given-name"
-              required
-              value={formData.firstName}
-              onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-              className="block w-full rounded-md bg-white dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600"
-            />
-          </div>
-
-          {/* Last Name */}
-          <div>
-            <label htmlFor="last-name" className="block text-xs font-medium text-gray-900 dark:text-white mb-1">
-              Last name
-            </label>
-            <input
-              id="last-name"
-              name="last-name"
-              type="text"
-              autoComplete="family-name"
-              required
-              value={formData.lastName}
-              onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-              className="block w-full rounded-md bg-white dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600"
-            />
-          </div>
+      {submitted ? (
+        <div className="rounded-xl bg-white dark:bg-gray-700 p-6 text-center">
+          <p className="text-lg font-medium text-gray-900 dark:text-white mb-2">Thanks, your message is on its way.</p>
+          <p className="text-gray-600 dark:text-gray-300">We reply within 1 business day.</p>
         </div>
-
-        {/* Company */}
-        <div>
-          <label htmlFor="company" className="block text-xs font-medium text-gray-900 dark:text-white mb-1">
-            Company
-          </label>
-          <input
-            id="company"
-            name="company"
-            type="text"
-            autoComplete="organization"
-            required
-            value={formData.company}
-            onChange={(e) => setFormData({...formData, company: e.target.value})}
-            className="block w-full rounded-md bg-white dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600"
-          />
-        </div>
-
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="block text-xs font-medium text-gray-900 dark:text-white mb-1">
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-            className="block w-full rounded-md bg-white dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600"
-          />
-        </div>
-
-        {/* Phone Number */}
-        <div>
-          <label htmlFor="phone-number" className="block text-xs font-medium text-gray-900 dark:text-white mb-1">
-            Phone number
-          </label>
-          <div className="flex rounded-md bg-white dark:bg-gray-700 outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-purple-600">
-            <div className="grid shrink-0 grid-cols-1 focus-within:relative">
-              <select
-                id="country"
-                name="country"
-                autoComplete="country"
-                aria-label="Country"
-                value={formData.country}
-                onChange={(e) => setFormData({...formData, country: e.target.value})}
-                className="col-start-1 row-start-1 w-full appearance-none rounded-l-md py-1.5 sm:py-2 pr-5 sm:pr-6 pl-2.5 sm:pl-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600 bg-transparent"
-              >
-                <option value="JP">JP</option>
-                <option value="US">US</option>
-                <option value="UK">UK</option>
-                <option value="AU">AU</option>
-                <option value="CA">CA</option>
-                <option value="DE">DE</option>
-                <option value="FR">FR</option>
-                <option value="SG">SG</option>
-                <option value="KR">KR</option>
-                <option value="CN">CN</option>
-              </select>
-              <ChevronDownIcon
-                aria-hidden="true"
-                className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 dark:text-gray-400"
-              />
+      ) : (
+        <motion.form
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          onSubmit={handleSubmit}
+          className="space-y-4"
+        >
+          {step === 1 && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label htmlFor="first-name" className="block text-[14px] leading-5 font-medium text-gray-900 dark:text-white mb-1">First name</label>
+                  <input
+                    id="first-name"
+                    name="first-name"
+                    type="text"
+                    autoComplete="given-name"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                    className="block w-full rounded-md bg-white dark:bg-gray-700 px-3 h-12 text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[hsl(var(--primary))]"
+                  />
+                  {errors.firstName && <p className="mt-1 text-[12px] leading-[18px] text-[#EF4444]">{errors.firstName}</p>}
+                </div>
+                <div>
+                  <label htmlFor="last-name" className="block text-[14px] leading-5 font-medium text-gray-900 dark:text-white mb-1">Last name</label>
+                  <input
+                    id="last-name"
+                    name="last-name"
+                    type="text"
+                    autoComplete="family-name"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                    className="block w-full rounded-md bg-white dark:bg-gray-700 px-3 h-12 text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[hsl(var(--primary))]"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="company" className="block text-[14px] leading-5 font-medium text-gray-900 dark:text-white mb-1">Company</label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  autoComplete="organization"
+                  value={formData.company}
+                  onChange={(e) => setFormData({...formData, company: e.target.value})}
+                  className="block w-full rounded-md bg-white dark:bg-gray-700 px-3 h-12 text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[hsl(var(--primary))]"
+                />
+                {errors.company && <p className="mt-1 text-[12px] leading-[18px] text-[#EF4444]">{errors.company}</p>}
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-[14px] leading-5 font-medium text-gray-900 dark:text-white mb-1">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="block w-full rounded-md bg-white dark:bg-gray-700 px-3 h-12 text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[hsl(var(--primary))]"
+                />
+                {errors.email && <p className="mt-1 text-[12px] leading-[18px] text-[#EF4444]">{errors.email}</p>}
+              </div>
+              <div>
+                <span className="block text-[14px] leading-5 font-medium text-gray-900 dark:text-white mb-2">What do you need?</span>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {[
+                    { label: "Managed IT", value: "Managed IT Support" },
+                    { label: "Cloud migration", value: "Cloud Solutions & Migration" },
+                    { label: "Security review", value: "Cybersecurity & Compliance" },
+                    { label: "Other", value: "Other" },
+                  ].map((opt) => (
+                    <button
+                      type="button"
+                      key={opt.value}
+                      onClick={() => setFormData({ ...formData, need: opt.value, serviceType: opt.value })}
+                      className={`h-12 rounded-md text-sm px-3 border transition-colors ${formData.need === opt.value ? 'bg-[hsl(var(--primary))] text-white border-[hsl(var(--primary))]' : 'bg-white dark:bg-gray-700 text-gray-800 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-gray-50'}`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+                {errors.need && <p className="mt-1 text-[12px] leading-[18px] text-[#EF4444]">{errors.need}</p>}
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => { if (validateStep(1)) setStep(2) }}
+                  className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-medium hover:bg-[hsl(var(--primary))]/90 transition-colors"
+                >
+                  Next
+                </button>
+              </div>
+              <p className="text-xs text-gray-500">We reply within 1 business day.</p>
             </div>
-            <input
-              id="phone-number"
-              name="phone-number"
-              type="tel"
-              autoComplete="tel"
-              required
-              value={formData.phone}
-              onChange={(e) => setFormData({...formData, phone: e.target.value})}
-              className="block min-w-0 grow py-1.5 sm:py-2 pr-2.5 sm:pr-3 text-xs sm:text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline focus:outline-0 bg-transparent"
-              placeholder="123-456-7890"
-            />
-          </div>
-        </div>
-
-        {/* Type of Service */}
-        <div>
-          <label htmlFor="service-type" className="block text-xs font-medium text-gray-900 dark:text-white mb-1">
-            Type of Service
-          </label>
-          <select
-            id="service-type"
-            name="service-type"
-            value={formData.serviceType}
-            onChange={(e) => setFormData({...formData, serviceType: e.target.value})}
-            className="block w-full rounded-md bg-white dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600"
-          >
-            <option value="">Select a service...</option>
-            <option value="Managed IT Support">Managed IT Support</option>
-            <option value="Cloud Solutions & Migration">Cloud Solutions & Migration</option>
-            <option value="Cybersecurity & Compliance">Cybersecurity & Compliance</option>
-            <option value="Network & Infrastructure">Network & Infrastructure</option>
-            <option value="AI-Powered Automation">AI-Powered Automation</option>
-            <option value="IT Consulting & Strategy">IT Consulting & Strategy</option>
-            <option value="Project Management">Project Management</option>
-          </select>
-        </div>
-
-        {/* How did you hear about us */}
-        <div>
-          <label htmlFor="hear-about-us" className="block text-xs font-medium text-gray-900 dark:text-white mb-1">
-            How did you hear about us?
-          </label>
-          <select
-            id="hear-about-us"
-            name="hear-about-us"
-            value={formData.hearAboutUs}
-            onChange={(e) => setFormData({...formData, hearAboutUs: e.target.value})}
-            className="block w-full rounded-md bg-white dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600"
-          >
-            <option value="">Select an option...</option>
-            <option value="Web Search">Web Search</option>
-            <option value="LinkedIn">LinkedIn</option>
-            <option value="From a Partner">From a Partner</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        {/* Message */}
-        <div>
-          <label htmlFor="message" className="block text-xs font-medium text-gray-900 dark:text-white mb-1">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={2}
-            required
-            value={formData.message}
-            onChange={(e) => setFormData({...formData, message: e.target.value})}
-            className="block w-full rounded-md bg-white dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600 resize-none"
-            placeholder="Tell us about your IT needs..."
-          />
-        </div>
-
-        {/* Privacy Policy Agreement */}
-        <div className="flex items-start">
-          <div className="flex h-5 items-center">
-            <input
-              id="agree-privacy"
-              name="agree-privacy"
-              type="checkbox"
-              checked={formData.agreeToPrivacy}
-              onChange={(e) => setFormData({...formData, agreeToPrivacy: e.target.checked})}
-              className="h-3 w-3 sm:h-4 sm:w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-600"
-            />
-          </div>
-          <div className="ml-2 text-xs">
-            <label htmlFor="agree-privacy" className="text-gray-600 dark:text-gray-400">
-              I agree to the{' '}
-              <a href="/privacy-policy" className="text-purple-600 hover:text-purple-500">
-                privacy policy
-              </a>
-            </label>
-          </div>
-        </div>
-
-        {/* Submit Button */}
-        <div>
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full flex justify-center items-center px-4 py-2 sm:px-6 sm:py-2.5 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300 text-xs sm:text-sm"
-            style={{
-              fontFamily: 'Inter, sans-serif',
-              fontWeight: '500'
-            }}
-          >
-            {isSubmitting ? (
-              <>
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Sending...
-              </>
-            ) : (
-              'Send Message'
-            )}
-          </button>
-        </div>
-      </motion.form>
+          )}
+          {step === 2 && (
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="message" className="block text-[14px] leading-5 font-medium text-gray-900 dark:text-white mb-1">Tell us a bit more</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  className="block w-full rounded-md bg-white dark:bg-gray-700 px-3 py-3 text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[hsl(var(--primary))] resize-y"
+                  placeholder="Share details, timelines, or goals."
+                />
+                {errors.message && <p className="mt-1 text-[12px] leading-[18px] text-[#EF4444]">{errors.message}</p>}
+              </div>
+              <div>
+                <label htmlFor="hear-about-us" className="block text-[14px] leading-5 font-medium text-gray-900 dark:text-white mb-1">How did you hear about us?</label>
+                <select
+                  id="hear-about-us"
+                  name="hear-about-us"
+                  value={formData.hearAboutUs}
+                  onChange={(e) => setFormData({...formData, hearAboutUs: e.target.value})}
+                  className="block w-full rounded-md bg-white dark:bg-gray-700 px-3 h-12 text-sm text-gray-900 dark:text-white outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-gray-600 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[hsl(var(--primary))]"
+                >
+                  <option value="">Select an option...</option>
+                  <option value="Web Search">Web Search</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="From a Partner">From a Partner</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div className="flex items-start">
+                <div className="flex h-5 items-center">
+                  <input
+                    id="agree-privacy"
+                    name="agree-privacy"
+                    type="checkbox"
+                    checked={formData.agreeToPrivacy}
+                    onChange={(e) => setFormData({...formData, agreeToPrivacy: e.target.checked})}
+                    className="h-4 w-4 rounded border-gray-300 text-[hsl(var(--primary))] focus:ring-[hsl(var(--primary))]"
+                  />
+                </div>
+                <div className="ml-2 text-xs">
+                  <label htmlFor="agree-privacy" className="text-gray-600 dark:text-gray-400">
+                    I agree to the <a href="/privacy" className="text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))]">privacy policy</a>
+                  </label>
+                  {errors.agreeToPrivacy && <p className="mt-1 text-[12px] leading-[18px] text-[#EF4444]">{errors.agreeToPrivacy}</p>}
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
+                  ← Back
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-medium hover:bg-[hsl(var(--primary))]/90 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    'Send message'
+                  )}
+                </button>
+              </div>
+            </div>
+          )}
+        </motion.form>
+      )}
     </div>
   )
 }

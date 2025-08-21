@@ -216,6 +216,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound()
   }
 
+  // Adjust media behavior for specific posts (e.g., zoom-out for certain images)
+  const isCybersecurityPost = resolvedParams.slug === 'cybersecurity-best-practices-2025'
+  const isPhishingPost = resolvedParams.slug === 'phishing-prevention-guide-2025'
+
   // Add IDs to headings for better navigation
   const processedContent = addHeadingIds(post.content);
 
@@ -540,7 +544,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               )}
 
               {/* Title */}
-              <h1 className="text-3xl font-bold text-gray-800 sm:text-5xl lg:text-6xl lg:leading-tight" itemProp="headline">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 md:text-4xl lg:text-5xl xl:text-6xl lg:leading-tight" itemProp="headline">
                 {post.title}
               </h1>
 
@@ -605,13 +609,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Preline Style Hero Image */}
         <div className="mt-10 sm:mt-16">
           <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] bg-gray-100 rounded-xl overflow-hidden">
+            <div className="relative h-[250px] xs:h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] bg-gray-100 rounded-xl overflow-hidden">
               {post.image ? (
                 <Image
                   src={post.image}
                   alt={`${post.title} - Expert insights on IT infrastructure and technology trends in Japan by AKRIN`}
                   fill
-                  className="object-cover object-center"
+                  className={(isCybersecurityPost || isPhishingPost) ? "object-contain object-center p-2" : "object-cover object-center"}
                   priority
                   itemProp="image"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1320px"
@@ -673,15 +677,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {(post.category === 'Security' || post.slug.includes('cybersecurity')) && (
           <section className="bg-gray-50 py-16 border-t border-gray-100" aria-labelledby="faq-section">
             <div className="max-w-4xl mx-auto px-6">
-              <h2 id="faq-section" className="text-2xl md:text-3xl font-normal text-gray-900 mb-8 tracking-tight">
+              <h2 id="faq-section" className="text-xl sm:text-2xl md:text-3xl font-normal text-gray-900 mb-8 tracking-tight">
                 Frequently Asked Questions
               </h2>
               <div className="space-y-8">
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
                     What are the most critical cybersecurity threats facing Japanese businesses in 2025?
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                     Japanese businesses face ransomware attacks (58% increase in 2022), Shadow AI vulnerabilities,
                     deepfake social engineering, and supply chain attacks. The cybersecurity skills gap also remains
                     a significant challenge for organizations implementing robust security measures.
@@ -689,10 +693,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
                     How does Zero Trust Architecture improve cybersecurity?
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                     Zero Trust eliminates the traditional perimeter-based security model by verifying every user,
                     device, and application. It implements least privilege access, continuous monitoring, and
                     network micro-segmentation to prevent lateral movement of threats.
@@ -700,10 +704,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
                     Why is AI-powered threat detection essential for modern businesses?
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                     Traditional signature-based security can't keep pace with evolving threats. AI provides predictive
                     threat analysis, behavioral anomaly detection, automated incident response, and real-time threat
                     intelligence to identify and respond to sophisticated attacks.
@@ -711,10 +715,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
                     How can AKRIN help improve my organization's cybersecurity posture?
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                     AKRIN provides comprehensive cybersecurity services including security assessments,
                     implementation of Zero Trust architecture, AI-powered threat detection, compliance consulting,
                     and 24/7 security monitoring tailored for the Japanese business environment.
@@ -730,10 +734,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <section className="bg-gray-50 py-10 sm:py-16" aria-labelledby="related-posts">
             <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-2xl text-center mx-auto mb-10 lg:mb-14">
-                <h2 className="text-2xl font-bold md:text-4xl md:leading-tight text-gray-800">
+                <h2 className="text-xl sm:text-2xl font-bold md:text-3xl lg:text-4xl md:leading-tight text-gray-800">
                   Related Articles
                 </h2>
-                <p className="mt-1 text-gray-600">
+                <p className="mt-1 text-sm sm:text-base text-gray-600">
                   Continue reading more insights from our experts
                 </p>
               </div>
@@ -743,15 +747,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
                   return (
                     <Link key={index} href={`/blog/${relatedPost.slug}`} className="group flex flex-col h-full bg-white border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl">
-                      <div className="relative h-52 overflow-hidden rounded-t-xl">
+                      <div
+                        className="relative h-40 xs:h-44 sm:h-48 md:h-52 overflow-hidden rounded-t-xl"
+                        style={fullRelatedPost?.image ? { backgroundImage: `url(${fullRelatedPost.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
+                      >
                         {fullRelatedPost?.image ? (
-                          <Image
+                          <img
                             src={fullRelatedPost.image}
                             alt={`${relatedPost.title} - AKRIN IT Blog`}
-                            fill
-                            className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                            unoptimized={false}
+                            className="block !w-full !h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                            width={1200}
+                            height={630}
                           />
                         ) : (
                           <div className="w-full h-full bg-gray-100 flex items-center justify-center">
@@ -767,7 +773,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             </span>
                           </div>
                         )}
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-blue-600">
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 group-hover:text-blue-600 leading-tight">
                           {relatedPost.title}
                         </h3>
                         <div className="mt-auto flex items-center gap-x-3 text-sm text-gray-500">
@@ -789,20 +795,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Category-Specific CTA Section */}
         {(post.category === 'Security' || post.slug.includes('cybersecurity')) && (
-          <section className="bg-purple-50 py-16 border-t border-gray-100">
+         <section className="bg-[hsl(var(--primary))]/5 py-16 border-t border-gray-100">
             <div className="max-w-4xl mx-auto px-6 text-center">
               <div className="bg-white p-8 rounded-lg shadow-sm">
-                <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
                   Strengthen Your Cybersecurity Posture
                 </h2>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
                   Don't wait for a security incident to take action. Our cybersecurity experts can help you
                   implement comprehensive security measures tailored for your business needs in Japan.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href="/services/it-managed-services"
-                    className="inline-flex items-center px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+                   className="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
                   >
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -811,7 +817,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </Link>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-50 text-purple-600 font-medium border-2 border-purple-600 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+                   className="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-50 text-[hsl(var(--primary))] font-medium border-2 border-[hsl(var(--primary))] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
                   >
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />

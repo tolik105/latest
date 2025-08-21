@@ -21,11 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: '/itsm',
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
       url: '/contact',
       changeFrequency: 'monthly' as const,
       priority: 0.7,
@@ -42,6 +37,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: '/blog',
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    {
+      url: '/case-studies',
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    {
+      url: '/ja/case-studies',
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },

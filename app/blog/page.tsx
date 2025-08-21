@@ -156,7 +156,7 @@ export default function BlogPage() {
 
           {/* Blog content with semantic structure */}
           <section aria-label="Blog posts and articles">
-            <SimpleBlogWithGrid />
+            <SimpleBlogWithGrid language="en" />
           </section>
         </div>
       </main>

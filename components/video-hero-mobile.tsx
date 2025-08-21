@@ -150,7 +150,7 @@ export function VideoHeroMobile() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-white min-h-[100dvh] sm:min-h-[95vh] md:min-h-[90vh] lg:min-h-screen flex items-center justify-center pt-[70px] sm:pt-[75px] md:pt-[80px]">
+    <section className="relative w-full overflow-hidden bg-white min-h-[100dvh] sm:min-h-[95vh] md:min-h-[90vh] lg:min-h-screen flex items-center justify-center pt-24 sm:pt-24 md:pt-28">
 
         {/* Enhanced Background with better mobile performance */}
         <div className="absolute inset-0 w-full h-full z-0">
@@ -168,7 +168,7 @@ export function VideoHeroMobile() {
               >
                 <source src="/video/AKRINKK.mp4" type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/20" />
+               <div className="absolute inset-0 bg-black/30" />
             </div>
           ) : isTablet ? (
             // Tablet: Video background with overlay
@@ -184,7 +184,7 @@ export function VideoHeroMobile() {
               >
                 <source src="/video/AKRINKK.mp4" type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/15" />
+               <div className="absolute inset-0 bg-black/25" />
             </div>
           ) : (
             // Desktop: Full video background with subtle overlay
@@ -200,7 +200,7 @@ export function VideoHeroMobile() {
               >
                 <source src="/video/AKRINKK.mp4" type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-gradient-to-br from-black/15 via-transparent to-black/10" />
+               <div className="absolute inset-0 bg-black/20" />
             </div>
           )}
         </div>
@@ -215,33 +215,23 @@ export function VideoHeroMobile() {
               {/* Animated Typography with blur fade-in effect */}
               <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-10">
                 <AnimatedText delay={0.2}>
-                  What's the next bold step for your IT?
+                  {t('hero.title')}
                 </AnimatedText>
               </div>
 
               {/* Animated subtitle with blur fade-in effect */}
               <AnimatedSubtitle delay={1.5}>
-                Strategic consulting, end-to-end project management, and always-on managed services—secured 24/7.
+                {t('hero.subtitle')}
               </AnimatedSubtitle>
 
-              {/* Animated button */}
+              {/* CTA button centered below subtitle */}
               <motion.div
-                className="flex justify-center w-full"
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.4, delay: 2.5 }}
+                variants={itemVariants}
+                className="mt-2 sm:mt-4 md:mt-6 flex justify-center"
               >
-                <Button
-                  className="bg-white text-gray-900 hover:bg-gray-100 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-manipulation border-0"
-                  style={{
-                    minHeight: '56px',
-                    fontSize: 'clamp(1rem, 2.5vw, 1.125rem)',
-                    padding: 'clamp(16px, 3vw, 20px) clamp(32px, 5vw, 48px)'
-                  }}
-                  asChild
-                >
-                  <Link href="/services">
-                    Get started →
+                <Button size="lg" variant="secondary" asChild>
+                  <Link href="/contact">
+                    {t('hero.cta')}
                   </Link>
                 </Button>
               </motion.div>
@@ -260,7 +250,7 @@ export function VideoHeroMobile() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.5, delay: 0.5 }}
-                    className="absolute bottom-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-tl from-pink-400/15 to-purple-400/15 rounded-full blur-3xl"
+                    className="absolute bottom-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-tl from-pink-400/15 to-[hsl(var(--primary))]/15 rounded-full blur-3xl"
                   />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -280,7 +270,7 @@ export function VideoHeroMobile() {
                     initial={{ opacity: 0, x: 100 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.2, delay: 0.6 }}
-                    className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-tl from-pink-400/10 to-purple-400/10 rounded-full blur-3xl"
+                    className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-tl from-pink-400/10 to-[hsl(var(--primary))]/10 rounded-full blur-3xl"
                   />
                   <motion.div 
                     initial={{ opacity: 0, x: 100 }}

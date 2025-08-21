@@ -3,7 +3,7 @@
 ## Stack
 - Next.js 15 (App Router), React 19, TypeScript 5
 - Tailwind CSS 3, Radix UI, Framer Motion, Tailwind Animate, Preline
-- i18next/next-i18next, Zod, React Hook Form, Recharts, Three.js, TinyMCE
+- i18next/next-i18next, Zod, React Hook Form, Three.js, TinyMCE
 - Jest/RTL/JS-DOM, Playwright, ESLint, Sharp
 
 ## Key Config
@@ -29,7 +29,7 @@
 - Contact Form demo: `/contact-form` → `app/contact-form/page.tsx`
 - Book consultation: `/book-consultation` → `app/book-consultation/page.tsx`
 - Book reservation: `/book-reservation` → `app/book-reservation/page.tsx`
-- ITSM: `/itsm` → `app/itsm/page.tsx`
+
 - Cookies: `/cookies` → `app/cookies/page.tsx`
 - Privacy: `/privacy` → `app/privacy/page.tsx`
 - Terms: `/terms` → `app/terms/page.tsx`

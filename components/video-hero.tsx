@@ -34,7 +34,7 @@ export function VideoHero() {
   }
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-white">
+    <section className="relative min-h-screen w-full overflow-hidden bg-white pt-24 sm:pt-28">
       {/* Hero Background SVG - Responsive */}
       <div className="absolute inset-0 w-full h-full z-0">
         <img 
@@ -127,7 +127,7 @@ export function VideoHero() {
                 objectFit: 'cover'
               }}
             >
-              <source src="/video/last.mp4" type="video/mp4" />
+              <source src="/video/AKRINKK.mp4" type="video/mp4" />
             </video>
           </foreignObject>
         </svg>

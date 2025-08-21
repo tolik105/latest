@@ -20,7 +20,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setMounted(true)
     if (typeof window !== 'undefined') {
       // Check if we're on a Japanese route
-      const isJapanesePage = window.location.pathname.startsWith('/ja')
+      const pathname = window.location.pathname
+      const isJapanesePage = pathname.startsWith('/ja/') || pathname === '/ja'
       const detectedLanguage = isJapanesePage ? 'ja' : 'en'
 
       // Use URL-based language detection first, then localStorage

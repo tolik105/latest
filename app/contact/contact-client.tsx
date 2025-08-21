@@ -100,13 +100,13 @@ export default function ContactClient() {
             >
               <div className="mb-4">
                 <h3 className="text-2xl font-medium text-gray-900 mb-2">Talk to us</h3>
-                <div className="w-12 h-0.5 bg-purple-600"></div>
+                <div className="w-12 h-0.5 bg-[hsl(var(--primary))]"></div>
               </div>
 
               <address className="space-y-6 not-italic">
                 <div>
                   <p className="text-lg font-medium text-gray-900 mb-1">
-                    <a href="tel:+81-3-6821-1223" className="hover:text-purple-600 transition-colors">
+                    <a href="tel:+81-3-6821-1223" className="hover:text-[hsl(var(--primary))] transition-colors">
                       03-6821-1223
                     </a>
                   </p>
@@ -115,7 +115,7 @@ export default function ContactClient() {
 
                 <div>
                   <p className="text-lg font-medium text-gray-900 mb-1">
-                    <a href="tel:+81-3-6821-1223" className="hover:text-purple-600 transition-colors">
+                    <a href="tel:+81-3-6821-1223" className="hover:text-[hsl(var(--primary))] transition-colors">
                       +81-3-6821-1223
                     </a>
                   </p>
@@ -134,7 +134,7 @@ export default function ContactClient() {
             >
               <div className="mb-4">
                 <h3 className="text-2xl font-medium text-gray-900 mb-2">Write to us</h3>
-                <div className="w-12 h-0.5 bg-purple-600"></div>
+                <div className="w-12 h-0.5 bg-[hsl(var(--primary))]"></div>
               </div>
 
               <div className="space-y-6">
@@ -144,7 +144,7 @@ export default function ContactClient() {
                   <address className="space-y-4 not-italic">
                     <div>
                       <p className="text-lg font-medium text-gray-900">
-                        <a href="mailto:support@akrin.jp" className="hover:text-purple-600 transition-colors">
+                        <a href="mailto:support@akrin.jp" className="hover:text-[hsl(var(--primary))] transition-colors">
                           support@akrin.jp
                         </a>
                       </p>
@@ -153,7 +153,7 @@ export default function ContactClient() {
 
                     <div>
                       <p className="text-lg font-medium text-gray-900">
-                        <a href="mailto:inquiry@akrin.jp" className="hover:text-purple-600 transition-colors">
+                        <a href="mailto:inquiry@akrin.jp" className="hover:text-[hsl(var(--primary))] transition-colors">
                           inquiry@akrin.jp
                         </a>
                       </p>
@@ -174,7 +174,7 @@ export default function ContactClient() {
             >
               <div className="mb-4">
                 <h3 className="text-2xl font-medium text-gray-900 mb-2">Visit us</h3>
-                <div className="w-12 h-0.5 bg-purple-600"></div>
+                <div className="w-12 h-0.5 bg-[hsl(var(--primary))]"></div>
               </div>
 
               <div className="space-y-6">
@@ -203,7 +203,7 @@ export default function ContactClient() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="px-8 py-3 border-2 border-purple-600 text-purple-600 font-medium hover:bg-purple-600 hover:text-white transition-colors duration-200 inline-block text-center"
+              className="px-8 py-3 border-2 border-[hsl(var(--primary))] text-[hsl(var(--primary))] font-medium hover:bg-[hsl(var(--primary))] hover:text-white transition-colors duration-200 inline-block text-center"
             >
               Contact us →
             </motion.a>

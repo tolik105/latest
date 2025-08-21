@@ -10,7 +10,7 @@ export default function BookConsultationClient() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 text-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[hsl(var(--primary))] via-[hsl(var(--primary))] to-[hsl(var(--primary))] text-white">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -19,7 +19,7 @@ export default function BookConsultationClient() {
           className="relative z-10 px-8 md:px-16 lg:px-24 py-24 md:py-32"
         >
           <div className="max-w-7xl mx-auto">
-            <Link href="/contact" className="inline-flex items-center text-purple-200 hover:text-white mb-8 transition-colors">
+            <Link href="/contact" className="inline-flex items-center text-white/70 hover:text-white mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Contact
             </Link>
@@ -32,7 +32,7 @@ export default function BookConsultationClient() {
                 className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8"
               >
                 Book Your Free
-                <span className="block font-semibold bg-gradient-to-r from-purple-200 to-white bg-clip-text text-transparent">
+                <span className="block font-semibold bg-gradient-to-r from-white/80 to-white bg-clip-text text-transparent">
                   IT Consultation
                 </span>
               </motion.h1>
@@ -40,7 +40,7 @@ export default function BookConsultationClient() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-xl md:text-2xl text-purple-100 leading-relaxed mb-12 max-w-3xl"
+                className="text-xl md:text-2xl text-white/80 leading-relaxed mb-12 max-w-3xl"
               >
                 Let's discuss your IT challenges and explore how our AI-powered solutions can transform your technology infrastructure.
               </motion.p>
@@ -49,8 +49,8 @@ export default function BookConsultationClient() {
         </motion.div>
         
         {/* Background elements - static for professional appearance */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl opacity-20"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600 rounded-full filter blur-3xl opacity-20"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[hsl(var(--primary))] rounded-full filter blur-3xl opacity-20"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[hsl(var(--primary))] rounded-full filter blur-3xl opacity-20"></div>
       </section>
 
       {/* What to Expect Section */}
@@ -65,7 +65,7 @@ export default function BookConsultationClient() {
           >
             <h2 className="text-4xl md:text-5xl font-light mb-6">
               What to Expect From Your
-              <span className="block font-semibold text-purple-600">Free Consultation</span>
+              <span className="block font-semibold text-[hsl(var(--primary))]">Free Consultation</span>
             </h2>
           </motion.div>
 
@@ -100,7 +100,7 @@ export default function BookConsultationClient() {
                 transition={{ delay: index * 0.1, duration: 0.8 }}
                 className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg text-center"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 dark:bg-purple-900/20 text-purple-600 rounded-full mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[hsl(var(--primary))]/10 dark:bg-[hsl(var(--primary))]/20 text-[hsl(var(--primary))] rounded-full mb-6">
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
@@ -131,7 +131,7 @@ export default function BookConsultationClient() {
             <CalendlyPopupButton
               text="Schedule Your Free Consultation"
               size="lg"
-              className="bg-purple-600 hover:bg-purple-700 text-white px-12 py-8 text-xl font-medium rounded-none shadow-2xl hover:shadow-3xl transition-all duration-300"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 py-8 text-xl font-medium rounded-none shadow-2xl hover:shadow-3xl transition-all duration-300"
             />
 
             <p className="text-gray-600 dark:text-gray-400 mt-8">
@@ -140,7 +140,7 @@ export default function BookConsultationClient() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
               <Button
                 variant="outline"
-                className="border-purple-600 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                className="border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))]/10 dark:hover:bg-[hsl(var(--primary))]/20"
                 asChild
               >
                 <a href="tel:+81-3-6821-1223">
@@ -149,7 +149,7 @@ export default function BookConsultationClient() {
               </Button>
               <Button
                 variant="outline"
-                className="border-purple-600 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                className="border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))]/10 dark:hover:bg-[hsl(var(--primary))]/20"
                 asChild
               >
                 <a href="mailto:support@akrin.jp">

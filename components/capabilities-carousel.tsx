@@ -126,14 +126,14 @@ export function CapabilitiesCarousel() {
                     priority
                   />
                   {/* Subtle overlay matching your brand */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 to-gray-900/20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--primary))]/10 to-gray-900/20"></div>
                 </div>
               </div>
 
               {/* Right Column - Content - Mobile Optimized */}
               <div className="w-full lg:w-2/5 bg-white dark:bg-gray-900 flex items-center justify-center p-4 xs:p-5 sm:p-6 md:p-8 lg:p-12 xl:p-16 relative order-2 lg:order-2 min-h-[300px] sm:min-h-[350px] lg:min-h-[500px] xl:min-h-[550px]">
                 <div className="relative z-10 w-full text-center sm:text-left">
-                  <div className="text-xs font-semibold text-purple-600 mb-2 uppercase tracking-wider"
+                  <div className="text-xs font-semibold text-[hsl(var(--primary))] mb-2 uppercase tracking-wider"
                        style={{
                          fontFamily: "'Inter', sans-serif",
                          fontWeight: '600'
@@ -163,7 +163,7 @@ export function CapabilitiesCarousel() {
                   <div className="space-y-2 mb-4 sm:mb-6">
                     {capabilities[currentSlide].capabilities.map((capability, idx) => (
                       <div key={idx} className="flex items-start text-gray-600 dark:text-gray-400 justify-center sm:justify-start">
-                        <div className="w-1.5 h-1.5 bg-purple-600 rounded-full mr-2 sm:mr-3 mt-1.5 flex-shrink-0"></div>
+                        <div className="w-1.5 h-1.5 bg-[hsl(var(--primary))] rounded-full mr-2 sm:mr-3 mt-1.5 flex-shrink-0"></div>
                         <span className="text-xs sm:text-sm font-medium leading-relaxed text-center sm:text-left"
                               style={{
                                 fontFamily: "'Inter', sans-serif"
@@ -175,7 +175,7 @@ export function CapabilitiesCarousel() {
                   <div className="flex justify-center sm:justify-start">
                     <Link
                       href={capabilities[currentSlide].link}
-                      className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-all duration-300 group text-sm bg-purple-50 hover:bg-purple-100 px-4 py-2 rounded-lg"
+                      className="inline-flex items-center text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] font-medium transition-all duration-300 group text-sm bg-[hsl(var(--primary))]/10 hover:bg-[hsl(var(--primary))]/15 px-4 py-2 rounded-lg"
                       style={{
                         fontFamily: "'Inter', sans-serif",
                         fontWeight: '500'
@@ -199,8 +199,8 @@ export function CapabilitiesCarousel() {
               onClick={() => goToSlide(index)}
               className={`relative transition-all duration-300 group ${
                 index === currentSlide
-                  ? 'text-purple-600'
-                  : 'text-gray-400 hover:text-purple-400'
+                  ? 'text-[hsl(var(--primary))]'
+                  : 'text-gray-400 hover:text-[hsl(var(--primary))]'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             >
@@ -223,7 +223,7 @@ export function CapabilitiesCarousel() {
               {/* Underline */}
               <div className={`absolute -bottom-1 left-0 right-0 h-0.5 transition-all duration-300 ${
                 index === currentSlide
-                  ? 'bg-purple-600 scale-x-100'
+                  ? 'bg-[hsl(var(--primary))] scale-x-100'
                   : 'bg-gray-400 scale-x-0 group-hover:scale-x-75'
               }`} />
             </button>

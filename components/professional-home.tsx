@@ -15,10 +15,10 @@ export function ProfessionalHome() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+  <section className="relative bg-gradient-to-br from-slate-900 via-[hsl(var(--primary))]/30 to-slate-900 overflow-hidden">
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-[hsl(var(--primary))]/20 rounded-full blur-3xl" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
         </div>
         
@@ -29,13 +29,13 @@ export function ProfessionalHome() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Badge className="mb-6 bg-purple-500/20 text-purple-200 border-purple-500/30">
+            <Badge className="mb-6 bg-[hsl(var(--primary))]/20 text-[hsl(var(--primary))]/70 border-[hsl(var(--primary))]/30">
                 🚀 Leading IT Solutions Provider in Japan
               </Badge>
               
               <h1 className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
                 Transform Your
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--primary))] to-pink-400">
                   Digital Future
                 </span>
               </h1>
@@ -46,11 +46,11 @@ export function ProfessionalHome() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg rounded-xl">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg rounded-xl">
                   Get Free Consultation
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-purple-400 text-purple-300 hover:bg-purple-400/10 px-8 py-4 text-lg rounded-xl">
+              <Button size="lg" variant="outline" className="border-[hsl(var(--primary))]/50 text-[hsl(var(--primary))]/70 hover:bg-[hsl(var(--primary))]/10 px-8 py-4 text-lg rounded-xl">
                   View Our Services
                 </Button>
               </div>
@@ -115,7 +115,7 @@ export function ProfessionalHome() {
                 title: "Managed IT Services",
                 description: "Proactive IT support, system maintenance, and strategic technology planning for your business.",
                 image: "/api/placeholder/400/240",
-                color: "from-purple-500 to-indigo-500"
+        color: "from-[hsl(var(--primary))] to-indigo-500"
               }
             ].map((service, index) => (
               <motion.div
@@ -147,7 +147,7 @@ export function ProfessionalHome() {
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       {service.description}
                     </p>
-                    <Button variant="ghost" className="text-purple-600 hover:text-purple-700 p-0 h-auto font-semibold">
+            <Button variant="ghost" className="text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] p-0 h-auto font-semibold">
                       Learn More <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
                   </CardContent>
@@ -159,7 +159,7 @@ export function ProfessionalHome() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 bg-gradient-to-r from-purple-900 to-indigo-900">
+  <section className="py-24 bg-gradient-to-r from-[hsl(var(--primary))]/30 to-indigo-900">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             {[
@@ -176,11 +176,11 @@ export function ProfessionalHome() {
                 transition={{ delay: index * 0.1 }}
                 className="text-white"
               >
-                <div className="flex justify-center mb-4 text-purple-300">
+          <div className="flex justify-center mb-4 text-[hsl(var(--primary))]/50">
                   {stat.icon}
                 </div>
                 <div className="text-4xl font-bold mb-2">{stat.number}</div>
-                <div className="text-purple-200">{stat.label}</div>
+          <div className="text-[hsl(var(--primary))]/60">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -235,7 +235,7 @@ export function ProfessionalHome() {
                 </div>
               </div>
               
-              <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 Read Full Case Study
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
@@ -247,10 +247,10 @@ export function ProfessionalHome() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-video bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl shadow-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20" />
+          <div className="aspect-video bg-gradient-to-br from-[hsl(var(--primary))]/10 to-blue-100 rounded-2xl shadow-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--primary))]/20 to-blue-500/20" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-6xl text-purple-600/30">📊</div>
+              <div className="text-6xl text-[hsl(var(--primary))]/30">📊</div>
                 </div>
               </div>
             </motion.div>
@@ -259,7 +259,7 @@ export function ProfessionalHome() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-purple-600 to-indigo-600">
+  <section className="py-24 bg-gradient-to-r from-[hsl(var(--primary))] to-indigo-600">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -269,13 +269,13 @@ export function ProfessionalHome() {
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
               Ready to Transform Your IT?
             </h2>
-            <p className="text-xl text-purple-100 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-[hsl(var(--primary))]/20 mb-12 max-w-2xl mx-auto">
               Get a free consultation and discover how our expert team can optimize 
               your technology infrastructure for growth and success.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 text-lg rounded-xl">
+            <Button size="lg" className="bg-white text-[hsl(var(--primary))] hover:bg-gray-100 px-8 py-4 text-lg rounded-xl">
                 Schedule Free Consultation
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>

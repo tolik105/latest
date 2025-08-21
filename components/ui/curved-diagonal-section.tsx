@@ -8,7 +8,7 @@ export function CurvedDiagonalSection() {
   return (
     <section className="relative w-full overflow-hidden">
       {/* Main curved diagonal container */}
-      <div className="curved-diagonal-section relative w-full bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white pt-16 pb-24 sm:pt-20 sm:pb-32 lg:pt-24 lg:pb-40 min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
+      <div className="curved-diagonal-section relative w-full bg-gradient-to-br from-[hsl(var(--primary))] via-[hsl(var(--primary))] to-indigo-800 text-white pt-16 pb-24 sm:pt-20 sm:pb-32 lg:pt-24 lg:pb-40 min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
         {/* Background pattern overlay */}
         <div className="absolute inset-0 opacity-10">
           <div 
@@ -40,7 +40,7 @@ export function CurvedDiagonalSection() {
                 <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-green-400 rounded-full"></div>
               </div>
               
-              <div className="space-y-4 text-purple-100">
+              <div className="space-y-4 text-[hsl(var(--primary))]/20">
                 <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed">
                   From wireless network design and Ekahau surveys to global IT deployments, onsite engineering, and staff augmentation, our services are tailored to optimize performance, enhance security, and drive efficiency.
                 </p>
@@ -49,7 +49,7 @@ export function CurvedDiagonalSection() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button 
-                  className="bg-white text-purple-700 hover:bg-gray-100 font-semibold px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-white text-[hsl(var(--primary))] hover:bg-gray-100 font-semibold px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                   asChild
                 >
                   <Link href="/services">

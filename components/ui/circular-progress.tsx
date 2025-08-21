@@ -87,12 +87,12 @@ export function CircularProgress({
           role="img"
           aria-label={`${animatedPercentage}% ${label}`}
         >
-          <defs>
-            <linearGradient id={`grad-${label.replace(/\W+/g, '')}`}>
-              <stop offset="0%" stopColor="#7A28FF" />
-              <stop offset="100%" stopColor="#4A1899" />
-            </linearGradient>
-          </defs>
+		  <defs>
+				<linearGradient id={`grad-${label.replace(/\W+/g, '')}`}>
+					<stop offset="0%" stopColor={"hsl(var(--primary))"} />
+					<stop offset="100%" stopColor={"hsl(var(--primary))"} />
+				</linearGradient>
+			</defs>
           {/* Track */}
           <circle
             cx={centerX}
@@ -126,15 +126,15 @@ export function CircularProgress({
             transition={{ duration: 0.8, delay: delay + 0.5 }}
             className="text-center group-hover:scale-105 transition-transform duration-500"
           >
-            <div 
-              className="text-5xl lg:text-6xl font-bold"
-              style={{
-                fontFamily: 'Plus Jakarta Sans, Inter, sans-serif',
-                fontWeight: '700',
-                letterSpacing: '-0.04em',
-                color: '#8B5CF6'
-              }}
-            >
+				<div 
+					className="text-5xl lg:text-6xl font-bold"
+					style={{
+						fontFamily: 'Plus Jakarta Sans, Inter, sans-serif',
+						fontWeight: '700',
+						letterSpacing: '-0.04em',
+						color: 'hsl(var(--primary))'
+					}}
+				>
               {animatedPercentage}%
             </div>
           </motion.div>
@@ -225,7 +225,7 @@ export function SegmentedCircularProgress({
             const isActive = i < activeSegments
             const t = segments <= 1 ? 1 : i / Math.max(activeSegments - 1, 1)
             const stroke = isActive
-              ? interpolateColorHex('#7A28FF', '#4A1899', Math.min(Math.max(t, 0), 1))
+              ? interpolateColorHex('#0fb5a9', '#0b857e', Math.min(Math.max(t, 0), 1))
               : '#E5E7EB'
             return (
               <path
@@ -241,7 +241,7 @@ export function SegmentedCircularProgress({
         </svg>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center">
-          <div className="text-6xl font-bold" style={{ color: '#7A28FF', letterSpacing: '-0.04em' }}>
+          <div className="text-6xl font-bold" style={{ color: 'hsl(var(--primary))', letterSpacing: '-0.04em' }}>
             {percentage}%
           </div>
         </div>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 // Using local variable fonts instead of Google Fonts imports
 import "./globals.css"
+import "./mobile-optimizations.css"
 
 import { NavbarSimple } from "@/components/navbar-simple"
 import { Footer } from "@/components/footer"
@@ -90,18 +91,19 @@ export const metadata: Metadata = {
     // yandex: process.env.YANDEX_VERIFICATION_CODE, // Uncomment and add if using Yandex
   },
   icons: {
+    // Versioned query params to force-refresh in browsers with sticky favicon caches
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' }
+      { url: '/favicon-32x32.png?v=2', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png?v=2', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-96x96.png?v=2', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon-192x192.png?v=2', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.svg?v=2', type: 'image/svg+xml' }
     ],
-    shortcut: '/favicon.svg',
+    shortcut: '/favicon-32x32.png?v=2',
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-      { url: '/apple-touch-icon-120x120.png', sizes: '120x120', type: 'image/png' },
-      { url: '/apple-touch-icon-152x152.png', sizes: '152x152', type: 'image/png' }
+      { url: '/apple-touch-icon.png?v=2', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-touch-icon-120x120.png?v=2', sizes: '120x120', type: 'image/png' },
+      { url: '/apple-touch-icon-152x152.png?v=2', sizes: '152x152', type: 'image/png' }
     ],
   },
   manifest: '/manifest.json',
@@ -210,11 +212,18 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        {/* Explicit favicon links for robust browser support */}
+        <link rel="icon" href="/favicon-32x32.png?v=2" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon-16x16.png?v=2" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" sizes="180x180" type="image/png" />
+
       </head>
       <body className="min-h-screen flex flex-col bg-background text-foreground font-sans">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-md focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[hsl(var(--primary))] focus:text-white focus:rounded-md focus:shadow-lg"
         >
           Skip to main content
         </a>

@@ -227,7 +227,7 @@ function SliderContent({ slide, isActive }: { slide: typeof heroSlides[0], isAct
         <div className="max-w-4xl">
           {/* Subtitle */}
           <div className="mb-4 sm:mb-6">
-            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-purple-600/90 text-white text-xs sm:text-sm font-semibold rounded-full backdrop-blur-sm">
+            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-[hsl(var(--primary))]/90 text-white text-xs sm:text-sm font-semibold rounded-full backdrop-blur-sm">
               {slide.subtitle}
             </span>
           </div>
@@ -245,7 +245,7 @@ function SliderContent({ slide, isActive }: { slide: typeof heroSlides[0], isAct
           {/* CTA Button */}
           <Link
             href={slide.link}
-            className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-sm sm:text-base"
+            className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-sm sm:text-base"
           >
             {slide.ctaText}
             <svg className="ml-2 w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

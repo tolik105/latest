@@ -30,7 +30,7 @@ export function ProfessionalFooter() {
             
             {/* Certifications */}
             <div className="flex flex-wrap gap-2 mb-6">
-              <Badge variant="outline" className="border-purple-400 text-purple-300">
+              <Badge variant="outline" className="border-[hsl(var(--primary))]/50 text-[hsl(var(--primary))]/60">
                 ISO 27001
               </Badge>
               <Badge variant="outline" className="border-green-400 text-green-300">
@@ -43,7 +43,7 @@ export function ProfessionalFooter() {
 
             {/* Social Links */}
             <div className="flex gap-4">
-              <Button size="sm" variant="ghost" className="p-2 h-auto text-gray-400 hover:text-white hover:bg-purple-600">
+              <Button size="sm" variant="ghost" className="p-2 h-auto text-gray-400 hover:text-white hover:bg-[hsl(var(--primary))]">
                 <Linkedin className="w-5 h-5" />
               </Button>
               <Button size="sm" variant="ghost" className="p-2 h-auto text-gray-400 hover:text-white hover:bg-blue-600">
@@ -159,7 +159,7 @@ export function ProfessionalFooter() {
 
             {/* CTA */}
             <div className="mt-8">
-              <Button className="bg-purple-600 hover:bg-purple-700 text-white w-full">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full">
                 Get Free Consultation
               </Button>
             </div>

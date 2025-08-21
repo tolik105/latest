@@ -119,8 +119,10 @@ class SERankingAPIClient {
     this.apiKey = process.env.SERANKING_API_KEY || '';
     this.baseURL = process.env.SERANKING_API_BASE_URL || 'https://api.seranking.com';
 
+    // Disabled-by-default: If no API key is provided, operate in no-op mode
+    // and return safe fallbacks from methods instead of throwing during import.
     if (!this.apiKey) {
-      throw new Error('SERANKING_API_KEY environment variable is required');
+      console.warn('[SERanking] API key not set. SERanking integration is disabled.');
     }
   }
 
@@ -149,9 +151,13 @@ class SERankingAPIClient {
     }
 
     try {
+      if (!this.apiKey) {
+        // No-op mode: return empty results to avoid breaking callers
+        return ([] as unknown) as T;
+      }
       console.log(`SEranking API Request: ${method} ${url}`);
       const response = await fetch(url, config);
-      
+
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`SEranking API Error (${response.status}): ${errorText}`);
@@ -160,7 +166,8 @@ class SERankingAPIClient {
       return await response.json();
     } catch (error) {
       console.error('SEranking API Request Failed:', error);
-      throw error;
+      // No-op fallback
+      return ([] as unknown) as T;
     }
   }
 

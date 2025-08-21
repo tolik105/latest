@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDownIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import { ServiceProcessCard } from "@/components/service-process-card"
-import { useTranslation } from "react-i18next"
 import { cn } from "@/lib/utils"
 
 function SpotlightLogoCloud() {
@@ -129,7 +128,7 @@ const AmbientColor = () => {
   );
 };
 
-const FAQItem = ({
+const MobileFriendlyFAQItem = ({
   question,
   answer,
   setOpen,
@@ -144,7 +143,7 @@ const FAQItem = ({
 
   return (
     <div
-      className="cursor-pointer py-4"
+      className="cursor-pointer py-3 sm:py-4"
       onClick={() => {
         if (isOpen) {
           setOpen(null);
@@ -154,10 +153,10 @@ const FAQItem = ({
       }}
     >
       <div className="flex items-start">
-        <div className="relative mr-4 mt-1 h-6 w-6 flex-shrink-0">
+        <div className="relative mr-3 sm:mr-4 mt-1 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0">
           <svg
             className={cn(
-              "absolute inset-0 h-6 w-6 transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-full w-full transform text-[#20B2AA] transition-all duration-200",
               isOpen && "rotate-90 scale-0",
             )}
             fill="none"
@@ -168,7 +167,7 @@ const FAQItem = ({
           </svg>
           <svg
             className={cn(
-              "absolute inset-0 h-6 w-6 rotate-90 scale-0 transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-full w-full rotate-90 scale-0 transform text-[#20B2AA] transition-all duration-200",
               isOpen && "rotate-0 scale-100",
             )}
             fill="none"
@@ -178,8 +177,8 @@ const FAQItem = ({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 12H6" />
           </svg>
         </div>
-        <div>
-          <h3 className="text-lg font-medium text-neutral-700 dark:text-neutral-200">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-base sm:text-lg font-medium text-neutral-700 dark:text-neutral-200 leading-tight">
             {question}
           </h3>
           <AnimatePresence mode="wait">
@@ -189,9 +188,9 @@ const FAQItem = ({
                 animate={{ height: "auto" }}
                 exit={{ height: 0 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="overflow-hidden text-neutral-500 dark:text-neutral-400"
+                className="overflow-hidden text-neutral-500 dark:text-neutral-400 mt-2 sm:mt-3"
               >
-                <p>{answer}</p>
+                <p className="text-sm sm:text-base leading-relaxed">{answer}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -202,40 +201,7 @@ const FAQItem = ({
 };
 
 export default function ITManagedServicesClient() {
-  const { t } = useTranslation('common')
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
   const [openFaq, setOpenFaq] = useState<string | null>(null)
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
-
-  const faqItems = [
-    {
-      question: "マネージドITサービスには何が含まれますか？",
-      answer: "24時間365日ネットワーク監視、無制限ヘルプデスクサポート、予防的保守、セキュリティ管理、バックアップ・災害復旧、戦略的IT計画、必要に応じたオンサイトサポートなど、包括的なサービスをご提供します。"
-    },
-    {
-      question: "ITの問題への対応時間はどのくらいですか？",
-      answer: "重大な問題は30分以内、標準のご依頼は4時間以内に解決します。24時間365日のヘルプデスクにより、電話・メール・チャットですぐにご対応いたします。"
-    },
-    {
-      question: "バイリンガル対応は可能ですか？",
-      answer: "はい、英語と日本語でのバイリンガルサポートを提供し、貴社の組織内のすべての関係者との円滑なコミュニケーションを実現します。"
-    },
-    {
-      question: "既存のITインフラにも対応できますか？",
-      answer: "もちろんです。現状のインフラを評価した上で、完全管理または現在のITチームを補完する形でシームレスにサービスを統合します。"
-    },
-    {
-      question: "マネージドITサービスによる一般的なコスト削減効果はどの程度ですか？",
-      answer: "多くのお客様が、予防的な保守、ダウンタイムの削減、予測可能な月額料金、緊急修理コストの削減により、ITコストを30%〜50%削減しています。"
-    },
-    {
-      question: "データセキュリティとコンプライアンスはどのように確保していますか？",
-      answer: "エンドポイント保護、ネットワーク監視、定期的なセキュリティ評価、ISO 27001やGDPRなどの基準に対応したコンプライアンス管理を含む多層的なセキュリティ対策を実施しています。"
-    }
-  ]
 
   return (
     <>
@@ -251,22 +217,7 @@ export default function ITManagedServicesClient() {
       </Script>
 
       <div className="bg-white font-sans">
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="bg-gray-50 py-3">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ol className="flex items-center space-x-2 text-sm">
-              <li>
-                <Link href="/ja" className="text-gray-500 hover:text-gray-700">ホーム</Link>
-              </li>
-              <li className="text-gray-400">/</li>
-              <li>
-                <Link href="/ja/services" className="text-gray-500 hover:text-gray-700">サービス</Link>
-              </li>
-              <li className="text-gray-400">/</li>
-              <li className="text-gray-900 font-medium">ITマネージドサービス</li>
-            </ol>
-          </div>
-        </nav>
+        {/* Breadcrumb removed */}
 
         {/* Hero Section - Flexible & Optimized */}
         <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
@@ -664,82 +615,6 @@ export default function ITManagedServicesClient() {
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <section className="py-16 sm:py-20 lg:py-24 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-12 sm:mb-16"
-            >
-              {/* Violet accent line */}
-              <div className="w-12 h-1 bg-violet-600 mx-auto mb-6"></div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4 tracking-tight leading-tight">
-                よくあるご質問
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                マネージドITサービスに関するよくある質問にお答えします。
-              </p>
-            </motion.div>
-
-            <div className="space-y-3">
-              {faqItems.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group"
-                >
-                  <div className="bg-white border border-gray-200 hover:border-violet-600 transition-all duration-300 hover:shadow-md rounded-lg">
-                    <button
-                      onClick={() => toggleFAQ(index)}
-                      className="w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2"
-                      aria-expanded={openIndex === index}
-                      aria-controls={`faq-answer-${index}`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-medium text-gray-900 pr-4 leading-tight">
-                          {faq.question}
-                        </h3>
-                        <motion.div
-                          animate={{ rotate: openIndex === index ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="flex-shrink-0"
-                        >
-                          <ChevronDownIcon className="w-5 h-5 text-violet-600" />
-                        </motion.div>
-                      </div>
-                    </button>
-
-                    <AnimatePresence>
-                      {openIndex === index && (
-                        <motion.div
-                          id={`faq-answer-${index}`}
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-5">
-                            <div className="w-12 h-1 bg-violet-600 mb-3"></div>
-                            <p className="text-base text-gray-600 leading-relaxed">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* FAQ Section */}
         <div className="bg-white py-16 sm:py-24">
@@ -748,37 +623,37 @@ export default function ITManagedServicesClient() {
               よくある質問
             </h2>
             <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
-              <FAQItem
+              <MobileFriendlyFAQItem
                 question="マネージドITサービスには何が含まれますか？"
                 answer="24時間365日ネットワーク監視、無制限ヘルプデスクサポート、予防的保守、セキュリティ管理、バックアップ・災害復旧、戦略的IT計画、必要に応じたオンサイトサポートなど、包括的なサービスをご提供します。"
                 open={openFaq}
                 setOpen={setOpenFaq}
               />
-              <FAQItem
+              <MobileFriendlyFAQItem
                 question="ITの問題への対応時間はどのくらいですか？"
                 answer="重大な問題は30分以内、標準のご依頼は4時間以内に解決します。24時間365日のヘルプデスクにより、電話・メール・チャットですぐにご対応いたします。"
                 open={openFaq}
                 setOpen={setOpenFaq}
               />
-              <FAQItem
+              <MobileFriendlyFAQItem
                 question="バイリンガル対応は可能ですか？"
                 answer="はい、英語と日本語でのバイリンガルサポートを提供し、貴社の組織内のすべての関係者との円滑なコミュニケーションを実現します。"
                 open={openFaq}
                 setOpen={setOpenFaq}
               />
-              <FAQItem
+              <MobileFriendlyFAQItem
                 question="既存のITインフラにも対応できますか？"
                 answer="もちろんです。現状のインフラを評価した上で、完全管理または現在のITチームを補完する形でシームレスにサービスを統合します。"
                 open={openFaq}
                 setOpen={setOpenFaq}
               />
-              <FAQItem
+              <MobileFriendlyFAQItem
                 question="マネージドITサービスによる一般的なコスト削減効果はどの程度ですか？"
                 answer="多くのお客様が、予防的な保守、ダウンタイムの削減、予測可能な月額料金、緊急修理コストの削減により、ITコストを30%〜50%削減しています。"
                 open={openFaq}
                 setOpen={setOpenFaq}
               />
-              <FAQItem
+              <MobileFriendlyFAQItem
                 question="データセキュリティとコンプライアンスはどのように確保していますか？"
                 answer="エンドポイント保護、ネットワーク監視、定期的なセキュリティ評価、ISO 27001やGDPRなどの基準に対応したコンプライアンス管理を含む多層的なセキュリティ対策を実施しています。"
                 open={openFaq}

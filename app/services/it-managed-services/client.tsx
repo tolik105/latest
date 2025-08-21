@@ -1,14 +1,108 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import Script from "next/script"
 import Link from "next/link"
-import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDownIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import { ServiceProcessCard } from "@/components/service-process-card"
 import { cn } from "@/lib/utils"
+function ManagedServicesHero() {
+  return (
+    <div className="w-full bg-white" aria-labelledby="hero-heading" role="banner" aria-label="IT Managed Services hero">
+      {/* Hero Section with Diagonal Design */}
+      <div className="relative min-h-[64vh] sm:min-h-[72vh] lg:min-h-[84vh] overflow-hidden">
+        {/* Grid Container */}
+        <div className="mx-auto max-w-[1280px] h-full grid grid-cols-12 gap-6 px-6 pt-32 sm:pt-36 md:pt-32">
+
+          {/* Breadcrumbs */}
+          <div className="col-span-12 sm:col-start-2 sm:col-end-8 pt-3 z-20">
+            <nav className="flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap">
+              <span className="text-[#6B7280] hover:text-[#20B2AA] transition-colors cursor-pointer">
+                Services
+              </span>
+              <span className="text-[#6B7280]">›</span>
+              <span className="text-[#20B2AA] font-semibold">IT Managed Services</span>
+            </nav>
+          </div>
+
+          {/* Main Heading */}
+          <div className="col-span-12 sm:col-start-2 sm:col-end-11 row-start-2 z-10">
+            <h1
+              id="hero-heading"
+              className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[64px] xl:text-[72px] font-extrabold text-[#111111] leading-[0.95] tracking-tight mb-2"
+              style={{ letterSpacing: '-0.02em' }}
+            >
+              IT Managed Services<br />
+              Solutions
+            </h1>
+          </div>
+
+
+
+        </div>
+
+        {/* Diagonal Media Band - Abstract Ribbons */}
+        <div
+          className="absolute inset-0 z-0 diagonal-clip"
+          style={{
+            // Slightly larger image band on bottom; still keeps text untouched
+            clipPath: 'polygon(0% 86%, 100% 22%, 100% 100%, 0% 100%)',
+          }}
+        >
+          <div className="absolute inset-0">
+            <img
+              src="/images/banners/it-managed-services/banner.webp"
+              alt="Burgundy/purple metallic ribbons on a dark background"
+              className="w-full h-full object-cover"
+              style={{
+                objectPosition: 'center bottom'
+              }}
+              fetchPriority="high"
+            />
+
+          </div>
+        </div>
+
+        {/* Responsive adjustments so the diagonal stays below the headline on all screens */}
+        <style jsx>{`
+          /* Large desktops fallback handled by inline style */
+          @media (max-width: 1280px) {
+            .diagonal-clip {
+              clip-path: polygon(0% 88%, 100% 26%, 100% 100%, 0% 100%) !important;
+            }
+          }
+          @media (max-width: 1024px) {
+            .diagonal-clip {
+              clip-path: polygon(0% 90%, 100% 32%, 100% 100%, 0% 100%) !important;
+            }
+          }
+          @media (max-width: 768px) {
+            .diagonal-clip {
+              clip-path: polygon(0% 92%, 100% 38%, 100% 100%, 0% 100%) !important;
+            }
+          }
+          @media (max-width: 640px) {
+            .diagonal-clip {
+              clip-path: polygon(0% 93%, 100% 42%, 100% 100%, 0% 100%) !important;
+            }
+          }
+          @media (max-width: 480px) {
+            .diagonal-clip {
+              clip-path: polygon(0% 94%, 100% 46%, 100% 100%, 0% 100%) !important;
+            }
+          }
+          @media (max-width: 380px) {
+            .diagonal-clip {
+              clip-path: polygon(0% 95%, 100% 50%, 100% 100%, 0% 100%) !important;
+            }
+          }
+        `}</style>
+      </div>
+    </div>
+  )
+}
 
 function SpotlightLogoCloud() {
   const logos = [
@@ -217,63 +311,11 @@ export default function ITManagedServicesClient() {
       </Script>
 
       <div className="bg-white font-sans">
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="bg-gray-50 py-3">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ol className="flex items-center space-x-2 text-sm">
-              <li>
-                <Link href="/" className="text-gray-500 hover:text-gray-700">Home</Link>
-              </li>
-              <li className="text-gray-400">/</li>
-              <li>
-                <Link href="/services" className="text-gray-500 hover:text-gray-700">Services</Link>
-              </li>
-              <li className="text-gray-400">/</li>
-              <li className="text-gray-900 font-medium">IT Managed Services</li>
-            </ol>
-          </div>
-        </nav>
+        {/* Breadcrumb removed */}
 
-        {/* Hero Section - Flexible & Optimized */}
+        {/* Hero Section (IT Managed Services) */}
         <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
-          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
-            
-            {/* Background Image with Diagonal Cut */}
-            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
-              <div className="relative h-full overflow-hidden">
-                <img
-                  src="/images/banners/it-managed-services/banner.webp"
-                  alt="IT Managed Services Team"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                {/* Clean diagonal overlay */}
-                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <polygon points="0,0 25,0 0,100" fill="white" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="relative z-10 w-full">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="lg:w-1/2">
-                  <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                    IT Managed<br />
-                    Services<br />
-                    Solutions
-                  </h1>
-                  <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
-                  >
-                    Get Managed IT Support
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ManagedServicesHero />
         </section>
 
         {/* 24/7 Network Monitoring Section - EireSystems Style */}
@@ -526,10 +568,10 @@ export default function ITManagedServicesClient() {
         </div>
 
         {/* Strategic IT Planning Section - EireSystems Mint Green Background */}
-        <div className="bg-[#F0F8F5] py-20">
+        <div className="bg-[#F0F8F5] py-12 sm:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
                 Strategic IT Planning & Governance
               </h2>
               <p className="text-lg text-[#666666] max-w-4xl mx-auto leading-relaxed">
@@ -581,12 +623,12 @@ export default function ITManagedServicesClient() {
         </div>
 
         {/* Your IT Partner Section - EireSystems Style */}
-        <div className="bg-white py-20">
+        <div className="bg-white py-12 sm:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               {/* Left Content */}
               <div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
                   Your Trusted IT Partner
                 </h2>
                 <p className="text-lg text-[#666666] mb-8 leading-relaxed">
@@ -674,15 +716,15 @@ export default function ITManagedServicesClient() {
         </div>
 
         {/* CTA Section - EireSystems Style */}
-        <div className="bg-[#20B2AA] py-20">
+        <div className="bg-[#20B2AA] py-12 sm:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               Ready to Transform Your IT Operations?
             </h2>
 
             <Link
               href="/contact"
-              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="block sm:inline-flex w-full sm:w-auto justify-center items-center px-8 sm:px-12 py-3 sm:py-4 bg-white text-[#20B2AA] font-bold text-lg sm:text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               Schedule Consultation
               <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

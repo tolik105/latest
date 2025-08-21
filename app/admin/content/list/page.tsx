@@ -68,12 +68,7 @@ const adminMenuItems = [
     href: "/admin",
     badge: null
   },
-  {
-    title: "SEO Management",
-    icon: Search,
-    href: "/admin/seo",
-    badge: "Active"
-  },
+
   {
     title: "Content Management",
     icon: FileText,

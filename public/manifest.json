@@ -17,11 +17,6 @@
       "type": "image/png",
       "purpose": "any maskable"
     },
-    {
-      "src": "/favicon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    // Add a 512x512 PNG later for better PWA install icon support
   ]
 }

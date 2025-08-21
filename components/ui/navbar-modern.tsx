@@ -62,7 +62,7 @@ const DesktopNav = ({ navItems }: any) => {
           </MenuItem>
         </Menu>
       </div>
-      <button className="hidden rounded-full bg-purple-600 px-8 py-2 text-sm font-bold text-white shadow-[0px_-2px_0px_0px_rgba(255,255,255,0.4)_inset] md:block hover:bg-purple-700 transition-colors">
+     <button className="hidden rounded-full bg-primary px-8 py-2 text-sm font-bold text-primary-foreground shadow-[0px_-2px_0px_0px_rgba(255,255,255,0.4)_inset] md:block hover:bg-primary/90 transition-colors">
         Book a call
       </button>
     </motion.div>
@@ -118,7 +118,7 @@ const MobileNav = ({ navItems }: any) => {
                   )}
                 </div>
               ))}
-              <button className="w-full rounded-lg bg-purple-600 px-8 py-2 font-medium text-white shadow-[0px_-2px_0px_0px_rgba(255,255,255,0.4)_inset] hover:bg-purple-700 transition-colors">
+             <button className="w-full rounded-lg bg-primary px-8 py-2 font-medium text-primary-foreground shadow-[0px_-2px_0px_0px_rgba(255,255,255,0.4)_inset] hover:bg-primary/90 transition-colors">
                 Book a call
               </button>
             </motion.div>
@@ -261,7 +261,7 @@ export const HoveredLink = ({ children, ...rest }: any) => {
   return (
     <Link
       {...rest}
-      className="text-neutral-700 hover:text-purple-600 dark:text-neutral-200 transition-colors"
+     className="text-neutral-700 hover:text-[hsl(var(--primary))] dark:text-neutral-200 transition-colors"
     >
       {children}
     </Link>

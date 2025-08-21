@@ -7,7 +7,7 @@ export const blogPostsEN = {
     title: "The Future of IT Infrastructure in Japan 2025 | AKRIN IT",
     metaDescription: "Discover Japan's IT infrastructure transformation trends for 2025. Expert insights on cloud adoption, edge computing, 5G integration, and digital modernization strategies for Japanese businesses.",
     excerpt: "Japan's IT infrastructure landscape is undergoing a massive transformation. As businesses adapt to the digital age, the demand for robust, scalable, and secure IT solutions has never been higher.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&h=630&q=80",
+    image: "/blog-images/future-of-infrastructure.webp",
     content: `
       <h1>The Future of IT Infrastructure in Japan</h1>
       <p>Japan's IT infrastructure landscape is undergoing a significant transformation. As businesses adapt to the digital age, the demand for robust, scalable, and secure IT solutions has never been higher. This article explores the key trends shaping the future of IT infrastructure in Japan and how organizations can prepare for what's ahead.</p>
@@ -91,7 +91,7 @@ export const blogPostsEN = {
     title: "Cybersecurity Best Practices for 2025 | AKRIN IT",
     metaDescription: "Navigate 2025's cybersecurity landscape in Japan. Learn essential practices, AI-powered threat detection, zero trust architecture, and compliance strategies for business protection.",
     excerpt: "As cyber threats evolve rapidly, 2025 brings new challenges requiring advanced security strategies. Discover the latest cybersecurity best practices to protect your Japanese business.",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&h=630&q=80",
+    image: "/blog-images/cyber-security.webp",
     content: `
       <h1>Cybersecurity Best Practices for 2025 | AKRIN IT</h1>
       <p>As we navigate through 2025, the cybersecurity landscape in Japan is undergoing dramatic changes. With the recent passage of the Active Cyber Defense Bill and an estimated market value of USD 2.27 billion, Japanese businesses face both unprecedented challenges and opportunities in protecting their digital assets.</p>
@@ -215,7 +215,7 @@ export const blogPostsEN = {
     title: "Cloud Migration Success Stories | AKRIN IT",
     metaDescription: "Discover real cloud migration success stories from Japanese businesses. Learn proven strategies, cost savings, transformation results, and best practices from AKRIN clients.",
     excerpt: "While global cloud adoption soars, Japan's unique business culture presents both challenges and opportunities. Explore real success stories from Japanese organizations that have successfully migrated to the cloud.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&h=630&q=80",
+    image: "/blog-images/Cloud-Migration-Success.webp",
     content: `
       <h1>Cloud Migration Success Stories | AKRIN IT</h1>
       <p>The global cloud market is reaching USD 675.4 billion in 2024, yet Japan's cloud adoption remains at just 4% of IT spending compared to 12% in North America. However, the tide is turning as Japanese businesses discover the transformative power of cloud technology. Here are real success stories from organizations that have successfully navigated their cloud journey.</p>
@@ -428,7 +428,7 @@ export const blogPostsEN = {
     slug: "ai-transforming-it-support",
     title: "How AI is Transforming IT Support Services in Japan 2025",
     metaDescription: "Discover how AI revolutionizes IT support services in Japan. Learn about predictive analytics, automated remediation, AIOps, and real-world implementations. Expert insights from AKRIN's AI specialists on the future of technology services.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&h=630&q=80",
+    image: "/blog-images/ai-transform.webp",
     excerpt: "Japan is positioning itself as an AI powerhouse with over 20,000 Pepper robots deployed globally. Discover how AI is transforming IT support through predictive analytics, automated remediation, and intelligent ticket management.",
     content: `
       <h1>How AI is Transforming IT Support Services in Japan 2025</h1>
@@ -1317,7 +1317,7 @@ export const blogPostsEN = {
     metaDescription: "Protect your business from AI-enhanced phishing attacks. Learn proven strategies, compliance requirements, and implementation roadmaps for Japanese enterprises.",
     focusKeywords: ["phishing prevention", "email security Japan", "cybersecurity business", "APPI compliance", "phishing attacks 2025"],
     excerpt: "Phishing attacks have become increasingly sophisticated, targeting Japanese businesses with unprecedented precision. Learn how to build comprehensive defenses against these evolving threats.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&h=630&q=80",
+    image: "/blog-images/phishing.webp",
     content: `
       <h1>Phishing Prevention Guide 2025 | AKRIN IT Security</h1>
       <p>Phishing attacks remain the most common and damaging entry point for cyber threats globally — and Japan is no exception. In 2025, attackers are using AI-generated emails, spoofed websites, and deep social engineering tactics to bypass traditional filters and trick employees into clicking, downloading, or submitting sensitive data.</p>
@@ -1485,6 +1485,7 @@ export const blogPostsJA = {
     id: 1,
     slug: "future-of-it-infrastructure-japan",
     title: "日本におけるITインフラストラクチャの未来",
+    image: "/blog-images/future-of-infrastructure.webp",
     content: `
       <p>日本のITインフラストラクチャの風景は大きな変革を遂げています。企業がデジタル時代に適応するにつれ、堅牢でスケーラブルで安全なITソリューションの需要がかつてないほど高まっています。この記事では、日本のITインフラストラクチャの未来を形作る主要なトレンドと、組織が将来に備える方法を探ります。</p>
 
@@ -1565,6 +1566,7 @@ export const blogPostsJA = {
     id: 2,
     slug: "cybersecurity-best-practices-2025",
     title: "2025年のサイバーセキュリティベストプラクティス",
+    image: "/blog-images/cyber-security.webp",
     excerpt: "2025年を迎えた今、日本のサイバーセキュリティ情勢は劇的な変化を遂げています。アクティブサイバー防衛法案の可決と推定22.7億米ドルの市場規模を背景に、日本企業はデジタル資産を保護する上で前例のない課題と機会の両方に直面しています。",
     content: `<p>2025年を迎えた今、日本のサイバーセキュリティ情勢は劇的な変化を遂げています。アクティブサイバー防衛法案の可決と推定22.7億米ドルの市場規模を背景に、日本企業はデジタル資産を保護する上で前例のない課題と機会の両方に直面しています。</p>
 
@@ -1611,7 +1613,7 @@ export const blogPostsJA = {
     slug: "cloud-migration-success-stories",
     title: "クライアントのクラウド移行成功事例",
     excerpt: "世界のクラウド市場は2024年に6,754億米ドルに達していますが、日本のクラウド導入率はIT支出のわずか4％にとどまり、北米の12％と比較して低い水準です。しかしながら、日本企業がクラウド技術の変革力を発見するにつれ、潮流は変わりつつあります。",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&h=630&q=80",
+    image: "/blog-images/Cloud-Migration-Success.webp",
     content: `<p>世界のクラウド市場は2024年に6,754億米ドルに達していますが、日本のクラウド導入率はIT支出のわずか4％にとどまり、北米の12％と比較して低い水準です。しかしながら、日本企業がクラウド技術の変革力を発見するにつれ、潮流は変わりつつあります。</p>
 
       <h2>成功事例1：みんなの銀行 - 日本初のデジタル専業銀行</h2>
@@ -1647,14 +1649,18 @@ export const blogPostsJA = {
     readTime: "6 分で読了",
     category: "クラウドソリューション",
     tags: ["クラウド", "移行", "ケーススタディ"],
-    relatedPosts: []
+    relatedPosts: [
+      { slug: "ai-transforming-it-support", title: "AIがITサポートサービスを変革する方法" },
+      { slug: "future-of-it-infrastructure-japan", title: "日本のITインフラストラクチャの未来" },
+      { slug: "cybersecurity-best-practices-2025", title: "2025年のサイバーセキュリティベストプラクティス" }
+    ]
   },
   "ai-transforming-it-support": {
     id: 4,
     slug: "ai-transforming-it-support",
     title: "AIがITサポートサービスを変革する方法",
     excerpt: "日本はAI大国としての地位を確立しつつあり、世界中で2万台以上のPepperロボットが配備され、JALのような大手企業は数万人の従業員向けに全社規模のAIプラットフォームを導入しています。",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&h=630&q=80",
+    image: "/blog-images/ai-transform.webp",
     content: `<p>日本はAI大国としての地位を確立しつつあり、世界中で2万台以上のPepperロボットが配備され、JALのような大手企業は数万人の従業員向けに全社規模のAIプラットフォームを導入しています。人工知能を通じたITサポートの変革は、単なるトレンドではなく、技術サービスの提供と体験のあり方における根本的なシフトです。</p>
 
       <h2>ITサポートにおけるAI革命</h2>
@@ -1685,7 +1691,11 @@ export const blogPostsJA = {
     category: "イノベーション",
     tags: ["AI", "ITサポート", "イノベーション"],
     featured: true,
-    relatedPosts: []
+    relatedPosts: [
+      { slug: "cybersecurity-best-practices-2025", title: "2025年のサイバーセキュリティベストプラクティス" },
+      { slug: "future-of-it-infrastructure-japan", title: "日本のITインフラストラクチャの未来" },
+      { slug: "remote-work-security-guide", title: "リモートワークセキュリティ：包括的なガイド" }
+    ]
   },
   "remote-work-security-guide": {
     id: 5,
@@ -1721,7 +1731,11 @@ export const blogPostsJA = {
     readTime: "10 分で読了",
     category: "セキュリティ",
     tags: ["リモートワーク", "セキュリティ", "ガイド"],
-    relatedPosts: []
+    relatedPosts: [
+      { slug: "cybersecurity-best-practices-2025", title: "2025年のサイバーセキュリティベストプラクティス" },
+      { slug: "future-of-it-infrastructure-japan", title: "日本のITインフラストラクチャの未来" },
+      { slug: "ai-transforming-it-support", title: "AIがITサポートサービスを変革する方法" }
+    ]
   },
   "5g-impact-business-operations": {
     id: 6,
@@ -1759,7 +1773,11 @@ export const blogPostsJA = {
     readTime: "6 分で読了",
     category: "技術トレンド",
     tags: ["5G", "テクノロジー", "ビジネス"],
-    relatedPosts: []
+    relatedPosts: [
+      { slug: "future-of-it-infrastructure-japan", title: "日本のITインフラストラクチャの未来" },
+      { slug: "cloud-migration-success-stories", title: "クライアントのクラウド移行成功事例" },
+      { slug: "ai-transforming-it-support", title: "AIがITサポートサービスを変革する方法" }
+    ]
   },
   "phishing-prevention-guide-2025": {
     id: 7,
@@ -1767,7 +1785,7 @@ export const blogPostsJA = {
     title: "2025年のフィッシングメール防止：日本企業向け完全ガイド",
     metaTitle: "フィッシングメール防止 2025年版：日本企業向け完全ガイド | AKRIN",
     metaDescription: "AI強化型フィッシング攻撃からビジネスを保護。実証済み戦略、コンプライアンス要件（APPI、FSA）、日本企業向け実装ロードマップ。AKRINのサイバーセキュリティ専門ガイダンス。",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&h=630&q=80",
+    image: "/blog-images/phishing.webp",
     focusKeywords: ["フィッシング防止", "メールセキュリティ 日本", "サイバーセキュリティ ビジネス", "APPI コンプライアンス", "フィッシング攻撃 2025"],
     content: `
       <p>フィッシング攻撃は、世界的にサイバー脅威の最も一般的で損害の大きい侵入経路であり続けており、日本も例外ではありません。2025年、攻撃者はAI生成メール、偽装ウェブサイト、高度なソーシャルエンジニアリング戦術を使用して、従来のフィルターを回避し、従業員をクリック、ダウンロード、または機密データの送信に誘導しています。</p>

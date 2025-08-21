@@ -4,6 +4,8 @@ import React from "react"
 import Script from "next/script"
 import Link from "next/link"
 import { PremiumCTA } from "@/components/ui/premium-cta"
+import { HeroDiagonal } from "@/components/hero-diagonal"
+
 
 export default function CybersecurityJaClient() {
 
@@ -43,48 +45,22 @@ export default function CybersecurityJaClient() {
       `}</style>
 
       <div className="bg-white font-sans japanese-typography">
-        {/* Hero Section - Flexible & Optimized */}
-        <div className="relative bg-white overflow-hidden">
-          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
-            
-            {/* Background Image with Diagonal Cut */}
-            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
-              <div className="relative h-full overflow-hidden">
-                <img
-                  src="/images/banners/cybersecurity/banner1.webp"
-                  alt="サイバーセキュリティソリューション"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                {/* Clean diagonal overlay */}
-                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <polygon points="0,0 40,0 0,100" fill="white" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="relative z-10 w-full">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="lg:w-1/2">
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.2] mb-6" style={{ letterSpacing: '0.02em', lineHeight: '1.3' }}>
-                    サイバーセキュリティ<br />
-                    ソリューション＆<br />
-                    プロテクション
-                  </h1>
-                  <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-8 leading-[1.7] max-w-lg" style={{ letterSpacing: '0.05em', lineHeight: '1.8' }}>
-                    24時間365日のセキュリティ監視、脅威検知、インシデント対応、コンプライアンス管理。進化するサイバー脅威からエンタープライズグレードのセキュリティでビジネスを保護します。
-                  </p>
-                  <Link
-                    href="/ja/contact"
-                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
-                  >
-                    ビジネスをセキュリティ強化
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* 標準化ヒーロー（HeroDiagonal） */}
+        <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
+          <HeroDiagonal
+            title={<>
+              サイバーセキュリティ<br />
+              ソリューション＆<br />
+              プロテクション
+            </>}
+            breadcrumbs={[
+              { label: 'Services', href: '/ja/services' },
+              { label: 'Cybersecurity' }
+            ]}
+            imageSrc="/images/banners/cybersecurity/banner1.webp"
+            imageAlt="サイバーセキュリティソリューション"
+          />
+        </section>
 
         {/* Security Assessment Section - EireSystems Style */}
         <div className="bg-[#F8F9FA] py-12 sm:py-16 lg:py-20">
@@ -393,6 +369,32 @@ export default function CybersecurityJaClient() {
           description="包括的なサイバーセキュリティでAKRINを信頼する数百社の企業に加わりましょう。専門サポートと24時間365日の監視によるエンタープライズグレードの保護を手に入れましょう。"
           buttonText="セキュリティ評価を開始"
           buttonHref="/ja/contact"
+        />
+
+        {/* JSON-LD Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "name": "サイバーセキュリティ＆脅威対策",
+              "alternateName": "Cybersecurity & Threat Protection",
+              "serviceType": "サイバーセキュリティ・情報セキュリティサービス",
+              "provider": {
+                "@type": "Organization",
+                "name": "AKRIN株式会社",
+                "url": "https://akrin.jp"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Japan"
+              },
+              "availableLanguage": ["ja", "en"],
+              "url": "https://akrin.jp/ja/services/cybersecurity",
+              "description": "24時間365日のセキュリティ監視、脅威検知、インシデント対応。進化するサイバー脅威からエンタープライズグレードのセキュリティソリューションでビジネスを保護します。"
+            })
+          }}
         />
       </div>
     </div>

@@ -8,11 +8,12 @@
     "home": "Home",
     "services": "Services",
     "aboutUs": "About Us",
+    "caseStudies": "Case Studies",
     "blog": "Blog",
     "contact": "Contact",
     "bookConsultation": "Book Consultation",
     "allServices": "All Services",
-    "itsmDashboard": "ITSM Dashboard",
+
     "managedItSupport": "Managed IT Support",
     "itConsultingProjectManagement": "IT Consulting & Project Management",
     "cloudInfrastructure": "Cloud Infrastructure Solutions",
@@ -28,15 +29,33 @@
     "itConsultingStrategy": "IT Consulting & Strategy",
     "projectManagement": "Project Management"
   },
+  "navExtra": {},
   "hero": {
-    "title": "Comprehensive IT Solutions Driving Business Innovation Across Japan and Beyond",
+    "title": "What's the next bold step for your IT?",
     "exploreServices": "Explore Services",
     "requestConsultation": "Request Consultation",
-    "subtitle": "Your trusted IT partner in Japan and globally",
+    "subtitle": "Strategic consulting, end-to-end project management, and always-on managed services-secured 24/7.",
+    "cta": "Get started →",
     "support247": "24/7 Global Support",
     "enterpriseSecurity": "Enterprise-Grade Security",
     "certifiedProfessionals": "Certified Professionals",
     "tailoredSolutions": "Tailored IT Solutions"
+  },
+  "homepage": {
+    "industryExpertiseTitle": "Industry expertise that",
+    "industryExpertiseHighlight": "drives measurable results",
+    "industryExpertiseDescription": "With over 15 years of experience across diverse sectors, we understand the unique challenges and opportunities in your industry. Our solutions are tailored to meet regulatory requirements while driving innovation and growth.",
+    "trustedByLeadersTitle": "Trusted by industry leaders",
+    "trustedByLeadersDescription": "We partner with the world's leading technology companies to deliver best-in-class solutions.",
+    "readyToTransformTitle": "Ready to transform your IT infrastructure?",
+    "readyToTransformDescription": "Get expert consultation and discover how our solutions can drive your business forward with enterprise-grade reliability and startup agility.",
+    "scheduleConsultationButton": "Schedule Consultation",
+    "industryStats": {
+      "financialServices": "Financial Services",
+      "healthcare": "Healthcare & Life Sciences",
+      "manufacturing": "Manufacturing & Retail",
+      "technology": "Technology & Telecom"
+    }
   },
   "about": {
     "title": "About Akrin",
@@ -236,7 +255,9 @@
     "q7": {
       "question": "What certifications do your technicians have?",
       "answer": "Our team holds various industry certifications including Microsoft, Cisco, VMware, and security certifications. We continuously invest in training to stay current with technology trends."
-    }
+    },
+    "didntFindAnswer": "Didn’t find your answer?",
+    "stillHaveQuestions": "Still have questions? We're here to help."
   },
   "blog": {
     "title": "Akrin Tech Blog",
@@ -363,13 +384,15 @@
   "footer": {
     "description": "Leading IT solutions provider serving businesses in Japan and internationally with innovative technology services.",
     "quickLinks": "Quick Links",
+    "company": "Company",
     "contactInfo": "Contact Info",
     "newsletter": "Newsletter",
     "newsletterDesc": "Stay updated with the latest IT trends and updates.",
     "emailPlaceholder": "Enter your email",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "allRightsReserved": "All Rights Reserved"
+    "allRightsReserved": "All Rights Reserved",
+    "viewOnMap": "View on map"
   },
   "servicePages": {
     "managedServices": {

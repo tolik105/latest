@@ -13,7 +13,7 @@ interface PageSEOConfig {
   title: string;
   description: string;
   keywords: string[];
-  type: 'homepage' | 'service' | 'about' | 'contact' | 'blog' | 'itsm' | 'other';
+  type: 'homepage' | 'service' | 'about' | 'contact' | 'blog' | 'other';
   priority: number;
   changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   structuredDataType?: string;
@@ -104,16 +104,7 @@ export const AKRIN_SEO_CONFIG: GlobalSEOOptimization = {
       changeFrequency: 'daily',
       structuredDataType: 'Blog'
     },
-    {
-      path: '/itsm',
-      title: 'ITSM Dashboard - IT Service Management Solutions | AKRIN',
-      description: 'Advanced IT Service Management dashboard for monitoring, incident tracking, and service optimization. Professional ITSM solutions for enterprise clients.',
-      keywords: ['ITSM Japan', 'IT service management', 'incident tracking', 'service monitoring'],
-      type: 'itsm',
-      priority: 0.7,
-      changeFrequency: 'weekly',
-      structuredDataType: 'SoftwareApplication'
-    }
+
   ],
   globalKeywords: [
     'AKRIN',

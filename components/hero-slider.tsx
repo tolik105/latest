@@ -74,7 +74,7 @@ export function HeroSlider() {
                   sizes="100vw"
                 />
                 {/* Professional Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-purple-900/30 to-black/60"></div>
+               <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-[hsl(var(--primary))]/30 to-black/60"></div>
               </div>
 
               {/* Content */}

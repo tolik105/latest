@@ -162,7 +162,7 @@ export function NavbarMcKinsey() {
               <nav className="hidden lg:flex items-center space-x-8 xl:space-x-10">
                 <Link
                   href={langPrefix || "/"}
-                  className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-purple-600 hover:after:w-full after:transition-all after:duration-300"
+                 className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[hsl(var(--primary))] hover:after:w-full after:transition-all after:duration-300"
                 >
                   {t('nav.home')}
                 </Link>
@@ -173,7 +173,7 @@ export function NavbarMcKinsey() {
                   onMouseEnter={() => handleMouseEnter('services')}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <button className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 flex items-center gap-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-purple-600 hover:after:w-full after:transition-all after:duration-300">
+                 <button className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 flex items-center gap-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[hsl(var(--primary))] hover:after:w-full after:transition-all after:duration-300">
                     {t('nav.services')}
                     <ChevronDown className="w-3.5 h-3.5" />
                   </button>
@@ -185,7 +185,7 @@ export function NavbarMcKinsey() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute top-full left-0 mt-0 w-[900px] bg-white shadow-xl border-t-2 border-purple-600"
+                       className="absolute top-full left-0 mt-0 w-[900px] bg-white shadow-xl border-t-2 border-[hsl(var(--primary))]"
                         onMouseEnter={() => handleMouseEnter('services')}
                         onMouseLeave={handleMouseLeave}
                       >
@@ -202,7 +202,7 @@ export function NavbarMcKinsey() {
                                     href={service.href}
                                     className="group block"
                                   >
-                                    <p className="text-[14px] font-medium text-gray-900 group-hover:text-purple-600 transition-colors duration-200 mb-1">
+                                   <p className="text-[14px] font-medium text-gray-900 group-hover:text-[hsl(var(--primary))] transition-colors duration-200 mb-1">
                                       {t(`nav.${service.key}`)}
                                     </p>
                                     <p className="text-[12px] text-gray-500 leading-relaxed">
@@ -217,7 +217,7 @@ export function NavbarMcKinsey() {
                         <div className="bg-gray-50 px-8 py-4 border-t border-gray-200">
                           <Link
                             href="/services"
-                            className="inline-flex items-center text-sm font-medium text-purple-600 hover:text-purple-700 transition-colors duration-200"
+                           className="inline-flex items-center text-sm font-medium text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-colors duration-200"
                           >
                             View all services
                             <ArrowRight className="ml-1 w-4 h-4" />
@@ -230,19 +230,19 @@ export function NavbarMcKinsey() {
 
                 <Link
                   href={`${langPrefix}/about`}
-                  className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-purple-600 hover:after:w-full after:transition-all after:duration-300"
+                 className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[hsl(var(--primary))] hover:after:w-full after:transition-all after:duration-300"
                 >
                   {t('nav.aboutUs')}
                 </Link>
                 <Link
                   href="/blog"
-                  className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-purple-600 hover:after:w-full after:transition-all after:duration-300"
+                 className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[hsl(var(--primary))] hover:after:w-full after:transition-all after:duration-300"
                 >
                   {t('nav.blog')}
                 </Link>
                 <Link
                   href="/contact"
-                  className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-purple-600 hover:after:w-full after:transition-all after:duration-300"
+                 className="text-gray-800 hover:text-gray-900 font-normal text-[14px] tracking-wide transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[hsl(var(--primary))] hover:after:w-full after:transition-all after:duration-300"
                 >
                   {t('nav.contact')}
                 </Link>
@@ -265,7 +265,7 @@ export function NavbarMcKinsey() {
                 {/* CTA Button */}
                 <Link
                   href="/book-consultation"
-                  className="bg-purple-600 text-white px-6 py-2.5 text-[13px] font-medium hover:bg-purple-700 transition-all duration-200 tracking-wide"
+                 className="bg-primary text-primary-foreground px-6 py-2.5 text-[13px] font-medium hover:bg-primary/90 transition-all duration-200 tracking-wide"
                 >
                   Book a Consultation
                 </Link>
@@ -302,9 +302,9 @@ export function NavbarMcKinsey() {
                       ref={searchInputRef}
                       type="text"
                       placeholder="Search services, solutions, or insights..."
-                      className="w-full px-4 py-3 pr-12 text-gray-900 bg-gray-50 border border-gray-200 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 placeholder:text-gray-400"
+                     className="w-full px-4 py-3 pr-12 text-gray-900 bg-gray-50 border border-gray-200 focus:outline-none focus:border-[hsl(var(--primary))] focus:ring-1 focus:ring-[hsl(var(--primary))] placeholder:text-gray-400"
                     />
-                    <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                   <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-[hsl(var(--primary))] transition-colors duration-200">
                       <Search className="w-5 h-5" />
                     </button>
                   </div>
@@ -364,7 +364,7 @@ export function NavbarMcKinsey() {
                     <Link
                       href={langPrefix || "/"}
                       onClick={closeMenu}
-                      className="block text-lg font-medium text-gray-900 hover:text-purple-600 transition-colors duration-200"
+                     className="block text-lg font-medium text-gray-900 hover:text-[hsl(var(--primary))] transition-colors duration-200"
                     >
                       {t('nav.home')}
                     </Link>
@@ -386,7 +386,7 @@ export function NavbarMcKinsey() {
                                   key={service.key}
                                   href={service.href}
                                   onClick={closeMenu}
-                                  className="block text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                                  className="block text-gray-600 hover:text-[hsl(var(--primary))] transition-colors duration-200"
                                 >
                                   {t(`nav.${service.key}`)}
                                 </Link>
@@ -400,7 +400,7 @@ export function NavbarMcKinsey() {
                     <Link
                       href={`${langPrefix}/about`}
                       onClick={closeMenu}
-                      className="block text-lg font-medium text-gray-900 hover:text-purple-600 transition-colors duration-200"
+                     className="block text-lg font-medium text-gray-900 hover:text-[hsl(var(--primary))] transition-colors duration-200"
                     >
                       {t('nav.aboutUs')}
                     </Link>
@@ -408,7 +408,7 @@ export function NavbarMcKinsey() {
                     <Link
                       href="/blog"
                       onClick={closeMenu}
-                      className="block text-lg font-medium text-gray-900 hover:text-purple-600 transition-colors duration-200"
+                     className="block text-lg font-medium text-gray-900 hover:text-[hsl(var(--primary))] transition-colors duration-200"
                     >
                       {t('nav.blog')}
                     </Link>
@@ -416,7 +416,7 @@ export function NavbarMcKinsey() {
                     <Link
                       href="/contact"
                       onClick={closeMenu}
-                      className="block text-lg font-medium text-gray-900 hover:text-purple-600 transition-colors duration-200"
+                     className="block text-lg font-medium text-gray-900 hover:text-[hsl(var(--primary))] transition-colors duration-200"
                     >
                       {t('nav.contact')}
                     </Link>
@@ -429,7 +429,7 @@ export function NavbarMcKinsey() {
                   <Link
                     href="/book-consultation"
                     onClick={closeMenu}
-                    className="block w-full bg-purple-600 text-white py-3 px-4 text-center text-[13px] font-medium hover:bg-purple-700 transition-all duration-200 tracking-wide"
+                   className="block w-full bg-primary text-primary-foreground py-3 px-4 text-center text-[13px] font-medium hover:bg-primary/90 transition-all duration-200 tracking-wide"
                   >
                     Book a Consultation
                   </Link>

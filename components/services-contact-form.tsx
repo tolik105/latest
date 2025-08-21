@@ -33,7 +33,7 @@ export function ServicesContactForm() {
   }
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-purple-600 via-purple-700 to-violet-800">
+  <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-[hsl(var(--primary))] via-[hsl(var(--primary))] to-[hsl(var(--primary))]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
@@ -100,7 +100,7 @@ export function ServicesContactForm() {
                     placeholder="First Name"
                     value={formData.firstName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                     required
                   />
                   <span className="text-red-500 text-sm">*</span>
@@ -112,7 +112,7 @@ export function ServicesContactForm() {
                     placeholder="Last Name"
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                     required
                   />
                   <span className="text-red-500 text-sm">*</span>
@@ -128,7 +128,7 @@ export function ServicesContactForm() {
                     placeholder="Job Title"
                     value={formData.jobTitle}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                     required
                   />
                   <span className="text-red-500 text-sm">*</span>
@@ -140,7 +140,7 @@ export function ServicesContactForm() {
                     placeholder="Company Name"
                     value={formData.companyName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                     required
                   />
                   <span className="text-red-500 text-sm">*</span>
@@ -156,7 +156,7 @@ export function ServicesContactForm() {
                     placeholder="Email Address"
                     value={formData.emailAddress}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                     required
                   />
                   <span className="text-red-500 text-sm">*</span>
@@ -168,7 +168,7 @@ export function ServicesContactForm() {
                     placeholder="Phone Number"
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                     required
                   />
                   <span className="text-red-500 text-sm">*</span>
@@ -183,7 +183,7 @@ export function ServicesContactForm() {
                   placeholder="Website URL"
                   value={formData.websiteUrl}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                 />
               </div>
 
@@ -211,7 +211,7 @@ export function ServicesContactForm() {
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg"
               >
                 <span className="flex items-center justify-center gap-2">
                   <span>→</span>

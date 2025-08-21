@@ -49,6 +49,7 @@ export function Navbar() {
     { key: "itSecurity", href: `${langPrefix}/services/it-security` },
     { key: "wifiAssessment", href: `${langPrefix}/services/wifi-assessment` },
     { key: "wifiDesign", href: `${langPrefix}/services/wifi-design` },
+    { key: "itad", href: `${langPrefix}/services/itad-japan-apac-us` },
   ]
 
   const toggleMenu = () => {
@@ -87,24 +88,12 @@ export function Navbar() {
 
   return (
     <header className={`sticky top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white'}`}>
-      {/* Top contact bar - responsive */}
-      <div className="hidden lg:flex justify-end py-2 px-responsive-md container">
-        <a href="mailto:support@akrin.jp" className="flex items-center text-sm ml-responsive-md text-gray-600 hover:text-gray-900 transition-colors">
-          <Mail className="w-4 h-4 mr-2 text-teal-600" />
-          <span className="hidden xl:inline">support@akrin.jp</span>
-          <span className="xl:hidden">Email</span>
-        </a>
-        <a href="tel:+81-3-6821-1223" className="flex items-center text-sm ml-responsive-md text-gray-600 hover:text-gray-900 transition-colors">
-          <Phone className="w-4 h-4 mr-2 text-teal-600" />
-          <span className="hidden xl:inline">+81 (0) 3-6821-1223</span>
-          <span className="xl:hidden">Call</span>
-        </a>
-      </div>
+      {/* Top contact bar removed globally */}
 
       {/* Main navbar - responsive */}
       <div className="flex items-center justify-between py-responsive-sm container relative">
         <div className="flex items-center">
-          <Link href={langPrefix || "/"} className="block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
+          <Link href={langPrefix || "/"} className="block focus:outline-none focus:ring-2 focus:ring-teal-600 rounded">
             <Image
               src="/akrin-logo.svg"
               alt="Akrin IT Solutions"
@@ -123,7 +112,7 @@ export function Navbar() {
               <li>
                 <Link
                   href={langPrefix || "/"}
-                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
+                  className="text-sm xl:text-base font-semibold hover:text-teal-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-600 rounded px-2 py-1"
                 >
                   {t('nav.home')}
                 </Link>
@@ -135,7 +124,7 @@ export function Navbar() {
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button
-                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 flex items-center focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
+                  className="text-sm xl:text-base font-semibold hover:text-teal-600 transition-colors text-gray-800 flex items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded px-2 py-1"
                   aria-haspopup="menu"
                   aria-expanded={activeDropdown === 'services'}
                 >
@@ -158,28 +147,28 @@ export function Navbar() {
                         <div className="space-y-1 lg:space-y-2">
                           <Link
                             href={`${langPrefix}/services/it-managed-services`}
-                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2 px-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600"
+                            className="block text-sm text-gray-700 hover:text-teal-600 transition-colors py-2 px-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-600"
                             role="menuitem"
                           >
                             {t('nav.managedItSupport')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/cloud-infrastructure`}
-                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            className="block text-sm text-gray-700 hover:text-teal-600 transition-colors py-2"
                             role="menuitem"
                           >
                             {t('nav.cloudInfrastructure')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/network-penetration-testing`}
-                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            className="block text-sm text-gray-700 hover:text-teal-600 transition-colors py-2"
                             role="menuitem"
                           >
                             {t('nav.networkPenetrationTesting')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/wifi-design`}
-                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            className="block text-sm text-gray-700 hover:text-teal-600 transition-colors py-2"
                             role="menuitem"
                           >
                             {t('nav.wifiDesign')}
@@ -190,28 +179,28 @@ export function Navbar() {
                         <div className="space-y-1 lg:space-y-2">
                           <Link
                             href={`${langPrefix}/services/it-consulting-project-management`}
-                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2 px-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600"
+                            className="block text-sm text-gray-700 hover:text-teal-600 transition-colors py-2 px-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-600"
                             role="menuitem"
                           >
                             {t('nav.itConsultingProjectManagement')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/cybersecurity`}
-                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            className="block text-sm text-gray-700 hover:text-teal-600 transition-colors py-2"
                             role="menuitem"
                           >
                             {t('nav.cybersecurity')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/wifi-assessment`}
-                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            className="block text-sm text-gray-700 hover:text-teal-600 transition-colors py-2"
                             role="menuitem"
                           >
                             {t('nav.wifiAssessment')}
                           </Link>
                           <Link
                             href={`${langPrefix}/services/it-security`}
-                            className="block text-sm text-gray-700 hover:text-violet-600 transition-colors py-2"
+                            className="block text-sm text-gray-700 hover:text-teal-600 transition-colors py-2"
                             role="menuitem"
                           >
                             {t('nav.itSecurity')}
@@ -225,15 +214,23 @@ export function Navbar() {
               <li>
                 <Link
                   href={`${langPrefix}/about`}
-                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
+                  className="text-sm xl:text-base font-semibold hover:text-teal-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-600 rounded px-2 py-1"
                 >
                   {t('nav.aboutUs')}
                 </Link>
               </li>
               <li>
                 <Link
+                  href={`${langPrefix}/case-studies`}
+                  className="text-sm xl:text-base font-semibold hover:text-teal-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-600 rounded px-2 py-1"
+                >
+                  {t('nav.caseStudies')}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/blog"
-                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
+                  className="text-sm xl:text-base font-semibold hover:text-teal-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-600 rounded px-2 py-1"
                 >
                   {t('nav.blog')}
                 </Link>
@@ -241,7 +238,7 @@ export function Navbar() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-sm xl:text-base font-semibold hover:text-violet-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-2 py-1"
+                  className="text-sm xl:text-base font-semibold hover:text-teal-600 transition-colors text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-600 rounded px-2 py-1"
                 >
                   {t('nav.contact')}
                 </Link>
@@ -252,12 +249,12 @@ export function Navbar() {
           {/* Language Switcher and Book a Call button - responsive */}
           <div className="flex items-center gap-responsive-sm">
             <LanguageSelector />
-            <Link href="/book-consultation" className="flex items-center text-white text-xs xl:text-sm font-bold bg-violet-600 rounded-full border-2 border-violet-600 py-2 xl:py-3 px-6 xl:px-8 pl-10 xl:pl-14 relative hover:bg-violet-700 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2">
+            <Link href="/book-consultation" className="flex items-center text-white text-xs xl:text-sm font-bold bg-teal-600 rounded-full border-2 border-teal-600 py-2 xl:py-3 px-6 xl:px-8 pl-10 xl:pl-14 relative hover:bg-teal-700 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-offset-2">
               <span className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white w-8 h-8 xl:w-10 xl:h-10 rounded-full flex items-center justify-center">
-                <Calendar className="w-4 h-4 xl:w-5 xl:h-5 text-violet-600" />
+                <Calendar className="w-4 h-4 xl:w-5 xl:h-5 text-teal-600" />
               </span>
-              <span className="hidden xl:inline">Book a Call</span>
-              <span className="xl:hidden">Book</span>
+              <span className="hidden xl:inline">{t('nav.bookConsultation')}</span>
+              <span className="xl:hidden">{t('nav.bookConsultation')}</span>
             </Link>
           </div>
         </div>
@@ -267,7 +264,7 @@ export function Navbar() {
           <button 
             name="menu" 
             type="button" 
-            className="flex items-center justify-center bg-purple-600 h-10 w-10 sm:h-11 sm:w-11 rounded-full border border-purple-600 transition-all duration-200 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+           className="flex items-center justify-center bg-primary h-10 w-10 sm:h-11 sm:w-11 rounded-full border border-[hsl(var(--primary))] transition-all duration-200 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
             onClick={toggleMenu}
             aria-label="Toggle mobile menu"
           >
@@ -278,7 +275,7 @@ export function Navbar() {
 
       {/* Mobile Menu - responsive */}
       {isMenuOpen && (
-        <div className="lg:hidden fixed inset-0 bg-purple-600 pt-[100px] sm:pt-[115px] z-40 overflow-auto animate-fade-in">
+       <div className="lg:hidden fixed inset-0 bg-[hsl(var(--primary))] pt-[100px] sm:pt-[115px] z-40 overflow-auto animate-fade-in">
           <div className="flex flex-col h-full justify-between w-full mx-auto pb-responsive-md px-responsive-md">
             <ul className="list-none mb-responsive-md pl-0">
               <li className="text-xl sm:text-2xl font-bold flex justify-between items-center pb-responsive-sm">
@@ -291,7 +288,7 @@ export function Navbar() {
                   onClick={() => toggleDropdown('services')}
                   aria-label="Toggle services menu"
                 >
-                  <span className="inline-block h-8 w-8 sm:h-9 sm:w-9 p-2 rounded-full border-2 border-solid border-white text-white hover:bg-white hover:text-purple-600 transition-colors">
+                 <span className="inline-block h-8 w-8 sm:h-9 sm:w-9 p-2 rounded-full border-2 border-solid border-white text-white hover:bg-white hover:text-[hsl(var(--primary))] transition-colors">
                     {activeDropdown === 'services' ? '−' : '+'}
                   </span>
                 </button>
@@ -314,6 +311,9 @@ export function Navbar() {
               )}
               <li className="text-xl sm:text-2xl font-bold flex justify-between items-center pb-responsive-sm">
                 <Link href={`${langPrefix}/about`} className="text-white text-xl sm:text-2xl block focus:outline-none focus:ring-2 focus:ring-white rounded px-2 py-1" onClick={() => setIsMenuOpen(false)}>{t('nav.aboutUs')}</Link>
+              </li>
+              <li className="text-xl sm:text-2xl font-bold flex justify-between items-center pb-responsive-sm">
+                <Link href={`${langPrefix}/case-studies`} className="text-white text-xl sm:text-2xl block focus:outline-none focus:ring-2 focus:ring-white rounded px-2 py-1" onClick={() => setIsMenuOpen(false)}>{t('nav.caseStudies')}</Link>
               </li>
               <li className="text-xl sm:text-2xl font-bold flex justify-between items-center pb-responsive-sm">
                 <Link href="/blog" className="text-white text-xl sm:text-2xl block focus:outline-none focus:ring-2 focus:ring-white rounded px-2 py-1" onClick={() => setIsMenuOpen(false)}>{t('nav.blog')}</Link>
@@ -342,13 +342,13 @@ export function Navbar() {
                   <span className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-black w-10 h-10 rounded-full flex items-center justify-center">
                     <Mail className="w-5 h-5 text-white" />
                   </span>
-                  Contact Us
+                  {t('common.contactUs')}
                 </Link>
                 <Link href="/book-consultation" className="relative text-black text-sm font-bold items-center bg-white flex justify-center leading-[18.2px] text-center w-full pl-[60px] pr-[30px] py-[15px] rounded-[4472.99px] border-2 border-solid border-white">
                   <span className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-black w-10 h-10 rounded-full flex items-center justify-center">
                     <Calendar className="w-5 h-5 text-white" />
                   </span>
-                  Book a Call
+                  {t('nav.bookConsultation')}
                 </Link>
               </div>
             </div>

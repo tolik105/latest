@@ -183,13 +183,13 @@ export function NavbarProfessional() {
               <nav className="hidden md:flex items-center space-x-8">
                 <Link
                   href={langPrefix || "/"}
-                  className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+                 className="text-gray-700 hover:text-[hsl(var(--primary))] font-medium transition-colors"
                 >
                   {t('nav.home')}
                 </Link>
                 
                 <div className="relative group">
-                  <button className="text-gray-700 hover:text-purple-600 font-medium transition-colors flex items-center gap-1">
+                 <button className="text-gray-700 hover:text-[hsl(var(--primary))] font-medium transition-colors flex items-center gap-1">
                     {t('nav.services')}
                     <ChevronDown className="w-4 h-4" />
                   </button>
@@ -200,7 +200,7 @@ export function NavbarProfessional() {
                         <Link
                           key={service.key}
                           href={service.href}
-                          className="block px-3 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-gray-50 rounded transition-colors"
+                         className="block px-3 py-2 text-sm text-gray-600 hover:text-[hsl(var(--primary))] hover:bg-gray-50 rounded transition-colors"
                         >
                           {t(`nav.${service.key}`)}
                         </Link>
@@ -211,26 +211,26 @@ export function NavbarProfessional() {
 
                 <Link
                   href={`${langPrefix}/about`}
-                  className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+                 className="text-gray-700 hover:text-[hsl(var(--primary))] font-medium transition-colors"
                 >
                   {t('nav.aboutUs')}
                 </Link>
                 <Link
                   href="/blog"
-                  className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+                 className="text-gray-700 hover:text-[hsl(var(--primary))] font-medium transition-colors"
                 >
                   {t('nav.blog')}
                 </Link>
                 <Link
                   href="/contact"
-                  className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+                 className="text-gray-700 hover:text-[hsl(var(--primary))] font-medium transition-colors"
                 >
                   {t('nav.contact')}
                 </Link>
                 
                 <Link
                   href="/book-consultation"
-                  className="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors font-medium"
+                 className="bg-primary text-primary-foreground px-6 py-2 rounded-full hover:bg-primary/90 transition-colors font-medium"
                 >
                   Book a Call
                 </Link>
@@ -297,7 +297,7 @@ export function NavbarProfessional() {
               <Link 
                 href={langPrefix || "/"} 
                 onClick={closeMenu}
-                className="focus:outline-none focus:ring-2 focus:ring-purple-600 rounded"
+               className="focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] rounded"
               >
                 <Image
                   src="/akrin-logo.svg"
@@ -370,7 +370,7 @@ export function NavbarProfessional() {
                       <Link
                         href="/services"
                         onClick={closeMenu}
-                        className="block px-3 py-1.5 text-sm text-purple-600 hover:text-purple-700 rounded font-medium transition-colors duration-200"
+                       className="block px-3 py-1.5 text-sm text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] rounded font-medium transition-colors duration-200"
                         style={{
                           transitionDelay: activeDropdown === 'services' ? '120ms' : '0ms'
                         }}
@@ -427,7 +427,7 @@ export function NavbarProfessional() {
                 <Link
                   href="/book-consultation"
                   onClick={closeMenu}
-                  className="flex items-center justify-center w-full bg-purple-600 text-white py-2.5 px-4 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                 className="flex items-center justify-center w-full bg-primary text-primary-foreground py-2.5 px-4 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">

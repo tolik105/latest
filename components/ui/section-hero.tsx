@@ -72,7 +72,7 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
               </h1>
 
               {/* Brand-colored subtitle - Like FNG's pink text */}
-              <p className="text-purple-600 font-medium mb-8 lg:mb-10 leading-relaxed" style={{ 
+            <p className="text-[hsl(var(--primary))] font-medium mb-8 lg:mb-10 leading-relaxed" style={{ 
                 fontSize: 'clamp(1.125rem, 1.5vw, 1.375rem)',
                 lineHeight: '1.5'
               }}>
@@ -110,7 +110,7 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
               }}>
                 {title}
               </h1>
-              <p className="text-purple-600 font-medium mb-8 md:mb-10 leading-relaxed" style={{ 
+            <p className="text-[hsl(var(--primary))] font-medium mb-8 md:mb-10 leading-relaxed" style={{ 
                 fontSize: 'clamp(1rem, 2vw, 1.25rem)',
                 lineHeight: '1.5'
               }}>
@@ -166,7 +166,7 @@ export function SectionHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }: Se
             </h1>
 
             {/* Brand-colored subtitle - Like FNG's approach */}
-            <p className="text-purple-600 font-medium mb-6 sm:mb-8 max-w-2xl mx-auto sm:mx-0 leading-relaxed" style={{ 
+          <p className="text-[hsl(var(--primary))] font-medium mb-6 sm:mb-8 max-w-2xl mx-auto sm:mx-0 leading-relaxed" style={{ 
               fontSize: 'clamp(1rem, 3vw, 1.25rem)',
               lineHeight: '1.5'
             }}>

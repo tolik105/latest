@@ -28,7 +28,7 @@ const TechPartnerIcon: React.FC<TechPartnerIconProps> = ({ logo }) => {
       )}
     >
       {/* Animated glow effect */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-purple-400/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm" />
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-[hsl(var(--primary))]/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm" />
 
       <div className="h-12 w-12 lg:h-16 lg:w-16 rounded-xl overflow-hidden flex items-center justify-center relative z-10">
         {logo.logo ? (
@@ -80,7 +80,7 @@ export const TechPartnersSkeleton = () => {
   return (
     <div className="p-8 overflow-hidden h-full relative">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-cyan-50/30 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-cyan-900/10 rounded-xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-[hsl(var(--primary))]/10 to-cyan-50/30 dark:from-blue-900/10 dark:via-[hsl(var(--primary))]/10 dark:to-cyan-900/10 rounded-xl" />
 
       <div className="flex flex-col gap-8 items-center justify-center h-full relative z-10">
         {/* Enhanced animated connecting lines */}
@@ -127,7 +127,7 @@ export const TechPartnersSkeleton = () => {
           height="80"
           viewBox="0 0 140 80"
           fill="none"
-          className="absolute left-1/2 translate-x-6 -bottom-4 text-purple-300/60 dark:text-purple-400/40"
+           className="absolute left-1/2 translate-x-6 -bottom-4 text-[hsl(var(--primary))]/50 dark:text-[hsl(var(--primary))]/40"
         >
           <path
             d="M1 0L1 35C1 43.284 7.716 50 16 50H124C132.284 50 139 56.716 139 65L139 80"
@@ -151,7 +151,7 @@ export const TechPartnersSkeleton = () => {
                 repeat: Infinity,
               }}
             >
-              <stop stopColor="#8B5CF6" stopOpacity={0} />
+               <stop stopColor="hsl(var(--primary))" stopOpacity={0} />
               <stop offset="0.5" stopColor="#EC4899" stopOpacity={0.8} />
               <stop offset="1" stopColor="#F59E0B" stopOpacity={0} />
             </motion.linearGradient>

@@ -8,11 +8,12 @@
     "home": "ホーム",
     "services": "サービス",
     "aboutUs": "会社概要",
+    "caseStudies": "導入事例",
     "blog": "ブログ",
     "contact": "連絡先",
     "bookConsultation": "予約相談",
     "allServices": "すべてのサービス",
-    "itsmDashboard": "ITSMダッシュボード",
+
     "managedItSupport": "マネージドITサービス",
     "itConsultingProjectManagement": "ITコンサルティング・プロジェクト管理",
     "cloudInfrastructure": "クラウドインフラソリューション",
@@ -28,15 +29,33 @@
     "itConsultingStrategy": "ITコンサルティング＆戦略",
     "projectManagement": "プロジェクト管理"
   },
+  "navExtra": {},
   "hero": {
-    "title": "包括的なITソリューションでビジネスの革新を実現",
+    "title": "次に踏み出す大胆なIT戦略は？",
     "exploreServices": "サービスを見る",
     "requestConsultation": "無料相談を申し込む",
-    "subtitle": "日本と世界を繋ぐ、信頼のITパートナー",
+    "subtitle": "戦略コンサルティング、エンドツーエンドのプロジェクト管理、そして24/7のセキュアなマネージドサービス",
+    "cta": "はじめる →",
     "support247": "24時間365日サポート",
     "enterpriseSecurity": "エンタープライズセキュリティ",
     "certifiedProfessionals": "認定プロフェッショナル",
     "tailoredSolutions": "オーダーメイドソリューション"
+  },
+  "homepage": {
+    "industryExpertiseTitle": "業界の専門知識が",
+    "industryExpertiseHighlight": "測定可能な結果を生み出します",
+    "industryExpertiseDescription": "多様な分野で15年以上の経験を持つ当社は、お客様の業界特有の課題と機会を理解しています。当社のソリューションは、規制要件を満たしながら、イノベーションと成長を推進するよう調整されています。",
+    "trustedByLeadersTitle": "業界リーダーから信頼されています",
+    "trustedByLeadersDescription": "世界をリードするテクノロジー企業とパートナーシップを結び、最高クラスのソリューションを提供しています。",
+    "readyToTransformTitle": "ITインフラストラクチャの変革をお考えですか？",
+    "readyToTransformDescription": "専門家による相談を受け、当社のソリューションがエンタープライズグレードの信頼性とスタートアップの俊敏性でビジネスを前進させる方法をご確認ください。",
+    "scheduleConsultationButton": "相談をスケジュール",
+    "industryStats": {
+      "financialServices": "金融サービス",
+      "healthcare": "ヘルスケア・ライフサイエンス",
+      "manufacturing": "製造・小売",
+      "technology": "テクノロジー・通信"
+    }
   },
   "about": {
     "title": "AKRIN株式会社について",
@@ -195,7 +214,9 @@
     "q7": {
       "question": "技術者はどのような認定を持っていますか？",
       "answer": "私たちのチームは、Microsoft、Cisco、VMware、セキュリティ認定など、さまざまな業界認定を保持しています。技術トレンドに対応するため、継続的にトレーニングに投資しています。"
-    }
+    },
+    "didntFindAnswer": "お探しの回答が見つかりませんでしたか？",
+    "stillHaveQuestions": "他にご質問はありますか？私たちがサポートいたします。"
   },
   "blog": {
     "title": "Akrin テックブログ",
@@ -362,13 +383,15 @@
   "footer": {
     "description": "革新的なテクノロジー・サービスで国内外の企業にサービスを提供する大手ITソリューション・プロバイダー。",
     "quickLinks": "クイックリンク",
+    "company": "会社情報",
     "contactInfo": "連絡先",
     "newsletter": "ニュースレター",
     "newsletterDesc": "最新のITトレンドやアップデートを常にチェック。",
     "emailPlaceholder": "メールアドレスを入力してください。",
     "privacyPolicy": "プライバシーポリシー",
     "termsOfService": "利用規約",
-    "allRightsReserved": "無断複写・転載を禁じます。"
+    "allRightsReserved": "無断複写・転載を禁じます。",
+    "viewOnMap": "地図で見る"
   },
   "servicePages": {
     "managedServices": {

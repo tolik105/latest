@@ -5,6 +5,8 @@ import Script from "next/script"
 import Link from "next/link"
 import { AnimatePresence, motion } from "motion/react"
 import { cn } from "@/lib/utils"
+import { HeroDiagonal } from "@/components/hero-diagonal"
+
 
 const FAQItem = ({
   question,
@@ -127,48 +129,22 @@ export default function ITConsultingProjectManagementClient() {
       </Script>
 
       <div className="bg-white font-sans">
-        {/* Hero Section - Flexible & Optimized */}
-        <div className="relative bg-white overflow-hidden">
-          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
-            
-            {/* Background Image with Diagonal Cut */}
-            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
-              <div className="relative h-full overflow-hidden">
-                <img
-                  src="/images/banners/it-consulting-project-management/hero-banner.webp"
-                  alt="IT Consulting Team Meeting"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                {/* Clean diagonal overlay */}
-                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <polygon points="0,0 25,0 0,100" fill="white" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="relative z-10 w-full">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="lg:w-1/2">
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                    IT Consulting &<br />
-                    Management<br />
-                    Services
-                  </h1>
-                  <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
-                    Strategic IT consulting, project management, and digital transformation services. Expert guidance for technology initiatives, vendor management, and IT strategy alignment.
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
-                  >
-                    Start Your IT Strategy
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Standardized Hero Section (HeroDiagonal) */}
+        <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
+          <HeroDiagonal
+            title={<>
+              IT Consulting &<br />
+              Management<br />
+              Services
+            </>}
+            breadcrumbs={[
+              { label: 'Services', href: '/services' },
+              { label: 'IT Consulting & Project Management' }
+            ]}
+            imageSrc="/images/banners/it-consulting-project-management/hero-banner.webp"
+            imageAlt="IT Consulting Team Meeting"
+          />
+        </section>
 
         {/* IT Infrastructure Project Management Section - EireSystems Style */}
         <div className="bg-[#F8F9FA] py-20">
@@ -183,7 +159,7 @@ export default function ITConsultingProjectManagementClient() {
                 <p className="text-lg text-[#666666] mb-8 leading-relaxed">
                   From initial project scoping and planning through implementation and ongoing support, we provide comprehensive IT project management services that ensure successful delivery of complex technology initiatives.
                 </p>
-                
+
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
@@ -207,12 +183,12 @@ export default function ITConsultingProjectManagementClient() {
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Post-implementation support and optimization</span>
                   </div>
                 </div>
-                
+
                 <p className="text-[#666666] leading-relaxed">
                   Our experienced project managers work closely with your team to ensure projects are delivered on time, within budget, and to your exact specifications.
                 </p>
               </div>
-              
+
               {/* Right Image */}
               <div>
                 <img
@@ -237,7 +213,7 @@ export default function ITConsultingProjectManagementClient() {
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
-              
+
               {/* Right Content */}
               <div className="order-1 lg:order-2">
                 <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
@@ -246,7 +222,7 @@ export default function ITConsultingProjectManagementClient() {
                 <p className="text-lg text-[#666666] mb-8 leading-relaxed">
                   Moving your office requires careful coordination of IT infrastructure, equipment, and personnel. Our comprehensive relocation services ensure minimal business disruption while maintaining full operational capability throughout the transition.
                 </p>
-                
+
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
@@ -270,7 +246,7 @@ export default function ITConsultingProjectManagementClient() {
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Employee training and support during transition</span>
                   </div>
                 </div>
-                
+
                 <p className="text-[#666666] leading-relaxed">
                   Whether relocating within the same building or across the country, we handle every aspect of your IT move with precision and care.
                 </p>
@@ -290,7 +266,7 @@ export default function ITConsultingProjectManagementClient() {
                 From initial site assessment through final commissioning, we provide end-to-end data center build and relocation services that minimize downtime and maximize operational efficiency.
               </p>
             </div>
-            
+
             {/* 4-Column Service Grid - Exact EireSystems Style */}
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
               {/* Column 1: Planning */}
@@ -320,7 +296,7 @@ export default function ITConsultingProjectManagementClient() {
                   </li>
                 </ul>
               </div>
-              
+
               {/* Column 2: Build */}
               <div className="text-center">
                 <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
@@ -348,7 +324,7 @@ export default function ITConsultingProjectManagementClient() {
                   </li>
                 </ul>
               </div>
-              
+
               {/* Column 3: Migration */}
               <div className="text-center">
                 <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
@@ -376,7 +352,7 @@ export default function ITConsultingProjectManagementClient() {
                   </li>
                 </ul>
               </div>
-              
+
               {/* Column 4: Support */}
               <div className="text-center">
                 <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
@@ -466,7 +442,7 @@ export default function ITConsultingProjectManagementClient() {
                 Ensure business resilience with comprehensive continuity planning that protects your operations from disruption while maintaining critical business functions during unexpected events.
               </p>
             </div>
-            
+
             {/* Phase-based Structure - EireSystems Style */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {/* Phase 1: Assessment */}
@@ -496,7 +472,7 @@ export default function ITConsultingProjectManagementClient() {
                   </li>
                 </ul>
               </div>
-              
+
               {/* Phase 2: Planning */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
@@ -524,7 +500,7 @@ export default function ITConsultingProjectManagementClient() {
                   </li>
                 </ul>
               </div>
-              
+
               {/* Phase 3: Implementation */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
@@ -553,7 +529,7 @@ export default function ITConsultingProjectManagementClient() {
                 </ul>
               </div>
             </div>
-            
+
             {/* Bottom Content */}
             <div className="text-center">
               <p className="text-lg text-[#666666] leading-relaxed max-w-4xl mx-auto">
@@ -575,7 +551,7 @@ export default function ITConsultingProjectManagementClient() {
                 <p className="text-lg text-[#666666] mb-8 leading-relaxed">
                   Bridge the gap between business requirements and technical solutions. Our business analysis services ensure that IT initiatives align with strategic objectives and deliver measurable business value.
                 </p>
-                
+
                 {/* Strategic positioning with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
@@ -595,12 +571,12 @@ export default function ITConsultingProjectManagementClient() {
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Change impact assessment and management</span>
                   </div>
                 </div>
-                
+
                 <p className="text-[#666666] leading-relaxed">
                   Our experienced business analysts work closely with your stakeholders to translate business needs into actionable IT strategies that drive organizational success.
                 </p>
               </div>
-              
+
               {/* Right Image - World Map/Global Strategy */}
               <div>
                 <img
@@ -625,7 +601,7 @@ export default function ITConsultingProjectManagementClient() {
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
-              
+
               {/* Right Content */}
               <div>
                 <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
@@ -635,7 +611,7 @@ export default function ITConsultingProjectManagementClient() {
                 <p className="text-lg text-[#666666] mb-8 leading-relaxed">
                   Modernize your IT infrastructure with expert migration services and technology renewal strategies. We ensure seamless transitions that minimize disruption while maximizing performance and efficiency.
                 </p>
-                
+
                 {/* Service breakdown */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
@@ -655,7 +631,7 @@ export default function ITConsultingProjectManagementClient() {
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Data migration and integrity validation</span>
                   </div>
                 </div>
-                
+
                 <p className="text-[#666666] leading-relaxed">
                   Our proven methodologies ensure successful technology transitions that enhance operational efficiency and position your organization for future growth.
                 </p>

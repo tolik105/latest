@@ -4,6 +4,8 @@ import React from "react"
 import Script from "next/script"
 import Link from "next/link"
 
+import { HeroDiagonal } from "@/components/hero-diagonal"
+
 export default function NetworkPenetrationTestingClient() {
 
   return (
@@ -19,48 +21,22 @@ export default function NetworkPenetrationTestingClient() {
       </Script>
 
       <div className="bg-white font-sans">
-        {/* Hero Section - Flexible & Optimized */}
-        <div className="relative bg-white overflow-hidden">
-          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
-            
-            {/* Background Image with Diagonal Cut */}
-            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
-              <div className="relative h-full overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                  alt="Network Penetration Testing"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                {/* Clean diagonal overlay */}
-                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <polygon points="0,0 25,0 0,100" fill="white" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="relative z-10 w-full">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="lg:w-1/2">
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                    Network<br />
-                    Penetration<br />
-                    Testing
-                  </h1>
-                  <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
-                    Professional penetration testing, vulnerability assessments, and security audits. Identify and remediate security weaknesses before attackers exploit them.
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
-                  >
-                    Schedule Penetration Test
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Standardized Hero Section (HeroDiagonal) */}
+        <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
+          <HeroDiagonal
+            title={<>
+              Network<br />
+              Penetration<br />
+              Testing
+            </>}
+            breadcrumbs={[
+              { label: 'Services', href: '/services' },
+              { label: 'Network Penetration Testing' }
+            ]}
+            imageSrc="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+            imageAlt="Network Penetration Testing"
+          />
+        </section>
 
         {/* Network Vulnerability Assessment Section - EireSystems Style */}
         <div className="bg-[#F8F9FA] py-20">

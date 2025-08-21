@@ -1,36 +1,36 @@
-'use client'
+"use client"
 
 import Image from 'next/image'
 import Link from 'next/link'
-
-const services = [
-  {
-    id: 1,
-    title: 'IT Managed Services',
-    image: '/images/banners/it-managed-services/banner.webp',
-    link: '/services/it-managed-services',
-    blurb:
-      'Proactive monitoring, 24/7 help desk, and lifecycle management that keep your business running.'
-  },
-  {
-    id: 2,
-    title: 'Cybersecurity',
-    image: '/images/banners/cybersecurity/banner1.webp',
-    link: '/services/cybersecurity',
-    blurb:
-      'Defense-in-depth, compliance, and continuous threat detection to protect critical assets.'
-  },
-  {
-    id: 3,
-    title: 'IT Consulting & Project Management',
-    image: '/images/banners/it-consulting-project-management/hero-banner.webp',
-    link: '/services/it-consulting-project-management',
-    blurb:
-      'Strategy, architecture, and delivery leadership to align technology with business outcomes.'
-  }
-]
+import { useTranslation } from 'react-i18next'
 
 export function HeroServicesRow() {
+  const { t } = useTranslation('common')
+
+  const services = [
+    {
+      id: 1,
+      title: t('nav.managedItSupport'),
+      image: '/images/banners/it-managed-services/banner.webp',
+      link: '/services/it-managed-services',
+      blurb: t('services.managedIT.description')
+    },
+    {
+      id: 2,
+      title: t('nav.cybersecurity'),
+      image: '/images/banners/cybersecurity/banner1.webp',
+      link: '/services/cybersecurity',
+      blurb: t('services.cyberSecurity.description')
+    },
+    {
+      id: 3,
+      title: t('nav.itConsultingProjectManagement'),
+      image: '/images/banners/it-consulting-project-management/hero-banner.webp',
+      link: '/services/it-consulting-project-management',
+      blurb: t('services.consulting.description')
+    }
+  ]
+
   return (
     <section className="relative py-12 sm:py-16 md:py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,9 +68,9 @@ export function HeroServicesRow() {
                   <Link
                     href={s.link}
                     className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 transition-colors"
-                    aria-label={`${s.title} – Learn More`}
+                    aria-label={`${s.title} – ${t('common.learnMore')}`}
                   >
-                    <span className="text-sm sm:text-base font-medium">Learn More</span>
+                    <span className="text-sm sm:text-base font-medium">{t('common.learnMore')}</span>
                     <svg
                       className="w-5 h-5"
                       viewBox="0 0 24 24"

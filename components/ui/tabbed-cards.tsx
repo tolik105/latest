@@ -59,7 +59,7 @@ export function TabbedCards({ tabs }: TabbedCardsProps) {
                   key={index}
                   onClick={() => setSelectedTab(index)}
                   className={`flex-shrink-0 cursor-pointer text-center px-2 sm:px-4 py-2 relative transition-all duration-300 min-w-[120px] sm:min-w-[140px] ${
-                    selectedTab === index ? 'border-b-2 border-purple-600' : ''
+                   selectedTab === index ? 'border-b-2 border-[hsl(var(--primary))]' : ''
                   }`}
                   role="tab"
                   aria-selected={selectedTab === index}
@@ -68,7 +68,7 @@ export function TabbedCards({ tabs }: TabbedCardsProps) {
                   {/* Icon Circle - Smaller on mobile */}
                   <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto mb-2 rounded-full flex items-center justify-center transition-all duration-300 ${
                     selectedTab === index
-                      ? 'bg-purple-900'
+                      ? 'bg-[hsl(var(--primary))]/20'
                       : 'bg-white border-2 border-gray-300'
                   }`}>
                     <div className={`w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 ${
@@ -81,7 +81,7 @@ export function TabbedCards({ tabs }: TabbedCardsProps) {
                   {/* Label - Responsive text */}
                   <div className={`text-xs sm:text-sm leading-tight ${
                     selectedTab === index 
-                      ? 'font-bold text-purple-600' 
+                      ? 'font-bold text-[hsl(var(--primary))]' 
                       : 'font-medium text-gray-600'
                   }`}>
                     <div className="break-words">{tab.label}</div>
@@ -91,7 +91,7 @@ export function TabbedCards({ tabs }: TabbedCardsProps) {
                   {selectedTab === index && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-purple-600"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(var(--primary))]"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}

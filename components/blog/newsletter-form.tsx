@@ -46,7 +46,7 @@ export function NewsletterForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email address"
-          className="newsletter-form flex-1 px-3 md:px-4 py-3 md:py-4 border border-gray-300 text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-base rounded-lg"
+          className="newsletter-form flex-1 px-3 md:px-4 py-3 md:py-4 border border-gray-300 text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent text-base rounded-lg"
           required
           disabled={isSubmitting}
           aria-describedby="newsletter-description"
@@ -57,7 +57,7 @@ export function NewsletterForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 md:px-8 py-3 md:py-4 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 text-white font-medium transition-colors whitespace-nowrap text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+          className="px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 disabled:bg-primary/50 text-primary-foreground font-medium transition-colors whitespace-nowrap text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
           aria-label="Subscribe to AKRIN newsletter"
         >
           {isSubmitting ? 'Subscribing...' : 'Subscribe'}

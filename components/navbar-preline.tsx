@@ -44,24 +44,7 @@ export function NavbarPreline() {
 
   return (
     <>
-      {/* Top Contact Bar */}
-      <div className="bg-gray-50 py-2">
-        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-end items-center gap-x-3 text-sm">
-            <a className="inline-flex items-center gap-x-2 text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800" href="mailto:support@akrin.jp">
-              <Mail className="shrink-0 size-4 text-teal-600" />
-              <span className="hidden sm:block">support@akrin.jp</span>
-              <span className="sm:hidden">Email</span>
-            </a>
-            <div className="border-s border-gray-300 h-4"></div>
-            <a className="inline-flex items-center gap-x-2 text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800" href="tel:+81-3-6821-1223">
-              <Phone className="shrink-0 size-4 text-teal-600" />
-              <span className="hidden sm:block">+81 (0) 3-6821-1223</span>
-              <span className="sm:hidden">Call</span>
-            </a>
-          </div>
-        </div>
-      </div>
+      {/* Top Contact Bar removed globally */}
 
       {/* Main Navigation */}
       <header className={`flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-3 ${scrolled ? 'shadow-sm' : ''}`}>
@@ -129,7 +112,7 @@ export function NavbarPreline() {
                 <LanguageSelector />
               </div>
 
-              <Link className="flex items-center gap-x-2 py-2 px-3 bg-purple-600 text-white text-sm rounded-full hover:bg-purple-700 disabled:opacity-50 disabled:pointer-events-none" href="/book-consultation">
+              <Link className="flex items-center gap-x-2 py-2 px-3 bg-primary text-primary-foreground text-sm rounded-full hover:bg-primary/90 disabled:opacity-50 disabled:pointer-events-none" href="/book-consultation">
                 Book a Call
                 <svg className="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
               </Link>

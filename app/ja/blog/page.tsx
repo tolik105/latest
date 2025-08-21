@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import React from "react"
-import { SimpleBlogWithGridJA } from "@/components/ui/simple-blog-with-grid-ja"
+import { SimpleBlogWithGrid } from "@/components/ui/simple-blog-with-grid"
 import { blogPostsJA } from "@/lib/blog-data"
 
 // Enhanced SEO metadata for Japanese blog listing page
@@ -156,7 +156,7 @@ export default function BlogPageJA() {
 
           {/* Blog content with semantic structure */}
           <section aria-label="ブログ記事">
-            <SimpleBlogWithGridJA />
+            <SimpleBlogWithGrid language="ja" />
           </section>
         </div>
       </main>

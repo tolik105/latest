@@ -51,12 +51,6 @@ const adminMenuItems = [
     badge: null
   },
   {
-    title: "SEO Management",
-    icon: Search,
-    href: "/admin/seo",
-    badge: "Active"
-  },
-  {
     title: "Content Management",
     icon: FileText,
     href: "/admin/content",
@@ -218,12 +212,7 @@ export default function AdminDashboard() {
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <Button variant="outline" asChild>
-                    <Link href="/admin/seo">
-                      <Search className="h-4 w-4 mr-2" />
-                      SEO Dashboard
-                    </Link>
-                  </Button>
+
                   <Button asChild>
                     <Link href="/">
                       <Globe className="h-4 w-4 mr-2" />

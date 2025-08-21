@@ -29,13 +29,25 @@ export function ConnectCTASection({
 }: ConnectCTASectionProps) {
   const bgClass = variant === 'light'
     ? 'bg-gradient-to-br from-slate-100 via-slate-50 to-gray-100'
-    : 'bg-white dark:bg-gray-900'
+    : 'bg-[#20B2AA] text-white'
 
   return (
     <section className={`relative overflow-hidden ${bgClass}`}>
-      <div className="px-8 md:px-16 lg:px-24 py-20 md:py-28 lg:py-32">
+      {/* Soft pattern background at ~4% opacity */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.04]">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="soft-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M40 0H0V40" stroke="currentColor" strokeWidth="1" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#soft-grid)" />
+        </svg>
+      </div>
+      <div className="relative px-10 md:px-14 py-10 md:py-14">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+          <div className="rounded-3xl p-10 md:p-14 bg-transparent">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             {/* Left Content - 5 columns */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -45,57 +57,30 @@ export function ConnectCTASection({
               className="lg:col-span-5"
             >
               {/* Main Heading - Exact Typography Match */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 mb-8 leading-[0.9] tracking-tight">
+              <h2 className={`text-4xl leading-[1.2] font-semibold mb-6 ${variant === 'dark' ? 'text-white' : 'text-gray-900'}`}>
                 {title}
               </h2>
 
               {/* Description - Matching Screenshot */}
-              <p className="text-base md:text-lg text-gray-600 mb-12 leading-relaxed max-w-md font-normal">
+              <p className={`text-base md:text-lg mb-8 leading-relaxed max-w-md font-normal ${variant === 'dark' ? 'text-white/90' : 'text-gray-600'}`}>
                 {description}
               </p>
 
-              {/* CTA Links - Exact Style Match */}
-              <div className="space-y-6">
-                <motion.div
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.2 }}
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center">
+                <Link
+                  href={primaryCTA.href}
+                  className="inline-flex items-center justify-center rounded-xl bg-white text-[#20B2AA] hover:bg-white/90 px-8 py-4 text-lg font-semibold shadow-2xl transition-colors"
                 >
-                  <Link
-                    href={primaryCTA.href}
-                    className="group flex items-center text-lg md:text-xl font-normal text-violet-600 hover:text-violet-700 transition-colors duration-200"
-                  >
-                    <span>{primaryCTA.text}</span>
-                    <svg
-                      className="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </motion.div>
-
+                  {primaryCTA.text}
+                </Link>
                 {secondaryCTA && (
-                  <motion.div
-                    whileHover={{ x: 4 }}
-                    transition={{ duration: 0.2 }}
+                  <Link
+                    href={secondaryCTA.href}
+                    className="inline-flex items-center justify-center rounded-xl border border-white/80 text-white hover:bg-white hover:text-[#20B2AA] px-8 py-4 text-lg font-semibold transition-colors"
                   >
-                    <Link
-                      href={secondaryCTA.href}
-                      className="group flex items-center text-lg md:text-xl font-normal text-gray-600 hover:text-violet-600 transition-colors duration-200"
-                    >
-                      <span>{secondaryCTA.text}</span>
-                      <svg
-                        className="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </motion.div>
+                    {secondaryCTA.text}
+                  </Link>
                 )}
               </div>
             </motion.div>
@@ -139,6 +124,7 @@ export function ConnectCTASection({
                 </div>
               </motion.div>
             )}
+            </div>
           </div>
         </div>
       </div>

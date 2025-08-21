@@ -19,7 +19,7 @@ export function MobileFirstHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-3">
             <nav className="text-sm text-gray-600">
-              <Link href="/" className="hover:text-purple-600">Home</Link>
+              <Link href="/" className="hover:text-[hsl(var(--primary))]">Home</Link>
               <span className="mx-2">></span>
               <span className="text-gray-900">{title}</span>
             </nav>
@@ -68,7 +68,7 @@ export function MobileFirstHero({ title, subtitle, ctaLabel, ctaHref, imageSrc }
                 <div className="pt-4">
                   <Link
                     href={ctaHref}
-                    className="inline-flex items-center px-8 py-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-200 text-lg shadow-lg hover:shadow-xl"
+                   className="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all duration-200 text-lg shadow-lg hover:shadow-xl"
                   >
                     {ctaLabel}
                     <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -371,7 +371,7 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
               )}
 
               {/* Title */}
-              <h1 className="text-3xl font-bold text-gray-800 sm:text-5xl lg:text-6xl lg:leading-tight" itemProp="headline">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 md:text-4xl lg:text-5xl xl:text-6xl lg:leading-tight" itemProp="headline">
                 {post.title}
               </h1>
 
@@ -436,13 +436,13 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
         {/* Preline Style Hero Image */}
         <div className="mt-10 sm:mt-16">
           <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] bg-gray-100 rounded-xl overflow-hidden">
+            <div className="relative h-[250px] xs:h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] bg-gray-100 rounded-xl overflow-hidden">
               {post.image ? (
                 <Image
                   src={post.image}
                   alt={`${post.title} - 日本におけるITインフラとテクノロジートレンドに関するAKRINの専門的な洞察`}
                   fill
-                  className="object-cover object-center"
+                  className={post.slug === 'phishing-prevention-guide-2025' ? "object-contain object-center p-2" : "object-cover object-center"}
                   priority
                   itemProp="image"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1320px"
@@ -498,15 +498,71 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
           </div>
         </div>
 
+        {/* Category-Specific FAQ Section */}
+        {(post.category === 'セキュリティ' || post.slug.includes('cybersecurity')) && (
+          <section className="bg-gray-50 py-16 border-t border-gray-100" aria-labelledby="faq-section">
+            <div className="max-w-4xl mx-auto px-6">
+              <h2 id="faq-section" className="text-xl sm:text-2xl md:text-3xl font-normal text-gray-900 mb-8 tracking-tight">
+                よくある質問
+              </h2>
+              <div className="space-y-8">
+                <div className="bg-white p-6 rounded-lg shadow-sm">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
+                    2025年に日本企業が直面する最も重要なサイバーセキュリティの脅威は何ですか？
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                    日本企業はランサムウェア攻撃（2022年に58％増加）、シャドウAIの脆弱性、
+                    ディープフェイクを使ったソーシャルエンジニアリング、サプライチェーン攻撃に直面しています。
+                    サイバーセキュリティ人材の不足も、強固なセキュリティ対策を実施する上での大きな課題です。
+                  </p>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-sm">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
+                    ゼロトラストアーキテクチャはどのようにサイバーセキュリティを改善しますか？
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                    ゼロトラストは、すべてのユーザー、デバイス、アプリケーションを検証することで、
+                    従来の境界ベースのセキュリティモデルを排除します。最小権限アクセス、継続的な監視、
+                    ネットワークのマイクロセグメンテーションを実装し、脅威の横移動を防ぎます。
+                  </p>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-sm">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
+                    なぜAIを活用した脅威検出が現代のビジネスに必須なのですか？
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                    従来のシグネチャベースのセキュリティでは、進化する脅威に対応できません。AIは予測的な
+                    脅威分析、動作異常の検出、自動インシデント対応、リアルタイム脅威インテリジェンスを
+                    提供し、高度な攻撃を特定して対応します。
+                  </p>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-sm">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
+                    AKRINは組織のサイバーセキュリティ体制の改善にどのように協力できますか？
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                    AKRINは、セキュリティ評価、ゼロトラストアーキテクチャの実装、AIを活用した脅威検出、
+                    コンプライアンスコンサルティング、および24時間365日のセキュリティ監視を含む包括的な
+                    サイバーセキュリティサービスを日本のビジネス環境に合わせて提供しています。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Preline Style Related Posts Section */}
         {post.relatedPosts && post.relatedPosts.length > 0 && (
           <section className="bg-gray-50 py-10 sm:py-16" aria-labelledby="related-posts">
             <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-2xl text-center mx-auto mb-10 lg:mb-14">
-                <h2 className="text-2xl font-bold md:text-4xl md:leading-tight text-gray-800">
+                <h2 className="text-xl sm:text-2xl font-bold md:text-3xl lg:text-4xl md:leading-tight text-gray-800">
                   関連記事
                 </h2>
-                <p className="mt-1 text-gray-600">
+                <p className="mt-1 text-sm sm:text-base text-gray-600">
                   専門家によるさらなる洞察をお読みください
                 </p>
               </div>
@@ -516,15 +572,17 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
 
                   return (
                     <Link key={index} href={`/ja/blog/${relatedPost.slug}`} className="group flex flex-col h-full bg-white border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl">
-                      <div className="relative h-52 overflow-hidden rounded-t-xl">
+                      <div
+                        className="relative h-40 xs:h-44 sm:h-48 md:h-52 overflow-hidden rounded-t-xl"
+                        style={fullRelatedPost?.image ? { backgroundImage: `url(${fullRelatedPost.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
+                      >
                         {fullRelatedPost?.image ? (
-                          <Image
+                          <img
                             src={fullRelatedPost.image}
                             alt={`${relatedPost.title} - AKRIN ITブログ`}
-                            fill
-                            className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                            unoptimized={false}
+                            className="block !w-full !h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                            width={1200}
+                            height={630}
                           />
                         ) : (
                           <div className="w-full h-full bg-gray-100 flex items-center justify-center">
@@ -540,7 +598,7 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
                             </span>
                           </div>
                         )}
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-blue-600">
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 group-hover:text-blue-600 leading-tight">
                           {relatedPost.title}
                         </h3>
                         <div className="mt-auto flex items-center gap-x-3 text-sm text-gray-500">
@@ -555,6 +613,43 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
                     </Link>
                   )
                 })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Category-Specific CTA Section */}
+        {(post.category === 'セキュリティ' || post.slug.includes('cybersecurity')) && (
+         <section className="bg-[hsl(var(--primary))]/5 py-16 border-t border-gray-100">
+            <div className="max-w-4xl mx-auto px-6 text-center">
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
+                  サイバーセキュリティ体制を強化しましょう
+                </h2>
+                <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                  セキュリティインシデントの発生を待たずに対策を講じましょう。弊社のサイバーセキュリティ専門家が、
+                  日本企業のニーズに合わせた包括的なセキュリティ対策の実装をお手伝いします。
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link
+                    href="/ja/services/it-managed-services"
+                   className="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    マネージドITサービス
+                  </Link>
+                  <Link
+                    href="/ja/contact"
+                   className="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-50 text-[hsl(var(--primary))] font-medium border-2 border-[hsl(var(--primary))] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    無料セキュリティ相談
+                  </Link>
+                </div>
               </div>
             </div>
           </section>

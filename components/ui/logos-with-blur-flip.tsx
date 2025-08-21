@@ -2,8 +2,17 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
+import { useTranslation } from "react-i18next";
 
-export function LogosWithBlurFlip() {
+interface LogosWithBlurFlipProps {
+  showHeading?: boolean
+  title?: string
+  description?: string
+  className?: string
+}
+
+export function LogosWithBlurFlip({ showHeading = false, title, description, className }: LogosWithBlurFlipProps) {
+  const { t } = useTranslation('common')
   const [logos, setLogos] = useState([
     [
       {
@@ -82,14 +91,18 @@ export function LogosWithBlurFlip() {
   }, [isAnimating]);
 
   return (
-    <div className="relative z-20 px-4 py-12 md:px-8 md:py-24">
-      <h2 className="bg-gradient-to-b from-purple-900 to-purple-600 bg-clip-text text-center font-sans text-2xl font-bold text-transparent md:text-4xl dark:from-purple-400 dark:to-purple-600">
-        Technology Partners & Integrations
-      </h2>
-      <p className="mt-6 text-center font-sans text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        Trusted partnerships with leading technology vendors to deliver enterprise-grade solutions that power your digital transformation.
-      </p>
-      <div className="relative mt-20 flex h-full w-full flex-wrap justify-center gap-10 md:gap-10">
+    <div className={`relative z-20 px-4 md:px-8 ${showHeading ? 'py-12 md:py-24' : 'py-0'} ${className || ''}`}>
+      {showHeading && (
+        <>
+          <h2 className="text-center font-sans text-2xl font-bold text-gray-900 md:text-4xl dark:text-white">
+            {title ?? t('homepage.trustedByLeadersTitle')}
+          </h2>
+          <p className="mt-6 text-center font-sans text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            {description ?? t('homepage.trustedByLeadersDescription')}
+          </p>
+        </>
+      )}
+      <div className={`relative ${showHeading ? 'mt-20' : 'mt-0'} flex h-full w-full flex-wrap justify-center gap-10 md:gap-10`}>
         <AnimatePresence
           mode="popLayout"
           onExitComplete={() => {

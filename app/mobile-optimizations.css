@@ -1,3 +1,29 @@
+/* Mobile-specific refinements for the home Case Studies strip */
+@media (hover: none) and (pointer: coarse) {
+  /* Keep overlay visible on touch devices */
+  .cs-card .panel { transform: translateX(0) !important; opacity: 1 !important; }
+}
+
+/* Fine-tune typography for mobile like NSC */
+@media (max-width: 640px) {
+  .cs-card div[class*="text-lg"] {
+    font-size: 1rem !important;
+    line-height: 1.3 !important;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 425px) {
+  .cs-card div[class*="text-lg"] {
+    font-size: 0.9rem !important;
+    line-height: 1.25 !important;
+  }
+  .cs-card .cta {
+    font-size: 0.8125rem !important;
+    padding: 0.5rem 0.875rem !important;
+  }
+}
+
 /* Mobile-First Optimizations for AKRIN Website */
 
 /* ===================================

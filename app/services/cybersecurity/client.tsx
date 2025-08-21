@@ -4,6 +4,8 @@ import React from "react"
 import Script from "next/script"
 import Link from "next/link"
 import { PremiumCTA } from "@/components/ui/premium-cta"
+import { HeroDiagonal } from "@/components/hero-diagonal"
+
 
 export default function CybersecurityClient() {
 
@@ -20,48 +22,22 @@ export default function CybersecurityClient() {
       </Script>
 
       <div className="bg-white font-sans">
-        {/* Hero Section - Flexible & Optimized */}
-        <div className="relative bg-white overflow-hidden">
-          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
-
-            {/* Background Image with Diagonal Cut */}
-            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
-              <div className="relative h-full overflow-hidden">
-                <img
-                  src="/images/banners/cybersecurity/banner1.webp"
-                  alt="Cybersecurity Solutions"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                {/* Clean diagonal overlay */}
-                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <polygon points="0,0 40,0 0,100" fill="white" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="relative z-10 w-full">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="lg:w-1/2">
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                    Cybersecurity<br />
-                    Solutions &<br />
-                    Protection
-                  </h1>
-                  <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
-                    24/7 security monitoring, threat detection, incident response, and compliance management. Protect your business from evolving cyber threats with enterprise-grade security.
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
-                  >
-                    Secure Your Business
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Standardized Hero Section (HeroDiagonal) */}
+        <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
+          <HeroDiagonal
+            title={<>
+              Cybersecurity<br />
+              Solutions &<br />
+              Protection
+            </>}
+            breadcrumbs={[
+              { label: 'Services', href: '/services' },
+              { label: 'Cybersecurity' }
+            ]}
+            imageSrc="/images/banners/cybersecurity/banner1.webp"
+            imageAlt="Cybersecurity Solutions"
+          />
+        </section>
 
         {/* Security Assessment Section - EireSystems Style */}
         <div className="bg-[#F8F9FA] py-12 sm:py-16 lg:py-20">

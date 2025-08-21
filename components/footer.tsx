@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useTranslation } from "react-i18next"
 import { motion } from "framer-motion"
+import { ClientOnly } from "@/hooks/use-mounted"
 
 // Custom sophisticated footer icons
 const EmailIcon = () => (
@@ -62,7 +63,7 @@ export function Footer() {
       {/* Clean background with subtle pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white"></div>
 
-      <div className="relative z-10 container py-responsive-lg font-inter">
+      <div className="relative z-10 max-w-[85rem] w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 font-inter">
         {/* Logo and Social Icons Row - responsive */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-responsive-lg gap-responsive-sm">
           <Link href="/" className="inline-block group">
@@ -104,145 +105,205 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Main footer content - responsive 3-column layout */}
+        {/* Main footer content - 4 columns: Company, Services, Resources, Contact */}
+        <ClientOnly fallback={
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 mb-10 sm:mb-12 lg:mb-16 antialiased">
+            <div className="">
+              <h3 className="text-base font-bold text-gray-900 mb-3">Company</h3>
+              <ul className="space-y-1.5 text-sm font-medium">
+                <li><Link href="/about" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block">About Us</Link></li>
+                <li><Link href="/blog" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block">Blog</Link></li>
+                <li><Link href="/contact" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block">Contact</Link></li>
+              </ul>
+            </div>
+            <div className="">
+              <h3 className="text-base font-bold text-gray-900 mb-3">Services</h3>
+              <ul className="space-y-1.5 text-sm font-medium">
+                <li><Link href="/services/it-managed-services" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block">Managed IT Support</Link></li>
+                <li><Link href="/services/cloud-infrastructure" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block">Cloud Infrastructure</Link></li>
+                <li><Link href="/services/cybersecurity" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block">Cybersecurity</Link></li>
+              </ul>
+            </div>
+            <div className="">
+              <h3 className="text-base font-bold text-gray-900 mb-3">Quick Links</h3>
+              <ul className="space-y-1.5 text-sm font-medium">
+                <li><Link href="/services" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block">Services</Link></li>
+                <li><Link href="/blog" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block">Blog</Link></li>
+                <li><Link href="/privacy" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block">Privacy Policy</Link></li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="text-base font-bold text-gray-900 mb-3">Contact Info</h3>
+              <div className="flex items-start gap-3 text-sm text-gray-700/90">
+                <div className="w-5 h-5 text-gray-700"><LocationIcon /></div>
+                <div>
+                  <p>2-4-15 Minamiaoyama 4F, Minato City, Tokyo 107-0062</p>
+                  <a href="https://maps.google.com/?q=2-4-15 Minamiaoyama 4F, Minato City, Tokyo 107-0062" target="_blank" rel="noopener noreferrer" className="text-gray-700/90 hover:text-gray-900">View on map</a>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-700/90">
+                <div className="w-5 h-5 text-gray-700"><EmailIcon /></div>
+                <a href="mailto:support@akrin.jp" className="hover:text-gray-900">support@akrin.jp</a>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-700/90">
+                <div className="w-5 h-5 text-gray-700"><PhoneIcon /></div>
+                <a href="tel:+81-3-6821-1223" className="hover:text-gray-900">+81-3-6821-1223</a>
+              </div>
+            </div>
+          </div>
+        }>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid-responsive-3 mb-responsive-lg antialiased">
-          {/* Services Column */}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 mb-10 sm:mb-12 lg:mb-16 antialiased">
+          {/* Company Column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.6 }}
             className="">
-            <h3 className="text-base font-bold text-gray-900 mb-responsive-sm">{t('nav.services')}</h3>
-            <ul className="space-y-1 text-sm font-medium">
-              <li>
-                <Link href="/services/it-managed-services" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.managedItSupport')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/it-consulting-project-management" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.itConsultingProjectManagement')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/cloud-infrastructure" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.cloudInfrastructure')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/cybersecurity" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.cybersecurity')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/network-penetration-testing" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.networkPenetrationTesting')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/wifi-assessment" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.wifiAssessment')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/wifi-design" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.wifiDesign')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/it-security" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.itSecurity')}
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
-          {/* Company Column */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="">
-            <h3 className="text-base font-bold text-gray-900 mb-responsive-sm">Company</h3>
-            <ul className="space-y-1 text-sm font-medium">
-              <li>
-                <Link href="/" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.home')}
-                </Link>
-              </li>
+            <h3 className="text-base font-bold text-gray-900 mb-3">{t('footer.company', { defaultValue: 'Company' })}</h3>
+            <ul className="space-y-1.5 text-sm font-medium">
               <li>
                 <Link href="/about" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
                   {t('nav.aboutUs')}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.contact')}
-                </Link>
+                <Link href="/blog" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.blog')}</Link>
               </li>
               <li>
-                <Link href="/book-consultation" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('nav.bookConsultation')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  Blog
-                </Link>
+                <Link href="/contact" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.contact')}</Link>
               </li>
             </ul>
           </motion.div>
-          {/* Legal Column */}
+          {/* Services Column */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="">
+            <h3 className="text-base font-bold text-gray-900 mb-3">{t('nav.services')}</h3>
+            <ul className="space-y-1.5 text-sm font-medium">
+              <li>
+                <Link href="/services/it-managed-services" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.managedItSupport')}</Link>
+              </li>
+              <li>
+                <Link href="/services/cloud-infrastructure" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.cloudInfrastructure')}</Link>
+              </li>
+              <li>
+                <Link href="/services/cybersecurity" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.cybersecurity')}</Link>
+              </li>
+              <li>
+                <Link href="/services/it-consulting-project-management" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.itConsultingProjectManagement')}</Link>
+              </li>
+              <li>
+                <Link href="/services/wifi-assessment" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.wifiAssessment')}</Link>
+              </li>
+              <li>
+                <Link href="/services/wifi-design" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.wifiDesign')}</Link>
+              </li>
+              <li>
+                <Link href="/services/itad-japan-apac-us" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">ITAD (Japan/APAC/US)</Link>
+              </li>
+            </ul>
+          </motion.div>
+          {/* Resources Column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="">
-            <h3 className="text-base font-bold text-gray-900 mb-responsive-sm">Legal</h3>
-            <ul className="space-y-1 text-sm font-medium">
+            <h3 className="text-base font-bold text-gray-900 mb-3">{t('footer.quickLinks')}</h3>
+            <ul className="space-y-1.5 text-sm font-medium">
               <li>
-                <Link href="/privacy" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('footer.privacyPolicy')}
-                </Link>
+                <Link href="/services" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.services')}</Link>
               </li>
               <li>
-                <Link href="/terms" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">
-                  {t('footer.termsOfService')}
-                </Link>
+                <Link href="/blog" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('nav.blog')}</Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('footer.privacyPolicy')}</Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-gray-700/90 hover:text-gray-900 transition-colors duration-300 py-1 block focus:outline-none focus:ring-2 focus:ring-violet-600 rounded">{t('footer.termsOfService')}</Link>
               </li>
             </ul>
           </motion.div>
+          {/* Contact Column */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="space-y-3"
+          >
+            <h3 className="text-base font-bold text-gray-900 mb-3">{t('footer.contactInfo')}</h3>
+            <div className="flex items-start gap-3 text-sm text-gray-700/90">
+              <div className="w-5 h-5 text-gray-700"><LocationIcon /></div>
+              <div>
+                <p>{t('contact.info.addressText')}</p>
+                <a href="https://maps.google.com/?q=2-4-15 Minamiaoyama 4F, Minato City, Tokyo 107-0062" target="_blank" rel="noopener noreferrer" className="text-gray-700/90 hover:text-gray-900">{t('footer.viewOnMap', { defaultValue: 'View on map' })}</a>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 text-sm text-gray-700/90">
+              <div className="w-5 h-5 text-gray-700"><EmailIcon /></div>
+              <a href="mailto:support@akrin.jp" className="hover:text-gray-900">support@akrin.jp</a>
+            </div>
+            <div className="flex items-center gap-3 text-sm text-gray-700/90">
+              <div className="w-5 h-5 text-gray-700"><PhoneIcon /></div>
+              <a href="tel:+81-3-6821-1223" className="hover:text-gray-900">+81-3-6821-1223</a>
+            </div>
+          </motion.div>
         </motion.div>
+        </ClientOnly>
 
         {/* Bottom copyright bar - responsive */}
+        <ClientOnly fallback={
+          <div className="pt-6 sm:pt-8 border-t border-gray-200/80">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+              <p className="text-xs sm:text-sm text-gray-700/90 text-center sm:text-left font-medium">
+                Copyright © {new Date().getFullYear()} AKRIN株式会社. All rights reserved.
+              </p>
+              <div className="flex items-center gap-3 text-xs text-gray-600">
+                <Link href="/privacy" className="hover:text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-1">
+                  Privacy Policy
+                </Link>
+                <span>•</span>
+                <Link href="/terms" className="hover:text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-1">
+                  Terms of Service
+                </Link>
+              </div>
+            </div>
+          </div>
+        }>
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="pt-responsive-md border-t border-gray-200/80">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-responsive-sm">
-            <p className="text-xs sm:text-sm text-gray-700/90 text-center sm:text-left font-medium tracking-tight">
+          className="pt-6 sm:pt-8 border-t border-gray-200/80">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+            <p className="text-xs sm:text-sm text-gray-700/90 text-center sm:text-left font-medium">
               Copyright © {new Date().getFullYear()} AKRIN株式会社. {t('footer.allRightsReserved')}
             </p>
-            <div className="flex items-center gap-responsive-sm text-xs text-gray-600">
+            <div className="flex items-center gap-3 text-xs text-gray-600">
               <Link href="/privacy" className="hover:text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-1">
-                Privacy
+                {t('footer.privacyPolicy')}
               </Link>
               <span>•</span>
               <Link href="/terms" className="hover:text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 rounded px-1">
-                Terms
+                {t('footer.termsOfService')}
               </Link>
             </div>
           </div>
         </motion.div>
+        </ClientOnly>
       </div>
     </footer>
   )

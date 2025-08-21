@@ -23,9 +23,9 @@ const capabilities = [
     description: "Scalable cloud solutions with seamless migration services, optimization, and comprehensive security for modern businesses.",
     features: ["Cloud Migration", "Auto Scaling", "Security First", "Cost Optimization"],
     link: "/services/cloud-infrastructure",
-    color: "from-purple-500 to-indigo-500",
-    bgColor: "bg-purple-50",
-    textColor: "text-purple-600"
+    color: "from-[hsl(var(--primary))] to-indigo-500",
+    bgColor: "bg-[hsl(var(--primary))]/10",
+    textColor: "text-[hsl(var(--primary))]"
   },
   {
     icon: <Settings className="w-8 h-8" />,
@@ -61,7 +61,7 @@ export function CapabilitiesFlexible() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="w-12 h-1 bg-purple-600 mx-auto mb-6"></div>
+        <div className="w-12 h-1 bg-[hsl(var(--primary))] mx-auto mb-6"></div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 text-gray-900 leading-tight max-w-4xl mx-auto">
             Capabilities that define the future
           </h2>
@@ -112,7 +112,7 @@ export function CapabilitiesFlexible() {
 
                   <Link
                     href={capability.link}
-                    className="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold text-sm sm:text-base transition-colors group-hover:underline"
+                   className="inline-flex items-center text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] font-semibold text-sm sm:text-base transition-colors group-hover:underline"
                   >
                     Learn More
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -135,14 +135,14 @@ export function CapabilitiesFlexible() {
             {/* Left Content */}
             <div>
               <div className="flex items-center mb-4">
-                <Users className="w-6 h-6 text-purple-600 mr-3" />
-                <span className="text-sm font-semibold text-purple-600 uppercase tracking-wider">
+             <Users className="w-6 h-6 text-[hsl(var(--primary))] mr-3" />
+             <span className="text-sm font-semibold text-[hsl(var(--primary))] uppercase tracking-wider">
                   Enterprise Scale
                 </span>
               </div>
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-900 mb-4 sm:mb-6 leading-tight">
                 Trusted by industry leaders
-                <span className="block text-purple-600 font-semibold">worldwide</span>
+             <span className="block text-[hsl(var(--primary))] font-semibold">worldwide</span>
               </h3>
               <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
                 From startups to Fortune 500 companies, we deliver scalable IT solutions that grow with your business. 
@@ -152,22 +152,22 @@ export function CapabilitiesFlexible() {
               {/* Stats */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                 <div className="text-center lg:text-left">
-                  <div className="text-2xl sm:text-3xl font-bold text-purple-600">500+</div>
+              <div className="text-2xl sm:text-3xl font-bold text-[hsl(var(--primary))]">500+</div>
                   <div className="text-xs sm:text-sm text-gray-600">Clients Served</div>
                 </div>
                 <div className="text-center lg:text-left">
-                  <div className="text-2xl sm:text-3xl font-bold text-purple-600">99.9%</div>
+              <div className="text-2xl sm:text-3xl font-bold text-[hsl(var(--primary))]">99.9%</div>
                   <div className="text-xs sm:text-sm text-gray-600">Uptime SLA</div>
                 </div>
                 <div className="text-center lg:text-left col-span-2 sm:col-span-1">
-                  <div className="text-2xl sm:text-3xl font-bold text-purple-600">24/7</div>
+              <div className="text-2xl sm:text-3xl font-bold text-[hsl(var(--primary))]">24/7</div>
                   <div className="text-xs sm:text-sm text-gray-600">Support</div>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button 
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base"
                   asChild
                 >
                   <Link href="/contact">
@@ -177,7 +177,7 @@ export function CapabilitiesFlexible() {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="border-purple-200 text-purple-600 hover:bg-purple-50 px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base"
+                  className="border-[hsl(var(--primary))]/30 text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))]/10 px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base"
                   asChild
                 >
                   <Link href="/services">
@@ -189,10 +189,10 @@ export function CapabilitiesFlexible() {
 
             {/* Right Visual */}
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl flex items-center justify-center relative overflow-hidden">
+            <div className="aspect-square bg-gradient-to-br from-[hsl(var(--primary))]/10 to-blue-100 rounded-2xl flex items-center justify-center relative overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-4 left-4 w-16 h-16 bg-purple-400 rounded-full"></div>
+                <div className="absolute top-4 left-4 w-16 h-16 bg-[hsl(var(--primary))]/60 rounded-full"></div>
                   <div className="absolute top-16 right-8 w-8 h-8 bg-blue-400 rounded-full"></div>
                   <div className="absolute bottom-8 left-8 w-12 h-12 bg-pink-400 rounded-full"></div>
                   <div className="absolute bottom-4 right-4 w-20 h-20 bg-cyan-400 rounded-full"></div>
@@ -200,7 +200,7 @@ export function CapabilitiesFlexible() {
                 
                 {/* Center Icon */}
                 <div className="relative z-10 bg-white p-8 rounded-2xl shadow-lg">
-                  <Headphones className="w-16 h-16 text-purple-600" />
+                <Headphones className="w-16 h-16 text-[hsl(var(--primary))]" />
                 </div>
               </div>
             </div>

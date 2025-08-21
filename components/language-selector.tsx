@@ -20,17 +20,17 @@ export function LanguageSelector() {
     // Handle URL routing based on language
     if (langCode === 'ja') {
       // Switch to Japanese version
-      if (pathname.startsWith('/ja/')) {
+      if (pathname.startsWith('/ja/') || pathname === '/ja') {
         // Already on Japanese version, no need to change
         return
       } else {
         // Switch from English to Japanese
-        const newPath = `/ja${pathname}`
+        const newPath = pathname === '/' ? '/ja' : `/ja${pathname}`
         router.push(newPath)
       }
     } else {
       // Switch to English version
-      if (pathname.startsWith('/ja/')) {
+      if (pathname.startsWith('/ja/') || pathname === '/ja') {
         // Switch from Japanese to English
         const newPath = pathname.replace('/ja', '') || '/'
         router.push(newPath)
@@ -42,7 +42,7 @@ export function LanguageSelector() {
   }
 
   // Detect current language from URL
-  const currentLanguage = pathname.startsWith('/ja/') ? 'ja' : 'en'
+  const currentLanguage = (pathname.startsWith('/ja/') || pathname === '/ja') ? 'ja' : 'en'
 
   return (
     <DropdownMenu>
