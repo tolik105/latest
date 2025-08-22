@@ -38,7 +38,7 @@ export default function MonogramReactor({ fast = false }: { fast?: boolean }) {
           <video
             ref={videoRef}
             className="w-full h-full object-cover"
-            src={fast ? '/media/akr_A_loop_fast.mp4' : '/media/akr_A_loop.mp4'}
+            src={fast ? '/video/akr_A_loop.mp4' : '/video/akr_A_loop.mp4'}
             autoPlay
             muted
             loop

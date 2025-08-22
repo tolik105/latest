@@ -34,7 +34,7 @@ export default function CybersecurityClient() {
               { label: 'Services', href: '/services' },
               { label: 'Cybersecurity' }
             ]}
-            imageSrc="/images/banners/cybersecurity/banner1.webp"
+            imageSrc="/images/banners/cybersecurity/banner1.jpeg"
             imageAlt="Cybersecurity Solutions"
           />
         </section>
