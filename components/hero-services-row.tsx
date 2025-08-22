@@ -18,7 +18,7 @@ export function HeroServicesRow() {
     {
       id: 2,
       title: t('nav.cybersecurity'),
-      image: '/images/banners/cybersecurity/banner1.webp',
+      image: '/images/banners/cybersecurity/banner1.jpeg',
       link: '/services/cybersecurity',
       blurb: t('services.cyberSecurity.description')
     },
