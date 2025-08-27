@@ -71,7 +71,7 @@ export function CookieConsent() {
         <div className="p-4 sm:p-6">
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-3">
-              <Cookie className="h-6 w-6 text-purple-600 flex-shrink-0 mt-0.5" />
+              <Cookie className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
               <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   {t('cookies.title', 'We use cookies')}
@@ -81,7 +81,7 @@ export function CookieConsent() {
                   {' '}
                   <Link 
                     href="/cookies" 
-                    className="text-purple-600 hover:text-purple-700 underline underline-offset-2"
+                    className="text-primary hover:text-primary/90 underline underline-offset-2"
                     aria-label="Learn more about our cookie policy"
                   >
                     {t('cookies.learnMore', 'Learn more about our cookie policy')}
@@ -100,7 +100,7 @@ export function CookieConsent() {
           <div className="mt-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Button 
               onClick={acceptCookies}
-              className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700"
+              className="w-full sm:w-auto"
             >
               {t('cookies.accept', 'Accept All Cookies')}
             </Button>
