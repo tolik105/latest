@@ -1,15 +1,19 @@
 import { NextResponse } from 'next/server'
 import { createReadStream, statSync } from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 // Serve files from english-case-studies-mdx/public-eng/case-assets under /case-assets/*
+// Precompute absolute directory using URL to avoid process.cwd() tracing
+const CASE_ASSETS_DIR = fileURLToPath(new URL('../../../english-case-studies-mdx/public-eng/case-assets/', import.meta.url))
+
 export async function GET(
   _req: Request,
   { params }: { params: Promise<{ path: string[] }> }
 ) {
   const { path: segments } = await params
   const fileRel = segments.join('/')
-  const filePath = path.join(process.cwd(), 'english-case-studies-mdx', 'public-eng', 'case-assets', fileRel)
+  const filePath = path.join(CASE_ASSETS_DIR, fileRel)
 
   try {
     const stat = statSync(filePath)

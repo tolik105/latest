@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { NextResponse } from 'next/server'
 
 type CaseFrontmatter = {
@@ -10,14 +11,17 @@ type CaseFrontmatter = {
   image?: string
 }
 
-async function listMdxFrontmatters(dir: string, locale: 'en' | 'ja'): Promise<CaseFrontmatter[]> {
+// Use static, file-traceable absolute directories to avoid bundling the whole repo
+const EN_DIR = fileURLToPath(new URL('../../../english-case-studies-mdx', import.meta.url))
+const JA_DIR = fileURLToPath(new URL('../../../japanese-case-studies-mdx', import.meta.url))
+
+async function listMdxFrontmatters(absDir: string, locale: 'en' | 'ja'): Promise<CaseFrontmatter[]> {
   try {
-    const abs = path.join(process.cwd(), dir)
-    const entries = await fs.readdir(abs)
+    const entries = await fs.readdir(absDir)
     const mdxFiles = entries.filter((f) => f.endsWith('.mdx'))
     const items: CaseFrontmatter[] = []
     for (const file of mdxFiles) {
-      const raw = await fs.readFile(path.join(abs, file), 'utf8')
+      const raw = await fs.readFile(path.join(absDir, file), 'utf8')
       const m = raw.match(/^---([\s\S]*?)---/)
       if (!m) continue
       const fm = m[1]
@@ -50,8 +54,8 @@ export async function GET(request: Request) {
   const limitParam = searchParams.get('limit')
   const limit = limitParam ? Math.max(1, Math.min(12, Number(limitParam))) : undefined
 
-  const en = await listMdxFrontmatters('english-case-studies-mdx', 'en')
-  const ja = await listMdxFrontmatters('japanese-case-studies-mdx', 'ja')
+  const en = await listMdxFrontmatters(EN_DIR, 'en')
+  const ja = await listMdxFrontmatters(JA_DIR, 'ja')
   const all = [...en, ...ja]
   const EXCLUDED = new Set([
     'enterprise-wifi-hq-koujimachi',
