@@ -81,7 +81,7 @@ export function HomeCaseStudies() {
             clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)',
           }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 h-80 sm:h-96 lg:h-[420px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 h-[340px] sm:h-96 lg:h-[420px]">
           {(cards.length ? cards : Array.from({ length: 4 }).map(() => null)).slice(0, 4).map((card, index) => {
             const href = `${prefix}/case-studies/${card?.slug ?? ''}`
             const title = card?.title ?? ''
@@ -120,8 +120,8 @@ export function HomeCaseStudies() {
                     </div>
                   </div>
 
-                  {/* Hover overlay - brand color panel like NSC orange panel */}
-                  <div className="panel absolute inset-0 bg-[hsl(var(--primary))] translate-x-[-100%] group-hover:translate-x-0 md:translate-x-[-100%] md:group-hover:translate-x-0 transition-transform duration-250 ease-out motion-reduce:transition-none motion-reduce:transform-none">
+                  {/* Hover overlay - brand color panel (desktop only) */}
+                  <div className="panel absolute inset-0 bg-[hsl(var(--primary))] hidden md:block md:translate-x-[-100%] md:group-hover:translate-x-0 transition-transform duration-200 ease-out motion-reduce:transition-none motion-reduce:transform-none">
                     <div className="h-full flex flex-col justify-between p-4 sm:p-5 lg:p-6 text-white">
                       <div className="flex-1 flex items-start pt-2">
                         <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold leading-[1.2] tracking-tight break-words hyphens-auto" lang={isJa ? 'ja' : 'en'}>
