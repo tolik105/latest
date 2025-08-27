@@ -9,6 +9,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import { ServiceProcessCard } from "@/components/service-process-card"
 import { cn } from "@/lib/utils"
+import { HeroDiagonal } from "@/components/hero-diagonal"
 
 function SpotlightLogoCloud() {
   const logos = [
@@ -219,46 +220,21 @@ export default function ITManagedServicesClient() {
       <div className="bg-white font-sans">
         {/* Breadcrumb removed */}
 
-        {/* Hero Section - Flexible & Optimized */}
+        {/* Standardized Hero Section (HeroDiagonal) */}
         <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
-          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
-            
-            {/* Background Image with Diagonal Cut */}
-            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
-              <div className="relative h-full overflow-hidden">
-                <img
-                  src="/images/banners/it-managed-services/banner.webp"
-                  alt="ITマネージドサービスチーム"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                {/* Clean diagonal overlay */}
-                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <polygon points="0,0 25,0 0,100" fill="white" />
-                </svg>
-              </div>
-            </div>
+          <HeroDiagonal
+            title={<>
+              ITマネージドサービス<br />
+              ソリューション
+            </>}
+            breadcrumbs={[
+              { label: 'Services', href: '/ja/services' },
+              { label: 'IT Managed Services' }
+            ]}
+            imageSrc="/images/banners/it-managed-services/banner.avif"
+            imageAlt="ITマネージドサービスチーム"
 
-            {/* Content */}
-            <div className="relative z-10 w-full">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="lg:w-1/2">
-                  <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                    ITマネージドサービス<br />
-                    ソリューション
-                  </h1>
-                  <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
-                    マネージドITサポートのご提供
-                  </p>
-                  <Link
-                    href="/ja/contact"
-                    className="inline-block bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200"
-                  >
-                    マネージドITサポートを取得
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          />
         </section>
 
         {/* 24/7 Network Monitoring Section - EireSystems Style */}

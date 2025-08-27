@@ -9,6 +9,7 @@ import { GACaseStudy } from '@/components/ga-case-study'
 import { ServiceFAQ } from '@/components/ui/service-faq'
 
 import { caseStudiesEN } from '@/lib/case-studies-data'
+import { getCaseStudyHero } from '@/lib/case-study-assets'
 
 const slugToMdxFile: Record<string, string> = {
   'managed-it-services-cpg-tokyo': 'ja-managed-it-services-cpg-tokyo.mdx',
@@ -109,7 +110,8 @@ async function loadCaseStudyMdx(slug: string) {
       body = raw.slice(fmMatch[0].length).trim()
     }
 
-    const bodyHtmlJa = mdToHtml(body)
+    // Remove a leading inline image from the JA body to avoid duplicate hero images
+    const bodyHtmlJa = mdToHtml(body).replace(/^\s*<img[^>]*\/>\s*/, '')
     const fmMeta = (hero as any).__fm || {}
     return { hero, gallery, bodyHtmlJa, fmMeta }
   } catch {
@@ -150,7 +152,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title,
       description,
-      images: item ? [`/case-assets/${slug}/hero.webp`] : undefined,
+      images: item ? [getCaseStudyHero(slug)] : undefined,
       url: `/ja/case-studies/${slug}`,
       type: 'article'
     },
@@ -158,7 +160,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: 'summary_large_image',
       title,
       description,
-      images: item ? [`/case-assets/${slug}/hero.webp`] : undefined,
+      images: item ? [getCaseStudyHero(slug)] : undefined,
     },
   }
 }
@@ -174,7 +176,7 @@ export default async function CaseStudyDetailJA({ params }: { params: Promise<{ 
   const cs = caseStudiesEN.find(c => c.slug === slug)
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA]">
+    <main className="min-h-screen bg-[#F8F9FA] pt-20 sm:pt-24">
       <section className="container py-responsive-xl">
         <div className="mb-responsive-lg">
           <Link href="/ja/case-studies" className="text-sm text-gray-600 hover:text-teal-700">← 導入事例一覧へ</Link>
@@ -191,16 +193,14 @@ export default async function CaseStudyDetailJA({ params }: { params: Promise<{ 
           )}
         </div>
 
-        {data?.hero?.src && (
-          <figure className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white">
-            <div className="relative aspect-[16/9] w-full">
-              <Image src={data.hero.src} alt={data.hero.alt || ''} fill className="object-cover" priority sizes="(max-width: 1024px) 100vw, 1200px" />
-            </div>
-            {(data.hero.caption || data.hero.alt) && (
-              <figcaption className="p-3 text-xs text-gray-600">{data.hero.caption || data.hero.alt}</figcaption>
-            )}
-          </figure>
-        )}
+        <figure className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <div className="relative aspect-[16/9] w-full">
+            <Image src={getCaseStudyHero(slug)} alt={data?.hero?.alt || cs?.titleJA || ''} fill className="object-cover" priority sizes="(max-width: 1280px) 100vw, 1600px" quality={95} />
+          </div>
+          {(data?.hero?.caption || data?.hero?.alt) && (
+            <figcaption className="p-3 text-xs text-gray-600">{data?.hero?.caption || data?.hero?.alt}</figcaption>
+          )}
+        </figure>
 
         {data?.bodyHtmlJa && (
           <article className="bg-white rounded-xl border border-gray-200 p-6 md:p-10 mb-10">
@@ -212,7 +212,7 @@ export default async function CaseStudyDetailJA({ params }: { params: Promise<{ 
           const title = cs?.titleJA || '導入事例'
           const url = `/ja/case-studies/${slug}`
           const description = (data as any)?.fmMeta?.metaDescription || cs?.excerptJA || ''
-          const image = data?.hero?.src || (cs ? `/case-assets/${slug}/hero.webp` : undefined)
+          const image = data?.hero?.src || getCaseStudyHero(slug)
           const schema = {
             '@context': 'https://schema.org',
             '@type': 'Article',
@@ -258,13 +258,17 @@ export default async function CaseStudyDetailJA({ params }: { params: Promise<{ 
         {/* ギャラリー（この事例のフォルダのみ許可） */}
         {(() => {
           const base = `/case-assets/${slug}/`
-          const safe = (data?.gallery || []).filter((g: any) => typeof g.src === 'string' && g.src.startsWith(base))
+          const safe = (data?.gallery || [])
+            .filter((g: any) => typeof g.src === 'string' && g.src.startsWith(base))
+            .filter((g: any) => {
+              try { const name = (g.src || '').split('/').pop() || ''; return !/^hero\./i.test(name) } catch { return true }
+            })
           return safe.length ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {safe.map((g: any, idx: number) => (
                 <figure key={idx} className="overflow-hidden rounded-xl border border-gray-200 bg-white">
                   <div className="relative aspect-[16/9] w-full">
-                    <Image src={g.src} alt={g.alt || ''} fill className="object-cover object-center transform scale-90" />
+                    <Image src={g.src} alt={g.alt || ''} fill className="object-cover object-center" quality={95} sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw" />
                   </div>
                   {(g.caption || g.alt) && (
                     <figcaption className="p-3 text-xs text-gray-600">{g.caption || g.alt}</figcaption>

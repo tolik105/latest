@@ -5,6 +5,7 @@ import Script from "next/script"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { HeroDiagonal } from "@/components/hero-diagonal"
 
 const MobileFriendlyFAQItem = ({
   question,
@@ -129,27 +130,22 @@ export default function WiFiDesignJaClient() {
           gtag('config', 'G-6YTE9HVKEE');
         `}
       </Script>
-      
+
       <div className="bg-white font-sans">
-        {/* Hero - matches managed style */}
+        {/* Standardized Hero Section (HeroDiagonal) */}
         <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
-          <div className="h-[500px] sm:h-[550px] lg:h-[600px] flex items-center">
-            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
-              <div className="relative h-full overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Wi‑Fi設計" className="absolute inset-0 w-full h-full object-cover" />
-                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100"><polygon points="0,0 25,0 0,100" fill="white" /></svg>
-              </div>
-            </div>
-            <div className="relative z-10 w-full">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="lg:w-1/2">
-                  <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">Wi‑Fi設計<br />& 実装</h1>
-                  <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">プロフェッショナルな無線ネットワーク設計、計画、実装サービス。ビジネス環境で最適なWi‑Fiパフォーマンス、カバレッジ、スケーラビリティを確保します。</p>
-                  <Link href="/ja/contact" className="inline-block w-full sm:w-auto text-center bg-teal-500 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-all duration-200">Wi‑Fi設計開始</Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <HeroDiagonal
+            title={<>
+              Wi‑Fi設計 &<br />
+              導入
+            </>}
+            breadcrumbs={[
+              { label: 'Services', href: '/ja/services' },
+              { label: 'Wi‑Fi設計' }
+            ]}
+            imageSrc="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=2126&q=80"
+            imageAlt="Wi‑Fi設計"
+          />
         </section>
 
         {/* Section 1 - Why it matters */}

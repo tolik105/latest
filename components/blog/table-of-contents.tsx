@@ -13,9 +13,10 @@ interface TOCItem {
 interface TableOfContentsProps {
   content: string;
   className?: string;
+  language?: 'en' | 'ja';
 }
 
-export function TableOfContents({ content, className }: TableOfContentsProps) {
+export function TableOfContents({ content, className, language = 'en' }: TableOfContentsProps) {
   const [tocItems, setTocItems] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -140,10 +141,10 @@ export function TableOfContents({ content, className }: TableOfContentsProps) {
           aria-controls="toc-list"
         >
           <span className="flex items-center">
-            <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
             </svg>
-            Table of Contents
+            {language === 'ja' ? '目次' : 'Table of Contents'}
           </span>
           {isMobile && (
             <svg
@@ -168,12 +169,12 @@ export function TableOfContents({ content, className }: TableOfContentsProps) {
               <button
                 onClick={() => scrollToHeading(item.id)}
                 className={cn(
-                  "block w-full text-left transition-colors duration-200 hover:text-blue-600 focus:outline-none focus:text-blue-600 rounded-md p-2",
+                  "block w-full text-left transition-colors duration-200 hover:text-teal-600 focus:outline-none focus:text-teal-600 rounded-md p-2",
                   isMobile ? "text-sm min-h-[44px]" : "text-sm",
                   item.level === 2 && "font-medium",
                   item.level === 3 && (isMobile ? "pl-4" : "pl-4") + " text-gray-600",
                   item.level === 4 && (isMobile ? "pl-6" : "pl-8") + " text-gray-500",
-                  activeId === item.id && "text-blue-600 font-medium bg-blue-50"
+                  activeId === item.id && "text-teal-600 font-medium bg-teal-50/50"
                 )}
               >
                 {item.text}

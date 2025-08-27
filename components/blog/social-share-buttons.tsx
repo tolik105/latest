@@ -3,9 +3,10 @@
 interface SocialShareButtonsProps {
   title: string
   url?: string
+  language?: 'en' | 'ja'
 }
 
-export function SocialShareButtons({ title, url }: SocialShareButtonsProps) {
+export function SocialShareButtons({ title, url, language = 'en' }: SocialShareButtonsProps) {
   const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '')
 
   const handleLinkedInShare = () => {
@@ -20,86 +21,49 @@ export function SocialShareButtons({ title, url }: SocialShareButtonsProps) {
   }
 
   const handleEmailShare = () => {
-    const subject = encodeURIComponent(`Check out this article: ${title}`)
-    const body = encodeURIComponent(`I thought you might find this interesting:\n\n${title}\n${shareUrl}`)
+    const subject = encodeURIComponent(
+      language === 'ja' ? `この記事をご覧ください: ${title}` : `Check out this article: ${title}`
+    )
+    const body = encodeURIComponent(
+      (language === 'ja'
+        ? `この記事は興味深いと思います:\n\n${title}\n${shareUrl}`
+        : `I thought you might find this interesting:\n\n${title}\n${shareUrl}`)
+    )
     window.location.href = `mailto:?subject=${subject}&body=${body}`
   }
 
   return (
-    <div className="flex items-center space-x-4 mb-8 py-4">
-      <span className="text-sm font-medium text-gray-700">Share:</span>
+    <div className="flex items-center gap-3 mb-8 py-4">
+      <span className="text-sm font-medium text-gray-700">{language === 'ja' ? '共有:' : 'Share:'}</span>
 
       {/* LinkedIn Button */}
       <button
         onClick={handleLinkedInShare}
-        className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#0077b5] hover:bg-[#005885] transition-colors duration-200"
-        title="Share on LinkedIn"
-        aria-label="Share this article on LinkedIn"
+        className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-teal-500 hover:bg-teal-600 transition-colors duration-200 text-white font-bold text-sm"
+        title={language === 'ja' ? 'LinkedInで共有' : 'Share on LinkedIn'}
+        aria-label={language === 'ja' ? 'この記事をLinkedInで共有' : 'Share this article on LinkedIn'}
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-            fill="white"
-          />
-        </svg>
+        in
       </button>
 
       {/* Twitter Button */}
       <button
         onClick={handleTwitterShare}
-        className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#1da1f2] hover:bg-[#0d8bd9] transition-colors duration-200"
-        title="Share on Twitter"
-        aria-label="Share this article on Twitter"
+        className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-teal-500 hover:bg-teal-600 transition-colors duration-200 text-white font-bold text-sm"
+        title={language === 'ja' ? 'Xで共有' : 'Share on Twitter'}
+        aria-label={language === 'ja' ? 'この記事をXで共有' : 'Share this article on Twitter'}
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
-            fill="white"
-          />
-        </svg>
+        𝕏
       </button>
 
       {/* Email Button */}
       <button
         onClick={handleEmailShare}
-        className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-600 hover:bg-gray-700 transition-colors duration-200"
-        title="Share via Email"
-        aria-label="Share this article via email"
+        className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-teal-500 hover:bg-teal-600 transition-colors duration-200 text-white font-bold text-lg"
+        title={language === 'ja' ? 'メールで共有' : 'Share via Email'}
+        aria-label={language === 'ja' ? 'この記事をメールで共有' : 'Share this article via email'}
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <polyline
-            points="22,6 12,13 2,6"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        ✉
       </button>
     </div>
   )

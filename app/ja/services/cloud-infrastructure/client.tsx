@@ -96,7 +96,7 @@ export default function CloudInfrastructureJaClient() {
               { label: 'Services', href: '/ja/services' },
               { label: 'Cloud Infrastructure' }
             ]}
-            imageSrc="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+            imageSrc="/images/banners/cloud-infrastructure/banner.webp"
             imageAlt="クラウドインフラストラクチャ"
           />
         </section>

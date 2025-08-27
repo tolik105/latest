@@ -12,7 +12,7 @@ const heroSlides = [
     title: "IT Managed Services",
     subtitle: "Comprehensive IT Management Solutions",
     description: "24/7 monitoring, proactive maintenance, and expert support to keep your business running smoothly with enterprise-grade reliability.",
-    image: "/images/banners/it-managed-services/banner.webp",
+    image: "/images/banners/it-managed-services/banner.avif",
     link: "/services/it-managed-services",
     ctaText: "Explore Managed Services"
   },

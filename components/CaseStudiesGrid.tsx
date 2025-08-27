@@ -3,6 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useTranslation } from "react-i18next"
 import { caseStudiesEN, CaseStudyItem } from "@/lib/case-studies-data"
+import { getCaseStudyHero } from "@/lib/case-study-assets"
 
 export default function CaseStudiesGrid() {
   const { i18n } = useTranslation("common")
@@ -17,7 +18,7 @@ export default function CaseStudiesGrid() {
   const items: CaseStudyItem[] = caseStudiesEN.filter(cs => !EXCLUDED.has(cs.slug)) // mirror: values contain JA fields too
 
   return (
-    <section className="container py-responsive-xl">
+    <section className="container pt-16 sm:pt-20 md:pt-24 pb-responsive-xl">
       <div className="mb-responsive-lg">
         <h1
           className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-normal md:tracking-[-0.01em] text-gray-900"
@@ -43,21 +44,15 @@ export default function CaseStudiesGrid() {
               <div className="relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
                 {/* Show actual case study hero image; fall back visually with noise overlay */}
                 <Image
-                  src={`/case-assets/${cs.slug}/hero.webp`}
+                  src={getCaseStudyHero(cs.slug)}
                   alt={(isJa ? cs.titleJA : cs.titleEN) || ''}
                   fill
                   className="object-cover"
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 1280px) calc(100vw / 3), (min-width: 640px) calc(100vw / 2), 100vw"
+                  quality={95}
                   priority={false}
                 />
-                <Image
-                  src="/noise.webp"
-                  alt=""
-                  fill
-                  className="object-cover opacity-10 [mask-image:radial-gradient(#fff,transparent,75%)]"
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  priority={false}
-                />
+
               </div>
               <div className="p-5">
                 <h3 className="text-base sm:text-lg font-semibold text-gray-900 group-hover:text-teal-700 transition-colors">

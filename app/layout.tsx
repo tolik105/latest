@@ -93,17 +93,17 @@ export const metadata: Metadata = {
   icons: {
     // Versioned query params to force-refresh in browsers with sticky favicon caches
     icon: [
-      { url: '/favicon-32x32.png?v=2', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png?v=2', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-96x96.png?v=2', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon-192x192.png?v=2', sizes: '192x192', type: 'image/png' },
-      { url: '/favicon.svg?v=2', type: 'image/svg+xml' }
+      { url: '/favicon-32x32.v3.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.v3.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-96x96.v3.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon-192x192.v3.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' }
     ],
-    shortcut: '/favicon-32x32.png?v=2',
+    shortcut: '/favicon-32x32.v3.png',
     apple: [
-      { url: '/apple-touch-icon.png?v=2', sizes: '180x180', type: 'image/png' },
-      { url: '/apple-touch-icon-120x120.png?v=2', sizes: '120x120', type: 'image/png' },
-      { url: '/apple-touch-icon-152x152.png?v=2', sizes: '152x152', type: 'image/png' }
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-touch-icon-120x120.png', sizes: '120x120', type: 'image/png' },
+      { url: '/apple-touch-icon-152x152.png', sizes: '152x152', type: 'image/png' }
     ],
   },
   manifest: '/manifest.json',

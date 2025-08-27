@@ -34,8 +34,7 @@ function ManagedServicesHero() {
               className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[64px] xl:text-[72px] font-extrabold text-[#111111] leading-[0.95] tracking-tight mb-2"
               style={{ letterSpacing: '-0.02em' }}
             >
-              IT Managed Services<br />
-              Solutions
+              IT Managed Services
             </h1>
           </div>
 
@@ -53,7 +52,7 @@ function ManagedServicesHero() {
         >
           <div className="absolute inset-0">
             <img
-              src="/images/banners/it-managed-services/banner.webp"
+              src="/images/banners/it-managed-services/banner.avif"
               alt="Burgundy/purple metallic ribbons on a dark background"
               className="w-full h-full object-cover"
               style={{

@@ -57,7 +57,7 @@ export default function CybersecurityJaClient() {
               { label: 'Services', href: '/ja/services' },
               { label: 'Cybersecurity' }
             ]}
-            imageSrc="/images/banners/cybersecurity/banner1.webp"
+            imageSrc="/images/banners/cybersecurity/banner1.jpeg"
             imageAlt="サイバーセキュリティソリューション"
           />
         </section>

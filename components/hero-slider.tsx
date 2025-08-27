@@ -10,13 +10,13 @@ const heroSlides = [
   {
     id: 1,
     title: "IT Managed Services",
-    image: "/images/banners/it-managed-services/banner.webp",
+    image: "/images/banners/it-managed-services/banner.avif",
     link: "/services/it-managed-services"
   },
   {
     id: 2,
     title: "Cybersecurity",
-    image: "/images/banners/cybersecurity/banner1.webp",
+    image: "/images/banners/cybersecurity/banner1.jpeg",
     link: "/services/cybersecurity"
   },
   {

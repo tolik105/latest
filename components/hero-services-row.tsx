@@ -1,6 +1,4 @@
 "use client"
-
-import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
@@ -11,7 +9,7 @@ export function HeroServicesRow() {
     {
       id: 1,
       title: t('nav.managedItSupport'),
-      image: '/images/banners/it-managed-services/banner.webp',
+      image: '/images/banners/it-managed-services/banner.avif',
       link: '/services/it-managed-services',
       blurb: t('services.managedIT.description')
     },
@@ -43,13 +41,12 @@ export function HeroServicesRow() {
             >
               {/* Image */}
               <div className={`relative h-64 sm:h-80 lg:h-96 ${isReversed ? 'md:order-2' : ''}`}>
-                <Image
+                <img
                   src={s.image}
                   alt={s.title}
-                  fill
-                  className="object-cover rounded-lg"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  priority={s.id === 1}
+                  className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                  loading={s.id === 1 ? 'eager' : 'lazy'}
+                  decoding="async"
                 />
                 <div className="absolute inset-0 rounded-lg ring-1 ring-gray-200" />
               </div>

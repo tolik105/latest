@@ -8,6 +8,10 @@ const nextConfig = {
   },
   images: {
     unoptimized: false, // Enable Next.js image optimization for better performance
+    formats: ['image/avif', 'image/webp'], // Prefer modern formats for crispness
+    deviceSizes: [
+      360, 414, 640, 750, 828, 960, 1080, 1200, 1280, 1440, 1536, 1600, 1920, 2048, 2160, 2304, 2400, 2560, 2880, 3200, 3840
+    ],
     remotePatterns: [
       {
         protocol: 'https',

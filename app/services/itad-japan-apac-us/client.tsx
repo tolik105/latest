@@ -119,16 +119,10 @@ export default function ITADPageClient() {
             Services
           </>}
           breadcrumbs={[{ label: 'Services', href: '/services' }, { label: 'ITAD Japan/APAC/US' }]}
-          imageSrc="/images/banners/it-managed-services/banner.webp"
+          imageSrc="/images/banners/itad/itad.webp"
           imageAlt="ITAD hero backdrop"
         />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6">
-          <p className="text-sm sm:text-base text-gray-600">Japan, APAC &amp; the US</p>
-          <div className="mt-3 flex flex-col sm:flex-row gap-3 sm:items-center">
-            <Link href="https://calendly.com/akrin/itad-consult" className="inline-block w-full sm:w-auto text-center bg-teal-500 text-white font-semibold px-5 sm:px-7 py-3 sm:py-3.5 rounded-full hover:bg-teal-600 transition-colors">Book a 15-minute ITAD consult</Link>
-            <a href="#pickup-quote" className="inline-block w-full sm:w-auto text-center border border-teal-500 text-teal-600 font-semibold px-5 sm:px-7 py-3 sm:py-3.5 rounded-full hover:bg-teal-50 transition-colors">Request a pickup quote</a>
-          </div>
-        </div>
+
       </section>
 
       {/* Why AKRIN */}

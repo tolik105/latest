@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { blogPostsEN } from '@/lib/blog-data'
 import { SocialShareButtons } from '@/components/blog/social-share-buttons'
-import { NewsletterForm } from '@/components/blog/newsletter-form'
 import { TableOfContents } from '@/components/blog/table-of-contents'
 import { ReadingProgress } from '@/components/blog/reading-progress'
+import { AboutAuthor } from '@/components/blog/about-author'
 import { AkrinIcon } from '@/components/akrin-logo'
 
 interface BlogPostPageProps {
@@ -216,9 +216,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound()
   }
 
-  // Adjust media behavior for specific posts (e.g., zoom-out for certain images)
-  const isCybersecurityPost = resolvedParams.slug === 'cybersecurity-best-practices-2025'
-  const isPhishingPost = resolvedParams.slug === 'phishing-prevention-guide-2025'
+  // Adjust media behavior for specific posts (kept simple for consistent visuals)
 
   // Add IDs to headings for better navigation
   const processedContent = addHeadingIds(post.content);
@@ -500,37 +498,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         />
       )}
 
-      <main className="min-h-screen bg-white" role="main">
-        {/* Preline Style Breadcrumb */}
-        <nav className="bg-gray-50 py-4" aria-label="Breadcrumb">
-          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <ol className="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
-              <li className="inline-flex items-center">
-                <Link className="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" href="/">
-                  <svg className="shrink-0 me-2 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
-                  </svg>
-                  Home
-                </Link>
-                <svg className="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </li>
-              <li className="inline-flex items-center">
-                <Link className="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" href="/blog">
-                  Blog
-                </Link>
-                <svg className="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </li>
-              <li className="inline-flex items-center text-sm font-semibold text-gray-800 truncate" aria-current="page">
-                {post.title.length > 50 ? post.title.substring(0, 50) + '...' : post.title}
-              </li>
-            </ol>
+      <main className="min-h-screen bg-white pt-20 sm:pt-24" role="main">
+
+        {/* Back Navigation */}
+        <div className="bg-white border-b border-gray-100">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-sm text-teal-600 hover:text-teal-700 transition-colors font-medium"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Blog
+            </Link>
           </div>
-        </nav>
+        </div>
 
         {/* Preline Style Article Header */}
         <header className="bg-white" itemScope itemType="https://schema.org/BlogPosting">
@@ -548,36 +531,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 {post.title}
               </h1>
 
-              {/* Article Meta */}
-              <div className="mt-5 flex items-center gap-x-4">
-                <div>
-                  <div className="flex items-center gap-x-3">
-                    <div className="shrink-0">
-                      <div className="size-10 bg-gray-100 rounded-full flex items-center justify-center">
-                        <svg className="size-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="12" cy="12" r="10"/>
-                          <polyline points="12 6 12 12 16 14"/>
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-x-2">
-                        <p className="text-sm font-medium text-gray-800">AKRIN Team</p>
-                        <ul className="text-xs text-gray-500">
-                          <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
-                            {post.date && new Date(post.date).toLocaleDateString('en-US', {
-                              year: 'numeric',
-                              month: 'short',
-                              day: 'numeric'
-                            })}
-                          </li>
-                          {post.readTime && (
-                            <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
-                              {post.readTime}
-                            </li>
-                          )}
-                        </ul>
-                      </div>
+              {/* Article Meta - Author */}
+              <div className="mt-5 mb-6 pb-6 border-b border-gray-200">
+                <div className="grid grid-cols-[48px_1fr] items-start gap-3">
+                  <div className="shrink-0 mt-0.5">
+                    <img src="/favicon-192x192.v3.png" alt="AKRIN" width={48} height={48} className="w-12 h-12 object-contain" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-gray-900 mb-1 leading-5">AKRIN</p>
+                    <div className="flex items-center gap-x-3 text-xs text-gray-500">
+                      <span>
+                        {post.date && new Date(post.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </span>
+                      {post.readTime && (
+                        <>
+                          <span>•</span>
+                          <span>{post.readTime}</span>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -615,7 +590,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   src={post.image}
                   alt={`${post.title} - Expert insights on IT infrastructure and technology trends in Japan by AKRIN`}
                   fill
-                  className={(isCybersecurityPost || isPhishingPost) ? "object-contain object-center p-2" : "object-cover object-center"}
+                  className="object-cover object-center"
                   priority
                   itemProp="image"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1320px"
@@ -673,61 +648,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 
 
-        {/* Category-Specific FAQ Section */}
-        {(post.category === 'Security' || post.slug.includes('cybersecurity')) && (
-          <section className="bg-gray-50 py-16 border-t border-gray-100" aria-labelledby="faq-section">
-            <div className="max-w-4xl mx-auto px-6">
-              <h2 id="faq-section" className="text-xl sm:text-2xl md:text-3xl font-normal text-gray-900 mb-8 tracking-tight">
-                Frequently Asked Questions
-              </h2>
-              <div className="space-y-8">
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
-                    What are the most critical cybersecurity threats facing Japanese businesses in 2025?
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                    Japanese businesses face ransomware attacks (58% increase in 2022), Shadow AI vulnerabilities,
-                    deepfake social engineering, and supply chain attacks. The cybersecurity skills gap also remains
-                    a significant challenge for organizations implementing robust security measures.
-                  </p>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
-                    How does Zero Trust Architecture improve cybersecurity?
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                    Zero Trust eliminates the traditional perimeter-based security model by verifying every user,
-                    device, and application. It implements least privilege access, continuous monitoring, and
-                    network micro-segmentation to prevent lateral movement of threats.
-                  </p>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
-                    Why is AI-powered threat detection essential for modern businesses?
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                    Traditional signature-based security can't keep pace with evolving threats. AI provides predictive
-                    threat analysis, behavioral anomaly detection, automated incident response, and real-time threat
-                    intelligence to identify and respond to sophisticated attacks.
-                  </p>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3">
-                    How can AKRIN help improve my organization's cybersecurity posture?
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                    AKRIN provides comprehensive cybersecurity services including security assessments,
-                    implementation of Zero Trust architecture, AI-powered threat detection, compliance consulting,
-                    and 24/7 security monitoring tailored for the Japanese business environment.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+        {/* Removed Security FAQ section per request */}
 
         {/* Preline Style Related Posts Section */}
         {post.relatedPosts && post.relatedPosts.length > 0 && (
@@ -793,47 +714,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </section>
         )}
 
-        {/* Category-Specific CTA Section */}
-        {(post.category === 'Security' || post.slug.includes('cybersecurity')) && (
-         <section className="bg-[hsl(var(--primary))]/5 py-16 border-t border-gray-100">
-            <div className="max-w-4xl mx-auto px-6 text-center">
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
-                  Strengthen Your Cybersecurity Posture
-                </h2>
-                <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
-                  Don't wait for a security incident to take action. Our cybersecurity experts can help you
-                  implement comprehensive security measures tailored for your business needs in Japan.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="/services/it-managed-services"
-                   className="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
-                  >
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                    Managed IT Services
-                  </Link>
-                  <Link
-                    href="/contact"
-                   className="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-50 text-[hsl(var(--primary))] font-medium border-2 border-[hsl(var(--primary))] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
-                  >
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                    Free Security Consultation
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+        {/* Removed Security CTA section per request */}
 
-        {/* Preline Style Newsletter Section */}
-        <section className="bg-white py-10 sm:py-16 border-t border-gray-200" aria-labelledby="newsletter">
-          <NewsletterForm />
-        </section>
+        {/* About the Author */}
+        <AboutAuthor language="en" />
+
+        {/* Newsletter removed per request */}
 
       </main>
     </>

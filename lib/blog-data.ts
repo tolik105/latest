@@ -198,7 +198,7 @@ export const blogPostsEN = {
 
       <p>At Akrin, we understand the unique challenges facing Japanese businesses. Our cybersecurity experts combine global best practices with deep knowledge of local regulations and business culture to deliver security solutions that protect your assets while enabling growth.</p>
 
-      <p>Explore our related guides: <a href="/blog/phishing-prevention-guide-2025" title="Phishing Prevention Guide 2025">Phishing Prevention Strategies</a>, <a href="/blog/remote-work-security-guide" title="Remote Work Security Guide">Remote Work Security</a>, and <a href="/blog/ai-transforming-it-support" title="AI Transforming IT Support">AI-Powered Security Solutions</a>.</p>
+      <p>Explore our related guides: <a href="/blog/phishing-prevention-guide-2025" title="Phishing Prevention Guide 2025">Phishing Prevention Strategies</a>, <a href="/blog/remote-work-security-guide" title="Remote Work Security Guide">Remote Work Security</a>.</p>
     `,
     author: "Sarah Chen",
     authorRole: "Security Analyst",
@@ -669,18 +669,18 @@ export const blogPostsEN = {
   "remote-work-security-guide": {
     id: 5,
     slug: "remote-work-security-guide",
-    title: "Remote Work Security Guide | AKRIN IT Solutions",
-    metaDescription: "Comprehensive remote work security guide for Japanese businesses. Learn essential practices, VPN setup, endpoint protection, and zero trust strategies to protect distributed teams.",
-    excerpt: "Remote work has become the new normal, but it brings unique security challenges. Learn how to protect your organization with comprehensive security strategies tailored for distributed teams.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&h=630&q=80",
+    title: "リモートワークセキュリティ：包括的ガイド | AKRIN",
+    metaDescription: "日本企業向けのリモートワークセキュリティ完全ガイド。VPN、エンドポイント保護、ゼロトラストなど、分散チームを守るための実践を解説。",
+    excerpt: "リモートワークは新常態となりましたが、固有のセキュリティ課題を伴います。本ガイドでは、分散チームに最適化した包括的な対策を解説します。",
+    image: "/blog-images/remote-work.webp",
     content: `
-      <h1>Remote Work Security Guide | AKRIN IT Solutions</h1>
-      <p>The shift to remote work has fundamentally changed how we approach cybersecurity. While Japan's traditional office culture initially resisted this change, the global events of recent years have accelerated the adoption of flexible work arrangements. With this transformation comes new security challenges that every organization must address to protect their data, systems, and employees.</p>
+      <h1>リモートワークセキュリティ：包括的ガイド</h1>
+      <p>リモートワークへの移行は、サイバーセキュリティの考え方を根本から変えました。日本の伝統的なオフィス文化は当初この変化に慎重でしたが、近年の世界的な出来事をきっかけに柔軟な働き方が急速に広がりました。それに伴い、データ・システム・従業員を守るため、あらゆる組織が取り組むべき新たな課題が生まれています。</p>
 
-      <h2>The New Security Perimeter</h2>
-      <p>In the traditional office environment, security was relatively straightforward—protect the perimeter, control access to the building, and monitor network traffic. Remote work has dissolved these boundaries. Your security perimeter now extends to every employee's home, every coffee shop with WiFi, and every personal device accessing corporate resources.</p>
+      <h2>新しいセキュリティ境界</h2>
+      <p>従来のオフィスでは、物理境界の保護や入退室管理、ネットワーク監視が中心でした。リモートワークでは境界が溶け、従業員の自宅や外出先のWi‑Fi、個人デバイスにまでセキュリティ境界が広がります。</p>
 
-      <p>This distributed environment creates unique vulnerabilities:</p>
+      <p>この分散環境には、次のような特有の脆弱性があります。</p>
       <ul>
         <li>Unsecured home networks</li>
         <li>Personal devices mixing with work data</li>
@@ -689,65 +689,65 @@ export const blogPostsEN = {
         <li>Physical security risks in home offices</li>
       </ul>
 
-      <h2>Understanding Remote Work Threats</h2>
+      <h2>リモートワークの脅威を理解する</h2>
       
-      <h3>1. Network Security Vulnerabilities</h3>
-      <p>Home networks typically lack the robust security measures of corporate environments:</p>
+      <h3>1. ネットワークの脆弱性</h3>
+      <p>自宅のネットワークは、企業環境ほど堅牢な対策が講じられていないことが一般的です。</p>
       <ul>
-        <li><strong>Weak Router Configurations:</strong> Default passwords and outdated firmware</li>
-        <li><strong>Unsecured WiFi:</strong> WEP encryption or no encryption at all</li>
-        <li><strong>Shared Networks:</strong> Family members and IoT devices on the same network</li>
-        <li><strong>Man-in-the-Middle Attacks:</strong> Especially on public WiFi</li>
+        <li><strong>脆弱なルーター設定：</strong> 初期パスワードのまま、古いファームウェア</li>
+        <li><strong>保護されていないWi‑Fi：</strong> WEPなど弱い暗号、または無暗号</li>
+        <li><strong>共有ネットワーク：</strong> 家族やIoT機器と同一ネットワーク</li>
+        <li><strong>中間者攻撃：</strong> 公衆Wi‑Fiで特にリスクが高い</li>
       </ul>
 
-      <h3>2. Endpoint Security Challenges</h3>
-      <p>Personal devices present unique risks:</p>
+      <h3>2. エンドポイントの課題</h3>
+      <p>個人端末の利用には固有のリスクがあります。</p>
       <ul>
-        <li>Outdated operating systems and software</li>
-        <li>Lack of enterprise-grade antivirus protection</li>
-        <li>Unauthorized software installations</li>
-        <li>Weak or reused passwords</li>
-        <li>Unencrypted local storage</li>
+        <li>OSやソフトウェアの更新遅延</li>
+        <li>エンタープライズ向けアンチウイルスの不足</li>
+        <li>未承認ソフトウェアのインストール</li>
+        <li>脆弱または使い回しのパスワード</li>
+        <li>ローカルデータの未暗号化</li>
       </ul>
 
-      <h3>3. Human Factor Risks</h3>
-      <p>Remote work amplifies certain human vulnerabilities:</p>
+      <h3>3. ヒューマンリスク</h3>
+      <p>リモート環境では、人に起因する脆弱性が顕在化しやすくなります。</p>
       <ul>
-        <li><strong>Isolation:</strong> Less immediate access to IT support</li>
-        <li><strong>Distractions:</strong> Home environment may lead to security lapses</li>
-        <li><strong>Phishing Susceptibility:</strong> Increased reliance on digital communication</li>
-        <li><strong>Data Handling:</strong> Printing sensitive documents at home</li>
+        <li><strong>孤立：</strong> ITサポートへの即時アクセスが難しい</li>
+        <li><strong>注意散漫：</strong> 自宅環境での不注意による事故</li>
+        <li><strong>フィッシング耐性低下：</strong> デジタル連絡の増加に伴うリスク</li>
+        <li><strong>データ取扱い：</strong> 機密文書の自宅印刷など</li>
       </ul>
 
       <h2>Building a Secure Remote Work Environment</h2>
       
       <h3>Essential Security Measures</h3>
       
-      <h4>1. Virtual Private Networks (VPNs)</h4>
-      <p>VPNs are non-negotiable for remote work security:</p>
+      <h4>1. 仮想プライベートネットワーク（VPN）</h4>
+      <p>リモートワークのセキュリティにVPNは不可欠です。</p>
       <ul>
-        <li><strong>Always-On VPN:</strong> Automatic connection when device starts</li>
-        <li><strong>Split Tunneling Policies:</strong> Define what traffic goes through VPN</li>
-        <li><strong>Multi-Factor Authentication:</strong> Additional layer for VPN access</li>
-        <li><strong>Kill Switch Feature:</strong> Blocks internet if VPN disconnects</li>
+        <li><strong>常時接続VPN：</strong> 端末起動時に自動接続</li>
+        <li><strong>スプリットトンネリング：</strong> VPN経由の通信の定義</li>
+        <li><strong>多要素認証：</strong> VPNアクセスの追加防御層</li>
+        <li><strong>キルスイッチ：</strong> VPN切断時のインターネット遮断</li>
       </ul>
 
-      <h4>2. Endpoint Protection</h4>
-      <p>Comprehensive endpoint security includes:</p>
+      <h4>2. エンドポイント保護</h4>
+      <p>包括的なエンドポイント対策には次が含まれます。</p>
       <ul>
-        <li><strong>EDR Solutions:</strong> Endpoint Detection and Response for advanced threats</li>
-        <li><strong>Device Encryption:</strong> Full-disk encryption for all devices</li>
-        <li><strong>Mobile Device Management (MDM):</strong> Control over mobile devices</li>
-        <li><strong>Application Whitelisting:</strong> Only approved software can run</li>
+        <li><strong>EDR：</strong> 高度脅威向けの検知・対応</li>
+        <li><strong>デバイス暗号化：</strong> 端末のフルディスク暗号化</li>
+        <li><strong>MDM：</strong> モバイル端末の統合管理</li>
+        <li><strong>アプリケーション制御：</strong> 許可ソフトのみ実行</li>
       </ul>
 
-      <h4>3. Zero Trust Architecture</h4>
-      <p>Implement Zero Trust principles for remote access:</p>
+      <h4>3. ゼロトラスト・アーキテクチャ</h4>
+      <p>リモートアクセスにはゼロトラストの原則を適用します。</p>
       <ul>
-        <li>Verify every user, every device, every time</li>
-        <li>Least privilege access controls</li>
-        <li>Micro-segmentation of resources</li>
-        <li>Continuous authentication and authorization</li>
+        <li>すべてのユーザー／デバイスを毎回検証</li>
+        <li>最小権限のアクセス制御</li>
+        <li>リソースのマイクロセグメンテーション</li>
+        <li>継続的な認証・認可</li>
       </ul>
 
       <h2>Securing the Home Office</h2>
@@ -999,7 +999,7 @@ export const blogPostsEN = {
     title: "5G Impact on Business Operations | AKRIN IT",
     metaDescription: "Discover how 5G technology transforms business operations in Japan. Learn about ultra-low latency, IoT connectivity, private networks, and enterprise applications driving digital transformation.",
     excerpt: "The enterprise 5G market is projected to reach USD 600 billion in 2025, and Japan stands at the forefront of this technological revolution with massive IoT infrastructure investments.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630&q=80",
+    image: "/blog-images/5g.webp",
     content: `
       <h1>5G Impact on Business Operations | AKRIN IT</h1>
       <p>The enterprise 5G market is projected to reach USD 600 billion in 2025, and Japan stands at the forefront of this technological revolution. With USD 65 billion invested in IoT infrastructure—second only to China—and pioneering companies like Fujitsu obtaining the country's first private 5G license, Japan is demonstrating how 5G technology can fundamentally transform business operations.</p>
@@ -1312,27 +1312,27 @@ export const blogPostsEN = {
   "phishing-prevention-guide-2025": {
     id: 7,
     slug: "phishing-prevention-guide-2025",
-    title: "Phishing Prevention Guide 2025 | AKRIN IT Security",
-    metaTitle: "Phishing Email Prevention 2025: Complete Guide for Japanese Businesses | AKRIN",
-    metaDescription: "Protect your business from AI-enhanced phishing attacks. Learn proven strategies, compliance requirements, and implementation roadmaps for Japanese enterprises.",
-    focusKeywords: ["phishing prevention", "email security Japan", "cybersecurity business", "APPI compliance", "phishing attacks 2025"],
-    excerpt: "Phishing attacks have become increasingly sophisticated, targeting Japanese businesses with unprecedented precision. Learn how to build comprehensive defenses against these evolving threats.",
+    title: "フィッシングメール防止ガイド 2025 | AKRIN",
+    metaTitle: "フィッシング対策 2025年版：日本企業向け完全ガイド | AKRIN",
+    metaDescription: "AI強化型フィッシングからビジネスを保護する最新対策。日本企業向けの実践、コンプライアンス、実装ロードマップを解説。",
+    focusKeywords: ["フィッシング対策", "メールセキュリティ 日本", "サイバーセキュリティ 企業", "APPI コンプライアンス", "フィッシング 2025"],
+    excerpt: "フィッシング攻撃は高度化が進み、日本企業も標的となっています。進化する脅威に対して、包括的な防御を構築する方法を解説します。",
     image: "/blog-images/phishing.webp",
     content: `
-      <h1>Phishing Prevention Guide 2025 | AKRIN IT Security</h1>
-      <p>Phishing attacks remain the most common and damaging entry point for cyber threats globally — and Japan is no exception. In 2025, attackers are using AI-generated emails, spoofed websites, and deep social engineering tactics to bypass traditional filters and trick employees into clicking, downloading, or submitting sensitive data.</p>
+      <h1>フィッシングメール防止ガイド 2025</h1>
+      <p>フィッシング攻撃は世界的に最も一般的かつ深刻な侵入経路であり、日本も例外ではありません。2025年現在、攻撃者はAI生成メールや偽装サイト、巧妙なソーシャルエンジニアリングを用いて従来のフィルターをすり抜け、従業員に悪意あるリンクのクリックや機密情報の送信を促します。</p>
 
-      <p>In this guide, we break down exactly what phishing is, how it has evolved, and — most importantly — how modern businesses can defend against it using the latest cybersecurity practices.</p>
+      <p>本ガイドでは、フィッシングの定義と進化、そして最新のサイバーセキュリティ実践に基づく有効な対策について解説します。</p>
 
-      <h2>What Is a Phishing Email?</h2>
-      <p>A phishing email is a deceptive message designed to trick recipients into revealing confidential information, clicking a malicious link, or downloading an infected attachment. These emails often impersonate legitimate companies, services, or even internal employees.</p>
+      <h2>フィッシングメールとは</h2>
+      <p>フィッシングメールは、機密情報の入力、悪意のあるリンクのクリック、感染ファイルのダウンロードなどを誘導する欺瞞的なメッセージです。正規の企業やサービス、社内担当者になりすます手口が一般的です。</p>
 
-      <p>Phishing tactics include:</p>
+      <p>主な手口：</p>
       <ul>
-        <li><strong>Spear phishing:</strong> Personalized messages targeting a specific employee or role</li>
-        <li><strong>Clone phishing:</strong> Copying real email threads and injecting a malicious payload</li>
-        <li><strong>Invoice fraud:</strong> Mimicking vendors or internal finance teams to reroute payments</li>
-        <li><strong>AI-generated phishing:</strong> Using artificial intelligence to create highly convincing messages</li>
+        <li><strong>スピアフィッシング：</strong> 個人や役職を狙った高度な個別化</li>
+        <li><strong>クローンフィッシング：</strong> 本物のスレッドを模倣して悪性要素を挿入</li>
+        <li><strong>請求書詐欺：</strong> 取引先や経理になりすまし送金先を変更</li>
+        <li><strong>AI生成フィッシング：</strong> AIで極めて説得力のある文面を生成</li>
       </ul>
 
       <h2>Why Phishing Still Works in 2025</h2>
@@ -1484,15 +1484,15 @@ export const blogPostsJA = {
   "future-of-it-infrastructure-japan": {
     id: 1,
     slug: "future-of-it-infrastructure-japan",
-    title: "日本におけるITインフラストラクチャの未来",
+    title: "日本におけるITインフラの未来",
     image: "/blog-images/future-of-infrastructure.webp",
     content: `
-      <p>日本のITインフラストラクチャの風景は大きな変革を遂げています。企業がデジタル時代に適応するにつれ、堅牢でスケーラブルで安全なITソリューションの需要がかつてないほど高まっています。この記事では、日本のITインフラストラクチャの未来を形作る主要なトレンドと、組織が将来に備える方法を探ります。</p>
+      <p>日本のITインフラの状況は大きく変化しています。企業がデジタル時代に適応するにつれ、堅牢でスケーラブルかつ安全なITソリューションの需要がかつてないほど高まっています。この記事では、日本のITインフラの未来を形作る主要なトレンドと、組織が将来に備える方法を探ります。</p>
 
-      <h2>ITインフラストラクチャの現状</h2>
-      <p>日本企業は伝統的に技術採用に対する慎重なアプローチで知られています。しかし、近年、この考え方に劇的な変化が見られます。COVID-19パンデミックは、すべてのセクターでデジタルトランスフォーメーションの取り組みを加速させ、企業にITインフラストラクチャの急速な近代化を強いました。</p>
+      <h2>ITインフラの現状</h2>
+      <p>日本企業は伝統的に技術採用に慎重でしたが、近年は大きな転換点を迎えています。COVID‑19の影響で、あらゆる業界でデジタル変革が加速し、企業はITインフラの迅速な近代化を迫られました。</p>
 
-      <p>最近の調査によると、日本企業の70％以上が過去2年間でITインフラストラクチャへの投資を増やしています。この投資の急増は主に以下によって推進されています：</p>
+      <p>最近の調査では、日本企業の70％以上が過去2年間でITインフラへの投資を増やしています。投資拡大の主因は次のとおりです。</p>
       <ul>
         <li>リモートワーク機能の必要性</li>
         <li>サイバーセキュリティの脅威の増加</li>
@@ -1500,27 +1500,27 @@ export const blogPostsJA = {
         <li>デジタルサービスに対する顧客の需要</li>
       </ul>
 
-      <h2>未来を形作る新興技術</h2>
-      <p>日本のITインフラストラクチャの未来を定義するいくつかの主要な技術：</p>
+      <h2>未来を形作る主要テクノロジー</h2>
+      <p>日本のITインフラの将来を方向づける主なテクノロジーは次のとおりです。</p>
 
-      <h3>1. クラウドネイティブアーキテクチャ</h3>
-      <p>クラウドネイティブアプリケーションとマイクロサービスアーキテクチャへのシフトにより、日本企業はより柔軟でスケーラブルなシステムを構築できるようになっています。このアプローチにより、より速い展開、より簡単なメンテナンス、より良いリソース利用が可能になります。</p>
+      <h3>1. クラウドネイティブ・アーキテクチャ</h3>
+      <p>クラウドネイティブなアプリケーションとマイクロサービス化により、柔軟でスケーラブルなシステム構築が可能に。迅速なデプロイ、保守容易性、リソース最適化が実現します。</p>
 
       <h3>2. エッジコンピューティング</h3>
-      <p>日本全国での5Gネットワークの展開により、エッジコンピューティングはますます重要になっています。データをソースに近い場所で処理することで、企業はレイテンシを削減し、リアルタイムの意思決定能力を向上させることができます。</p>
+      <p>5Gの全国展開に伴い、データを発生源に近い場所で処理するエッジ活用が加速。遅延を抑え、リアルタイムの意思決定を後押しします。</p>
 
-      <h3>3. AIと機械学習の統合</h3>
-      <p>人工知能と機械学習は、予測メンテナンスから自動セキュリティ応答まで、すべてのレベルでITインフラストラクチャに統合されています。日本企業は特にAI駆動のITリソース最適化に関心を持っています。</p>
+      <h3>3. AI／機械学習の統合</h3>
+      <p>予測保全から自動セキュリティ対応まで、AI／MLの適用領域が拡大。日本企業では、AIを活用したITリソースの最適化に注目が集まっています。</p>
 
       <h2>課題と機会</h2>
       <p>未来は有望に見えますが、日本企業はITインフラストラクチャの近代化においていくつかの課題に直面しています：</p>
 
       <h3>課題：</h3>
       <ul>
-        <li><strong>レガシーシステムの統合：</strong> 多くの組織は、新しい技術を既存のレガシーシステムと統合することに苦労しています。</li>
+        <li><strong>レガシー統合：</strong> 既存システムと新技術の統合に課題があります。</li>
         <li><strong>スキルギャップ：</strong> 新興技術の専門知識を持つIT専門家が不足しています。</li>
-        <li><strong>セキュリティの懸念：</strong> インフラストラクチャがより複雑になるにつれ、包括的なセキュリティを確保することがより困難になります。</li>
-        <li><strong>コスト管理：</strong> イノベーションと予算制約のバランスを取ることは依然として重要な懸念事項です。</li>
+        <li><strong>セキュリティ：</strong> 複雑化に伴い、網羅的な対策を維持するのが難しくなります。</li>
+        <li><strong>コスト管理：</strong> イノベーションと予算のバランス維持が引き続き課題です。</li>
       </ul>
 
       <h3>機会：</h3>
@@ -1658,13 +1658,13 @@ export const blogPostsJA = {
   "ai-transforming-it-support": {
     id: 4,
     slug: "ai-transforming-it-support",
-    title: "AIがITサポートサービスを変革する方法",
-    excerpt: "日本はAI大国としての地位を確立しつつあり、世界中で2万台以上のPepperロボットが配備され、JALのような大手企業は数万人の従業員向けに全社規模のAIプラットフォームを導入しています。",
+    title: "AIがITサポートを変革する：日本の最新動向",
+    excerpt: "日本はAI活用で存在感を高めています。Pepperの大量導入やJALの全社AI導入など、実装事例が広がっています。",
     image: "/blog-images/ai-transform.webp",
-    content: `<p>日本はAI大国としての地位を確立しつつあり、世界中で2万台以上のPepperロボットが配備され、JALのような大手企業は数万人の従業員向けに全社規模のAIプラットフォームを導入しています。人工知能を通じたITサポートの変革は、単なるトレンドではなく、技術サービスの提供と体験のあり方における根本的なシフトです。</p>
+    content: `<p>日本はAI活用の先進国として存在感を高めています。世界中で2万台以上のPepperが配備され、JALなどの大企業では数万人規模でAIプラットフォームが展開されています。ITサポートにおけるAIの導入は、単なる流行ではなく、サービス提供と体験の在り方を根本から変える動きです。</p>
 
-      <h2>ITサポートにおけるAI革命</h2>
-      <p>グローバルITサービス管理（ITSM）市場は爆発的な成長を遂げており、2023年の105億米ドルから2028年には221億米ドルに達すると予測され、CAGRは15.9％となっています。この成長は主にAI統合によって推進されています。</p>
+      <h2>ITサポートにおけるAIの進展</h2>
+      <p>グローバルITSM市場は2023年の105億米ドルから2028年に221億米ドルへ拡大する見込みで、AI統合が成長を牽引しています。</p>
 
       <h2>現在のAI活用状況</h2>
       <h3>反応型から予防型へ</h3>
@@ -1701,6 +1701,7 @@ export const blogPostsJA = {
     id: 5,
     slug: "remote-work-security-guide",
     title: "リモートワークセキュリティ：包括的なガイド",
+    image: "/blog-images/remote-work.webp",
     excerpt: "リモートワークへの移行は、サイバーセキュリティへのアプローチを根本的に変えました。日本の伝統的なオフィス文化は当初この変化に抵抗を示しましたが、近年の世界的な出来事により、柔軟な働き方の採用が加速しています。",
     content: `<p>リモートワークへの移行は、サイバーセキュリティへのアプローチを根本的に変えました。日本の伝統的なオフィス文化は当初この変化に抵抗を示しましたが、近年の世界的な出来事により、柔軟な働き方の採用が加速しています。この変革に伴い、すべての組織がデータ、システム、従業員を保護するために対処しなければならない新たなセキュリティ課題が生まれています。</p>
 
@@ -1741,6 +1742,7 @@ export const blogPostsJA = {
     id: 6,
     slug: "5g-impact-business-operations",
     title: "5Gがビジネス運営に与える影響",
+    image: "/blog-images/5g.webp",
     excerpt: "エンタープライズ5G市場は2025年に6,000億米ドルに達すると予測されており、日本はこの技術革命の最前線に立っています。",
     content: `<p>エンタープライズ5G市場は2025年に6,000億米ドルに達すると予測されており、日本はこの技術革命の最前線に立っています。IoTインフラに650億米ドルを投資し—中国に次いで2位—富士通のような先駆的企業が日本初のプライベート5Gライセンスを取得するなど、日本は5G技術がビジネス運営を根本的に変革できることを実証しています。</p>
 

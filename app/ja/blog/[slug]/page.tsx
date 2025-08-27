@@ -2,11 +2,11 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { blogPostsJA } from '@/lib/blog-data'
+import { blogPostsJA, blogPostsEN } from '@/lib/blog-data'
 import { SocialShareButtons } from '@/components/blog/social-share-buttons'
-import { NewsletterForm } from '@/components/blog/newsletter-form'
 import { TableOfContents } from '@/components/blog/table-of-contents'
 import { ReadingProgress } from '@/components/blog/reading-progress'
+import { AboutAuthor } from '@/components/blog/about-author'
 import { AkrinIcon } from '@/components/akrin-logo'
 
 interface BlogPostPageProps {
@@ -99,6 +99,10 @@ const generateKeywords = (post: any) => {
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const resolvedParams = await params
   const post = blogPostsJA[resolvedParams.slug as keyof typeof blogPostsJA]
+  // Fallback to EN image if JA image missing to mirror visuals
+  const { blogPostsEN } = await import('@/lib/blog-data')
+  const enPost = blogPostsEN[resolvedParams.slug as keyof typeof blogPostsEN] as any
+  const heroImage = (post as any).image || (enPost && enPost.image)
 
   if (!post) {
     return {
@@ -216,6 +220,10 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
     notFound()
   }
 
+  // Mirror EN hero image if JA image is missing
+  const enPost = blogPostsEN[resolvedParams.slug as keyof typeof blogPostsEN] as any
+  const heroImage = (post as any).image || (enPost && enPost.image)
+
   // Add IDs to headings for better navigation
   const processedContent = addHeadingIds(post.content);
 
@@ -327,37 +335,22 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
         }}
       />
 
-      <main className="min-h-screen bg-white" role="main">
-        {/* Preline Style Breadcrumb */}
-        <nav className="bg-gray-50 py-4" aria-label="Breadcrumb">
-          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <ol className="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
-              <li className="inline-flex items-center">
-                <Link className="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" href="/ja">
-                  <svg className="shrink-0 me-2 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
-                  </svg>
-                  ホーム
-                </Link>
-                <svg className="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </li>
-              <li className="inline-flex items-center">
-                <Link className="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" href="/ja/blog">
-                  ブログ
-                </Link>
-                <svg className="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </li>
-              <li className="inline-flex items-center text-sm font-semibold text-gray-800 truncate" aria-current="page">
-                {post.title.length > 50 ? post.title.substring(0, 50) + '...' : post.title}
-              </li>
-            </ol>
+      <main className="min-h-screen bg-white pt-20 sm:pt-24" role="main">
+
+        {/* Back Navigation */}
+        <div className="bg-white border-b border-gray-100">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <Link
+              href="/ja/blog"
+              className="inline-flex items-center gap-2 text-sm text-teal-600 hover:text-teal-700 transition-colors font-medium"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              ブログに戻る
+            </Link>
           </div>
-        </nav>
+        </div>
 
         {/* Preline Style Article Header */}
         <header className="bg-white" itemScope itemType="https://schema.org/BlogPosting">
@@ -375,36 +368,28 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
                 {post.title}
               </h1>
 
-              {/* Article Meta */}
-              <div className="mt-5 flex items-center gap-x-4">
-                <div>
-                  <div className="flex items-center gap-x-3">
-                    <div className="shrink-0">
-                      <div className="size-10 bg-gray-100 rounded-full flex items-center justify-center">
-                        <svg className="size-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="12" cy="12" r="10"/>
-                          <polyline points="12 6 12 12 16 14"/>
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-x-2">
-                        <p className="text-sm font-medium text-gray-800">AKRINチーム</p>
-                        <ul className="text-xs text-gray-500">
-                          <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
-                            {post.date && new Date(post.date).toLocaleDateString('ja-JP', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric'
-                            })}
-                          </li>
-                          {post.readTime && (
-                            <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
-                              {post.readTime}
-                            </li>
-                          )}
-                        </ul>
-                      </div>
+              {/* Article Meta - Author */}
+              <div className="mt-5 mb-6 pb-6 border-b border-gray-200">
+                <div className="grid grid-cols-[48px_1fr] items-start gap-3">
+                  <div className="shrink-0 mt-0.5">
+                    <img src="/favicon-192x192.v3.png" alt="AKRIN" width={48} height={48} className="w-12 h-12 object-contain" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-gray-900 mb-1 leading-5">AKRIN</p>
+                    <div className="flex items-center gap-x-3 text-xs text-gray-500">
+                      <span>
+                        {post.date && new Date(post.date).toLocaleDateString('ja-JP', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </span>
+                      {post.readTime && (
+                        <>
+                          <span>•</span>
+                          <span>{post.readTime}</span>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -412,7 +397,7 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
 
               {/* Social Share Buttons */}
               <div className="mt-6">
-                <SocialShareButtons title={post.title} />
+                <SocialShareButtons title={post.title} language="ja" />
               </div>
             </div>
 
@@ -437,9 +422,9 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
         <div className="mt-10 sm:mt-16">
           <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative h-[250px] xs:h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] bg-gray-100 rounded-xl overflow-hidden">
-              {post.image ? (
+              {heroImage ? (
                 <Image
-                  src={post.image}
+                  src={heroImage}
                   alt={`${post.title} - 日本におけるITインフラとテクノロジートレンドに関するAKRINの専門的な洞察`}
                   fill
                   className={post.slug === 'phishing-prevention-guide-2025' ? "object-contain object-center p-2" : "object-cover object-center"}
@@ -491,7 +476,7 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
               {/* Sidebar - Table of Contents and Related */}
               <div className="lg:col-span-1">
                 <div className="sticky top-6 space-y-6">
-                  <TableOfContents content={processedContent} />
+                  <TableOfContents content={processedContent} language="ja" />
                 </div>
               </div>
             </div>
@@ -618,6 +603,9 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
           </section>
         )}
 
+        {/* About the Author */}
+        <AboutAuthor language="ja" />
+
         {/* Category-Specific CTA Section */}
         {(post.category === 'セキュリティ' || post.slug.includes('cybersecurity')) && (
          <section className="bg-[hsl(var(--primary))]/5 py-16 border-t border-gray-100">
@@ -655,10 +643,7 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
           </section>
         )}
 
-        {/* Preline Style Newsletter Section */}
-        <section className="bg-white py-10 sm:py-16 border-t border-gray-200" aria-labelledby="newsletter">
-          <NewsletterForm />
-        </section>
+        {/* Newsletter removed per request */}
 
       </main>
     </>

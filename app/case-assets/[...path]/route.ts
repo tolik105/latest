@@ -16,7 +16,12 @@ export async function GET(
     if (!stat.isFile()) return new NextResponse('Not found', { status: 404 })
 
     const ext = path.extname(filePath).toLowerCase()
-    const mime = ext === '.webp' ? 'image/webp' : ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg' : ext === '.png' ? 'image/png' : 'application/octet-stream'
+    const mime =
+      ext === '.avif' ? 'image/avif' :
+      ext === '.webp' ? 'image/webp' :
+      ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg' :
+      ext === '.png' ? 'image/png' :
+      'application/octet-stream'
 
     const stream = createReadStream(filePath)
     return new NextResponse(stream as any, {

@@ -12,7 +12,7 @@ export function HomeHero() {
         <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
           <div className="relative h-full overflow-hidden">
             <img
-              src="/images/banners/it-managed-services/banner.webp"
+              src="/images/banners/it-managed-services/banner.avif"
               alt="Technology Team"
               className="absolute inset-0 w-full h-full object-cover"
             />

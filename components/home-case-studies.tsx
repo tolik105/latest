@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
+import { getCaseStudyHero } from '@/lib/case-study-assets'
 
 type CaseCard = {
   title: string
@@ -83,9 +84,9 @@ export function HomeCaseStudies() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 h-80 sm:h-96 lg:h-[420px]">
           {(cards.length ? cards : Array.from({ length: 4 }).map(() => null)).slice(0, 4).map((card, index) => {
             const href = `${prefix}/case-studies/${card?.slug ?? ''}`
-            const hasImage = Boolean(card?.image)
             const title = card?.title ?? ''
             const alt = isJa ? `${title} — 導入事例ヒーロー画像` : `${title} — case study hero`
+            const imgSrc = card ? getCaseStudyHero(card.slug) : null
             return (
               <Link
                 key={card ? card.slug : `placeholder-${index}`}
@@ -97,13 +98,14 @@ export function HomeCaseStudies() {
                 onClick={() => card && handleCardClick(card, index)}
               >
                 <div className="relative w-full h-full overflow-hidden">
-                  {hasImage ? (
+                  {imgSrc ? (
                     <Image
-                      src={card!.image as string}
+                      src={imgSrc}
                       alt={alt}
                       fill
                       className="object-cover object-center transform transition duration-200 ease-out md:group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:transform-none"
-                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      sizes="(min-width: 1536px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      quality={95}
                       priority={index === 0}
                     />
                   ) : (
@@ -119,7 +121,7 @@ export function HomeCaseStudies() {
                   </div>
 
                   {/* Hover overlay - brand color panel like NSC orange panel */}
-                  <div className="panel absolute inset-0 bg-[hsl(var(--primary))] translate-x-0 md:translate-x-[-100%] md:group-hover:translate-x-0 transition-transform duration-250 ease-out motion-reduce:transition-none motion-reduce:transform-none">
+                  <div className="panel absolute inset-0 bg-[hsl(var(--primary))] translate-x-[-100%] group-hover:translate-x-0 md:translate-x-[-100%] md:group-hover:translate-x-0 transition-transform duration-250 ease-out motion-reduce:transition-none motion-reduce:transform-none">
                     <div className="h-full flex flex-col justify-between p-4 sm:p-5 lg:p-6 text-white">
                       <div className="flex-1 flex items-start pt-2">
                         <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold leading-[1.2] tracking-tight break-words hyphens-auto" lang={isJa ? 'ja' : 'en'}>

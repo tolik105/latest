@@ -840,6 +840,27 @@ header[class*="navbar-fixed"],
   filter: none !important;
 }
 
+/* Blog pages - disable all fixed/sticky headers */
+[data-blog-page] header,
+[data-blog-page] .navbar-fixed,
+[data-blog-page] header[class*="navbar-fixed"],
+[data-blog-page] header[class*="fixed"],
+[data-blog-page] header[class*="sticky"] {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  z-index: auto !important;
+  width: auto !important;
+  transform: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  isolation: auto !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+  display: none !important;
+}
+
 /* Mobile menu specific styles */
 .mobile-menu-container .sm\\:hidden {
   display: block !important;
@@ -1113,6 +1134,42 @@ header[class*="navbar-fixed"],
 .p-responsive-xl { padding: var(--space-xl); }
 .p-responsive-2xl { padding: var(--space-2xl); }
 .p-responsive-3xl { padding: var(--space-3xl); }
+
+/* Responsive Vertical Padding Utilities */
+.py-responsive-xs { padding-top: var(--space-xs); padding-bottom: var(--space-xs); }
+.py-responsive-sm { padding-top: var(--space-sm); padding-bottom: var(--space-sm); }
+.py-responsive-md { padding-top: var(--space-md); padding-bottom: var(--space-md); }
+.py-responsive-lg { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+.py-responsive-xl { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+.py-responsive-2xl { padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); }
+.py-responsive-3xl { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+
+/* Responsive Horizontal Padding Utilities */
+.px-responsive-xs { padding-left: var(--space-xs); padding-right: var(--space-xs); }
+.px-responsive-sm { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+.px-responsive-md { padding-left: var(--space-md); padding-right: var(--space-md); }
+.px-responsive-lg { padding-left: var(--space-lg); padding-right: var(--space-lg); }
+.px-responsive-xl { padding-left: var(--space-xl); padding-right: var(--space-xl); }
+.px-responsive-2xl { padding-left: var(--space-2xl); padding-right: var(--space-2xl); }
+.px-responsive-3xl { padding-left: var(--space-3xl); padding-right: var(--space-3xl); }
+
+/* Responsive Margin Bottom Utilities */
+.mb-responsive-xs { margin-bottom: var(--space-xs); }
+.mb-responsive-sm { margin-bottom: var(--space-sm); }
+.mb-responsive-md { margin-bottom: var(--space-md); }
+.mb-responsive-lg { margin-bottom: var(--space-lg); }
+.mb-responsive-xl { margin-bottom: var(--space-xl); }
+.mb-responsive-2xl { margin-bottom: var(--space-2xl); }
+.mb-responsive-3xl { margin-bottom: var(--space-3xl); }
+
+/* Responsive Margin Top Utilities */
+.mt-responsive-xs { margin-top: var(--space-xs); }
+.mt-responsive-sm { margin-top: var(--space-sm); }
+.mt-responsive-md { margin-top: var(--space-md); }
+.mt-responsive-lg { margin-top: var(--space-lg); }
+.mt-responsive-xl { margin-top: var(--space-xl); }
+.mt-responsive-2xl { margin-top: var(--space-2xl); }
+.mt-responsive-3xl { margin-top: var(--space-3xl); }
 
 /* Mobile-First Grid System */
 .grid-responsive {

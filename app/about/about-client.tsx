@@ -24,7 +24,7 @@ export default function AboutClient() {
   return (
     <div className="bg-white">
       {/* Hero Section with Background Video */}
-      <section className="relative py-16 lg:py-20 overflow-hidden min-h-[60vh]">
+      <section className="relative py-16 lg:py-20 overflow-hidden min-h-[60vh] pt-20 sm:pt-24">
         {/* Background video */}
         <div className="absolute inset-0 z-0">
           <video
@@ -56,7 +56,7 @@ export default function AboutClient() {
                 href="/contact"
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#20B2AA] hover:bg-[#1a9a94] transition-colors"
               >
-                Get Started
+                Contact Us
               </Link>
             </div>
           </div>

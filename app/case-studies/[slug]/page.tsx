@@ -8,6 +8,7 @@ import { caseStudiesEN } from '@/lib/case-studies-data'
 import { generateMetaDescription } from '@/lib/seo-utils'
 import { GACaseStudy } from '@/components/ga-case-study'
 import { ServiceFAQ } from '@/components/ui/service-faq'
+import { getCaseStudyHero } from '@/lib/case-study-assets'
 
 // Map full slugs (as used in CaseStudiesGrid/lib data) to specific MDX files inside english-case-studies-mdx
 const slugToMdxFile: Record<string, string> = {
@@ -147,8 +148,9 @@ async function loadCaseStudyMdx(slug: string): Promise<null | {
       bodyEn = body.trim()
     }
 
-    const bodyHtmlEn = bodyEn ? mdToHtml(bodyEn) : undefined
-    const bodyHtmlJa = bodyJa ? mdToHtml(bodyJa) : undefined
+    // Strip a leading inline image from the body (the MDX often repeats the hero as the first line)
+    const bodyHtmlEn = bodyEn ? mdToHtml(bodyEn).replace(/^\s*<img[^>]*\/>\s*/, '') : undefined
+    const bodyHtmlJa = bodyJa ? mdToHtml(bodyJa).replace(/^\s*<img[^>]*\/>\s*/, '') : undefined
 
     const fmMeta = (hero as any).__fm || {}
     return { hero, gallery, bodyHtmlEn, bodyHtmlJa, fmMeta }
@@ -192,7 +194,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title,
       description,
-      images: item ? [`/case-assets/${slug}/hero.webp`] : undefined,
+      images: item ? [getCaseStudyHero(slug)] : undefined,
       url: `/case-studies/${slug}`,
       type: 'article'
     },
@@ -200,7 +202,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: 'summary_large_image',
       title,
       description,
-      images: item ? [`/case-assets/${slug}/hero.webp`] : undefined,
+      images: item ? [getCaseStudyHero(slug)] : undefined,
     },
   }
 }
@@ -216,7 +218,7 @@ export default async function CaseStudyDetail({ params }: { params: Promise<{ sl
   const cs = caseStudiesEN.find(c => c.slug === slug)
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA]">
+    <main className="min-h-screen bg-[#F8F9FA] pt-20 sm:pt-24">
       <section className="container py-responsive-xl">
         <div className="mb-responsive-lg">
           <Link href="/case-studies" className="text-sm text-gray-600 hover:text-teal-700">← Back to Case Studies</Link>
@@ -234,16 +236,14 @@ export default async function CaseStudyDetail({ params }: { params: Promise<{ sl
         </div>
 
         {/* Hero Image */}
-        {data?.hero?.src && (
-          <figure className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white">
-            <div className="relative aspect-[16/9] w-full">
-              <Image src={data.hero.src} alt={data.hero.alt || ''} fill className="object-cover" priority sizes="(max-width: 1024px) 100vw, 1200px" />
-            </div>
-            {(data.hero.caption || data.hero.alt) && (
-              <figcaption className="p-3 text-xs text-gray-600">{data.hero.caption || data.hero.alt}</figcaption>
-            )}
-          </figure>
-        )}
+        <figure className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <div className="relative aspect-[16/9] w-full">
+            <Image src={getCaseStudyHero(slug)} alt={data?.hero?.alt || cs?.titleEN || ''} fill className="object-cover" priority sizes="(max-width: 1280px) 100vw, 1600px" quality={95} />
+          </div>
+          {(data?.hero?.caption || data?.hero?.alt) && (
+            <figcaption className="p-3 text-xs text-gray-600">{data?.hero?.caption || data?.hero?.alt}</figcaption>
+          )}
+        </figure>
 
         {/* Body Content from MD/MDX (English only on EN route) */}
         {data?.bodyHtmlEn && (
@@ -259,7 +259,7 @@ export default async function CaseStudyDetail({ params }: { params: Promise<{ sl
           const title = cs?.titleEN || 'Case Study'
           const url = `/case-studies/${slug}`
           const description = (data as any)?.fmMeta?.metaDescription || cs?.excerptEN || ''
-          const image = data?.hero?.src || (cs ? `/case-assets/${slug}/hero.webp` : undefined)
+          const image = data?.hero?.src || getCaseStudyHero(slug)
           const schema = {
             '@context': 'https://schema.org',
             '@type': 'Article',
@@ -304,13 +304,18 @@ export default async function CaseStudyDetail({ params }: { params: Promise<{ sl
         {/* Gallery (strict to this case's folder) */}
         {(() => {
           const base = `/case-assets/${slug}/`
-          const safe = (data?.gallery || []).filter(g => typeof g.src === 'string' && g.src.startsWith(base))
+          const safe = (data?.gallery || [])
+            .filter(g => typeof g.src === 'string' && g.src.startsWith(base))
+            // Hide duplicate hero image (hero.*) from gallery to avoid repeating captions like "Wi‑Fi survey heatmap (redacted)"
+            .filter(g => {
+              try { const name = path.posix.basename(g.src || ''); return !/^hero\./i.test(name) } catch { return true }
+            })
           return safe.length ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {safe.map((g, idx) => (
                 <figure key={idx} className="overflow-hidden rounded-xl border border-gray-200 bg-white">
                   <div className="relative aspect-[16/9] w-full">
-                    <Image src={g.src} alt={g.alt || ''} fill className="object-cover object-center transform scale-90" />
+                    <Image src={g.src} alt={g.alt || ''} fill className="object-cover object-center" quality={95} sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw" />
                   </div>
                   {(g.caption || g.alt) && (
                     <figcaption className="p-3 text-xs text-gray-600">{g.caption || g.alt}</figcaption>

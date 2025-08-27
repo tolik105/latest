@@ -24,7 +24,7 @@ export default function AboutClient() {
   return (
     <div className="bg-white">
       {/* Hero Section with Background Video */}
-      <section className="relative py-16 lg:py-20 overflow-hidden min-h-[60vh]">
+      <section className="relative py-16 lg:py-20 overflow-hidden min-h-[60vh] pt-20 sm:pt-24">
         {/* Background video */}
         <div className="absolute inset-0 z-0">
           <video

@@ -13,6 +13,7 @@ export type HeroDiagonalProps = {
   imageObjectPosition?: string
   maxWidthClass?: string
   className?: string
+  imageScale?: number
 }
 
 export function HeroDiagonal({
@@ -22,7 +23,8 @@ export function HeroDiagonal({
   imageAlt,
   imageObjectPosition = "center bottom",
   maxWidthClass = "max-w-[1280px]",
-  className = ""
+  className = "",
+  imageScale = 1
 }: HeroDiagonalProps) {
   return (
     <section className={`relative bg-white overflow-hidden ${className}`} aria-labelledby="hero-heading">
@@ -72,7 +74,7 @@ export function HeroDiagonal({
               src={imageSrc}
               alt={imageAlt}
               className="w-full h-full object-cover"
-              style={{ objectPosition: imageObjectPosition }}
+              style={{ objectPosition: imageObjectPosition, transform: `scale(${imageScale})` }}
               fetchPriority="high"
             />
           </div>

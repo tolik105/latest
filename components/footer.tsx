@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next"
 import { motion } from "framer-motion"
 import { ClientOnly } from "@/hooks/use-mounted"
 
+import { EmailIcon, LinkedInIcon, TwitterIcon } from "@/components/icons/social"
+
 // Custom sophisticated footer icons
 const EmailIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">

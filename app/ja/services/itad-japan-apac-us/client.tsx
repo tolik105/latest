@@ -17,18 +17,10 @@ export default function ITADJaClient() {
             IT資産処分（ITAD）
           </>}
           breadcrumbs={[{ label: 'Services', href: '/ja/services' }, { label: 'ITAD Japan/APAC/US' }]}
-          imageSrc="/images/banners/it-managed-services/banner.webp"
+          imageSrc="/images/banners/itad/itad.webp"
           imageAlt="ITAD ヒーロー背景"
         />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6">
-          <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl">
-            リスクゼロで最大の回収価値を目指すハードウェア廃止。AKRINは、検証済みのデータ破壊、適正リサイクル、価値回収を提供。データセンター、拠点オフィス、規制環境を理解するエンジニアが、日本・APAC・米国で実行します。
-          </p>
-          <div className="mt-3 flex flex-wrap gap-3">
-            <Link href="https://calendly.com/akrin/itad-consult" className="inline-block bg-teal-500 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-600 transition-colors">15分のITAD相談を予約</Link>
-            <a href="#pickup-quote" className="inline-block border border-teal-500 text-teal-600 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-50 transition-colors">回収見積もりを依頼</a>
-          </div>
-        </div>
+
       </section>
 
       <section className="bg-[#F8F9FA] py-12 sm:py-16 lg:py-20">
