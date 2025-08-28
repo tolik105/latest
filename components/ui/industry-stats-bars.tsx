@@ -72,3 +72,4 @@ function BarCard({ label, percentage, index }: { label: string; percentage: numb
 
 
 
+

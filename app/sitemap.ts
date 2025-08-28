@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { blogPostsEN } from '@/lib/blog-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://akrin.ai'
+  const baseUrl = 'https://akrin.jp'
 
   const staticPages = [
     {

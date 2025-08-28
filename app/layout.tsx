@@ -36,7 +36,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://akrin.ai'),
+  metadataBase: new URL('https://akrin.jp'),
   title: {
     default: 'AKRIN株式会社 (AKRIN K.K.) - IT Solutions that Transform Your Business | Japan & Global',
     template: '%s | AKRIN株式会社'
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AKRIN株式会社 - IT Solutions that Transform Your Business',
     description: 'Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support.',
-    url: 'https://akrin.ai',
+    url: 'https://akrin.jp',
     siteName: 'AKRIN株式会社',
     locale: 'en_US',
     alternateLocale: 'ja_JP',
@@ -108,7 +108,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   alternates: {
-    canonical: 'https://akrin.ai'
+    canonical: 'https://akrin.jp'
   }
 }
 
@@ -129,10 +129,10 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": "https://akrin.ai/#organization",
+                  "@id": "https://akrin.jp/#organization",
                   "name": "AKRIN K.K.",
-                  "url": "https://akrin.ai",
-                  "logo": "https://akrin.ai/akrin-logo.svg",
+                  "url": "https://akrin.jp",
+                  "logo": "https://akrin.jp/akrin-logo.svg",
                   "sameAs": ["https://www.linkedin.com/company/akrin-kk"],
                   "contactPoint": [{
                     "@type": "ContactPoint",
@@ -152,9 +152,9 @@ export default function RootLayout({
                 },
                 {
                   "@type": "LocalBusiness",
-                  "@id": "https://akrin.ai/#localbusiness",
+                  "@id": "https://akrin.jp/#localbusiness",
                   "name": "AKRIN K.K.",
-                  "image": "https://akrin.ai/og-image.png",
+                  "image": "https://akrin.jp/og-image.png",
                   "priceRange": "$$$$",
                   "telephone": "+81-3-6821-1223",
                   "email": "support@akrin.jp",
@@ -171,7 +171,7 @@ export default function RootLayout({
                     "latitude": 35.6712,
                     "longitude": 139.7195
                   },
-                  "url": "https://akrin.ai",
+                  "url": "https://akrin.jp",
                   "areaServed": {"@type": "Country", "name": "Japan"},
                   "hasOfferCatalog": {
                     "@type": "OfferCatalog",

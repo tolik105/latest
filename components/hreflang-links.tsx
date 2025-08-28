@@ -9,7 +9,7 @@ export function HreflangLinks() {
   // Prefer runtime origin; fall back to production domain
   const origin = typeof window !== 'undefined' && window.location?.origin
     ? window.location.origin
-    : (process.env.NEXT_PUBLIC_SITE_URL || 'https://akrin.ai')
+    : (process.env.NEXT_PUBLIC_SITE_URL || 'https://akrin.jp')
 
   // Normalize paths for each locale
   const enPath = useMemo(() => pathname.replace(/^\/ja(\/|$)/, '/'), [pathname])
