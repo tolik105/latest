@@ -36,7 +36,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://akrin.jp'),
+  metadataBase: new URL('https://akrin.ai'),
   title: {
     default: 'AKRIN株式会社 (AKRIN K.K.) - IT Solutions that Transform Your Business | Japan & Global',
     template: '%s | AKRIN株式会社'
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AKRIN株式会社 - IT Solutions that Transform Your Business',
     description: 'Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support.',
-    url: 'https://akrin.jp',
+    url: 'https://akrin.ai',
     siteName: 'AKRIN株式会社',
     locale: 'en_US',
     alternateLocale: 'ja_JP',
@@ -108,7 +108,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   alternates: {
-    canonical: 'https://akrin.jp'
+    canonical: 'https://akrin.ai'
   }
 }
 

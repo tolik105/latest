@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { blogPostsEN } from '@/lib/blog-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://akrin.jp'
+  const baseUrl = 'https://akrin.ai'
 
   const staticPages = [
     {
@@ -45,11 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
-    {
-      url: '/ja/case-studies',
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
+    // Locale index pages will be added below with proper URLs
     {
       url: '/privacy',
       changeFrequency: 'yearly' as const,
