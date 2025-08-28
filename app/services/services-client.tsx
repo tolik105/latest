@@ -46,7 +46,7 @@ export default function ServicesClient() {
       title: "IT Security Services",
       description: "Shield endpoints, email, and data with AKRIN's layered IT security—EDR, M365 security, backup, and policy enforcement.",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      href: "/services/it-security-services",
+      href: "/services/it-security",
       buttonText: "IT Security Services solutions"
     }
   ]

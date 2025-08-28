@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 }
 
 const breadcrumbData = [
-  { name: 'Home', url: 'https://akrin.jp' },
-  { name: 'Services', url: 'https://akrin.jp/services' }
+  { name: 'Home', url: 'https://akrin.ai' },
+  { name: 'Services', url: 'https://akrin.ai/services' }
 ]
 
 export default function ITServicesPage() {
