@@ -748,7 +748,7 @@ export default function ITManagedServicesClient() {
                   "@type": "Organization",
                   "name": "AKRIN株式会社",
                   "url": "https://akrin.jp",
-                  "logo": "https://akrin.jp/images/logo.png",
+                  "logo": "https://akrin.jp/akrin-logo.svg",
                   "contactPoint": {
                     "@type": "ContactPoint",
                     "telephone": "+81-3-6821-1223",

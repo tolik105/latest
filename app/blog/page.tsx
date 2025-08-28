@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://akrin.jp/images/blog-og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'AKRIN IT Blog - Technology Insights and Resources',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     description: 'Expert insights on IT infrastructure, cybersecurity, cloud solutions, and digital transformation in Japan.',
     site: '@AKRIN_JP',
     creator: '@AKRIN_JP',
-    images: ['https://akrin.jp/images/blog-og-image.jpg'],
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -97,9 +97,9 @@ function generateBlogStructuredData() {
       url: 'https://akrin.jp',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://akrin.jp/images/akrin-logo.png',
-        width: 200,
-        height: 60
+        url: 'https://akrin.jp/akrin-logo.svg',
+        width: 499,
+        height: 80
       }
     },
     blogPost: posts.slice(0, 10).map(post => ({
@@ -118,7 +118,7 @@ function generateBlogStructuredData() {
         name: 'AKRIN',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://akrin.jp/images/akrin-logo.png'
+          url: 'https://akrin.jp/akrin-logo.svg'
         }
       },
       image: post.image ? {
