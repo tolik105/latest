@@ -1,12 +1,13 @@
 import { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/metadata-helpers'
 import React from "react"
 import { SimpleBlogWithGrid } from "@/components/ui/simple-blog-with-grid"
 import { blogPostsEN } from "@/lib/blog-data"
 
 // Enhanced SEO metadata for blog listing page
-export const metadata: Metadata = {
-  title: 'IT Blog & Resources | AKRIN - Expert Insights on Technology Solutions in Japan',
-  description: 'Discover expert insights on IT infrastructure, cybersecurity, cloud solutions, and digital transformation in Japan. Read practical guides and industry analysis from AKRIN\'s technology experts.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'IT Blog & Resources | AKRIN - Expert Technology Insights',
+  description: 'Expert insights on IT infrastructure, cybersecurity, cloud solutions, and digital transformation in Japan.',
   keywords: [
     'IT blog Japan',
     'technology insights',
@@ -14,72 +15,11 @@ export const metadata: Metadata = {
     'cloud solutions',
     'IT infrastructure',
     'digital transformation',
-    'enterprise technology',
-    'IT consulting blog',
-    'technology trends Japan',
-    'business technology',
-    'IT security best practices',
-    'cloud migration',
-    '5G technology',
-    'remote work security',
-    'AI technology',
-    'IT support Japan'
+    'enterprise technology'
   ],
-  authors: [{ name: 'AKRIN Technology Experts' }],
-  creator: 'AKRIN',
-  publisher: 'AKRIN',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL('https://akrin.jp'),
-  alternates: {
-    canonical: '/blog',
-    languages: {
-      'en-US': '/blog',
-      'ja-JP': '/ja/blog',
-    },
-  },
-  openGraph: {
-    title: 'IT Blog & Resources | AKRIN - Expert Technology Insights',
-    description: 'Expert insights on IT infrastructure, cybersecurity, cloud solutions, and digital transformation in Japan. Practical guides from AKRIN technology experts.',
-    url: 'https://akrin.jp/blog',
-    siteName: 'AKRIN',
-    locale: 'en_US',
-    type: 'website',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'AKRIN IT Blog - Technology Insights and Resources',
-      }
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'IT Blog & Resources | AKRIN - Expert Technology Insights',
-    description: 'Expert insights on IT infrastructure, cybersecurity, cloud solutions, and digital transformation in Japan.',
-    site: '@AKRIN_JP',
-    creator: '@AKRIN_JP',
-    images: ['/og-image.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code',
-  },
-}
+  path: '/blog',
+  image: '/og-image.png'
+})
 
 // Generate structured data for blog listing
 function generateBlogStructuredData() {

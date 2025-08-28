@@ -1,85 +1,24 @@
 import { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/metadata-helpers'
 import React from "react"
 import { SimpleBlogWithGrid } from "@/components/ui/simple-blog-with-grid"
 import { blogPostsJA } from "@/lib/blog-data"
 
 // Enhanced SEO metadata for Japanese blog listing page
-export const metadata: Metadata = {
-  title: 'ITブログ＆リソース | AKRIN - 日本のテクノロジーソリューションに関する専門的な洞察',
-  description: '日本におけるITインフラストラクチャー、サイバーセキュリティ、クラウドソリューション、デジタルトランスフォーメーションに関する専門的な洞察をご覧ください。AKRINの技術専門家による実践的なガイドと業界分析。',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'ITブログ＆リソース | AKRIN - 専門的な技術の洞察',
+  description: '日本におけるITインフラ・サイバーセキュリティ・クラウド・DXの専門的な洞察。',
   keywords: [
     'ITブログ 日本',
     'テクノロジーの洞察',
-    'サイバーセキュリティ 日本',
-    'クラウドソリューション',
-    'ITインフラストラクチャー',
-    'デジタルトランスフォーメーション',
-    'エンタープライズテクノロジー',
-    'ITコンサルティングブログ',
-    'テクノロジートレンド 日本',
-    'ビジネステクノロジー',
-    'ITセキュリティベストプラクティス',
-    'クラウド移行',
-    '5Gテクノロジー',
-    'リモートワークセキュリティ',
-    'AIテクノロジー',
-    'ITサポート 日本'
+    'サイバーセキュリティ',
+    'クラウド',
+    'ITインフラ',
+    'デジタルトランスフォーメーション'
   ],
-  authors: [{ name: 'AKRIN技術専門家' }],
-  creator: 'AKRIN',
-  publisher: 'AKRIN',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL('https://akrin.jp'),
-  alternates: {
-    canonical: '/ja/blog',
-    languages: {
-      'en-US': '/blog',
-      'ja-JP': '/ja/blog',
-    },
-  },
-  openGraph: {
-    title: 'ITブログ＆リソース | AKRIN - 専門的な技術の洞察',
-    description: '日本におけるITインフラストラクチャー、サイバーセキュリティ、クラウドソリューション、デジタルトランスフォーメーションに関する専門的な洞察。AKRIN技術専門家による実践的なガイド。',
-    url: 'https://akrin.jp/ja/blog',
-    siteName: 'AKRIN',
-    locale: 'ja_JP',
-    type: 'website',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'AKRIN ITブログ - テクノロジーの洞察とリソース',
-      }
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ITブログ＆リソース | AKRIN - 専門的な技術の洞察',
-    description: '日本におけるITインフラストラクチャー、サイバーセキュリティ、クラウドソリューション、デジタルトランスフォーメーションに関する専門的な洞察。',
-    site: '@AKRIN_JP',
-    creator: '@AKRIN_JP',
-    images: ['/og-image.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code',
-  },
-}
+  path: '/ja/blog',
+  image: '/og-image.png'
+})
 
 // Generate structured data for Japanese blog listing
 function generateBlogStructuredData() {
