@@ -3,6 +3,7 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import Script from "next/script"
 import Link from "next/link"
+import { RelatedLinks } from '@/components/ui/related-links'
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDownIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
@@ -362,9 +363,11 @@ export default function ITManagedServicesClient() {
 
               {/* Right Image */}
               <div className="mt-8 lg:mt-0">
-                <img
+                <Image
                   src="/images/banners/it-managed-services/monitoring.webp"
                   alt="Network Monitoring Dashboard"
+                  width={1024}
+                  height={768}
                   className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
                 />
               </div>
@@ -378,11 +381,12 @@ export default function ITManagedServicesClient() {
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
               {/* Left Image */}
               <div className="order-2 lg:order-1 mt-8 lg:mt-0">
-                <img
+                <Image
                   src="/images/banners/it-managed-services/Help-Desk-Support.webp"
                   alt="Help Desk Support Team"
+                  width={1024}
+                  height={768}
                   className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none brightness-105 saturate-90"
-                  style={{ filter: 'brightness(1.05) saturate(0.9) hue-rotate(10deg)' }}
                 />
               </div>
 
@@ -557,9 +561,11 @@ export default function ITManagedServicesClient() {
 
             {/* Infrastructure Image */}
             <div className="text-center">
-              <img
+              <Image
                 src="/images/banners/it-managed-services/Infrastructure-Management.webp"
                 alt="IT Infrastructure Management"
+                width={1440}
+                height={810}
                 className="w-full max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
               />
             </div>
@@ -602,9 +608,11 @@ export default function ITManagedServicesClient() {
 
             {/* Strategic Planning Visual */}
             <div className="text-center mb-12">
-              <img
+              <Image
                 src="/images/banners/it-managed-services/board-room.webp"
                 alt="Strategic IT Planning Board Room"
+                width={1280}
+                height={720}
                 className="w-full max-w-4xl mx-auto h-auto rounded-lg shadow-lg"
               />
             </div>

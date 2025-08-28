@@ -8,6 +8,7 @@ import { caseStudiesEN } from '@/lib/case-studies-data'
 import { generateMetaDescription } from '@/lib/seo-utils'
 import { GACaseStudy } from '@/components/ga-case-study'
 import { ServiceFAQ } from '@/components/ui/service-faq'
+import { RelatedLinks } from '@/components/ui/related-links'
 import { getCaseStudyHero } from '@/lib/case-study-assets'
 
 // Map full slugs (as used in CaseStudiesGrid/lib data) to specific MDX files inside english-case-studies-mdx
@@ -277,14 +278,14 @@ export default async function CaseStudyDetail({ params }: { params: Promise<{ sl
           )
         })()}
 
-        {/* Related links */}
-        <aside className="mt-10 text-sm text-gray-600">
-          <div className="flex flex-wrap gap-3">
-            <Link href="/services/it-managed-services" className="underline hover:text-teal-700">Managed IT Services</Link>
-            <Link href="/services/cloud-infrastructure" className="underline hover:text-teal-700">Cloud Infrastructure</Link>
-            <Link href="/blog" className="underline hover:text-teal-700">Blog</Link>
-          </div>
-        </aside>
+        <RelatedLinks
+          links={[
+            { href: '/services/it-managed-services', label: 'Managed IT Services' },
+            { href: '/services/cloud-infrastructure', label: 'Cloud Infrastructure' },
+            { href: '/services/it-security', label: 'IT Security' },
+            { href: '/blog', label: 'Blog' },
+          ]}
+        />
 
         {/* FAQ (short) */}
         <div className="mt-6">
