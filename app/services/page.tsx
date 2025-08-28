@@ -1,33 +1,21 @@
 import { Metadata } from "next"
+import { generatePageMetadata } from '@/lib/metadata-helpers'
 import ServicesClient from './services-client'
 import { generateBreadcrumbSchema } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
   title: "IT Services - Comprehensive Technology Solutions | Akrin",
-  description: "Explore our full range of IT services including managed IT, cybersecurity, cloud solutions, consulting, and 24/7 support. Professional technology solutions for businesses in Japan.",
+  description: "Explore our IT services: managed IT, cybersecurity, cloud, consulting, and 24/7 support.",
   keywords: [
     'IT services Japan',
     'managed IT services',
     'cybersecurity solutions',
     'cloud services',
-    'IT consulting',
-    'technology solutions',
-    'business IT support',
-    'enterprise IT services'
+    'IT consulting'
   ],
-  openGraph: {
-    title: 'Professional IT Services for Your Business | Akrin',
-    description: 'Comprehensive IT solutions including managed services, security, cloud, and support. Transform your business with our expert technology services.',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Akrin IT Services',
-      }
-    ],
-  },
-}
+  path: '/services',
+  image: '/og-image.png'
+})
 
 const breadcrumbData = [
   { name: 'Home', url: 'https://akrin.jp' },
