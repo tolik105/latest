@@ -3,25 +3,28 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl
-  
-  // Redirect URLs with trailing slashes to URLs without trailing slashes
-  // Exception: Keep trailing slash for the root path "/"
-  if (url.pathname !== '/' && url.pathname.endsWith('/')) {
-    const newUrl = new URL(url)
-    newUrl.pathname = newUrl.pathname.slice(0, -1)
-    return NextResponse.redirect(newUrl, 301) // 301 permanent redirect
+
+  // Normalize double JA prefix: /ja/ja/* -> /ja/*
+  if (url.pathname.startsWith('/ja/ja/')) {
+    const to = new URL(url)
+    to.pathname = url.pathname.replace(/^\/ja\/ja\//, '/ja/')
+    return NextResponse.redirect(to, 301)
   }
-  
-  return NextResponse.next()
+
+  // Trailing slash normalization (keep root)
+  if (url.pathname !== '/' && url.pathname.endsWith('/')) {
+    const to = new URL(url)
+    to.pathname = url.pathname.slice(0, -1)
+    return NextResponse.redirect(to, 301)
+  }
+
+  // Infer language by prefix for downstream usage
+  const inferredLang = url.pathname.startsWith('/ja') ? 'ja' : 'en'
+  const res = NextResponse.next()
+  res.headers.set('x-akrin-lang', inferredLang)
+  return res
 }
 
-// Configure which routes the middleware should run on
 export const config = {
-  matcher: [
-    // Match all pathnames except for:
-    // - api routes
-    // - _next (Next.js internals)
-    // - static files (images, fonts, etc.)
-    '/((?!api|_next|.*\\.).*)',
-  ],
+  matcher: ['/((?!api|_next|.*\\.).*)'],
 }

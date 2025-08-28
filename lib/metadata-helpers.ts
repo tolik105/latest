@@ -16,7 +16,11 @@ export function generatePageMetadata({
   image = '/og-image.png'
 }: PageMetadataProps): Metadata {
   const baseUrl = 'https://akrin.jp'
-  const fullUrl = `${baseUrl}${path}`
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`
+  const isJa = normalizedPath.startsWith('/ja')
+  const enUrl = `${baseUrl}${isJa ? normalizedPath.replace(/^\/ja/, '') || '/' : normalizedPath}`
+  const jaUrl = `${baseUrl}${isJa ? normalizedPath : `/ja${normalizedPath}`}`
+  const fullUrl = isJa ? jaUrl : enUrl
   
   return {
     title,
@@ -27,8 +31,8 @@ export function generatePageMetadata({
       description,
       url: fullUrl,
       siteName: 'AKRIN株式会社',
-      locale: 'en_US',
-      alternateLocale: 'ja_JP',
+      locale: isJa ? 'ja_JP' : 'en_US',
+      alternateLocale: isJa ? 'en_US' : 'ja_JP',
       type: 'website',
       images: [{
         url: image,
@@ -47,9 +51,9 @@ export function generatePageMetadata({
     alternates: {
       canonical: fullUrl,
       languages: {
-        'en': fullUrl,
-        'ja': `${baseUrl}/ja${path}`,
-        'x-default': fullUrl
+        'en': enUrl,
+        'ja': jaUrl,
+        'x-default': enUrl
       }
     }
   }

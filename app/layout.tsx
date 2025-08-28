@@ -108,7 +108,12 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   alternates: {
-    canonical: 'https://akrin.jp'
+    canonical: 'https://akrin.jp',
+    languages: {
+      en: 'https://akrin.jp',
+      ja: 'https://akrin.jp/ja',
+      'x-default': 'https://akrin.jp'
+    }
   }
 }
 
@@ -117,8 +122,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // During SSR, read the middleware-injected header to set html lang
+  // Fallback to 'en' when not available (static export or client nav)
+  const lang = (typeof headers === 'function' ? (require('next/headers').headers().get('x-akrin-lang') as string | null) : null) || 'en'
   return (
-    <html lang="en">
+    <html lang={lang} suppressHydrationWarning>
       <head>
         <HreflangLinks />
         <script
@@ -213,7 +221,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" type="image/png" />
 
       </head>
-      <body className="min-h-screen flex flex-col bg-background text-foreground font-sans">
+      <body className="min-h-screen flex flex-col bg-background text-foreground font-sans" data-lang={undefined}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[hsl(var(--primary))] focus:text-white focus:rounded-md focus:shadow-lg"

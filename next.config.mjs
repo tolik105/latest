@@ -1,5 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      // Normalize accidental double JA prefix
+      {
+        source: '/ja/ja/:path*',
+        destination: '/ja/:path*',
+        permanent: true,
+      },
+      // Fix audited service slugs to live destinations
+      {
+        source: '/services/it-security-services',
+        destination: '/services/it-security',
+        permanent: true,
+      },
+      {
+        source: '/services/penetration-testing',
+        destination: '/services/network-penetration-testing',
+        permanent: true,
+      },
+    ]
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },

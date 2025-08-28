@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 export function HreflangLinks() {
   const pathname = usePathname() || '/'
 
-  // Prefer runtime origin; fall back to production domain
+  // Prefer runtime origin; fall back to production domain (akrin.jp)
   const origin = typeof window !== 'undefined' && window.location?.origin
     ? window.location.origin
     : (process.env.NEXT_PUBLIC_SITE_URL || 'https://akrin.jp')
