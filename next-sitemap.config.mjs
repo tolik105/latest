@@ -17,19 +17,20 @@ const config = {
     '/ja/ja*',
   ],
   transform: async (config, path) => {
-    // Exclude non-canonical duplicates and legacy slugs
-    if (path === '/services/it-security-services' || path === '/services/penetration-testing') {
-      return null
-    }
+    // Use canonical route map; exclude non-canonical and legacy
+    const { routeMap, normalizePath, getAlternatesForPath } = await import('./lib/route-map')
+    const normalized = normalizePath(path)
+    const pair = getAlternatesForPath(normalized)
+    if (!pair) return null
 
-    const isJa = path.startsWith('/ja')
-    const enPath = isJa ? (path.replace(/^\/ja/, '') || '/') : path
-    const jaPath = isJa ? path : (path === '/' ? '/ja' : `/ja${path}`)
+    const enPath = normalizePath(pair.en)
+    const jaPath = normalizePath(pair.ja)
+    const loc = normalized.startsWith('/ja') ? jaPath : enPath
 
     return {
-      loc: path,
+      loc,
       changefreq: 'weekly',
-      priority: path === '/' || path === '/ja' ? 1.0 : 0.7,
+      priority: loc === '/' || loc === '/ja' ? 1.0 : 0.7,
       alternateRefs: [
         { href: `https://akrin.jp${enPath}`, hreflang: 'en' },
         { href: `https://akrin.jp${jaPath}`, hreflang: 'ja' },

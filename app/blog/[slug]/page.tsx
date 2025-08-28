@@ -114,9 +114,15 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     .trim()
     .substring(0, 160)
 
+  // Enforce SERP-friendly lengths
+  const baseTitle = `${post.title} - Expert Insights | AKRIN IT Blog`
+  const normalizedTitle = baseTitle.length > 65 ? `${baseTitle.slice(0, 62)}...` : baseTitle
+  const normalizedDescription = (post.metaDescription || cleanDescription)
+    .slice(0, 170)
+
   return {
-    title: `${post.title} - Expert Insights | AKRIN IT Blog`,
-    description: post.metaDescription || cleanDescription,
+    title: normalizedTitle,
+    description: normalizedDescription,
     keywords: generateKeywords(post),
     authors: [{ name: 'AKRIN Technology Experts' }],
     creator: 'AKRIN',
@@ -131,13 +137,14 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     alternates: {
       canonical: `/blog/${post.slug}`,
       languages: {
-        'en-US': `/blog/${post.slug}`,
-        'ja-JP': `/ja/blog/${post.slug}`,
+        en: `/blog/${post.slug}`,
+        ja: `/ja/blog/${post.slug}`,
+        'x-default': `/blog/${post.slug}`,
       },
     },
     openGraph: {
-      title: post.title,
-      description: post.metaDescription || cleanDescription,
+      title: normalizedTitle,
+      description: normalizedDescription,
       url: `https://akrin.jp/blog/${post.slug}`,
       siteName: 'AKRIN',
       locale: 'en_US',
@@ -158,8 +165,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
-      description: post.metaDescription || cleanDescription,
+      title: normalizedTitle,
+      description: normalizedDescription,
       site: '@AKRIN_JP',
       creator: '@AKRIN_JP',
       images: post.image ? [post.image] : [],
@@ -189,8 +196,12 @@ export async function generateStaticParams() {
 }
 
 // Function to add IDs to headings for anchor links
-function addHeadingIds(content: string): string {
-  return content.replace(/<h([2-4])([^>]*)>(.*?)<\/h[2-4]>/gi, (match, level, attributes, text) => {
+function normalizeHeadings(content: string): string {
+  // Demote any H1s in content to H2 to ensure only one H1 on the page
+  let s = content.replace(/<h1(\s[^>]*)?>/gi, '<h2$1>')
+                 .replace(/<\/h1>/gi, '</h2>')
+  // Add IDs to headings H2-H4
+  return s.replace(/<h([2-4])([^>]*)>(.*?)<\/h[2-4]>/gi, (match, level, attributes, text) => {
     const cleanText = text.replace(/<[^>]*>/g, '').trim();
     const id = cleanText
       .toLowerCase()
@@ -219,7 +230,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Adjust media behavior for specific posts (kept simple for consistent visuals)
 
   // Add IDs to headings for better navigation
-  const processedContent = addHeadingIds(post.content);
+  const processedContent = normalizeHeadings(post.content);
 
   // Generate enhanced structured data with category-specific schema
   const generateStructuredData = (post: any) => {

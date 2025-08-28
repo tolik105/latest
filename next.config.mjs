@@ -20,6 +20,17 @@ const nextConfig = {
         destination: '/services/network-penetration-testing',
         permanent: true,
       },
+      // Consolidate audited AI page to managed services (final 200)
+      {
+        source: '/services/ai-powered-automation',
+        destination: '/services/it-managed-services',
+        permanent: true,
+      },
+      {
+        source: '/ja/services/ai-powered-automation',
+        destination: '/ja/services/it-managed-services',
+        permanent: true,
+      },
     ]
   },
   eslint: {
