@@ -142,10 +142,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogPagesJA,
   ]
 
-  return allPages.map((page) => ({
+  // De-duplicate and exclude non-canonical/redirected paths
+  const seen = new Set<string>()
+  const canonicalized = allPages
+    .filter((p) => {
+      // Exclude legacy slugs and duplicates
+      if (p.url === '/services/it-security-services' || p.url === '/services/penetration-testing') return false
+      if (p.url === '/ja/ja') return false
+      const key = p.url
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+
+  return canonicalized.map((page) => ({
     url: `${baseUrl}${page.url}`,
     lastModified: page.lastModified || new Date(),
     changeFrequency: page.changeFrequency,
     priority: page.priority,
+    alternates: {
+      languages: {
+        en: `${baseUrl}${page.url.replace(/^\/ja/, '') || '/'}`,
+        ja: `${baseUrl}${page.url.startsWith('/ja') ? page.url : `/ja${page.url}`}`,
+      }
+    }
   }))
 }
