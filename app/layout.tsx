@@ -17,6 +17,7 @@ import { BrowserExtensionSafeWrapper } from "@/components/hydration-boundary"
 import { HydrationErrorBoundary } from "@/components/hydration-error-boundary"
 import { MobilePerformanceOptimizer } from "@/components/mobile-performance"
 import PrelineInit from "@/components/preline-init"
+import { WebVitals } from "@/components/web-vitals"
 
 // Variable fonts are loaded via CSS @font-face declarations in globals.css
 
@@ -312,6 +313,7 @@ export default function RootLayout({
                   <Footer />
                   <Toaster />
                   <CookieConsent />
+                  <WebVitals />
                 </LanguageProvider>
               </I18nProvider>
             </div>
