@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { blogPostsEN } from '@/lib/blog-data'
+import { blogPostsEN, blogPostsJA } from '@/lib/blog-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://akrin.jp'
@@ -114,7 +114,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: post.date ? new Date(post.date) : new Date(),
   }))
 
-  const allPages = [...staticPages, ...servicePages, ...blogPages]
+  // Japanese equivalents for static and service pages
+  const staticPagesJA = staticPages.map(p => ({
+    ...p,
+    url: `/ja${p.url}`,
+  }))
+
+  const servicePagesJA = servicePages.map(p => ({
+    ...p,
+    url: `/ja${p.url}`,
+  }))
+
+  // Japanese blog posts
+  const blogPagesJA = Object.values(blogPostsJA).map((post) => ({
+    url: `/ja/blog/${post.slug}`,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+    lastModified: post.date ? new Date(post.date) : new Date(),
+  }))
+
+  const allPages = [
+    ...staticPages,
+    ...servicePages,
+    ...blogPages,
+    ...staticPagesJA,
+    ...servicePagesJA,
+    ...blogPagesJA,
+  ]
 
   return allPages.map((page) => ({
     url: `${baseUrl}${page.url}`,
