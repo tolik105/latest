@@ -1,62 +1,41 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://akrin.jp'
+  const baseUrl = 'https://akrin.ai'
+  const allow = [
+    '/_next/static/',
+    '/_next/static',
+    '/_next/image',
+    '/_next/image/',
+    '/_next/data/',
+    '/_next/data',
+    '/',
+  ]
+  const disallow = [
+    '/api/*',
+    '/admin/*',
+    '/private/',
+    '/*.json',
+    '/book-consultation/success',
+    '/book-reservation/success',
+    '/thank-you',
+    '/404',
+    '/500',
+  ]
 
   return {
     rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: [
-          '/api/',
-          '/admin/',
-          '/_next/',
-          '/private/',
-          '*.json',
-          '/book-consultation/success',
-          '/book-reservation/success',
-          '/thank-you',
-          '/404',
-          '/500',
-        ],
-      },
+      { userAgent: '*', allow, disallow },
       // Block AI crawlers for content protection
-      {
-        userAgent: 'GPTBot',
-        disallow: '/',
-      },
-      {
-        userAgent: 'ChatGPT-User',
-        disallow: '/',
-      },
-      {
-        userAgent: 'CCBot',
-        disallow: '/',
-      },
-      {
-        userAgent: 'anthropic-ai',
-        disallow: '/',
-      },
-      {
-        userAgent: 'Claude-Web',
-        disallow: '/',
-      },
-      {
-        userAgent: 'PerplexityBot',
-        disallow: '/',
-      },
-      // Allow important search engines
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/', '/private/'],
-      },
-      {
-        userAgent: 'Bingbot',
-        allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/', '/private/'],
-      },
+      { userAgent: 'GPTBot', disallow: '/' },
+      { userAgent: 'ChatGPT-User', disallow: '/' },
+      { userAgent: 'CCBot', disallow: '/' },
+      { userAgent: 'anthropic-ai', disallow: '/' },
+      { userAgent: 'Claude-Web', disallow: '/' },
+      { userAgent: 'PerplexityBot', disallow: '/' },
+      // Redundant explicit rules for major engines (same as generic)
+      { userAgent: 'Googlebot', allow, disallow },
+      { userAgent: 'Bingbot', allow, disallow },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
     host: baseUrl,
