@@ -22,13 +22,17 @@ export function generatePageMetadata({
   const jaUrl = `${baseUrl}${isJa ? normalizedPath : `/ja${normalizedPath}`}`
   const fullUrl = isJa ? jaUrl : enUrl
   
+  // Enforce length limits
+  const normalizedTitle = title.length > 65 ? `${title.slice(0, 62)}...` : title
+  const normalizedDescription = description.length > 158 ? `${description.slice(0, 155)}...` : description
+
   return {
-    title,
-    description,
+    title: normalizedTitle,
+    description: normalizedDescription,
     keywords,
     openGraph: {
-      title,
-      description,
+      title: normalizedTitle,
+      description: normalizedDescription,
       url: fullUrl,
       siteName: 'AKRIN株式会社',
       locale: isJa ? 'ja_JP' : 'en_US',
@@ -38,13 +42,13 @@ export function generatePageMetadata({
         url: image,
         width: 1200,
         height: 630,
-        alt: title,
+        alt: normalizedTitle,
       }],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: normalizedTitle,
+      description: normalizedDescription,
       creator: '@akrin',
       images: [image],
     },
