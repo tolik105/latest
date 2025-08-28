@@ -121,7 +121,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <HreflangLinks />
-                <script
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -129,47 +129,40 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": "https://akrin.jp/#organization",
-                  "name": "AKRIN株式会社",
-                  "legalName": "AKRIN株式会社",
-                  "alternateName": ["Akrin Co., Ltd.", "Akrin IT Solutions", "AKRIN K.K.", "アクリン"],
-                  "url": "https://akrin.jp",
-                  "logo": "https://akrin.jp/akrin-logo.svg",
+                  "@id": "https://akrin.ai/#organization",
+                  "name": "AKRIN K.K.",
+                  "url": "https://akrin.ai",
+                  "logo": "https://akrin.ai/akrin-logo.svg",
                   "sameAs": ["https://www.linkedin.com/company/akrin-kk"],
-                  "contactPoint": {
+                  "contactPoint": [{
                     "@type": "ContactPoint",
                     "telephone": "+81-3-6821-1223",
                     "contactType": "customer service",
-                    "availableLanguage": ["English", "Japanese", "日本語", "英語"],
+                    "availableLanguage": ["en", "ja"],
                     "areaServed": ["JP", "Worldwide"]
-                  },
+                  }],
                   "address": {
                     "@type": "PostalAddress",
                     "streetAddress": "2-4-15 Minamiaoyama 4F",
-                    "streetAddress@ja": "南青山2-4-15 4F",
                     "addressLocality": "Minato City",
-                    "addressLocality@ja": "港区",
                     "addressRegion": "Tokyo",
-                    "addressRegion@ja": "東京都",
                     "postalCode": "107-0062",
                     "addressCountry": "JP"
-                  },
-                  "description": "Leading IT solutions provider in Japan offering managed services, cybersecurity, cloud migration, and 24/7 support.",
-                  "description@ja": "日本を代表するITソリューションプロバイダー。マネージドサービス、サイバーセキュリティ、クラウド移行、24時間365日サポートを提供。"
+                  }
                 },
                 {
                   "@type": "LocalBusiness",
-                  "@id": "https://akrin.jp/#localbusiness",
-                  "name": "AKRIN株式会社",
-                  "image": "https://akrin.jp/og-image.png",
+                  "@id": "https://akrin.ai/#localbusiness",
+                  "name": "AKRIN K.K.",
+                  "image": "https://akrin.ai/og-image.png",
                   "priceRange": "$$$$",
                   "telephone": "+81-3-6821-1223",
                   "email": "support@akrin.jp",
                   "address": {
                     "@type": "PostalAddress",
-                    "streetAddress": "南青山2-4-15 4F",
-                    "addressLocality": "港区",
-                    "addressRegion": "東京都",
+                    "streetAddress": "2-4-15 Minamiaoyama 4F",
+                    "addressLocality": "Minato City",
+                    "addressRegion": "Tokyo",
                     "postalCode": "107-0062",
                     "addressCountry": "JP"
                   },
@@ -178,7 +171,7 @@ export default function RootLayout({
                     "latitude": 35.6712,
                     "longitude": 139.7195
                   },
-                  "url": "https://akrin.jp",
+                  "url": "https://akrin.ai",
                   "areaServed": {"@type": "Country", "name": "Japan"},
                   "hasOfferCatalog": {
                     "@type": "OfferCatalog",
