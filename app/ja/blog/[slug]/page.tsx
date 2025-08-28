@@ -260,9 +260,9 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
         url: 'https://akrin.jp',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://akrin.jp/images/akrin-logo.png',
-          width: 200,
-          height: 60
+          url: 'https://akrin.jp/akrin-logo.svg',
+          width: 499,
+          height: 80
         },
         contactPoint: {
           '@type': 'ContactPoint',
@@ -409,7 +409,7 @@ export default async function BlogPostPageJA({ params }: BlogPostPageProps) {
               <span itemProp="publisher" itemScope itemType="https://schema.org/Organization">
                 <span itemProp="name">AKRIN</span>
                 <span itemProp="logo" itemScope itemType="https://schema.org/ImageObject">
-                  <span itemProp="url">https://akrin.jp/images/akrin-logo.png</span>
+                  <span itemProp="url">https://akrin.jp/akrin-logo.svg</span>
                 </span>
               </span>
               <meta itemProp="url" content={`https://akrin.jp/ja/blog/${post.slug}`} />
