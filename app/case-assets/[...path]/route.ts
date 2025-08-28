@@ -3,9 +3,8 @@ import { createReadStream, statSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-// Serve files from public/images/case-studies under /case-assets/* to avoid bundling repo paths
-// Precompute absolute directory using URL to avoid process.cwd() tracing
-const CASE_ASSETS_DIR = fileURLToPath(new URL('../../../public/images/case-studies/', import.meta.url))
+// Serve files from public/images/case-studies under /case-assets/*
+const CASE_ASSETS_DIR = path.join(process.cwd(), 'public', 'images', 'case-studies')
 
 export async function GET(
   _req: Request,

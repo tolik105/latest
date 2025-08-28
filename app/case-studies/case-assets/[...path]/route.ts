@@ -4,7 +4,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 // Serve files from public/images/case-studies under /case-studies/case-assets/*
-const CASE_ASSETS_DIR = fileURLToPath(new URL('../../../../public/images/case-studies/', import.meta.url))
+const CASE_ASSETS_DIR = path.join(process.cwd(), 'public', 'images', 'case-studies')
 
 export async function GET(
   _req: Request,
