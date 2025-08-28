@@ -1,271 +1,125 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
-import { useState, useEffect } from "react"
-import { useTranslation } from "react-i18next"
-import { Cookie, Shield, BarChart, Users } from "lucide-react"
-
 export default function CookiesPage() {
-  const { t } = useTranslation('common')
-  const [preferences, setPreferences] = useState({
-    necessary: true,
-    analytics: false,
-    marketing: false,
-    personalization: false
-  })
-
-  useEffect(() => {
-    // Load saved preferences
-    const consent = localStorage.getItem('cookie-consent')
-    if (consent === 'accepted') {
-      setPreferences({
-        necessary: true,
-        analytics: true,
-        marketing: true,
-        personalization: true
-      })
-    }
-  }, [])
-
-  const savePreferences = () => {
-    localStorage.setItem('cookie-consent', 'custom')
-    localStorage.setItem('cookie-preferences', JSON.stringify(preferences))
-    localStorage.setItem('cookie-consent-date', new Date().toISOString())
-    
-    // Update consent for analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('consent', 'update', {
-        'analytics_storage': preferences.analytics ? 'granted' : 'denied'
-      })
-    }
-    
-    // Show success message
-    alert('Cookie preferences saved successfully!')
-  }
-
-  const acceptAll = () => {
-    const allAccepted = {
-      necessary: true,
-      analytics: true,
-      marketing: true,
-      personalization: true
-    }
-    setPreferences(allAccepted)
-    localStorage.setItem('cookie-consent', 'accepted')
-    localStorage.setItem('cookie-preferences', JSON.stringify(allAccepted))
-    localStorage.setItem('cookie-consent-date', new Date().toISOString())
-    
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('consent', 'update', {
-        'analytics_storage': 'granted'
-      })
-    }
-    
-    alert('All cookies accepted!')
-  }
-
-  const declineOptional = () => {
-    const onlyNecessary = {
-      necessary: true,
-      analytics: false,
-      marketing: false,
-      personalization: false
-    }
-    setPreferences(onlyNecessary)
-    localStorage.setItem('cookie-consent', 'declined')
-    localStorage.setItem('cookie-preferences', JSON.stringify(onlyNecessary))
-    localStorage.setItem('cookie-consent-date', new Date().toISOString())
-    
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('consent', 'update', {
-        'analytics_storage': 'denied'
-      })
-    }
-    
-    alert('Optional cookies declined!')
-  }
-
   return (
-    <main className="min-h-screen py-16">
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl font-bold mb-8">Cookie Policy</h1>
-            
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Cookie className="h-6 w-6 text-primary" />
-                  About Cookies
-                </CardTitle>
-                <CardDescription>
-                  Understanding how we use cookies on our website
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p>
-                  Cookies are small text files that are placed on your device when you visit our website. 
-                  They help us provide you with the best possible experience and allow certain features to work.
-                </p>
-                <p>
-                  We use cookies to understand how you use our website, remember your preferences, 
-                  and improve our services. You can control which cookies you allow below.
-                </p>
-              </CardContent>
-            </Card>
+    <div className="min-h-screen bg-white">
+      <div className="max-w-4xl mx-auto px-4 py-16">
+        <div className="prose prose-lg max-w-none">
+          <h1 className="text-4xl font-bold text-gray-900 mb-8">Cookie Policy</h1>
 
-            <div className="space-y-6 mb-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Shield className="h-5 w-5 text-primary" />
-                      Necessary Cookies
-                    </div>
-                    <Switch 
-                      checked={preferences.necessary} 
-                      disabled={true}
-                      className="data-[state=checked]:bg-[hsl(var(--primary))]"
-                    />
-                  </CardTitle>
-                  <CardDescription>Always active</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-600">
-                    These cookies are essential for the website to function properly. They enable basic 
-                    functions like page navigation, secure areas access, and language preferences. 
-                    The website cannot function properly without these cookies.
-                  </p>
-                </CardContent>
-              </Card>
+          <div className="text-sm text-gray-600 mb-8">Last updated: January 1, 2024</div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <BarChart className="h-5 w-5 text-primary" />
-                      Analytics Cookies
-                    </div>
-                    <Switch 
-                      checked={preferences.analytics}
-                      onCheckedChange={(checked) => setPreferences({...preferences, analytics: checked})}
-                    />
-                  </CardTitle>
-                  <CardDescription>Help us improve our website</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-600">
-                    These cookies help us understand how visitors interact with our website by collecting 
-                    and reporting information anonymously. This helps us improve our website's functionality 
-                    and content.
-                  </p>
-                </CardContent>
-              </Card>
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. What are cookies</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Cookies are small text files that a website stores on your computer or mobile device.
+              Cookies allow a website to recognize your device and remember your settings and
+              preferences.
+            </p>
+          </section>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Users className="h-5 w-5 text-primary" />
-                      Marketing Cookies
-                    </div>
-                    <Switch 
-                      checked={preferences.marketing}
-                      onCheckedChange={(checked) => setPreferences({...preferences, marketing: checked})}
-                    />
-                  </CardTitle>
-                  <CardDescription>Personalized advertisements</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-600">
-                    These cookies are used to deliver advertisements that are relevant to you and your 
-                    interests. They also help limit the number of times you see an advertisement and 
-                    measure the effectiveness of advertising campaigns.
-                  </p>
-                </CardContent>
-              </Card>
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">2. Types of cookies we use</h2>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Cookie className="h-5 w-5 text-primary" />
-                      Personalization Cookies
-                    </div>
-                    <Switch 
-                      checked={preferences.personalization}
-                      onCheckedChange={(checked) => setPreferences({...preferences, personalization: checked})}
-                    />
-                  </CardTitle>
-                  <CardDescription>Remember your preferences</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-600">
-                    These cookies allow the website to remember choices you make (such as your language 
-                    preference or the region you are in) and provide enhanced, more personal features.
-                  </p>
-                </CardContent>
-              </Card>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Necessary cookies</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              These cookies are essential to provide the basic functions of the website. They cannot
+              be disabled.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Functional cookies</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              These cookies remember your settings, such as language preferences and login
+              information.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Analytics cookies</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              These cookies help us analyze how visitors use our website so we can improve services.
+              We may use tools such as Google Analytics.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Marketing cookies</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              These cookies are used to deliver advertising relevant to your interests.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">3. Purposes of use</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">We use cookies to:</p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
+              <li>Provide the basic functions of the website</li>
+              <li>Improve user experience</li>
+              <li>Remember language and display preferences</li>
+              <li>Analyze site usage and performance</li>
+              <li>Ensure security</li>
+              <li>Provide personalized content</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">4. Third‑party cookies</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Our website may use third‑party services that set cookies, including:
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
+              <li><strong>Google Analytics:</strong> Usage analytics</li>
+              <li><strong>Google reCAPTCHA:</strong> Spam prevention and security</li>
+              <li><strong>LinkedIn:</strong> Social media integration</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">5. Managing cookies</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              You can manage cookies via your browser settings:
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
+              <li>Reject cookies</li>
+              <li>Delete cookies</li>
+              <li>Block cookies from specific websites</li>
+              <li>Be notified before cookies are set</li>
+            </ul>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Disabling cookies may impact the functionality of parts of our website.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">6. Browser‑specific instructions</h2>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold text-gray-900">Chrome</h4>
+                <p className="text-gray-700">Settings → Privacy and security → Cookies and other site data</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900">Firefox</h4>
+                <p className="text-gray-700">Settings → Privacy & Security → Cookies and Site Data</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900">Safari</h4>
+                <p className="text-gray-700">Preferences → Privacy → Cookies and Website Data</p>
+              </div>
             </div>
+          </section>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                onClick={savePreferences}
-              >
-                Save My Preferences
-              </Button>
-              <Button 
-                onClick={acceptAll}
-                variant="outline"
-              >
-                Accept All Cookies
-              </Button>
-              <Button 
-                onClick={declineOptional}
-                variant="ghost"
-              >
-                Essential Only
-              </Button>
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">7. Contact us</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              If you have questions about this Cookie Policy, please contact us:
+            </p>
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-gray-700">
+                <strong>AKRIN K.K.</strong><br />
+                Email: <a href="mailto:privacy@akrin.jp" className="underline text-primary hover:text-primary">privacy@akrin.jp</a><br />
+                Phone: +81-3-6821-1223<br />
+                Address: 2-4-15 Minamiaoyama 4F, Minato City, Tokyo 107-0062, Japan
+              </p>
             </div>
-
-            <Card className="mt-8">
-              <CardHeader>
-                <CardTitle>More Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h3 className="font-semibold mb-2">How to manage cookies in your browser</h3>
-                  <p className="text-sm text-gray-600">
-                    Most web browsers allow you to control cookies through their settings. You can set 
-                    your browser to refuse cookies or delete certain cookies. However, if you block or 
-                    delete cookies, some features of our website may not work properly.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Updates to this policy</h3>
-                  <p className="text-sm text-gray-600">
-                    We may update this Cookie Policy from time to time to reflect changes in our practices 
-                    or for other operational, legal, or regulatory reasons. Please revisit this page 
-                    periodically to stay informed about our use of cookies.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Contact us</h3>
-                  <p className="text-sm text-gray-600">
-                    If you have any questions about our use of cookies, please contact us at{' '}
-                    <a href="mailto:privacy@akrin.jp" className="text-purple-600 hover:underline">
-                      privacy@akrin.jp
-                    </a>
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          </section>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
   )
 }
