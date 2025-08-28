@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
   async redirects() {
     return [
       // Normalize accidental double JA prefix

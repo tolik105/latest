@@ -37,12 +37,17 @@ export function VideoHero() {
     <section className="relative min-h-screen w-full overflow-hidden bg-white pt-24 sm:pt-28">
       {/* Hero Background SVG - Responsive */}
       <div className="absolute inset-0 w-full h-full z-0">
-        <img 
-          src="/Mask group.svg" 
-          alt="" 
-          className="w-full h-full object-cover opacity-100"
-          aria-hidden="true"
-        />
+        <picture>
+          <source srcSet="/Mask group.svg" type="image/svg+xml" />
+          <img
+            src="/Mask group.svg"
+            alt=""
+            className="w-full h-full object-cover opacity-100"
+            aria-hidden="true"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
       </div>
       
       {/* Responsive Layout */}
