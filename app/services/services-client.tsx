@@ -39,7 +39,7 @@ export default function ServicesClient() {
       title: "Network Penetration Testing",
       description: "Comprehensive security testing to identify vulnerabilities and strengthen your network defenses.",
       image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      href: "/services/penetration-testing",
+      href: "/services/network-penetration-testing",
       buttonText: "Network Penetration Testing solutions"
     },
     {
