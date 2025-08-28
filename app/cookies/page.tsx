@@ -98,7 +98,7 @@ export default function CookiesPage() {
             <Card className="mb-8">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Cookie className="h-6 w-6 text-purple-600" />
+                  <Cookie className="h-6 w-6 text-primary" />
                   About Cookies
                 </CardTitle>
                 <CardDescription>
@@ -122,13 +122,13 @@ export default function CookiesPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Shield className="h-5 w-5 text-green-600" />
+                      <Shield className="h-5 w-5 text-primary" />
                       Necessary Cookies
                     </div>
                     <Switch 
                       checked={preferences.necessary} 
                       disabled={true}
-                      className="data-[state=checked]:bg-green-600"
+                      className="data-[state=checked]:bg-[hsl(var(--primary))]"
                     />
                   </CardTitle>
                   <CardDescription>Always active</CardDescription>
@@ -146,7 +146,7 @@ export default function CookiesPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <BarChart className="h-5 w-5 text-blue-600" />
+                      <BarChart className="h-5 w-5 text-primary" />
                       Analytics Cookies
                     </div>
                     <Switch 
@@ -169,7 +169,7 @@ export default function CookiesPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Users className="h-5 w-5 text-purple-600" />
+                      <Users className="h-5 w-5 text-primary" />
                       Marketing Cookies
                     </div>
                     <Switch 
@@ -192,7 +192,7 @@ export default function CookiesPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Cookie className="h-5 w-5 text-purple-600" />
+                      <Cookie className="h-5 w-5 text-primary" />
                       Personalization Cookies
                     </div>
                     <Switch 
@@ -214,7 +214,6 @@ export default function CookiesPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 onClick={savePreferences}
-                className="bg-purple-600 hover:bg-purple-700"
               >
                 Save My Preferences
               </Button>
