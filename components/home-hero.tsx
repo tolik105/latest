@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export function HomeHero() {
   return (
@@ -11,14 +12,14 @@ export function HomeHero() {
         {/* Right-side diagonal image like Managed Services */}
         <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
           <div className="relative h-full overflow-hidden">
-            <img
+            {/* Use Next/Image for optimal loading and LCP */}
+            <Image
               src="/images/banners/it-managed-services/banner.avif"
               alt="Technology Team"
-              width={1920}
-              height={1080}
-              loading="eager"
-              decoding="async"
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              priority
+              sizes="(max-width: 1024px) 0px, 50vw"
+              className="absolute inset-0 object-cover"
             />
             <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
               <polygon points="0,0 25,0 0,100" fill="white" />
@@ -30,10 +31,10 @@ export function HomeHero() {
         <div className="relative z-10 w-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="lg:w-1/2">
-              <motion.h1 
-                id="home-hero-heading" 
-                initial={{ opacity: 0, y: 20 }} 
-                animate={{ opacity: 1, y: 0 }} 
+              <motion.h1
+                id="home-hero-heading"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6"
               >

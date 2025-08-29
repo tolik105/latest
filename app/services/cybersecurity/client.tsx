@@ -4,7 +4,7 @@ import React from "react"
 
 import Link from "next/link"
 import Image from "next/image"
-import Script from "next/script"
+
 import { PremiumCTA } from "@/components/ui/premium-cta"
 import { HeroDiagonal } from "@/components/hero-diagonal"
 
@@ -13,15 +13,7 @@ export default function CybersecurityClient() {
 
   return (
     <div>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-6YTE9HVKEE');
-        `}
-      </Script>
+
 
       <div className="bg-white font-sans">
         {/* Standardized Hero Section (HeroDiagonal) */}

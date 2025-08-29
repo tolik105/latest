@@ -29,7 +29,6 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   viewportFit: 'cover',
-  interactiveWidget: 'resizes-content',
   colorScheme: 'light',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
@@ -124,6 +123,7 @@ export default function RootLayout({
     <html lang={lang} suppressHydrationWarning>
       <head>
         <HreflangLinks />
+        <link rel="preload" as="image" href="/og-image.png" imagesrcset="/og-image.png 1200w" imagesizes="100vw" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

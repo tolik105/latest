@@ -201,14 +201,6 @@ export default function WiFiAssessmentClient() {
 
   return (
     <div>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-6YTE9HVKEE', { cookie_domain: 'akrin.jp' });
-        `}
-      </Script>
 
       <div className="bg-white font-sans">
         {/* Breadcrumb removed */}

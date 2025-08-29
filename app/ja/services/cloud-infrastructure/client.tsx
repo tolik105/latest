@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import Script from "next/script"
+
 import Link from "next/link"
 import Image from "next/image"
 
@@ -74,15 +74,7 @@ export default function CloudInfrastructureJaClient() {
 
   return (
     <div>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-6YTE9HVKEE', { cookie_domain: 'akrin.jp' });
-        `}
-      </Script>
+
 
       <div className="bg-white font-sans">
         {/* 標準化ヒーロー（HeroDiagonal） */}
