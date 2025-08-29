@@ -52,14 +52,16 @@ function ManagedServicesHero() {
           }}
         >
           <div className="absolute inset-0">
-            <img
+            <Image
               src="/images/banners/it-managed-services/banner.avif"
               alt="Burgundy/purple metallic ribbons on a dark background"
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
               style={{
                 objectPosition: 'center bottom'
               }}
-              fetchPriority="high"
             />
 
           </div>
@@ -661,10 +663,13 @@ export default function ITManagedServicesClient() {
 
               {/* Right Image */}
               <div>
-                <img
+                <Image
                   src="/images/banners/it-managed-services/trusted-partner.webp"
                   alt="IT Partnership and Strategy"
+                  width={1200}
+                  height={800}
                   className="w-full h-auto rounded-lg shadow-lg"
+                  loading="lazy"
                 />
               </div>
             </div>

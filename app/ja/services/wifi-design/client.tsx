@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import Script from "next/script"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { HeroDiagonal } from "@/components/hero-diagonal"
@@ -132,8 +133,9 @@ export default function WiFiDesignJaClient() {
               { label: 'Services', href: '/ja/services' },
               { label: 'Wi‑Fi設計' }
             ]}
-            imageSrc="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=2126&q=80"
+            imageSrc="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80"
             imageAlt="Wi‑Fi設計"
+            imageQuality={65}
           />
         </section>
 
@@ -165,7 +167,7 @@ export default function WiFiDesignJaClient() {
                 </div>
               </div>
               <div className="mt-8 lg:mt-0">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wi‑Fi設計" width={1200} height={800} loading="lazy" decoding="async" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
+                <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wi‑Fi設計" width={1200} height={800} loading="lazy" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" sizes="(max-width: 1024px) 100vw, 50vw" quality={70} />
               </div>
             </div>
           </div>
@@ -176,7 +178,7 @@ export default function WiFiDesignJaClient() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
               <div className="order-2 lg:order-1 mt-8 lg:mt-0">
-                <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wi‑Fi設計パートナー" width={1200} height={800} loading="lazy" decoding="async" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
+                <Image src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wi‑Fi設計パートナー" width={1200} height={800} loading="lazy" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" sizes="(max-width: 1024px) 100vw, 50vw" quality={70} />
               </div>
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">Wi‑Fi設計<br />パートナー</h2>

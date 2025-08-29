@@ -6,6 +6,7 @@ import { motion, AnimationProps } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import { useEffect, useRef, useState } from 'react'
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 export function VideoHeroMobile() {
   const { t } = useTranslation('common')
@@ -30,26 +31,38 @@ export function VideoHeroMobile() {
   useEffect(() => {
     try {
       const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      // Respect reduced data
-      const saveData = (navigator as any)?.connection?.saveData === true
+      const conn: any = (navigator as any)?.connection
+      const saveData = conn?.saveData === true
+      const effectiveType: string | undefined = conn?.effectiveType // 'slow-2g' | '2g' | '3g' | '4g'
       if (prefersReducedMotion || saveData) {
         setShouldLoadVideo(false)
         return
       }
+      const enableWhenIdle = () => {
+        try {
+          const rif = (window as any).requestIdleCallback as undefined | ((cb: () => void, opts?: any) => void)
+          // Longer deferral on slower connections to avoid hurting mobile LCP/bytes
+          const delay = effectiveType === '4g' ? 3000 : 9000
+          if (typeof rif === 'function') rif(() => setShouldLoadVideo(true), { timeout: delay })
+          else setTimeout(() => setShouldLoadVideo(true), delay)
+        } catch {
+          setTimeout(() => setShouldLoadVideo(true), 9000)
+        }
+      }
       if (containerRef.current && 'IntersectionObserver' in window) {
         const observer = new IntersectionObserver(([entry]) => {
           if (entry.isIntersecting) {
-            setShouldLoadVideo(true)
+            enableWhenIdle()
             observer.disconnect()
           }
         }, { rootMargin: '200px' })
         observer.observe(containerRef.current)
         return () => observer.disconnect()
       }
-      // Fallback: load
-      setShouldLoadVideo(true)
+      // Fallback: use longer defer on unknown conditions
+      setTimeout(() => setShouldLoadVideo(true), 9000)
     } catch {
-      setShouldLoadVideo(true)
+      setTimeout(() => setShouldLoadVideo(true), 9000)
     }
   }, [])
 
@@ -183,14 +196,23 @@ export function VideoHeroMobile() {
         {/* Enhanced Background with better mobile performance */}
         <div className="absolute inset-0 w-full h-full z-0" ref={containerRef}>
           {isMobile ? (
-            // Mobile: Video background with overlay for readability
+            // Mobile: Poster image as LCP + deferred video on idle
             <div className="w-full h-full relative">
+              <Image
+                src="/og-image.png"
+                alt="AKRIN hero background"
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+                style={{ filter: 'brightness(0.6)' }}
+              />
               <video
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
                 poster="/og-image.png"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: 'brightness(0.6)' }}
@@ -198,7 +220,7 @@ export function VideoHeroMobile() {
               >
                 {shouldLoadVideo && <source src="/video/AKRINKK.mp4" type="video/mp4" />}
               </video>
-               <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute inset-0 bg-black/30" />
             </div>
           ) : isTablet ? (
             // Tablet: Video background with overlay
@@ -208,7 +230,7 @@ export function VideoHeroMobile() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
                 poster="/og-image.png"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: 'brightness(0.7)' }}
@@ -226,7 +248,7 @@ export function VideoHeroMobile() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
                 poster="/og-image.png"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: 'brightness(0.8) contrast(1.1)' }}

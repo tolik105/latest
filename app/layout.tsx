@@ -12,13 +12,13 @@ import { I18nProvider } from "@/components/i18n-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { CookieConsent } from "@/components/cookie-consent"
 import { GoogleAnalytics } from "@/components/google-analytics"
-import { RecaptchaScript } from "@/components/recaptcha-script"
 import { HreflangLinks } from "@/components/hreflang-links"
 import { BrowserExtensionSafeWrapper } from "@/components/hydration-boundary"
 import { HydrationErrorBoundary } from "@/components/hydration-error-boundary"
 import { MobilePerformanceOptimizer } from "@/components/mobile-performance"
 import PrelineInit from "@/components/preline-init"
 import { WebVitals } from "@/components/web-vitals"
+import { headers } from 'next/headers'
 
 // Variable fonts are loaded via CSS @font-face declarations in globals.css
 
@@ -118,12 +118,11 @@ export default function RootLayout({
 }) {
   // During SSR, read the middleware-injected header to set html lang
   // Fallback to 'en' when not available (static export or client nav)
-  const lang = (typeof headers === 'function' ? (require('next/headers').headers().get('x-akrin-lang') as string | null) : null) || 'en'
+  const lang = headers().get('x-akrin-lang') ?? 'en'
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
         <HreflangLinks />
-        <link rel="preload" as="image" href="/og-image.png" imagesrcset="/og-image.png 1200w" imagesizes="100vw" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -199,11 +198,19 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="shortcut icon" href="/favicon-32x32.v3.png" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" type="image/png" />
+        {/* Preload local variable fonts for faster first paint */}
+        <link rel="preload" href="/fonts/Inter.var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Lora.var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
       </head>
       <body className="min-h-screen flex flex-col bg-background text-foreground font-sans" data-lang={undefined}>
         <link rel="preconnect" href="https://img.logo.dev" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="//img.logo.dev" />
+        {/* Preconnect to remote image hosts to reduce DNS/TLS latency (no visual/SEO change) */}
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="//images.unsplash.com" />
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="//res.cloudinary.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <a
@@ -213,7 +220,6 @@ export default function RootLayout({
           Skip to main content
         </a>
         <GoogleAnalytics />
-        <RecaptchaScript />
 
         {/* Browser Extension Cleanup Script - Runs before React hydration */}
         <script

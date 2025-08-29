@@ -92,6 +92,9 @@ export default function ServicesClient() {
                   height={800}
                   className="w-full h-auto rounded-md"
                   priority
+                  fetchPriority="high"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 1200px"
+                  quality={65}
                 />
               </motion.div>
               <div className="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 size-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6"></div>
@@ -126,6 +129,8 @@ export default function ServicesClient() {
                   alt={service.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
+                  quality={70}
                 />
               </div>
 
@@ -178,6 +183,8 @@ export default function ServicesClient() {
                   alt={service.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
+                  quality={70}
                 />
               </div>
               <div className="p-4 md:p-6 flex-1 flex flex-col">

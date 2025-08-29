@@ -274,10 +274,13 @@ export default function ITManagedServicesClient() {
 
               {/* Right Image */}
               <div className="mt-8 lg:mt-0">
-                <img
+                <Image
                   src="/images/banners/it-managed-services/monitoring.webp"
                   alt="ネットワーク監視ダッシュボード"
+                  width={1200}
+                  height={800}
                   className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -290,11 +293,14 @@ export default function ITManagedServicesClient() {
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
               {/* Left Image */}
               <div className="order-2 lg:order-1 mt-8 lg:mt-0">
-                <img
+                <Image
                   src="/images/banners/it-managed-services/Help-Desk-Support.webp"
                   alt="ヘルプデスクサポートチーム"
+                  width={1200}
+                  height={800}
                   className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none brightness-105 saturate-90"
                   style={{ filter: 'brightness(1.05) saturate(0.9) hue-rotate(10deg)' }}
+                  loading="lazy"
                 />
               </div>
 
@@ -469,10 +475,13 @@ export default function ITManagedServicesClient() {
 
             {/* Infrastructure Image */}
             <div className="text-center">
-              <img
+              <Image
                 src="/images/banners/it-managed-services/Infrastructure-Management.webp"
                 alt="ITインフラ管理"
+                width={1600}
+                height={1000}
                 className="w-full max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
+                loading="lazy"
               />
             </div>
           </div>
@@ -514,10 +523,13 @@ export default function ITManagedServicesClient() {
 
             {/* Strategic Planning Visual */}
             <div className="text-center mb-12">
-              <img
+              <Image
                 src="/images/banners/it-managed-services/board-room.webp"
                 alt="戦略的IT計画"
+                width={1400}
+                height={900}
                 className="w-full max-w-4xl mx-auto h-auto rounded-lg shadow-lg"
+                loading="lazy"
               />
             </div>
 
@@ -573,10 +585,13 @@ export default function ITManagedServicesClient() {
 
               {/* Right Image */}
               <div>
-                <img
+                <Image
                   src="/images/banners/it-managed-services/trusted-partner.webp"
                   alt="ITパートナーシップ＆戦略"
+                  width={1200}
+                  height={800}
                   className="w-full h-auto rounded-lg shadow-lg"
+                  loading="lazy"
                 />
               </div>
             </div>

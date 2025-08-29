@@ -1,0 +1,457 @@
+[
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.65,
+    "values": [
+      0.44,
+      0.65,
+      0.6
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://akrin.jp/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 2000,
+    "actual": 9772.460499999997,
+    "values": [
+      9871.246500000001,
+      10091.146499999999,
+      9772.460499999997
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "largest-contentful-paint",
+    "level": "error",
+    "url": "https://akrin.jp/",
+    "auditTitle": "Largest Contentful Paint",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 4000,
+    "actual": 10652.0248,
+    "values": [
+      10764.932600000002,
+      11043.6405,
+      10652.0248
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "interactive",
+    "level": "warn",
+    "url": "https://akrin.jp/",
+    "auditTitle": "Time to Interactive",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/interactive/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 1200000,
+    "actual": 10771166,
+    "values": [
+      11531020,
+      11154292,
+      10771166
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "total-byte-weight",
+    "level": "warn",
+    "url": "https://akrin.jp/",
+    "auditTitle": "Avoid enormous network payloads",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 0,
+    "actual": 220,
+    "values": [
+      220,
+      360,
+      440
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "unused-javascript",
+    "level": "warn",
+    "url": "https://akrin.jp/",
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 0,
+    "actual": 301,
+    "values": [
+      392,
+      407,
+      301
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "render-blocking-resources",
+    "level": "warn",
+    "url": "https://akrin.jp/",
+    "auditTitle": "Eliminate render-blocking resources",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-text-compression",
+    "level": "warn",
+    "url": "https://akrin.jp/",
+    "auditTitle": "Enable text compression",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.73,
+    "values": [
+      0.73,
+      0.72,
+      0.64
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://akrin.jp/services"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 2000,
+    "actual": 10294.942000000001,
+    "values": [
+      12367.020500000002,
+      12468.579500000003,
+      10294.942000000001
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "largest-contentful-paint",
+    "level": "error",
+    "url": "https://akrin.jp/services",
+    "auditTitle": "Largest Contentful Paint",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 4000,
+    "actual": 11349.6184,
+    "values": [
+      12660.348750000001,
+      12752.595550000005,
+      11349.6184
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "interactive",
+    "level": "warn",
+    "url": "https://akrin.jp/services",
+    "auditTitle": "Time to Interactive",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/interactive/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 1200000,
+    "actual": 2325393,
+    "values": [
+      2325714,
+      2325585,
+      2325393
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "total-byte-weight",
+    "level": "warn",
+    "url": "https://akrin.jp/services",
+    "auditTitle": "Avoids enormous network payloads",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 0,
+    "actual": 660,
+    "values": [
+      1560,
+      1560,
+      660
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "unused-javascript",
+    "level": "warn",
+    "url": "https://akrin.jp/services",
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-text-compression",
+    "level": "warn",
+    "url": "https://akrin.jp/services",
+    "auditTitle": "Enable text compression",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.8,
+    "values": [
+      0.8,
+      0.72,
+      0.74
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://akrin.jp/blog/ai-transforming-it-support"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 2000,
+    "actual": 4715.279500000001,
+    "values": [
+      4715.279500000001,
+      6951.924499999999,
+      5772.674500000003
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "largest-contentful-paint",
+    "level": "error",
+    "url": "https://akrin.jp/blog/ai-transforming-it-support",
+    "auditTitle": "Largest Contentful Paint",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 4000,
+    "actual": 11631.051899999997,
+    "values": [
+      12024.94055,
+      11631.051899999997,
+      11968.864800000003
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "interactive",
+    "level": "warn",
+    "url": "https://akrin.jp/blog/ai-transforming-it-support",
+    "auditTitle": "Time to Interactive",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/interactive/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 1200000,
+    "actual": 2061201,
+    "values": [
+      2061388,
+      2061655,
+      2061201
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "total-byte-weight",
+    "level": "warn",
+    "url": "https://akrin.jp/blog/ai-transforming-it-support",
+    "auditTitle": "Avoids enormous network payloads",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 0,
+    "actual": 220,
+    "values": [
+      220,
+      220,
+      220
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "unused-javascript",
+    "level": "warn",
+    "url": "https://akrin.jp/blog/ai-transforming-it-support",
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 0,
+    "actual": 371,
+    "values": [
+      407,
+      400,
+      371
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "render-blocking-resources",
+    "level": "warn",
+    "url": "https://akrin.jp/blog/ai-transforming-it-support",
+    "auditTitle": "Eliminate render-blocking resources",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-text-compression",
+    "level": "warn",
+    "url": "https://akrin.jp/blog/ai-transforming-it-support",
+    "auditTitle": "Enable text compression",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.7,
+    "values": [
+      0.69,
+      0.7,
+      0.69
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://akrin.jp/contact"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 2000,
+    "actual": 12078.829,
+    "values": [
+      41431.537,
+      12399.4505,
+      12078.829
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "largest-contentful-paint",
+    "level": "error",
+    "url": "https://akrin.jp/contact",
+    "auditTitle": "Largest Contentful Paint",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 4000,
+    "actual": 12322.100300000002,
+    "values": [
+      41446.537,
+      12715.704850000002,
+      12322.100300000002
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "interactive",
+    "level": "warn",
+    "url": "https://akrin.jp/contact",
+    "auditTitle": "Time to Interactive",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/interactive/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 1200000,
+    "actual": 8069376,
+    "values": [
+      8069376,
+      8069424,
+      8069751
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "total-byte-weight",
+    "level": "warn",
+    "url": "https://akrin.jp/contact",
+    "auditTitle": "Avoid enormous network payloads",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 0,
+    "actual": 450,
+    "values": [
+      450,
+      1350,
+      1490
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "unused-javascript",
+    "level": "warn",
+    "url": "https://akrin.jp/contact",
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 0,
+    "actual": 155,
+    "values": [
+      192,
+      155,
+      206
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "render-blocking-resources",
+    "level": "warn",
+    "url": "https://akrin.jp/contact",
+    "auditTitle": "Eliminate render-blocking resources",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0,
+      0.5,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-text-compression",
+    "level": "warn",
+    "url": "https://akrin.jp/contact",
+    "auditTitle": "Enable text compression",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
+  }
+]

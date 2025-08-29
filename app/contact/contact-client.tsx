@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 export default function ContactClient() {
 
@@ -65,9 +66,12 @@ export default function ContactClient() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-full lg:min-h-[500px]"
             >
-              <img
+              <Image
                 src="https://res.cloudinary.com/dtmdovevn/image/upload/v1752615791/roma_20454_Two_business_professionals_one_female_one_male_in_sm_c1a6a181-20ef-4379-b3b7-284c27c20233_mc3hkz.png"
                 alt="AKRIN business professionals discussing IT solutions"
+                fill
+                priority
+                sizes="100vw"
                 className="w-full h-full object-cover object-center"
                 style={{
                   imageRendering: 'crisp-edges',
@@ -76,8 +80,6 @@ export default function ContactClient() {
                   transform: 'translateZ(0)',
                   willChange: 'transform'
                 }}
-                loading="eager"
-                decoding="sync"
               />
             </motion.div>
           </div>
