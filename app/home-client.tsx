@@ -3,6 +3,7 @@ import { HeroServicesRow } from "@/components/hero-services-row"
 import { VideoHeroMobile } from "@/components/video-hero-mobile"
 
 import { motion } from "framer-motion"
+import dynamic from "next/dynamic"
 import { LogosWithBlurFlip } from "@/components/ui/logos-with-blur-flip"
 import { IndustryStatsMetrics } from "@/components/ui/industry-stats-metrics"
 import { ClientOnly } from "@/hooks/use-mounted"
@@ -10,6 +11,11 @@ import { HomeFAQSection } from "@/components/ui/home-faq-section"
 import { PremiumCTA } from "@/components/ui/premium-cta"
 import { useTranslation } from "react-i18next"
 import { HomeCaseStudies } from "@/components/home-case-studies"
+
+const LogosWithBlurFlip = dynamic(() => import("@/components/ui/logos-with-blur-flip"), { ssr: false, loading: () => null })
+const IndustryStatsMetrics = dynamic(() => import("@/components/ui/industry-stats-metrics"), { ssr: false, loading: () => null })
+const HomeFAQSection = dynamic(() => import("@/components/ui/home-faq-section"), { ssr: false, loading: () => null })
+const PremiumCTA = dynamic(() => import("@/components/ui/premium-cta"), { ssr: false, loading: () => null })
 
 export default function HomeClient() {
   const { t } = useTranslation('common')
