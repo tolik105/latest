@@ -1,0 +1,74 @@
+User-Agent: *
+Allow: /_next/static/
+Allow: /_next/static
+Allow: /_next/image
+Allow: /_next/image/
+Allow: /_next/data/
+Allow: /_next/data
+Allow: /
+Disallow: /api/*
+Disallow: /admin/*
+Disallow: /private/
+Disallow: /*.json
+Disallow: /book-consultation/success
+Disallow: /book-reservation/success
+Disallow: /thank-you
+Disallow: /404
+Disallow: /500
+
+User-Agent: GPTBot
+Disallow: /
+
+User-Agent: ChatGPT-User
+Disallow: /
+
+User-Agent: CCBot
+Disallow: /
+
+User-Agent: anthropic-ai
+Disallow: /
+
+User-Agent: Claude-Web
+Disallow: /
+
+User-Agent: PerplexityBot
+Disallow: /
+
+User-Agent: Googlebot
+Allow: /_next/static/
+Allow: /_next/static
+Allow: /_next/image
+Allow: /_next/image/
+Allow: /_next/data/
+Allow: /_next/data
+Allow: /
+Disallow: /api/*
+Disallow: /admin/*
+Disallow: /private/
+Disallow: /*.json
+Disallow: /book-consultation/success
+Disallow: /book-reservation/success
+Disallow: /thank-you
+Disallow: /404
+Disallow: /500
+
+User-Agent: Bingbot
+Allow: /_next/static/
+Allow: /_next/static
+Allow: /_next/image
+Allow: /_next/image/
+Allow: /_next/data/
+Allow: /_next/data
+Allow: /
+Disallow: /api/*
+Disallow: /admin/*
+Disallow: /private/
+Disallow: /*.json
+Disallow: /book-consultation/success
+Disallow: /book-reservation/success
+Disallow: /thank-you
+Disallow: /404
+Disallow: /500
+
+Host: https://akrin.jp
+Sitemap: https://akrin.jp/sitemap.xml

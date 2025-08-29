@@ -1,0 +1,36 @@
+[
+  {
+    "url": "https://akrin.jp/",
+    "status": 200,
+    "redirectedFrom": [],
+    "contentType": "text/html; charset=utf-8",
+    "title": null,
+    "description": null,
+    "h1": null,
+    "headings": [],
+    "wordCount": 0,
+    "images": [],
+    "fonts": [],
+    "css": [],
+    "js": [],
+    "coreWebVitals": {
+      "LCP": null,
+      "CLS": null,
+      "INP": null,
+      "TTFB": null
+    },
+    "schemaTypes": [],
+    "hreflang": [],
+    "canonical": null,
+    "metaRobots": null,
+    "openGraph": {},
+    "links": [],
+    "a11y": {
+      "violations": []
+    },
+    "chain": [
+      "https://akrin.jp/"
+    ],
+    "locale": null
+  }
+]
