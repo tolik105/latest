@@ -13,15 +13,7 @@ export default function CloudInfrastructureClient() {
 
   return (
     <div>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-6YTE9HVKEE', { cookie_domain: 'akrin.jp' });
-        `}
-      </Script>
+      {/* Analytics loaded globally in layout; duplicate removed to avoid double loading */}
 
       <div className="bg-white font-sans">
         {/* Standardized Hero Section (HeroDiagonal) */}

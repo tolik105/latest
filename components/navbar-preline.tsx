@@ -79,7 +79,7 @@ export function NavbarPreline() {
                   <svg className="hs-dropdown-open:rotate-180 sm:hs-dropdown-open:rotate-0 duration-300 ms-2 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
 
-                <div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-80 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 sm:border border-gray-200">
+                <div className="hs-dropdown-menu transition-[opacity,margin] duration-[0\.1ms] sm:duration-[150ms] hs:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-80 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 sm:border border-gray-200">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {services.map((service) => (
                       <Link

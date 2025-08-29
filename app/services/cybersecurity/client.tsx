@@ -14,6 +14,7 @@ export default function CybersecurityClient() {
   return (
     <div>
 
+      {/* Analytics loaded globally in layout; duplicate removed to avoid double loading */}
 
       <div className="bg-white font-sans">
         {/* Standardized Hero Section (HeroDiagonal) */}
