@@ -14,6 +14,10 @@ export function HomeHero() {
             <img
               src="/images/banners/it-managed-services/banner.avif"
               alt="Technology Team"
+              width={1920}
+              height={1080}
+              loading="eager"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">

@@ -4,13 +4,15 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { motion, AnimationProps } from "framer-motion"
 import { useTranslation } from "react-i18next"
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { cn } from "@/lib/utils"
 
 export function VideoHeroMobile() {
   const { t } = useTranslation('common')
   const [isMobile, setIsMobile] = useState(false)
   const [isTablet, setIsTablet] = useState(false)
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -23,6 +25,32 @@ export function VideoHeroMobile() {
     window.addEventListener('resize', checkScreenSize)
     
     return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+
+  useEffect(() => {
+    try {
+      const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      // Respect reduced data
+      const saveData = (navigator as any)?.connection?.saveData === true
+      if (prefersReducedMotion || saveData) {
+        setShouldLoadVideo(false)
+        return
+      }
+      if (containerRef.current && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            setShouldLoadVideo(true)
+            observer.disconnect()
+          }
+        }, { rootMargin: '200px' })
+        observer.observe(containerRef.current)
+        return () => observer.disconnect()
+      }
+      // Fallback: load
+      setShouldLoadVideo(true)
+    } catch {
+      setShouldLoadVideo(true)
+    }
   }, [])
 
   // Enhanced animation variants with better mobile performance
@@ -153,7 +181,7 @@ export function VideoHeroMobile() {
     <section className="relative w-full overflow-hidden bg-white min-h-[100dvh] sm:min-h-[95vh] md:min-h-[90vh] lg:min-h-screen flex items-center justify-center pt-24 sm:pt-24 md:pt-28">
 
         {/* Enhanced Background with better mobile performance */}
-        <div className="absolute inset-0 w-full h-full z-0">
+        <div className="absolute inset-0 w-full h-full z-0" ref={containerRef}>
           {isMobile ? (
             // Mobile: Video background with overlay for readability
             <div className="w-full h-full relative">
@@ -166,8 +194,9 @@ export function VideoHeroMobile() {
                 poster="/og-image.png"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: 'brightness(0.6)' }}
+                aria-hidden
               >
-                <source src="/video/AKRINKK.mp4" type="video/mp4" />
+                {shouldLoadVideo && <source src="/video/AKRINKK.mp4" type="video/mp4" />}
               </video>
                <div className="absolute inset-0 bg-black/30" />
             </div>
@@ -183,8 +212,9 @@ export function VideoHeroMobile() {
                 poster="/og-image.png"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: 'brightness(0.7)' }}
+                aria-hidden
               >
-                <source src="/video/AKRINKK.mp4" type="video/mp4" />
+                {shouldLoadVideo && <source src="/video/AKRINKK.mp4" type="video/mp4" />}
               </video>
                <div className="absolute inset-0 bg-black/25" />
             </div>
@@ -200,8 +230,9 @@ export function VideoHeroMobile() {
                 poster="/og-image.png"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: 'brightness(0.8) contrast(1.1)' }}
+                aria-hidden
               >
-                <source src="/video/AKRINKK.mp4" type="video/mp4" />
+                {shouldLoadVideo && <source src="/video/AKRINKK.mp4" type="video/mp4" />}
               </video>
                <div className="absolute inset-0 bg-black/20" />
             </div>

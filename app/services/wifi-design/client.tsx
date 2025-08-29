@@ -185,7 +185,7 @@ export default function WiFiDesignClient() {
                 <p className="text-base sm:text-lg text-[#666666] leading-relaxed">Using advanced RF modeling tools and industry best practices, we create comprehensive wireless network designs that deliver consistent, high‑performance connectivity while meeting your specific business requirements and budget constraints.</p>
               </div>
               <div className="mt-8 lg:mt-0">
-                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Wi‑Fi Design" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Wi‑Fi Design" width={1200} height={800} loading="lazy" decoding="async" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
               </div>
             </div>
           </div>
@@ -196,7 +196,7 @@ export default function WiFiDesignClient() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
               <div className="order-2 lg:order-1 mt-8 lg:mt-0">
-                <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Deployment" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
+                <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Deployment" width={1200} height={800} loading="lazy" decoding="async" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
               </div>
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">Your Wi‑Fi Design<br />Partner</h2>

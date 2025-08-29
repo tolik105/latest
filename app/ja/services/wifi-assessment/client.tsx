@@ -246,7 +246,7 @@ export default function WiFiAssessmentJaClient() {
                 </div>
               </div>
               <div className="mt-8 lg:mt-0">
-                <img src="/images/banners/wifi-assessment/survey.webp" alt="Wi‑Fi評価" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
+                <img src="/images/banners/wifi-assessment/survey.webp" alt="Wi‑Fi評価" width={1200} height={800} loading="lazy" decoding="async" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
               </div>
             </div>
           </div>
