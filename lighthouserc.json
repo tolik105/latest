@@ -1,0 +1,31 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 3,
+      "settings": {
+        "preset": "mobile",
+        "throttlingMethod": "simulate",
+        "formFactor": "mobile"
+      },
+      "url": [
+        "https://akrin.jp/",
+        "https://akrin.jp/services",
+        "https://akrin.jp/blog/ai-transforming-it-support",
+        "https://akrin.jp/contact"
+      ]
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", {"minScore": 0.9}],
+        "largest-contentful-paint": ["error", {"maxNumericValue": 2000}],
+        "cumulative-layout-shift": ["error", {"maxNumericValue": 0.1}],
+        "interactive": ["warn", {"maxNumericValue": 4000}],
+        "total-byte-weight": ["warn", {"maxNumericValue": 1200000}],
+        "unused-javascript": ["warn", {"maxNumericValue": 0}],
+        "render-blocking-resources": ["warn", {"maxNumericValue": 0}],
+        "uses-optimized-images": "warn",
+        "uses-text-compression": "warn"
+      }
+    }
+  }
+}

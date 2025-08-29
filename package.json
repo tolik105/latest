@@ -14,7 +14,14 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci --coverage --watchAll=false"
+    "test:ci": "jest --ci --coverage --watchAll=false",
+    "crawl:install": "npx --yes playwright install chromium --with-deps",
+    "crawl": "tsx scripts/site-crawl-audit.ts",
+    "crawl:site": "CRAWL_START_URL=https://akrin.jp/ CRAWL_MAX_URLS=2000 tsx scripts/site-crawl-audit.ts",
+    "crawl:sitemap": "CRAWL_START_URL=https://akrin.jp/sitemap.xml CRAWL_MAX_URLS=2000 tsx scripts/sitemap-crawl-audit.ts",
+    "crawl:analyze": "tsx scripts/analyze-crawl.ts",
+    "lhci": "npx --yes @lhci/cli autorun --config=lighthouserc.json",
+    "redirects:map": "tsx scripts/redirect-map.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -115,6 +122,7 @@
     "postcss": "^8.5",
     "puppeteer": "^24.15.0",
     "sharp": "^0.34.2",
+    "cheerio": "^1.0.0",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.20.3",
     "typescript": "^5"
