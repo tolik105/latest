@@ -242,7 +242,23 @@ export default function WiFiAssessmentJaClient() {
           </div>
         </div>
 
-        {/* Section 2 - Capabilities */}
+        {/* Section 2 - パートナー */}
+        <div className="bg-white py-12 sm:py-16 lg:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+              <div className="order-2 lg:order-1 mt-8 lg:mt-0">
+                <Image src="/images/banners/wifi-assessment/partner.avif" alt="Wi‑Fi最適化パートナー" width={1200} height={800} loading="lazy" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
+              </div>
+              <div className="order-1 lg:order-2 text-center lg:text-left">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">Wi‑Fi最適化の<br />パートナー</h2>
+                <p className="text-base sm:text-lg text-[#666666] mb-6 sm:mb-8 leading-relaxed">無線ネットワーク最適化には、専門的な知識、プロフェッショナルツール、RFの深い理解が必要です。認定エンジニアが業界標準の手法と最新ツールを用いて、包括的な分析と実行可能な推奨事項をご提供します。</p>
+                <p className="text-base sm:text-lg text-[#666666] leading-relaxed">初期調査から継続的な最適化まで、安定した高性能なワイヤレス環境の実現をトータルで支援します。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 3 - Capabilities */}
         <div className="bg-white py-12 sm:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 sm:mb-16">
