@@ -1,5 +1,5 @@
 import { generatePageMetadata } from "@/lib/metadata-helpers"
-import ContactClient from "../../contact/contact-client"
+import ContactClientJA from "./contact-client"
 
 export const metadata = generatePageMetadata({
   title: 'AKRIN株式会社へのお問い合わせ – 日本のITコンサルティング＆マネージドサービス',
@@ -34,13 +34,7 @@ const contactSchemaJA = {
         "telephone": "+81-3-6821-1223",
         "contactType": "customer service",
         "availableLanguage": ["Japanese", "English"],
-        "areaServed": "JP",
-        "hoursAvailable": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
+        "areaServed": "JP"
       },
       {
         "@type": "ContactPoint",
@@ -64,16 +58,8 @@ const contactSchemaJA = {
 export default function JapaneseContactPage() {
   return (
     <>
-      {/* Structured Data for Japanese Contact */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(contactSchemaJA)
-        }}
-      />
-      
-      {/* Use the same contact client component */}
-      <ContactClient />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchemaJA) }} />
+      <ContactClientJA />
     </>
   )
 }
