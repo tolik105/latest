@@ -3,7 +3,8 @@ import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import "./mobile-optimizations.css"
 
-import { NavbarSimple } from "@/components/navbar-simple"
+import dynamic from "next/dynamic"
+const NavbarSimple = dynamic(() => import("@/components/navbar-simple").then(m => m.NavbarSimple), { ssr: true })
 import { Footer } from "@/components/footer"
 import type React from "react"
 import { LanguageProvider } from "@/contexts/language-context"

@@ -1,9 +1,10 @@
 "use client"
 
 import React from "react"
-import Script from "next/script"
+
 import Link from "next/link"
 import Image from "next/image"
+import Script from "next/script"
 import { PremiumCTA } from "@/components/ui/premium-cta"
 import { HeroDiagonal } from "@/components/hero-diagonal"
 

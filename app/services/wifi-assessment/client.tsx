@@ -1,9 +1,10 @@
 "use client"
 
 import React, { useState } from "react"
-import Script from "next/script"
+
 import Link from "next/link"
 import Image from "next/image"
+import Script from "next/script"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import CapabilityCards from "@/components/CapabilityCards"

@@ -6,15 +6,16 @@ import { Mail, Phone } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { usePathname } from "next/navigation"
 import { LanguageSelector } from "@/components/language-selector"
-import { LanguageSelectorMobile } from "@/components/language-selector-mobile"
 
+import dynamic from "next/dynamic"
+const MobileMenuPanel = dynamic(() => import("@/components/mobile-menu-panel.client"), { ssr: false })
 export function NavbarSimple() {
   const { t, i18n } = useTranslation('common')
   const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isHydrated, setIsHydrated] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
+
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10)
@@ -51,7 +52,6 @@ export function NavbarSimple() {
   // Close mobile panels on route change
   useEffect(() => {
     setIsMobileOpen(false)
-    setIsMobileServicesOpen(false)
   }, [pathname])
 
   const services = [
@@ -163,51 +163,15 @@ export function NavbarSimple() {
           </div>
         </nav>
 
-        {/* Mobile Panel (custom, no Preline) */}
+        {/* Mobile Panel (deferred, dynamic) */}
         {isMobileOpen && (
-          <div id="mobile-menu" className={`fixed inset-0 z-[1000] ${useOverlay ? 'bg-slate-950/95 text-white backdrop-blur-sm' : 'bg-white text-slate-800'} lg:hidden`} role="dialog" aria-modal="true">
-            {/* Overlay top bar with close button */}
-            <div className={`flex items-center justify-between px-4 py-3 border-b ${useOverlay ? 'border-white/10' : 'border-gray-200'}`}>
-              <Link href={langPrefix || "/"} onClick={() => setIsMobileOpen(false)} className={`${useOverlay ? 'text-white' : 'text-slate-800'} font-semibold`}>
-                {isHydrated ? t('nav.home') : 'AKRIN'}
-              </Link>
-              <button type="button" onClick={() => setIsMobileOpen(false)} aria-label="Close menu" className={`${hamburgerButtonClasses}`}>
-                <svg className="size-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 6-12 12"/><path d="m6 6 12 12"/></svg>
-              </button>
-            </div>
-
-            <div className="px-5 py-4 space-y-1 overflow-y-auto h-[calc(100vh-64px)]">
-              <Link href={langPrefix || "/"} onClick={() => setIsMobileOpen(false)} className={`block px-3 py-4 font-medium transition-colors ${useOverlay ? 'text-white/90 hover:text-white border-b border-white/10' : 'text-slate-700 hover:text-slate-900 border-b border-gray-100'}`}>{isHydrated ? t('nav.home') : 'Home'}</Link>
-
-              {/* Mobile Services */}
-              <div className={`${useOverlay ? 'border-b border-white/10' : 'border-b border-gray-100'}`}>
-                <button type="button" onClick={() => setIsMobileServicesOpen(v => !v)} className={`w-full flex items-center justify-between px-3 py-4 font-medium ${useOverlay ? 'text-white/90 hover:text-white' : 'text-slate-700 hover:text-slate-900'}`} aria-expanded={isMobileServicesOpen}>
-                  <span>{isHydrated ? t('nav.services') : 'Services'}</span>
-                  <svg className={`size-4 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                </button>
-                {isMobileServicesOpen && (
-                  <div className="pl-6 pb-3 space-y-1">
-                    {services.map((service) => (
-                      <Link key={service.key} href={service.href} onClick={() => setIsMobileOpen(false)} className={`block px-3 py-3 text-base rounded-lg ${useOverlay ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-gray-700 hover:text-slate-900 hover:bg-gray-50'}`}>{service.title}</Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <Link href={`${langPrefix}/about`} onClick={() => setIsMobileOpen(false)} className={`block px-3 py-4 text-base font-medium ${useOverlay ? 'text-white/90 hover:text-white border-b border-white/10' : 'text-slate-700 hover:text-slate-900 border-b border-gray-100'}`}>{isHydrated ? t('nav.aboutUs') : 'About Us'}</Link>
-              <Link href={`${langPrefix}/case-studies`} onClick={() => setIsMobileOpen(false)} className={`block px-3 py-4 text-base font-medium ${useOverlay ? 'text-white/90 hover:text-white border-b border-white/10' : 'text-slate-700 hover:text-slate-900 border-b border-gray-100'}`}>{isHydrated ? t('nav.caseStudies') : 'Case Studies'}</Link>
-              <Link href="/blog" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-4 text-base font-medium ${useOverlay ? 'text-white/90 hover:text-white border-b border-white/10' : 'text-slate-700 hover:text-slate-900 border-b border-gray-100'}`}>{isHydrated ? t('nav.blog') : 'Blog'}</Link>
-              <Link href="/contact" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-4 text-base font-medium ${useOverlay ? 'text-white/90 hover:text-white border-b border-white/10' : 'text-slate-700 hover:text-slate-900 border-b border-gray-100'}`}>{isHydrated ? t('nav.contact') : 'Contact'}</Link>
-
-              <div className={`px-3 py-2 ${useOverlay ? 'border-b border-white/10' : 'border-b border-gray-100'}`}>
-                <LanguageSelectorMobile useOverlay={useOverlay} />
-              </div>
-
-              <div className="px-3 pt-4 pb-8">
-                <Link href="/book-consultation" onClick={() => setIsMobileOpen(false)} className={`block w-full text-center py-4 px-4 text-base font-medium rounded-full shadow ${useOverlay ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-primary hover:bg-primary/90 text-primary-foreground'}`}>Book a Call</Link>
-              </div>
-            </div>
-          </div>
+          // @ts-ignore dynamically imported in layout to keep entry JS small
+          <MobileMenuPanel
+            isOpen={isMobileOpen}
+            onClose={() => setIsMobileOpen(false)}
+            langPrefix={langPrefix}
+            useOverlay={useOverlay}
+          />
         )}
       </header>
     </>

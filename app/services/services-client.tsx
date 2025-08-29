@@ -2,8 +2,9 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
-import { PartnerWithUsSection } from "@/components/ui/partner-with-us-section"
-import { PremiumCTA } from "@/components/ui/premium-cta"
+import dynamic from "next/dynamic"
+const PartnerWithUsSection = dynamic(() => import("@/components/ui/partner-with-us-section").then(m => m.PartnerWithUsSection), { ssr: false })
+const PremiumCTA = dynamic(() => import("@/components/ui/premium-cta").then(m => m.PremiumCTA), { ssr: false })
 
 export default function ServicesClient() {
   // AKRIN Services - ONLY existing services
