@@ -16,6 +16,7 @@ const config = {
     '/book-reservation',
     '/book-reservation/success',
     '/fortitude-demo',
+    '/ja/fortitude-demo',
     '/ja/ja*',
   ],
   // Use default transform. hreflang is handled in head via <HreflangLinks />.

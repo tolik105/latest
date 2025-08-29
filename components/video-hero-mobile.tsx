@@ -196,7 +196,7 @@ export function VideoHeroMobile() {
         {/* Enhanced Background with better mobile performance */}
         <div className="absolute inset-0 w-full h-full z-0" ref={containerRef}>
           {isMobile ? (
-            // Mobile: Poster image as LCP + deferred video on idle
+            // Mobile: Static poster only (no video on mobile for maximum LCP/bytes savings)
             <div className="w-full h-full relative">
               <Image
                 src="/og-image.png"
@@ -207,38 +207,20 @@ export function VideoHeroMobile() {
                 className="object-cover"
                 style={{ filter: 'brightness(0.6)' }}
               />
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="none"
-                poster="/og-image.png"
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ filter: 'brightness(0.6)' }}
-                aria-hidden
-              >
-                {shouldLoadVideo && <source src="/video/AKRINKK.mp4" type="video/mp4" />}
-              </video>
               <div className="absolute inset-0 bg-black/30" />
             </div>
           ) : isTablet ? (
-            // Tablet: Video background with overlay
+            // Tablet: Use static poster only to reduce early bytes; video reserved for desktop only
             <div className="w-full h-full relative">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="none"
-                poster="/og-image.png"
-                className="absolute inset-0 w-full h-full object-cover"
+              <Image
+                src="/og-image.png"
+                alt="AKRIN hero background"
+                fill
+                sizes="100vw"
+                className="object-cover"
                 style={{ filter: 'brightness(0.7)' }}
-                aria-hidden
-              >
-                {shouldLoadVideo && <source src="/video/AKRINKK.mp4" type="video/mp4" />}
-              </video>
-               <div className="absolute inset-0 bg-black/25" />
+              />
+              <div className="absolute inset-0 bg-black/25" />
             </div>
           ) : (
             // Desktop: Full video background with subtle overlay
