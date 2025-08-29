@@ -250,7 +250,7 @@ export default function WiFiAssessmentClient() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
               <div className="order-2 lg:order-1 mt-8 lg:mt-0">
-                <Image src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80" alt="Wi‑Fi Optimization" width={1200} height={800} loading="lazy" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
+                <Image src="/images/banners/wifi-assessment/partner.avif" alt="Wi‑Fi Optimization" width={1200} height={800} loading="lazy" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
               </div>
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">Your Wi‑Fi Optimization<br />Partner</h2>
