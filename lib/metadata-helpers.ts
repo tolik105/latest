@@ -20,8 +20,10 @@ export function generatePageMetadata({
   const baseUrl = 'https://akrin.jp'
   const normalizedPath = path.startsWith('/') ? path : `/${path}`
   const isJa = normalizedPath.startsWith('/ja')
-  const enUrl = `${baseUrl}${isJa ? normalizedPath.replace(/^\/ja/, '') || '/' : normalizedPath}`
-  const jaUrl = `${baseUrl}${isJa ? normalizedPath : `/ja${normalizedPath}`}`
+  const enPath = isJa ? normalizedPath.replace(/^\/ja/, '') || '/' : normalizedPath
+  const jaPath = isJa ? normalizedPath : `/ja${normalizedPath}`
+  const enUrl = `${baseUrl}${enPath}`
+  const jaUrl = `${baseUrl}${jaPath}`
   const fullUrl = isJa ? jaUrl : enUrl
 
   // Enforce length limits
@@ -55,7 +57,12 @@ export function generatePageMetadata({
       images: [image],
     },
     alternates: {
-      canonical: fullUrl
+      canonical: fullUrl,
+      languages: {
+        en: enUrl,
+        ja: jaUrl,
+        'x-default': enUrl,
+      }
     }
   }
 }

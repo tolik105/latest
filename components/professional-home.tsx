@@ -47,11 +47,11 @@ export function ProfessionalHome() {
               
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg rounded-xl">
-                  Get Free Consultation
+                  Book a free IT consultation
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               <Button size="lg" variant="outline" className="border-[hsl(var(--primary))]/50 text-[hsl(var(--primary))]/70 hover:bg-[hsl(var(--primary))]/10 px-8 py-4 text-lg rounded-xl">
-                  View Our Services
+                  Explore our IT services
                 </Button>
               </div>
               
@@ -148,7 +148,7 @@ export function ProfessionalHome() {
                       {service.description}
                     </p>
             <Button variant="ghost" className="text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] p-0 h-auto font-semibold">
-                      Learn More <ArrowRight className="ml-2 w-4 h-4" />
+                      See details about {service.title} <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
                   </CardContent>
                 </Card>
@@ -236,7 +236,7 @@ export function ProfessionalHome() {
               </div>
               
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Read Full Case Study
+                Read the full case study
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </motion.div>

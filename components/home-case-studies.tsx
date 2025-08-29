@@ -35,7 +35,7 @@ export function HomeCaseStudies() {
 
   const prefix = isJa ? '/ja' : ''
   const sectionTitle = isJa ? '導入事例' : 'Case Studies'
-  const seeMore = isJa ? 'もっと見る →' : 'See more →'
+  const seeMore = isJa ? '導入事例をもっと見る' : 'See more case studies'
   const cta = isJa ? '詳しく見る' : 'Learn more'
 
   const handleCardClick = (card: CaseCard, index: number) => {
@@ -66,7 +66,7 @@ export function HomeCaseStudies() {
           <div className="flex items-center justify-between bg-gray-100 px-6 py-5 rounded-t-2xl">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{sectionTitle}</h2>
             <Link href={`${prefix}/case-studies`} prefetch className="group inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))]" aria-label={seeMore} onClick={handleSeeMore}>
-              See more
+              {seeMore}
               <svg className="h-3 w-3 text-[hsl(var(--primary))] transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L13.586 10H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 010-1.414z" clipRule="evenodd"/>
               </svg>
