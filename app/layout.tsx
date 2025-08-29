@@ -199,21 +199,6 @@ export default function RootLayout({
         />
 
 
-        {/* Premium Font Preloading for Performance */}
-        <link
-          rel="preload"
-          href="/fonts/Inter.var.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Lora.var.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
         {/* Explicit favicon links for robust browser support (v3 teal) */}
         <link rel="icon" href="/favicon-32x32.v3.png" sizes="32x32" type="image/png" />
         <link rel="icon" href="/favicon-16x16.v3.png" sizes="16x16" type="image/png" />

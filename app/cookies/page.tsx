@@ -1,5 +1,13 @@
 "use client"
 
+import { generatePageMetadata } from "@/lib/metadata-helpers"
+
+export const metadata = generatePageMetadata({
+  title: 'Cookie Policy | AKRIN',
+  description: 'Learn how AKRIN uses cookies and similar technologies to improve your experience and analyze site performance.',
+  path: '/cookies'
+})
+
 export default function CookiesPage() {
   return (
     <div className="min-h-screen bg-white">

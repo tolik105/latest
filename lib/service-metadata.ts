@@ -67,13 +67,15 @@ export function getServiceMetadata(slug: string): Metadata {
     }
   }
 
+  const normalizedTitle = service.title.length > 65 ? `${service.title.slice(0, 62)}...` : service.title
+  const normalizedDescription = service.description.length > 160 ? `${service.description.slice(0, 157)}...` : service.description
   return {
-    title: service.title,
-    description: service.description,
+    title: normalizedTitle,
+    description: normalizedDescription,
     keywords: [...service.keywords, 'Akrin', 'IT services Japan'],
     openGraph: {
-      title: service.title,
-      description: service.description,
+      title: normalizedTitle,
+      description: normalizedDescription,
       url: `https://akrin.jp/services/${slug}`,
       siteName: 'Akrin IT Solutions',
       locale: 'en_US',
@@ -84,14 +86,14 @@ export function getServiceMetadata(slug: string): Metadata {
           url: '/og-image.png',
           width: 1200,
           height: 630,
-          alt: service.title,
+          alt: normalizedTitle,
         }
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: service.title,
-      description: service.description,
+      title: normalizedTitle,
+      description: normalizedDescription,
       images: ['/og-image.png'],
     },
     alternates: {
@@ -99,6 +101,7 @@ export function getServiceMetadata(slug: string): Metadata {
       languages: {
         'en': `https://akrin.jp/services/${slug}`,
         'ja': `https://akrin.jp/ja/services/${slug}`,
+        'x-default': `https://akrin.jp/services/${slug}`,
       }
     },
   }
