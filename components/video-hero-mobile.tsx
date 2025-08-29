@@ -163,6 +163,7 @@ export function VideoHeroMobile() {
                 loop
                 playsInline
                 preload="metadata"
+                poster="/og-image.png"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: 'brightness(0.6)' }}
               >
@@ -179,6 +180,7 @@ export function VideoHeroMobile() {
                 loop
                 playsInline
                 preload="metadata"
+                poster="/og-image.png"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: 'brightness(0.7)' }}
               >
@@ -195,6 +197,7 @@ export function VideoHeroMobile() {
                 loop
                 playsInline
                 preload="metadata"
+                poster="/og-image.png"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: 'brightness(0.8) contrast(1.1)' }}
               >
