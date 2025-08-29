@@ -31,6 +31,22 @@ const nextConfig = {
         destination: '/ja/services/it-managed-services',
         permanent: true,
       },
+      // Remove demo and deprecated pages
+      {
+        source: '/fortitude-demo',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/ja/fortitude-demo',
+        destination: '/ja',
+        permanent: true,
+      },
+      {
+        source: '/services/it-managed-services-v2',
+        destination: '/services/it-managed-services',
+        permanent: true,
+      },
     ]
   },
   eslint: {
