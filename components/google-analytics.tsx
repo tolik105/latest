@@ -13,9 +13,16 @@ export function GoogleAnalytics() {
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'granted'
+          });
           gtag('js', new Date());
           gtag('config', 'G-6YTE9HVKEE', {
-            cookie_domain: 'akrin.jp'
+            cookie_domain: 'akrin.jp',
+            anonymize_ip: true
           });
         `}
       </Script>
