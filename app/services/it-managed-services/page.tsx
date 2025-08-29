@@ -7,11 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     ...baseMetadata,
     alternates: {
-      canonical: 'https://akrin.jp/services/it-managed-services',
-      languages: {
-        'en': 'https://akrin.jp/services/it-managed-services',
-        'ja': 'https://akrin.jp/ja/services/it-managed-services'
-      }
+      canonical: 'https://akrin.jp/services/it-managed-services'
     },
     robots: {
       index: true,

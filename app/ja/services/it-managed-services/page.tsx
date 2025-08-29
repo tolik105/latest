@@ -7,11 +7,7 @@ export const metadata = generatePageMetadata({
   keywords: ['マネージドITサービス', '24/7サポート', 'MSP 日本', 'IT監視', 'ヘルプデスク', 'プロアクティブIT管理', 'ITコスト削減', 'バイリンガルITサポート', 'ITインフラ管理', 'セキュリティ監視', 'クラウド管理', 'ネットワーク監視'],
   path: '/ja/services/it-managed-services',
   alternates: {
-    canonical: 'https://akrin.jp/ja/services/it-managed-services',
-    languages: {
-      'en': 'https://akrin.jp/services/it-managed-services',
-      'ja': 'https://akrin.jp/ja/services/it-managed-services'
-    }
+    canonical: 'https://akrin.jp/ja/services/it-managed-services'
   },
   robots: {
     index: true,

@@ -1,0 +1,712 @@
+Website Audit
+ akrin.jp
+HEALTH SCORE
+BETTER THAN 85% OF USERS83
+OUT OF 100
+STRONGISSUE DISTRIBUTION
+383
+NOTICES (249)WARNINGS (44)ERRORS (90)
+CORE WEB VITALS
+NO RESULTS FOUND
+PAGES CRAWLED
+72
+080
+71
+71
+71
+72URLS FOUND
+2579
+0320
+248
+248
+248
+257
+TOP ISSUES
+Language duplicates in hreflang 65
+No inbound links 12
+Non-canonical pages in XML sitemap 4
+4XX images (Not Found) 3
+Hreflang to 3XX, 4XX or 5XX 2
+SE Ranking
+Aug-29 2025 1DOMAIN METRICS
+Domain expiration May-31 2026
+Backlinks 8
+Referring domains 1
+Domain Trust 0Pages in Yahoo!
+Pages in Google 41
+Pages in Bing 0
+PAGE INDEXABILITY
+Indexable Not indexable
+66(91.7%) 6(8.3%)
+0510
+Robots.txt
+0
+Meta tag
+0
+X-robots header
+0
+Non-canonical
+4 (66.7%)
+Non-200 status code
+2 (33.3%)
+LINK ATTRIBUTES
+PAGES
+EXTERNAL DOFOLLOW 21211%
+INTERNAL DOFOLLOW 1,71789%
+EXTERNAL NOFOLLOW 0 0%
+INTERNAL NOFOLLOW 0 0%ROBOTS META TAGS
+PAGES
+INDEX & FOLLOW 7098.6%
+NOINDEX & FOLLOW 0 0%
+INDEX & NOFOLLOW 0 0%
+NOINDEX & NOFOLLOW0 0%
+NO ROBOTS META TAG1 1.4%
+SE Ranking
+Aug-29 2025 2Crawling & Indexing 1 0
+Description
+Your website's pages must first be properly crawled and indexed to appear in search engine results. This section contains checks for main
+factors that can affect search engine crawlers' scanning and indexing of your site.
+ISSUES PAGESNEW FIXED
+https://akrin.jp/ja/fortitude-demo
+Issue description
+4XX HTTP status codes indicate that the requested page or
+resource cannot be accessed. 4XX URLs provide a poor user
+experience for the site's visitors because they cannot access the
+page or file via the link they clicked on. Moreover, internal links to
+4XX URLs drain your crawl budget. Pages of your website that
+changed their response code to 4XX will be removed from
+search engine indexes.How to fix
+Review the list of 4XX URLs and analyze every internal page
+that's linked to a 4XX URL. Remove such broken links or replace
+them with appropriate links to live and accessible pages.
+Moreover, you can set up 301 redirects when moving or deleting
+the site's pages to avoid having 4XX errors. The HTTP response
+code 429 (Too Many Requests) may indicate that the crawl rate
+specified under the crawl settings for your project is too high for
+the web server to handle. Decrease it via the settings (Limits and
+restrictions) and rescan the project.
+Redirects 0 1
+Description
+Misconfigured redirects can lead to incorrect locations. This can confuse users, ruin their experience, increase the number of HTTP
+requests to your website, and result in a traffic drop and crawling budget decline. The checks in this section help you maintain control over
+your redirects and pinpoint room for improvement related to them.
+ISSUES PAGESNEW FIXED
+https://akrin.jp/ja/
+Issue description
+The pages indicated in the report return a 3XX response code,
+meaning that a redirect is set up from such pages. The 3XX
+response code in itself is not a problem, but each redirect puts
+an additional load on the server, so it’s better to remove
+unnecessary internal redirects.How to fix
+Make sure that the number of 3XX pages on your website does
+not exceed 5% of the total number of pages. If their number
+exceeds 10%, then you have a critical problem, and you should
+immediately remove some of the redirects.
+Sitemap 42 0
+Description4XX HTTP Status Codes 1 1 1
+3ХХ HTTP status code 1 0 0
+SE Ranking
+Aug-29 2025 3A sitemap is a file that contains a list of all the URLs on a website that crawlers should be aware of. It must be free of irrelevant or invalid
+URLs to prevent it from hurting your crawl budget. The checks in this section help ensure your sitemap remains in place and error-free.
+ISSUES PAGESNEW FIXED
+https://akrin.jp/privacy
+https://akrin.jp/terms
+https://akrin.jp/cookies
+https://akrin.jp/book-reservation
+Issue description
+Non-canonical pages have been found in the XML sitemap file.
+All pages listed in the sitemap should be suggested as
+canonicals for search engines.How to fix
+Make sure your XML sitemap only contains canonical URLs.
+Meta Tags 0 0
+Description
+Meta tags reveal important information to search engines about your page, including its relevance to the user’s search query. The checks in
+this section help ensure that your meta tags are in place. They also highlight potential areas for improvement.
+ISSUES PAGESNEW FIXED
+https://akrin.jp/services/cloud-infrastructure
+https://akrin.jp/services/cybersecurity
+https://akrin.jp/services/network-penetration-testing
+https://akrin.jp/services/wifi-assessment
+https://akrin.jp/services/itad-japan-apac-us
+https://akrin.jp/services/it-security
+https://akrin.jp/blog
+https://akrin.jp/contact
+https://akrin.jp/services
+https://akrin.jp/blog/future-of-it-infrastructure-japan
+https://akrin.jp/blog/cybersecurity-best-practices-2025
+https://akrin.jp/blog/cloud-migration-success-stories
+https://akrin.jp/blog/ai-transforming-it-support
+https://akrin.jp/blog/remote-work-security-guide
+https://akrin.jp/blog/5g-impact-business-operations
+https://akrin.jp/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/blog/phishing-prevention-guide-2025Non-canonical pages in XML sitemap 4 2 2 0
+Title too long 17 0 0
+SE Ranking
+Aug-29 2025 4ISSUES PAGESNEW FIXED
+Issue description
+Note that search engines cut off extensively long titles and allow
+them to be up to 600 pixels in length in the SERPs. For this
+reason, it's better to take this size into account when creating the
+title. Otherwise, people may see an incomplete title in the search
+results.How to fix
+The general recommendation is to keep the title between 20 and
+65 characters, with each word separated by a space, and
+concisely describe what the page is about.
+https://akrin.jp/blog/future-of-it-infrastructure-japan
+https://akrin.jp/blog/cybersecurity-best-practices-2025
+https://akrin.jp/blog/cloud-migration-success-stories
+https://akrin.jp/blog/ai-transforming-it-support
+https://akrin.jp/blog/5g-impact-business-operations
+https://akrin.jp/ja/blog/future-of-it-infrastructure-japan
+https://akrin.jp/ja/blog/cloud-migration-success-stories
+https://akrin.jp/ja/blog/cybersecurity-best-practices-2025
+https://akrin.jp/ja/blog/ai-transforming-it-support
+https://akrin.jp/ja/blog/remote-work-security-guide
+https://akrin.jp/ja/blog/5g-impact-business-operations
+Issue description
+Search engines can use the description meta tag to generate
+descriptions for snippets, but they may shorten it to a length they
+deem acceptable. For this reason, it's important that the page
+description is clear and concise, and defines the page's topic.How to fix
+The general recommendation is to keep your page description
+length up to 158 characters, although Google can sometimes
+display longer snippets.
+Content 3 9
+Description
+Content is the core of your SEO efforts and results. This section contains the most popular checks related to the technical health of your
+website's content.
+ISSUES PAGESNEW FIXED
+https://akrin.jp/case-studies
+https://akrin.jp/ja/case-studies
+https://akrin.jp/contact
+https://akrin.jp/contact-form
+https://akrin.jp/ja/contact
+https://akrin.jp/ja/contact-formDescription too long 11 0 0
+Duplicate H1 10 0 0
+SE Ranking
+Aug-29 2025 5ISSUES PAGESNEW FIXED
+https://akrin.jp/book-consultation
+https://akrin.jp/ja/book-consultation
+https://akrin.jp/services
+https://akrin.jp/ja/services
+Issue description
+Duplicate <h1> headings on different pages prevent search
+engines from understanding which site page is relevant to a
+particular search query. Pages with duplicate header tags are
+less likely to rank well, as they can confuse search engines about
+the page topic.How to fix
+Write a unique <h1> for each page on your site, adding a clear
+description of the content on the page.
+https://akrin.jp/services/it-managed-services
+https://akrin.jp/ja/services/it-managed-services
+https://akrin.jp/services/it-security
+Issue description
+Some images on your website could not be loaded because the
+browser could not find the files at the specified URLs.
+Broken images on your website can have a negative impact on
+the user experience. Plus, search engines cannot index such
+images.How to fix
+Check the URLs of all the broken images indicated in the report
+and replace the URLs with relevant, up-to-date working ones, or
+remove the links to the broken images from your website.
+https://akrin.jp/services/cybersecurity
+https://akrin.jp/case-studies
+https://akrin.jp/contact
+https://akrin.jp/ja/services/cloud-infrastructure
+https://akrin.jp/ja/services/cybersecurity
+https://akrin.jp/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/ja/case-studies
+https://akrin.jp/ja/contact
+https://akrin.jp/ja/case-studies/wifi-assessment-retail-tokyo
+Issue description
+This issue is triggered if the images you use on your website are
+too large. Images are usually the "heaviest" page elements in
+terms of size, and if the page loads slowly, in most cases, it is
+because of the size of the images.How to fix
+Check to see if the images indicated in the report can be
+optimized.
+Try reducing the size of the images without losing their quality.
+Localization 7016 32164XX images (Not Found) 3 0 0
+Image too big 9 1 0 1
+SE Ranking
+Aug-29 2025 6Description
+If your website targets people from different countries and regions, you can’t do without the hreflang and HTML lang attributes. By fixing
+errors featured in this section, you’ll be able to make your hreflang and HTML lang attributes function properly.
+ISSUES PAGESNEW FIXED
+https://akrin.jp/ja/services/it-managed-services
+https://akrin.jp/ja/services/cloud-infrastructure
+https://akrin.jp/ja/services/cybersecurity
+https://akrin.jp/ja/services/network-penetration-testing
+https://akrin.jp/ja/services/wifi-assessment
+https://akrin.jp/ja/services/it-consulting-project-management
+https://akrin.jp/ja/services/wifi-design
+https://akrin.jp/ja/services/itad-japan-apac-us
+https://akrin.jp/ja/services/it-security
+https://akrin.jp/ja/about
+https://akrin.jp/ja/case-studies
+https://akrin.jp/ja/blog
+https://akrin.jp/ja/contact
+https://akrin.jp/ja/book-consultation
+https://akrin.jp/ja/services
+https://akrin.jp/ja/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/ja/case-studies/cloud-migration-manufacturing
+https://akrin.jp/ja/case-studies/pentest-fintech-tokyo
+https://akrin.jp/ja/case-studies/itad-tokyo-kobe-consolidation
+https://akrin.jp/ja/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/ja/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/ja/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/ja/case-studies/rack-buildout-9racks-campus
+https://akrin.jp/ja/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/blog/future-of-it-infrastructure-japan
+https://akrin.jp/ja/blog/cloud-migration-success-stories
+https://akrin.jp/ja/blog/cybersecurity-best-practices-2025
+https://akrin.jp/ja/blog/ai-transforming-it-support
+https://akrin.jp/ja/blog/remote-work-security-guide
+https://akrin.jp/ja/blog/5g-impact-business-operations
+https://akrin.jp/ja/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/contact-form
+Issue description How to fixHreflang and HTML lang do not match 32 0 0
+SE Ranking
+Aug-29 2025 7ISSUES PAGESNEW FIXED
+The hreflang and HTML lang attributes on the page use different
+language codes.
+Google no longer takes the HTML lang attribute into account, but
+other search engines and screen readers still use this attribute to
+understand what language the page content is written in.Check the pages indicated in the report and make sure that the
+hreflang and HTML lang attributes use the same language code.
+https://akrin.jp/
+https://akrin.jp/services/it-managed-services
+https://akrin.jp/services/cloud-infrastructure
+https://akrin.jp/services/cybersecurity
+https://akrin.jp/services/network-penetration-testing
+https://akrin.jp/services/wifi-assessment
+https://akrin.jp/services/it-consulting-project-management
+https://akrin.jp/services/wifi-design
+https://akrin.jp/services/itad-japan-apac-us
+https://akrin.jp/services/it-security
+https://akrin.jp/about
+https://akrin.jp/case-studies
+https://akrin.jp/blog
+https://akrin.jp/contact
+https://akrin.jp/book-consultation
+https://akrin.jp/services
+https://akrin.jp/ja/services/it-managed-services
+https://akrin.jp/ja/services/cloud-infrastructure
+https://akrin.jp/ja/services/cybersecurity
+https://akrin.jp/ja/services/network-penetration-testing
+https://akrin.jp/ja/services/wifi-assessment
+https://akrin.jp/ja/services/it-consulting-project-management
+https://akrin.jp/ja/services/wifi-design
+https://akrin.jp/ja/services/itad-japan-apac-us
+https://akrin.jp/ja/services/it-security
+https://akrin.jp/ja/about
+https://akrin.jp/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/case-studies/cloud-migration-manufacturing
+https://akrin.jp/case-studies/pentest-fintech-tokyo
+https://akrin.jp/case-studies/itad-tokyo-kobe-consolidation
+https://akrin.jp/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/case-studies/rack-buildout-9racks-campusLanguage duplicates in hreflang 65 1414 0
+SE Ranking
+Aug-29 2025 8ISSUES PAGESNEW FIXED
+https://akrin.jp/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/case-studies
+https://akrin.jp/blog/future-of-it-infrastructure-japan
+https://akrin.jp/blog/cybersecurity-best-practices-2025
+https://akrin.jp/blog/cloud-migration-success-stories
+https://akrin.jp/blog/ai-transforming-it-support
+https://akrin.jp/blog/remote-work-security-guide
+https://akrin.jp/blog/5g-impact-business-operations
+https://akrin.jp/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/blog
+https://akrin.jp/contact-form
+https://akrin.jp/ja/contact
+https://akrin.jp/ja/book-consultation
+https://akrin.jp/ja/services
+https://akrin.jp/ja/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/ja/case-studies/cloud-migration-manufacturing
+https://akrin.jp/ja/case-studies/pentest-fintech-tokyo
+https://akrin.jp/ja/case-studies/itad-tokyo-kobe-consolidation
+https://akrin.jp/ja/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/ja/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/ja/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/ja/case-studies/rack-buildout-9racks-campus
+https://akrin.jp/ja/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/blog/future-of-it-infrastructure-japan
+https://akrin.jp/ja/blog/cloud-migration-success-stories
+https://akrin.jp/ja/blog/cybersecurity-best-practices-2025
+https://akrin.jp/ja/blog/ai-transforming-it-support
+https://akrin.jp/ja/blog/remote-work-security-guide
+https://akrin.jp/ja/blog/5g-impact-business-operations
+https://akrin.jp/ja/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/contact-form
+Issue description
+Several versions of a page were found that specify the same
+language code in the hreflang attribute.
+For example, the hreflang attribute specifies the "de" language
+code for two different URLs.
+This can confuse search engines because it is unclear which of
+the two pages should be displayed to visitors whose language
+preference is "es".
+As a result, search engines ignore invalid hreflang attributes.How to fix
+Check the pages indicated in the report and correct the hreflang
+attributes so that each URL has a single language code.
+SE Ranking
+Aug-29 2025 9ISSUES PAGESNEW FIXED
+https://akrin.jp/
+https://akrin.jp/fortitude-demo
+Issue description
+The URL pointed to by the hreflang attribute is not found,
+unavailable due to server issues, or has a redirect.
+The URL of the hreflang attribute should return the 200 OK
+response code. If this is not the case, search engines may ignore
+the attribute or misinterpret it. As a result, search engines will
+not be able to find alternative versions of your pages and,
+accordingly, direct website visitors to their correct language or
+regional versions.How to fix
+By clicking on the number of found pages, you will see URLs with
+3XX, 4XX or 5XX response codes that hreflang attributes point
+to. Indicate pages with the 200 OK response code instead of
+these URLs.
+https://akrin.jp/
+https://akrin.jp/fortitude-demo
+Issue description
+Versions of the page with the hreflang attribute do not link out to
+each other.
+If page A links to page B in the hreflang attribute, page B must
+link out to page A in response.
+If the hreflang attributes do not have any backlinks, search
+engines may ignore such attributes or misinterpret them.How to fix
+To fix this error, use the same set of <URL>, rel="alternate" and
+hreflang values on all language or regional versions of the page.
+That way, all hreflang pages will have backlinks to other versions
+of the page.
+https://akrin.jp/
+Issue description
+The hreflang attribute tells search engines that the page has
+versions in other languages and/or for other regions. Each page
+should link out to all of its versions and to itself. If a page does
+not link out to itself, search engines may ignore or incorrectly
+process the hreflang attribute.How to fix
+Check the pages indicated in the report.
+Add the missing hreflang attribute and link to the code so that
+the page links out to itself. For example, a German version of a
+page should have the attribute rel="alternate" hreflang="de" and
+link out to this version of the page.
+JavaScript 0 0
+Description
+By using JavaScript, web developers can create dynamic and interactive websites. At the same time, JavaScript files are usually rather
+heavy and can significantly slow down your website if they are not optimized. Fix the errors listed in this section so that JavaScript files
+won’t hinder your website’s fast loading speed.Hreflang to 3XX, 4XX or 5XX 2 1 1 0
+Confirmation (return) links missing on hreflang pages 2 1 1 0
+Hreflang page doesn't link out to itself 1 0 0
+SE Ranking
+Aug-29 2025 10ISSUES PAGESNEW FIXED
+https://akrin.jp/
+https://akrin.jp/services/it-managed-services
+https://akrin.jp/services/cloud-infrastructure
+https://akrin.jp/services/cybersecurity
+https://akrin.jp/services/network-penetration-testing
+https://akrin.jp/services/wifi-assessment
+https://akrin.jp/services/it-consulting-project-management
+https://akrin.jp/services/wifi-design
+https://akrin.jp/services/itad-japan-apac-us
+https://akrin.jp/services/it-security
+https://akrin.jp/about
+https://akrin.jp/case-studies
+https://akrin.jp/blog
+https://akrin.jp/contact
+https://akrin.jp/book-consultation
+https://akrin.jp/services
+https://akrin.jp/privacy
+https://akrin.jp/terms
+https://akrin.jp/ja/services/it-managed-services
+https://akrin.jp/ja/services/cloud-infrastructure
+https://akrin.jp/ja/services/cybersecurity
+https://akrin.jp/ja/services/network-penetration-testing
+https://akrin.jp/ja/services/wifi-assessment
+https://akrin.jp/ja/services/it-consulting-project-management
+https://akrin.jp/ja/services/wifi-design
+https://akrin.jp/ja/services/itad-japan-apac-us
+https://akrin.jp/ja/services/it-security
+https://akrin.jp/ja/about
+https://akrin.jp/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/case-studies/cloud-migration-manufacturing
+https://akrin.jp/case-studies/pentest-fintech-tokyo
+https://akrin.jp/case-studies/itad-tokyo-kobe-consolidation
+https://akrin.jp/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/case-studies/rack-buildout-9racks-campus
+https://akrin.jp/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/case-studiesJavaScript not compressed 70 2 2 0
+SE Ranking
+Aug-29 2025 11ISSUES PAGESNEW FIXED
+https://akrin.jp/blog/future-of-it-infrastructure-japan
+https://akrin.jp/blog/cybersecurity-best-practices-2025
+https://akrin.jp/blog/cloud-migration-success-stories
+https://akrin.jp/blog/ai-transforming-it-support
+https://akrin.jp/blog/remote-work-security-guide
+https://akrin.jp/blog/5g-impact-business-operations
+https://akrin.jp/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/blog
+https://akrin.jp/contact-form
+https://akrin.jp/ja/contact
+https://akrin.jp/ja/book-consultation
+https://akrin.jp/ja/services
+https://akrin.jp/ja/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/ja/case-studies/cloud-migration-manufacturing
+https://akrin.jp/ja/case-studies/pentest-fintech-tokyo
+https://akrin.jp/ja/case-studies/itad-tokyo-kobe-consolidation
+https://akrin.jp/ja/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/ja/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/ja/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/ja/case-studies/rack-buildout-9racks-campus
+https://akrin.jp/ja/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/blog/future-of-it-infrastructure-japan
+https://akrin.jp/ja/blog/cloud-migration-success-stories
+https://akrin.jp/ja/blog/cybersecurity-best-practices-2025
+https://akrin.jp/ja/blog/ai-transforming-it-support
+https://akrin.jp/ja/blog/remote-work-security-guide
+https://akrin.jp/ja/blog/5g-impact-business-operations
+https://akrin.jp/ja/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/contact-form
+https://akrin.jp/cookies
+https://akrin.jp/fortitude-demo
+https://akrin.jp/book-reservation
+Issue description
+HTTP response compression is not enabled on your website.
+Compressing JavaScript files significantly reduces their size as
+well as the overall size of your web page, improving the page
+load time as a result.
+Uncompressed JavaScript files make your web page load slower,
+which has a negative impact on the user experience and search
+engine rankings.How to fix
+Configure server-side JavaScript compression.
+If you use uncompressed JavaScript files from an external
+resource, make sure that they do not slow down your page load
+time. Otherwise, contact the owner of the resource where the
+JavaScript files are stored with a request to configure
+compression.
+SE Ranking
+Aug-29 2025 12CSS 0 0
+Description
+No website can do without CSS files since they make sites visually appealing. At the same time, when used unoptimized, CSS files can
+slow down your website. Fix the errors listed in this section so that CSS files won’t hinder your website’s fast loading speed.
+ISSUES PAGESNEW FIXED
+https://akrin.jp/
+https://akrin.jp/services/it-managed-services
+https://akrin.jp/services/cloud-infrastructure
+https://akrin.jp/services/cybersecurity
+https://akrin.jp/services/network-penetration-testing
+https://akrin.jp/services/wifi-assessment
+https://akrin.jp/services/it-consulting-project-management
+https://akrin.jp/services/wifi-design
+https://akrin.jp/services/itad-japan-apac-us
+https://akrin.jp/services/it-security
+https://akrin.jp/about
+https://akrin.jp/case-studies
+https://akrin.jp/blog
+https://akrin.jp/contact
+https://akrin.jp/book-consultation
+https://akrin.jp/services
+https://akrin.jp/privacy
+https://akrin.jp/terms
+https://akrin.jp/ja/services/it-managed-services
+https://akrin.jp/ja/services/cloud-infrastructure
+https://akrin.jp/ja/services/cybersecurity
+https://akrin.jp/ja/services/network-penetration-testing
+https://akrin.jp/ja/services/wifi-assessment
+https://akrin.jp/ja/services/it-consulting-project-management
+https://akrin.jp/ja/services/wifi-design
+https://akrin.jp/ja/services/itad-japan-apac-us
+https://akrin.jp/ja/services/it-security
+https://akrin.jp/ja/about
+https://akrin.jp/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/case-studies/cloud-migration-manufacturing
+https://akrin.jp/case-studies/pentest-fintech-tokyo
+https://akrin.jp/case-studies/itad-tokyo-kobe-consolidationCSS too big 70 2 2 0
+SE Ranking
+Aug-29 2025 13ISSUES PAGESNEW FIXED
+https://akrin.jp/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/case-studies/rack-buildout-9racks-campus
+https://akrin.jp/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/case-studies
+https://akrin.jp/blog/future-of-it-infrastructure-japan
+https://akrin.jp/blog/cybersecurity-best-practices-2025
+https://akrin.jp/blog/cloud-migration-success-stories
+https://akrin.jp/blog/ai-transforming-it-support
+https://akrin.jp/blog/remote-work-security-guide
+https://akrin.jp/blog/5g-impact-business-operations
+https://akrin.jp/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/blog
+https://akrin.jp/contact-form
+https://akrin.jp/ja/contact
+https://akrin.jp/ja/book-consultation
+https://akrin.jp/ja/services
+https://akrin.jp/ja/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/ja/case-studies/cloud-migration-manufacturing
+https://akrin.jp/ja/case-studies/pentest-fintech-tokyo
+https://akrin.jp/ja/case-studies/itad-tokyo-kobe-consolidation
+https://akrin.jp/ja/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/ja/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/ja/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/ja/case-studies/rack-buildout-9racks-campus
+https://akrin.jp/ja/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/blog/future-of-it-infrastructure-japan
+https://akrin.jp/ja/blog/cloud-migration-success-stories
+https://akrin.jp/ja/blog/cybersecurity-best-practices-2025
+https://akrin.jp/ja/blog/ai-transforming-it-support
+https://akrin.jp/ja/blog/remote-work-security-guide
+https://akrin.jp/ja/blog/5g-impact-business-operations
+https://akrin.jp/ja/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/contact-form
+https://akrin.jp/cookies
+https://akrin.jp/fortitude-demo
+https://akrin.jp/book-reservation
+Issue description How to fix
+SE Ranking
+Aug-29 2025 14ISSUES PAGESNEW FIXED
+The size of the CSS file exceeds 150 KB.
+Excessively large CSS files can slow down the page loading
+speed.Optimize the code of every large CSS file indicated in the report.
+Links 12 2
+Description
+Internal links help search engine crawlers discover new web pages and ensure link equity distribution across the website. External links
+help support ideas and facts expressed in content with data from external sources. Both are indispensable components for a good user
+experience. However, they can ruin it if they don't work properly. This section checks whether the links on your website work correctly. It
+also suggests improvements if it discovers any issues.
+ISSUES PAGESNEW FIXED
+https://akrin.jp/ja/book-consultation
+https://akrin.jp/ja/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/ja/case-studies/cloud-migration-manufacturing
+https://akrin.jp/ja/case-studies/pentest-fintech-tokyo
+https://akrin.jp/ja/case-studies/itad-tokyo-kobe-consolidation
+https://akrin.jp/ja/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/ja/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/ja/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/ja/case-studies/rack-buildout-9racks-campus
+https://akrin.jp/ja/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/contact-form
+https://akrin.jp/fortitude-demo
+Issue description
+Some pages of the website don't have any internal links pointing
+to them.
+Search engines can only find and index such pages if they are
+indicated in the XML sitemap or via external links.
+Your website visitors cannot access such pages from other
+pages of the site.How to fix
+Check your website's internal linking and ensure that visitors and
+search robots can easily access every important page.
+https://akrin.jp/ja/blog/phishing-prevention-guide-2025
+Issue description
+Some pages of your website have only one internal link pointing
+to it.How to fix
+Make sure that your website's most important pages have at
+least a couple of internal links linking out to them. All internalNo inbound links 12 1 1
+One inbound internal link 1 0 0
+SE Ranking
+Aug-29 2025 15ISSUES PAGESNEW FIXED
+Internal links increase the importance of the page from the
+perspective of search engines.links must pass link juice, as in not being tagged with the
+rel="nofollow" attribute.
+https://akrin.jp/services/itad-japan-apac-us
+https://akrin.jp/ja/services/itad-japan-apac-us
+Issue description
+Some external links on your site lead to pages with a 4XX
+response code. Such links are often referred to as broken links.
+Broken links send website visitors to unavailable resources and
+have a negative impact on overall quality of the site.How to fix
+Check the pages indicated in the report and remove or replace all
+broken links. All external links from your site should lead to
+pages with the 200 OK response code.
+https://akrin.jp/
+https://akrin.jp/services/it-managed-services
+https://akrin.jp/services/cloud-infrastructure
+https://akrin.jp/services/cybersecurity
+https://akrin.jp/services/network-penetration-testing
+https://akrin.jp/services/wifi-assessment
+https://akrin.jp/services/it-consulting-project-management
+https://akrin.jp/services/wifi-design
+https://akrin.jp/services/itad-japan-apac-us
+https://akrin.jp/services/it-security
+https://akrin.jp/about
+https://akrin.jp/case-studies
+https://akrin.jp/blog
+https://akrin.jp/contact
+https://akrin.jp/book-consultation
+https://akrin.jp/services
+https://akrin.jp/privacy
+https://akrin.jp/terms
+https://akrin.jp/ja/services/it-managed-services
+https://akrin.jp/ja/services/cloud-infrastructure
+https://akrin.jp/ja/services/cybersecurity
+https://akrin.jp/ja/services/network-penetration-testing
+https://akrin.jp/ja/services/wifi-assessment
+https://akrin.jp/ja/services/it-consulting-project-management
+https://akrin.jp/ja/services/wifi-design
+https://akrin.jp/ja/services/itad-japan-apac-us
+https://akrin.jp/ja/services/it-securityExternal links to 4XX 2 0 0
+External links missing anchor 70 2 2 0
+SE Ranking
+Aug-29 2025 16ISSUES PAGESNEW FIXED
+https://akrin.jp/ja/about
+https://akrin.jp/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/case-studies/cloud-migration-manufacturing
+https://akrin.jp/case-studies/pentest-fintech-tokyo
+https://akrin.jp/case-studies/itad-tokyo-kobe-consolidation
+https://akrin.jp/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/case-studies/rack-buildout-9racks-campus
+https://akrin.jp/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/case-studies
+https://akrin.jp/blog/future-of-it-infrastructure-japan
+https://akrin.jp/blog/cybersecurity-best-practices-2025
+https://akrin.jp/blog/cloud-migration-success-stories
+https://akrin.jp/blog/ai-transforming-it-support
+https://akrin.jp/blog/remote-work-security-guide
+https://akrin.jp/blog/5g-impact-business-operations
+https://akrin.jp/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/blog
+https://akrin.jp/contact-form
+https://akrin.jp/ja/contact
+https://akrin.jp/ja/book-consultation
+https://akrin.jp/ja/services
+https://akrin.jp/ja/case-studies/managed-it-services-cpg-tokyo
+https://akrin.jp/ja/case-studies/cloud-migration-manufacturing
+https://akrin.jp/ja/case-studies/pentest-fintech-tokyo
+https://akrin.jp/ja/case-studies/itad-tokyo-kobe-consolidation
+https://akrin.jp/ja/case-studies/wifi-assessment-retail-tokyo
+https://akrin.jp/ja/case-studies/sdwan-insurance-30-sites-japan
+https://akrin.jp/ja/case-studies/datacenter-relocation-colo-to-colo
+https://akrin.jp/ja/case-studies/rack-buildout-9racks-campus
+https://akrin.jp/ja/case-studies/nationwide-wifi-30-offices
+https://akrin.jp/ja/blog/future-of-it-infrastructure-japan
+https://akrin.jp/ja/blog/cloud-migration-success-stories
+https://akrin.jp/ja/blog/cybersecurity-best-practices-2025
+https://akrin.jp/ja/blog/ai-transforming-it-support
+https://akrin.jp/ja/blog/remote-work-security-guide
+https://akrin.jp/ja/blog/5g-impact-business-operations
+https://akrin.jp/ja/blog/phishing-prevention-guide-2025
+https://akrin.jp/ja/contact-form
+SE Ranking
+Aug-29 2025 17ISSUES PAGESNEW FIXED
+https://akrin.jp/cookies
+https://akrin.jp/fortitude-demo
+https://akrin.jp/book-reservation
+Issue description
+Some external links on your website have an empty or naked
+anchor (i.e., anchor that uses a raw URL), or the anchor text only
+contains symbols. When clicking on links without anchors, it may
+be difficult for both website visitors and search engines to
+understand what to expect to see on the page that you link out
+to.How to fix
+Review the links indicated in the report and, if necessary, add
+anchor texts or descriptive in-copy text around the link. Aim to
+use concise phrasing in anchor texts.
+SE Ranking
+Aug-29 2025 18

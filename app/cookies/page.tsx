@@ -1,4 +1,4 @@
-"use client"
+
 
 import { generatePageMetadata } from "@/lib/metadata-helpers"
 

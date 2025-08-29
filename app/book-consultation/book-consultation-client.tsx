@@ -31,9 +31,9 @@ export default function BookConsultationClient() {
                 transition={{ delay: 0.2, duration: 0.8 }}
                 className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8"
               >
-                Book Your Free
+                Book a Consultation with AKRIN
                 <span className="block font-semibold bg-gradient-to-r from-white/80 to-white bg-clip-text text-transparent">
-                  IT Consultation
+                  IT Consulting & Managed Services
                 </span>
               </motion.h1>
               <motion.p

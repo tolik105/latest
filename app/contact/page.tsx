@@ -49,7 +49,7 @@ const contactSchema = {
     name: 'AKRIN Co., Ltd.',
     alternateName: 'AKRIN',
     url: 'https://akrin.jp',
-    logo: 'https://akrin.jp/logo.png',
+    logo: 'https://akrin.jp/akrin-logo.svg',
     description: 'Leading IT consulting and managed services provider in Japan, specializing in cloud migration, cybersecurity, and digital transformation.',
     foundingDate: '2020',
     industry: 'Information Technology',

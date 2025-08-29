@@ -186,11 +186,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title,
     description: description || item?.excerptEN,
     alternates: {
-      canonical: `/case-studies/${slug}`,
-      languages: {
-        en: `/case-studies/${slug}`,
-        ja: `/ja/case-studies/${slug}`
-      }
+      canonical: `/case-studies/${slug}`
     },
     openGraph: {
       title,

@@ -97,12 +97,7 @@ export function getServiceMetadata(slug: string): Metadata {
       images: ['/og-image.png'],
     },
     alternates: {
-      canonical: `https://akrin.jp/services/${slug}`,
-      languages: {
-        'en': `https://akrin.jp/services/${slug}`,
-        'ja': `https://akrin.jp/ja/services/${slug}`,
-        'x-default': `https://akrin.jp/services/${slug}`,
-      }
+      canonical: `https://akrin.jp/services/${slug}`
     },
   }
 }

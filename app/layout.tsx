@@ -108,14 +108,7 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/manifest.json',
-  alternates: {
-    canonical: 'https://akrin.jp',
-    languages: {
-      en: 'https://akrin.jp',
-      ja: 'https://akrin.jp/ja',
-      'x-default': 'https://akrin.jp'
-    }
-  }
+
 }
 
 export default function RootLayout({

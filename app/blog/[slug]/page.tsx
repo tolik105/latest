@@ -135,12 +135,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     },
     metadataBase: new URL('https://akrin.jp'),
     alternates: {
-      canonical: `/blog/${post.slug}`,
-      languages: {
-        en: `/blog/${post.slug}`,
-        ja: `/ja/blog/${post.slug}`,
-        'x-default': `/blog/${post.slug}`,
-      },
+      canonical: `/blog/${post.slug}`
     },
     openGraph: {
       title: normalizedTitle,

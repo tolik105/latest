@@ -55,11 +55,7 @@ export async function generateMetadata({ params }: JapaneseContentPageProps): Pr
       images: content.featuredImage ? [content.featuredImage] : undefined,
     },
     alternates: {
-      canonical: `/ja/${content.slug}`,
-      languages: {
-        'en': `/${content.slug}`,
-        'ja': `/ja/${content.slug}`,
-      }
+      canonical: `/ja/${content.slug}`
     }
   };
 }

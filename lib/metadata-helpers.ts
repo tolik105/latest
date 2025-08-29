@@ -1,4 +1,6 @@
 import { Metadata } from 'next'
+import { getAlternatesForPath, normalizePath } from '@/lib/route-map'
+
 
 interface PageMetadataProps {
   title: string
@@ -21,7 +23,7 @@ export function generatePageMetadata({
   const enUrl = `${baseUrl}${isJa ? normalizedPath.replace(/^\/ja/, '') || '/' : normalizedPath}`
   const jaUrl = `${baseUrl}${isJa ? normalizedPath : `/ja${normalizedPath}`}`
   const fullUrl = isJa ? jaUrl : enUrl
-  
+
   // Enforce length limits
   const normalizedTitle = title.length > 65 ? `${title.slice(0, 62)}...` : title
   const normalizedDescription = description.length > 158 ? `${description.slice(0, 155)}...` : description
@@ -53,12 +55,7 @@ export function generatePageMetadata({
       images: [image],
     },
     alternates: {
-      canonical: fullUrl,
-      languages: {
-        'en': enUrl,
-        'ja': jaUrl,
-        'x-default': enUrl
-      }
+      canonical: fullUrl
     }
   }
 }

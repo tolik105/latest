@@ -3,9 +3,11 @@
 import React, { useState } from "react"
 import Script from "next/script"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import CapabilityCards from "@/components/CapabilityCards"
+import { RelatedLinks } from "@/components/ui/related-links"
 import { HeroDiagonal } from "@/components/hero-diagonal"
 
 
@@ -244,7 +246,7 @@ export default function WiFiAssessmentClient() {
                 </div>
               </div>
               <div className="mt-8 lg:mt-0">
-                <img src="/images/banners/wifi-assessment/survey.webp" alt="Wi‑Fi Assessment" width={1200} height={800} loading="lazy" decoding="async" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
+                <Image src="/images/banners/wifi-assessment/survey.webp" alt="Wi‑Fi Assessment" width={1200} height={800} loading="lazy" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
               </div>
             </div>
           </div>
@@ -255,7 +257,7 @@ export default function WiFiAssessmentClient() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
               <div className="order-2 lg:order-1 mt-8 lg:mt-0">
-                <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80" alt="Wi‑Fi Optimization" width={1200} height={800} loading="lazy" decoding="async" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
+                <Image src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80" alt="Wi‑Fi Optimization" width={1200} height={800} loading="lazy" className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none" />
               </div>
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">Your Wi‑Fi Optimization<br />Partner</h2>

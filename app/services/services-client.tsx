@@ -1,6 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import { PartnerWithUsSection } from "@/components/ui/partner-with-us-section"
 import { PremiumCTA } from "@/components/ui/premium-cta"
 
@@ -77,14 +78,21 @@ export default function ServicesClient() {
             </div>
 
             <div className="order-1 md:order-2 relative ms-4">
-              <motion.img 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="w-full rounded-md" 
-                src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Global Network Solutions"
-              />
+                className="w-full rounded-md overflow-hidden"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                  alt="Global Network Solutions"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto rounded-md"
+                  priority
+                />
+              </motion.div>
               <div className="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 size-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6"></div>
             </div>
           </div>
@@ -111,10 +119,12 @@ export default function ServicesClient() {
                 index === 4 ? 'bg-gradient-to-br from-purple-400 to-purple-600' :
                 'bg-gradient-to-br from-green-400 to-green-600'
               }`}>
-                <img 
-                  className="group-hover:scale-105 transition-transform duration-500 ease-in-out size-full absolute top-0 start-0 object-cover rounded-xl opacity-80" 
-                  src={service.image} 
+                <Image
+                  className="group-hover:scale-105 transition-transform duration-500 ease-in-out size-full absolute top-0 start-0 object-cover rounded-xl opacity-80"
+                  src={service.image}
                   alt={service.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
 
@@ -161,10 +171,12 @@ export default function ServicesClient() {
               className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl hover:shadow-md transition-all duration-300"
             >
               <div className="aspect-w-16 aspect-h-11 rounded-t-xl overflow-hidden">
-                <img 
-                  className="w-full object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500" 
-                  src={service.image} 
+                <Image
+                  className="w-full object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500"
+                  src={service.image}
                   alt={service.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
               <div className="p-4 md:p-6 flex-1 flex flex-col">

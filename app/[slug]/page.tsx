@@ -54,11 +54,7 @@ export async function generateMetadata({ params }: ContentPageProps): Promise<Me
       images: content.featuredImage ? [content.featuredImage] : undefined,
     },
     alternates: {
-      canonical: `/${content.slug}`,
-      languages: {
-        'en': `/${content.slug}`,
-        'ja': `/ja/${content.slug}`,
-      }
+      canonical: `/${content.slug}`
     }
   };
 }

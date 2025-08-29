@@ -3,6 +3,8 @@
 import React from "react"
 import Script from "next/script"
 import Link from "next/link"
+import Image from "next/image"
+import { RelatedLinks } from "@/components/ui/related-links"
 
 import { HeroDiagonal } from "@/components/hero-diagonal"
 
@@ -83,9 +85,12 @@ export default function CloudInfrastructureClient() {
 
               {/* Right Image */}
               <div>
-                <img
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                <Image
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
                   alt="Cloud Assessment and Planning"
+                  width={1600}
+                  height={1066}
+                  loading="lazy"
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
@@ -99,9 +104,12 @@ export default function CloudInfrastructureClient() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Left Image */}
               <div className="order-2 lg:order-1">
-                <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                <Image
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
                   alt="Cloud Migration and Modernization"
+                  width={1600}
+                  height={1066}
+                  loading="lazy"
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
@@ -277,9 +285,12 @@ export default function CloudInfrastructureClient() {
 
             {/* Cloud Infrastructure Image */}
             <div className="text-center">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
                 alt="Cloud Infrastructure Operations"
+                width={2070}
+                height={1380}
+                loading="lazy"
                 className="w-full max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
               />
             </div>
@@ -327,9 +338,12 @@ export default function CloudInfrastructureClient() {
 
               {/* Right Image */}
               <div>
-                <img
-                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                <Image
+                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
                   alt="Cloud Partnership and Strategy"
+                  width={1600}
+                  height={1066}
+                  loading="lazy"
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>

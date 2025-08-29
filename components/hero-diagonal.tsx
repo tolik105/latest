@@ -2,6 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 export type Breadcrumb = { label: string; href?: string }
 
@@ -70,12 +71,14 @@ export function HeroDiagonal({
           }}
         >
           <div className="absolute inset-0">
-            <img
+            <Image
               src={imageSrc}
               alt={imageAlt}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+              className="object-cover"
               style={{ objectPosition: imageObjectPosition, transform: `scale(${imageScale})` }}
-              fetchPriority="high"
+              priority
             />
           </div>
         </div>

@@ -3,6 +3,7 @@
 import React from "react"
 import Script from "next/script"
 import Link from "next/link"
+import Image from "next/image"
 import { PremiumCTA } from "@/components/ui/premium-cta"
 import { HeroDiagonal } from "@/components/hero-diagonal"
 
@@ -107,9 +108,12 @@ export default function CybersecurityJaClient() {
 
               {/* Right Image */}
               <div className="mt-8 lg:mt-0">
-                <img
+                <Image
                   src="/images/banners/cybersecurity/Security-Assessment.webp"
                   alt="セキュリティ評価・監査"
+                  width={1200}
+                  height={800}
+                  loading="lazy"
                   className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
                 />
               </div>
@@ -123,9 +127,12 @@ export default function CybersecurityJaClient() {
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
               {/* Left Image */}
               <div className="order-2 lg:order-1">
-                <img
+                <Image
                   src="/images/banners/cybersecurity/detection-response.webp"
                   alt="マネージド検知・対応"
+                  width={1200}
+                  height={800}
+                  loading="lazy"
                   className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
                 />
               </div>
@@ -302,9 +309,12 @@ export default function CybersecurityJaClient() {
 
             {/* SOC Image */}
             <div className="text-center">
-              <img
+              <Image
                 src="/images/banners/cybersecurity/Security-Operations.webp"
                 alt="セキュリティオペレーションセンター"
+                width={1600}
+                height={900}
+                loading="lazy"
                 className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
               />
             </div>
@@ -352,9 +362,12 @@ export default function CybersecurityJaClient() {
 
               {/* Right Image */}
               <div className="mt-8 lg:mt-0">
-                <img
+                <Image
                   src="/images/banners/cybersecurity/Cybersecurity-Partner.webp"
                   alt="サイバーセキュリティ・パートナーシップ"
+                  width={1200}
+                  height={800}
+                  loading="lazy"
                   className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
                 />
               </div>
